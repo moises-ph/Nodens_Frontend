@@ -1,0 +1,119 @@
+.article {
+  width: 100%;
+  height: 100vh;
+}
+
+.head {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  background-image: url("../../assets/landing.png");
+}
+
+.title {
+  font-size: 9rem;
+  color: azure;
+  z-index: 10;
+}
+
+.body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0 0 10px;
+  gap: 6%;
+  background-color: #282a3a;
+  color: #eee;
+}
+
+.hacer {
+  width: 60%;
+  display: flex;
+  gap: 2%;
+  border-radius: 10px;
+  box-shadow: 1px 15px 23px 12px rgba(26, 25, 25, 0.842);
+  transition: all 0.5s ease;
+}
+
+.hacer:nth-child(2) {
+  margin-left: 39%;
+}
+
+.inte {
+  width: 20vw;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1px solid black;
+}
+
+.inte:nth-child(2) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card_des {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  padding-top: 4%;
+  padding-left: 0.12rem;
+}
+
+.card_pq {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  padding-top: 4%;
+}
+
+.body .hacer .card_des h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.body .hacer .card_des p {
+  width: 95%;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: justify;
+  line-height: 25px;
+}
+
+.card-pq {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  padding-top: 4%;
+}
+
+.body .hacer .card_pq h4 {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.body .hacer .card_pq p {
+  padding-left: 5%;
+  width: 95%;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: justify;
+  line-height: 25px;
+}
+
+.out {
+  opacity: 0.2;
+  transform: translateY(30vh);
+}
+
+.in {
+  opacity: 1;
+  transform: translateY(0vh);
+}
