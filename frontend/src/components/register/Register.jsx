@@ -11,9 +11,9 @@ function Register() {
         <div className={style.container_register}>
             <div className={style.register}>
               <h2 className={style.h2sign}>Sign Up</h2>
-              <input type="text" className={style.email_box} placeholder=" Email" />
-              <input type="text" className={style.password_box} placeholder=" Password" />
-              <input type="text" className={style.password} placeholder=" Repeat password" />
+              <input type="text" className={style.email_box} placeholder="Email" />
+              <input type="text" className={style.password_box} placeholder="Password" />
+              <input type="text" className={style.password} placeholder="Repeat password" />
               <div className={style.check}>
                   <input type="checkbox" className={style.checkbox} /><p>Remember Me</p>
               </div>

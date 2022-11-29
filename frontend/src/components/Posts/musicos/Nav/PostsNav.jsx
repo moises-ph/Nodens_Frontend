@@ -30,10 +30,12 @@ function PostsNav() {
         </div>
       </nav>
       <nav className={style.nav2}>
+      
         <button className={style.button}>Antiguedad</button>
         <button className={style.button}>Sueldo</button>
         <button className={style.button}>Ubicación</button>
         <button className={style.button}>Nivel de experiencia</button>
+  
       </nav>
     </>
   );

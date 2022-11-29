@@ -53,9 +53,15 @@
 }
 .forgot {
   color: #fff;
+  transition: all 1s ease;
+  text-decoration: none;
+}
+.forgot:hover{
+    color: rgb(78, 205, 135);
+  
 }
 .login_button {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(125, 60, 195);
   border: 1px solid black;
   border-radius: 15px;
   height: 8%;
@@ -64,7 +70,7 @@
   transition: all .1s;
 }
 .login_button:hover {
-  background-color: #fff;
+  background-color: rgb(62, 189, 201);
   transform: translateY(5px);
   box-shadow:0px 3px 10px 0px aqua;
 }

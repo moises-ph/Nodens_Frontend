@@ -18,8 +18,8 @@ function Login() {
               <Link to="/"><AiOutlineInstagram className={style.instagram}/></Link>
             </div>
             <h3>OR</h3>
-            <input type="text" className={style.email} placeholder=" Email" />
-            <input type="text" className={style.password} placeholder=" Password" />
+            <input type="text" className={style.email} placeholder="Email" />
+            <input type="text" className={style.password} placeholder="Password" />
             <Link to="/" className={style.forgot}>Forgot your password?</Link>
             <input type="button" className={style.login_button} value="Log in" />
           </div>
