@@ -64,8 +64,8 @@ function Landing() {
 
       <article className={style.testimonios}>
         {
-          testimonios.map((testimonio)=>{
-            return <div className={style.testi}>
+          testimonios.map((testimonio, index)=>{
+            return <div className={style.testi} key={index}>
               <div className={style.icon}>
                 <IoPersonCircleSharp className={style.i_user}/>
               </div>

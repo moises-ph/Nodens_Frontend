@@ -136,75 +136,6 @@
   font-family: "Source Code Pro", monospace;
 }
 
-.testi:nth-child(1):before,
-.testi:nth-child(3):before {
-  content: "";
-  position: absolute;
-  height: 35px;
-  width: 50px;
-  background: linear-gradient(180deg, #fb9c40, #f2974c);
-  z-index: 100;
-  left: 16.96%;
-  border-top-right-radius: 15px;
-}
-
-.testi:nth-child(2):before,
-.testi:nth-child(4):before {
-  content: "";
-  position: absolute;
-  height: 35px;
-  width: 50px;
-  background: linear-gradient(180deg, #fb9c40, #f2974c);
-  z-index: 100;
-  left: 63.7%;
-  border-top-right-radius: 15px;
-}
-
-.testi:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  height: 35px;
-  transform: translateY(-56.95vh);
-  width: 50px;
-  background: linear-gradient(180deg, #fb9c40, #f2974c);
-  z-index: 100;
-  left: 29.55%;
-  border-top-left-radius: 15px;
-}
-
-.testi:nth-child(2)::after {
-  content: "";
-  position: absolute;
-  height: 35px;
-  transform: translateY(-56.95vh);
-  width: 50px;
-  background: linear-gradient(180deg, #fb9c40, #f2974c);
-  z-index: 100;
-  right: 21.1%;
-  border-top-left-radius: 15px;
-}
-.testi:nth-child(3)::after {
-  content: "";
-  position: absolute;
-  height: 35px;
-  transform: translateY(-55.7vh);
-  width: 50px;
-  background: linear-gradient(180deg, #fb9c40, #f2974c);
-  z-index: 100;
-  right: 67.9%;
-  border-top-left-radius: 15px;
-}
-.testi:nth-child(4)::after {
-  content: "";
-  position: absolute;
-  height: 35px;
-  transform: translateY(-55.7vh);
-  width: 50px;
-  background: linear-gradient(180deg, #fb9c40, #f2974c);
-  z-index: 100;
-  right: 21.1%;
-  border-top-left-radius: 15px;
-}
 
 .icon {
   display: flex;
@@ -216,7 +147,7 @@
   transform: translateY(-7vh);
   border: 9px solid #eee;
   border-radius: 9999px;
-  background-color: #eee;
+  background-color: #282a3a;
   z-index: 10;
 }
 
@@ -232,15 +163,6 @@
   background-color: #282a3a;
 }
 
-.icon::before {
-  content: "";
-  position: absolute;
-  transform: translateY(-8vh);
-  z-index: 10;
-  height: 100px;
-  width: 12vw;
-  background-color: #282a3a;
-}
 
 .info {
   height: 70%;

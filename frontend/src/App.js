@@ -8,6 +8,7 @@ const Footer = lazy(() => import("./components/footer/Footer"));
 const Error = lazy(() => import("./components/error/Error"));
 const Login = lazy(()=>import("./components/login/Login"));
 const Register = lazy(()=>import("./components/register/Register"))
+const Posts = lazy(()=>import('./components/Posts/musicos/Index'))
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Landing />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/registro' element={<Register />}></Route>
+            <Route path="/account/posts" element={<Posts />}></Route>
             <Route path="*" element={<Error />}></Route>
           </Routes>
           <Footer />
