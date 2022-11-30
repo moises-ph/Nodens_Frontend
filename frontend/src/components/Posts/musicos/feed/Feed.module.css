@@ -1,3 +1,22 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent;
+    border-radius: 10px;
+    background-color: #282a3a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #777;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
 .body {
     display: grid;
     grid-template-columns: 2fr 2fr;
@@ -14,6 +33,7 @@
     width: 90%;
     background-color: #282a3a;
     overflow: scroll;
+    scrollbar-track-color: red;
 }
 
 .tarjet {
