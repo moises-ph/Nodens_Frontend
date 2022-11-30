@@ -130,6 +130,12 @@ function Feed() {
             </div>
           </div>
           <p>Importante compañia del sector hotelero requiere el cargo de Botones, Hombres con excelente presentacion personal, y actitud de servicio.</p>
+          <span>mision</span>
+          <ul>
+            <li><h3>Nivel de antiguedad</h3><span>Sin experiencia</span></li>
+            <li><h3>Tipo de Empleo</h3><span>Jornada completa</span></li>
+            
+          </ul>
         </article>
       </main>
     </>
