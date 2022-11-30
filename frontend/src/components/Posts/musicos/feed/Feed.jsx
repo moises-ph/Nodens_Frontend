@@ -11,11 +11,95 @@ function Feed() {
       descripcion: "Descripción del grupo",
       antiguedad: "Antiguedad del grupo",
     },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    },
+    {
+      title: "El titulo",
+      name: "Nombre del grupo",
+      ubicacion: "Ubicación",
+      descripcion: "Descripción del grupo",
+      antiguedad: "Antiguedad del grupo",
+    }
   ];
 
   return (
     <>
-      <main>
+      <main className={style.body}>
         <article className={style.arreglo}>
           {arreglo.map((arreglo, index) => {
             return (
@@ -26,11 +110,14 @@ function Feed() {
                   <h4>{arreglo.ubicacion}</h4>
                   <h4>{arreglo.descripcion}</h4>
                   <h4>{arreglo.antiguedad}</h4>
-
                 </div>
               </div>
             );
           })}
+        </article>
+
+        <article className={style.card}>
+
         </article>
       </main>
     </>

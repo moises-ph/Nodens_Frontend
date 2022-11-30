@@ -1,15 +1,22 @@
-.arreglo{
-    height: 140vh;
-    background-color: #282a3a;
+.body {
     display: grid;
-    padding-left: 15%;
     grid-template-columns: 2fr 2fr;
-    gap: 10%;
-    padding-top: 2rem;
+    background-color: #282a3a;
+    padding-inline: 6%;
 }
-.tarjet{
-    background: linear-gradient(180deg,rgba(251, 156, 63, 1) 0%,rgba(116, 70, 252, 1) 100%);
-    width: 45rem;
+
+.arreglo {
+    display: flex;
+    flex-direction: column;
+    height: 140vh;
+    width: 90%;
+    background-color: #282a3a;
+    
+}
+
+.tarjet {
+    background: linear-gradient(180deg, rgba(251, 156, 63, 1) 0%, rgba(116, 70, 252, 1) 100%);
+    width: 100%;
     height: 15%;
     border-radius: 15px;
     text-align: center;
@@ -17,11 +24,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    
-   
-
 }
-.info{
+
+.info {
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -29,4 +34,9 @@
     justify-content: space-between;
     font-family: "Source Code Pro", monospace;
     padding-left: 1.5rem;
+}
+
+.card {
+    background-color: red;
+    height: 100vh;
 }
