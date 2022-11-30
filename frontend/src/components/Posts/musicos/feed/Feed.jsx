@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Feed.module.css";
 import { Link } from "react-router-dom";
+import {AiFillFileExcel} from 'react-icons/ai'
 
 function Feed() {
   const arreglo = [
@@ -117,7 +118,18 @@ function Feed() {
         </article>
 
         <article className={style.card}>
-
+          <div>
+            <AiFillFileExcel />
+            <Link to='/'><h3>Recepcionista Cajero</h3></Link>
+            <p>GHL Hoteles  Medellín, Antioquia, Colombia</p>
+            <p>Hace 1 semana  26 solicitudes</p>
+            <Link to='/'><p>Descubre a quién ha contratado GHL Hoteles para este puesto</p></Link>
+            <div>
+              <button>Solicitar en el Sitio Web de la Empresa</button>
+              <button>Guardar</button>
+            </div>
+          </div>
+          <p>Importante compañia del sector hotelero requiere el cargo de Botones, Hombres con excelente presentacion personal, y actitud de servicio.</p>
         </article>
       </main>
     </>
