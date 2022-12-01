@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Feed.module.css";
 import { Link } from "react-router-dom";
 import {AiFillFileExcel} from 'react-icons/ai'
+import {FiExternalLink} from 'react-icons/fi'
 
 function Feed() {
   const arreglo = [
@@ -118,15 +119,18 @@ function Feed() {
         </article>
 
         <article className={style.card}>
-          <div>
-            <AiFillFileExcel />
-            <Link to='/'><h3>Recepcionista Cajero</h3></Link>
-            <p>GHL Hoteles  Medellín, Antioquia, Colombia</p>
-            <p>Hace 1 semana  26 solicitudes</p>
-            <Link to='/'><p>Descubre a quién ha contratado GHL Hoteles para este puesto</p></Link>
-            <div>
-              <button>Solicitar en el Sitio Web de la Empresa</button>
-              <button>Guardar</button>
+          <div className={style.square}>
+            <AiFillFileExcel className={style.square_icon}/>
+            <Link to='/' className={style.square_title}><h3>Recepcionista Cajero</h3></Link>
+            <p className={style.p}>GHL Hoteles  Medellín, Antioquia, Colombia</p>
+            <p className={style.p}> <span>Hace 1 semana</span>  26 solicitudes</p>
+            <div className={style.icon_container}>
+              <AiFillFileExcel className={style.square_icon}/> <AiFillFileExcel className={style.square_icon}/><AiFillFileExcel className={style.square_icon}/>
+              <Link to='/'><p className={style.p}>Descubre a quién ha contratado GHL Hoteles para este puesto</p></Link>
+            </div>
+            <div className={style.buttons_container}>
+              <button className={style.square_button}>Solicitar en el Sitio Web de la Empresa <FiExternalLink /></button>
+              <button className={style.square_button}>Guardar</button>
             </div>
           </div>
           <p>Importante compañia del sector hotelero requiere el cargo de Botones, Hombres con excelente presentacion personal, y actitud de servicio.</p>
