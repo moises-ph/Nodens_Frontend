@@ -133,11 +133,11 @@ function Feed() {
               <button className={style.square_button}>Guardar</button>
             </div>
           </div>
-          <p>Importante compañia del sector hotelero requiere el cargo de Botones, Hombres con excelente presentacion personal, y actitud de servicio.</p>
-          <span>mision</span>
-          <ul>
-            <li><h3>Nivel de antiguedad</h3><span>Sin experiencia</span></li>
-            <li><h3>Tipo de Empleo</h3><span>Jornada completa</span></li>
+          <p className={style.p_des}>Importante compañia del sector hotelero requiere el cargo de Botones, Hombres con excelente presentacion personal, y actitud de servicio.</p>
+          <span className={style.mision}>mision</span>
+          <ul className={style.list}>
+            <li className={style.list_item}><h3 className={style.list_title}>Nivel de antiguedad</h3><span className={style.list_span}>Sin experiencia</span></li>
+            <li className={style.list_item}><h3 className={style.list_title}>Tipo de Empleo</h3><span className={style.list_span}>Jornada completa</span></li>
             
           </ul>
         </article>

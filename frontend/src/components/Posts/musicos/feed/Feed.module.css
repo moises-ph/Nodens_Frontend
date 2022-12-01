@@ -19,7 +19,6 @@
     width: 90%;
     background-color: #282a3a;
     overflow: scroll;
-    scrollbar-track-color: red;
 }
 
 .tarjet {
@@ -47,8 +46,10 @@
 .card {
     background-color: #eee;
     color: #111;
-    height: 100vh;
+    height: 80vh;
     padding: 5%;
+    border-radius: 10px;
+    border: 1px #777 solid;
 }
 
 .square {
@@ -68,7 +69,7 @@
 }
 
 .icon_container .square_icon:not(:nth-child(3)){
-    margin-right: -15px;
+    margin-right: -5px;
 }
 
 .square_icon path {
@@ -111,7 +112,7 @@
 }
 
 .square_button{
-    height: 5vh;
+    height: 6vh;
     padding-inline: 6%;
     border: none;
     border-radius: 25px;
@@ -124,6 +125,49 @@
     background-color: rgb(25, 88, 225);
 }
 
+.square_button:nth-child(2) {
+    background-color: transparent;
+    border: 1px #666 solid;
+    color: #111;
+}
+
 .square_button:hover {
-    background-color: red;
+    background-color: rgb(16, 139, 16);
+    color: #eee;
+}
+
+.p_des {
+    color: #111;
+    text-align: start;
+    font-size: 0.8rem;
+    letter-spacing: -1px;
+    margin-block: 3%;
+}
+
+.mision {
+    color: #555;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    margin-top: 5%;
+}
+
+.list_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.list_title {
+    color: #666;
+    font-size: 1rem;
+}
+
+.list_span {
+    color: #111;
+    font-weight: 700;
+    font-size: 1rem;
 }
