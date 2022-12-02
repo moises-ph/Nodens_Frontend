@@ -119,6 +119,7 @@
     font-weight: 700;
     font-size: 1rem;
     letter-spacing: 0.1%;
+    transition: all .3s ease;
 }
 
 .square_button:nth-child(1){
@@ -134,6 +135,9 @@
 .square_button:hover {
     background-color: rgb(16, 139, 16);
     color: #eee;
+}
+.square_button:active{
+    transform: translateY(5px);
 }
 
 .p_des {
