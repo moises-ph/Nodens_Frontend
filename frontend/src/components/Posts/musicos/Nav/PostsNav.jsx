@@ -7,10 +7,10 @@ function PostsNav() {
     <>
       <nav className={style.nav}>
         <div className={style.container}>
-          <input type="text" placeholder="Buscar" />
-          <button>X</button>
+          <input type="text" placeholder="Buscar" className={style.text} />
+          <button className={style.ubicacion} placeholder="Ubicación">Ubicación</button>
           <button className={style.desp}>
-            <BsSearch />
+            <BsSearch className={style.search}/>
           </button>
           <select className={style.select}>
             <option>123145647</option>
