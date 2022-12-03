@@ -202,3 +202,36 @@
 .min_icon:hover {
     transform: translateY(-15px);
 }
+
+@media screen and (max-width:1013px) {
+  .testi {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width:755px) {
+  .testi {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width:660px) {
+  .testimonios{
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    gap: 6%;
+    align-items: center;
+    
+  }
+  .testi {
+    width: 70%;
+    height: 100%;
+  }
+  .social_n {
+    margin-top: -3%;
+  }
+  .p2 {
+    align-items: flex-start;
+  }
+}
