@@ -222,10 +222,10 @@
     flex-direction: column;
     gap: 6%;
     align-items: center;
-    
+    margin-left: -12%;
   }
   .testi {
-    width: 70%;
+    width: 50%;
     height: 100%;
   }
   .social_n {
@@ -233,5 +233,11 @@
   }
   .p2 {
     align-items: flex-start;
+  }
+  .inte {
+    width: 26vw;
+  }
+  .card_des, .card-pq {
+    width: 60vw;
   }
 }
