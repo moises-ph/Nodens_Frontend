@@ -5,58 +5,57 @@ const Registro = () => {
     e.preventDefault();
     const form: FormData = new FormData(e.target);
     const object = Object.fromEntries(form)
-    console.log(object);
   
     axios.post("https://localhost:44384/api/User/Register", object)
       .then(res=>{alert(res)})  
       .catch(err=>{console.log(err)});
-
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col gap-4">
-        <label htmlFor="Email" className="flex text-center flex-col ">
+    <main className='flex flex-col items-center pt-7 bg-slate-100 text-slate-100 gap-4 py-6 sm:py-4'>
+      <h1 className="text-6xl text-zinc-900">Registro</h1>
+      <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-auto rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 pl-6 py-4 gap-4">
+        <label htmlFor="Email" className="w-full flex flex-col gap-2">
          <h2>Email</h2> 
-          <input type="email" name="email" id="" className="border border-solid border-black" placeholder="Email" required />
+          <input type="email" name="email" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />
         </label>
-        <label htmlFor="firstName" className="flex text-center flex-col">
+        <label htmlFor="firstName" className="w-full flex flex-col gap-2">
           <h2>First Name</h2>
-          <input type="text" name="first_Name" id="" className="border border-solid border-black" placeholder="First Name" required/>
+          <input type="text" name="first_Name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Name" required/>
         </label>
-        <label htmlFor="secondName" className="flex text-center flex-col">
+        <label htmlFor="secondName" className="w-full flex flex-col gap-2">
           <h2>Second Name</h2>
-          <input type="text" name="second_Name" id="" className="border border-solid border-black" placeholder="Second Name" required/>
+          <input type="text" name="second_Name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Second Name" required/>
         </label>
-        <label htmlFor="firstLastname" className="flex text-center flex-col">
+        <label htmlFor="firstLastname" className="w-full flex flex-col gap-2">
           <h2>First Lastname</h2>
-          <input type="text" name="first_Lastname" id="" className="border border-solid border-black" placeholder="First Lastname" required/>
+          <input type="text" name="first_Lastname" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Lastname" required/>
         </label>
-        <label htmlFor="secondLastname" className="flex text-center flex-col">
+        <label htmlFor="secondLastname" className="w-full flex flex-col gap-2">
           <h2>Second Lastname</h2>
-          <input type="text" name="second_Lastname" id="" className="border border-solid border-black" placeholder="Second Lastname" required/>
+          <input type="text" name="second_Lastname" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Second Lastname" required/>
         </label>
-        <label htmlFor="rol" className="flex text-center flex-col">
+        <label htmlFor="rol" className="w-full flex flex-col gap-2">
           <h2>Rol</h2>
-          <input type="text" name="rol" id="" className="border border-solid border-black" placeholder="Rol" required/>
+          <input type="text" name="rol" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Rol" required/>
         </label>
-        <label htmlFor="departament" className="flex text-center flex-col">
+        <label htmlFor="departament" className="w-full flex flex-col gap-2">
           <h2>Departament</h2>
-          <input type="text" name="department" id="" className="border border-solid border-black" placeholder="Departament" required/>
+          <input type="text" name="department" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Departament" required/>
         </label>
-        <label htmlFor="city" className="flex text-center flex-col">
+        <label htmlFor="city" className="w-full flex flex-col gap-2">
           <h2>City</h2>
-          <input type="text" name="city" id="" className="border border-solid border-black" placeholder="City" required/>
+          <input type="text" name="city" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="City" required/>
         </label>
-        <label htmlFor="birthday" className="flex text-center flex-col">
+        <label htmlFor="birthday" className="w-full flex flex-col gap-2">
           <h2>Birthday</h2>
-          <input type="datetime-local" name="birthdate" id="" className="border border-solid border-black" placeholder="Birthday required"/>
+          <input type="datetime-local" name="birthdate" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Birthday required"/>
         </label>
-        <label htmlFor="password" className="flex text-center flex-col">
+        <label htmlFor="password" className="w-full flex flex-col gap-2">
           <h2>Password</h2>
-          <input type="password" name="password" id="" className="border border-solid border-black" placeholder="Password" required/>
+          <input type="password" name="password" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Password" required/>
         </label>
-        <input type="submit" value="Submit" className="w-20 h-20 bg-red-500 border border-solid border-black " />
+        <input type="submit" value="Submit" className="place-self-center py-2 px-4 bg-transparent text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" />
       </form>
     </main>
   );
