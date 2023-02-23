@@ -7,7 +7,7 @@ const Registro = () => {
     const object = Object.fromEntries(form)
   
     axios.post("https://localhost:44384/api/User/Register", object)
-      .then(res=>{alert(res)})  
+      .then(res=>{console.log(res)})
       .catch(err=>{console.log(err)});
   };
 
