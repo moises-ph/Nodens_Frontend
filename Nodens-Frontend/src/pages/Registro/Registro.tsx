@@ -7,7 +7,7 @@ const Registro = () => {
     const object = Object.fromEntries(form)
     console.log(object);
   
-    axios.post("/api/User/Register", object)
+    axios.post("https://localhost:44384/api/User/Register", object)
       .then(res=>{alert(res)})  
       .catch(err=>{console.log(err)});
 
@@ -50,7 +50,7 @@ const Registro = () => {
         </label>
         <label htmlFor="birthday" className="flex text-center flex-col">
           <h2>Birthday</h2>
-          <input type="datetime-local" name="birthday" id="" className="border border-solid border-black" placeholder="Birthday required"/>
+          <input type="datetime-local" name="birthdate" id="" className="border border-solid border-black" placeholder="Birthday required"/>
         </label>
         <label htmlFor="password" className="flex text-center flex-col">
           <h2>Password</h2>
