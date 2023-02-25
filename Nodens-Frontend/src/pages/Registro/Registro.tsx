@@ -11,6 +11,24 @@ const Registro = () => {
     const object = Object.fromEntries(form)
     console.log(object);
     
+    let timerInterval: number
+    Swal.fire({
+      title: 'Registrando.',
+      html: 'Te estamos registrando, danos un momento :).',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
   
     axios.post("https://localhost:44384/api/User/Register", object)
       .then(res=>{
@@ -24,8 +42,17 @@ const Registro = () => {
         timer: 1500
       }
       )})
-      .catch(err=>{console.log(err)});
+      .catch(err=>{console.log(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ooh! Algo anda mal..',
+
+          timer: 3000  
+        })
+      });
   };
+  
 
   return  (
     <main className='flex flex-col items-center pt-7 bg-slate-100 text-slate-100 gap-4 py-6 sm:py-4'>    
