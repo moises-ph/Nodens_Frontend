@@ -12,6 +12,13 @@
         
     }
 
+    .fondoHome{
+        background: url("./images/Fondo.png") no-repeat center center fixed;
+        height: 100vh;
+        width: 100vw;
+        background-size:cover; 
+        }
+
     .span{
         animation: glow 1.5s ease-in-out infinite;
     }

@@ -1,5 +1,3 @@
-import gif from "../../images/Astronauta.gif"
-
 const Error = () => {
   return (
     <>
