@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer custom {
+    .error {
+
+    }
+
+    .span{
+        animation: glow 1.5s ease-in-out infinite;
+    }
+}
+
+.span:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.span:nth-child(3) {
+    animation-delay: 0.55s;
+}
+
+@keyframes glow {
+    0%,100%{
+        color: #fff;
+        text-shadow: 0 0 12px lime, 0 0 50px lime, 0 0 100px lime
+    }
+    10%, 90%{
+        color: black;
+        text-shadow: none;
+    }
+}

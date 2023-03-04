@@ -1,19 +1,20 @@
-import React from 'react'
-
+import React from "react";
 const Error = () => {
   return (
-      <>
-      <main className='justify-center align-center'>
-    <div className=''>
-     <p>Look like you're lost in space</p>   
-    <h1>404</h1> 
-    <a href="">Go back</a>  
-    <p>Jiji</p>
-    </div>
-    </main>
+    <>
+      <main className="bg-blue-700 flex justify-center align-center">
+        <div className="">
+          <p className="text-slate-50"><span className="" >Look like you're lost in space</span> </p>
+          <h1 className="relative w-full text-center text-9xl tracking-widest box-reflect" >
+          <span className="text-white span">4</span>
+          <span className="text-white span">0</span>
+          <span className="text-white span delay-300">4</span>
+            </h1>
+          <a href="/" className="text-white span">Go back</a>
+        </div>
+      </main>
     </>
-  )
-  
-}
+  );
+};
 
-export default Error
+export default Error;
