@@ -8,7 +8,7 @@ const Error = () => {
           <h1 className="relative w-full text-center text-9xl tracking-widest" >
           <span className="text-white span">4</span>
           <span className="text-white span">0</span>
-          <span className="text-white span delay-300">4</span>
+          <span className="text-white span">4</span>
             </h1>
           <a href="/" className="text-white text-3xl self-center span hover:translate-y-2 transition-all duration-150 rotate-6 hover:rotate-12  active:translate-y-0.5">Go back</a>
         </div>
