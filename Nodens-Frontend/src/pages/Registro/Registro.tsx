@@ -62,37 +62,21 @@ const Registro = () => {
          <h2>Email</h2> 
           <input type="email" name="email" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />
         </label>
-        <label htmlFor="firstName" className="w-full flex flex-col gap-2">
-          <h2>First Name</h2>
-          <input type="text" minLength={3} name="first_Name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Name" required/>
+        <label htmlFor="name" className="w-full flex flex-col gap-2">
+          <h2>Name</h2>
+          <input type="text" minLength={3} name="name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Name" required/>
         </label>
-        <label htmlFor="secondName" className="w-full flex flex-col gap-2">
-          <h2>Second Name</h2>
-          <input type="text" minLength={3} name="second_Name" defaultValue={''} id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Second Name"/>
-        </label>
-        <label htmlFor="firstLastname" className="w-full flex flex-col gap-2">
-          <h2>First Lastname</h2>
-          <input type="text" minLength={3} name="first_Lastname" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Lastname" required/>
-        </label>
-        <label htmlFor="secondLastname" className="w-full flex flex-col gap-2">
-          <h2>Second Lastname</h2>
-          <input type="text" minLength={3} name="second_Lastname" defaultValue={''} id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Second Lastname" />
+        <label htmlFor="lastname" className="w-full flex flex-col gap-2">
+          <h2>Lastname</h2>
+          <input type="text" minLength={3} name="lastname" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Lastname" required/>
         </label>
         <label htmlFor="rol" className="w-full flex flex-col gap-2">
           <h2>Rol</h2>
-          <input type="text" name="rol" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Rol" required/>
-        </label>
-        <label htmlFor="departament" className="w-full flex flex-col gap-2">
-          <h2>Departament</h2>
-          <input type="text" name="department" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Departament" required/>
-        </label>
-        <label htmlFor="city" className="w-full flex flex-col gap-2">
-          <h2>City</h2>
-          <input type="text" name="city" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="City" required/>
-        </label>
-        <label htmlFor="birthday" className="w-full flex flex-col gap-2">
-          <h2>Birthday</h2>
-          <input type="datetime-local" name="birthdate" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Birthday required"/>
+          <select name="rol" id="" className="w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" required>
+            <option className="w-11/12 bg-zinc-900 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400" selected>Rol</option>
+            <option className="w-11/12 bg-zinc-900 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400" value="Musician">Musician</option>
+            <option className="w-11/12 bg-zinc-900 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400" value="Organizer">Organizer</option>
+          </select>
         </label>
         <label htmlFor="password" className="w-full flex flex-col gap-2">
           <h2>Password</h2>

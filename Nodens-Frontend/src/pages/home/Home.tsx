@@ -1,6 +1,3 @@
-
-
-
 function Home() {
   return (
     <>  
