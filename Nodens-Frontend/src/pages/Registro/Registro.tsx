@@ -1,9 +1,18 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const Registro = () => {
   const MySwal = withReactContent(Swal)
+  const navigation = useNavigate()
+
+  const redirectLogin = ():void => {
+    window.setTimeout(()=>{
+      navigation("/login", {replace:true});
+      window.clearTimeout();
+    }, 1000)
+  }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -24,7 +33,6 @@ const Registro = () => {
         clearInterval(timerInterval)
       }
     }).then((result) => {
-      /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
         console.log('I was closed by the timer')
       }
@@ -38,19 +46,15 @@ const Registro = () => {
         icon: 'success',
         title: 'Usuario Registrado',
         showConfirmButton: false,
-
         timer: 1500
-      }
-      )})
+      }); redirectLogin()})
       .catch(err=>{console.log(err)
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Ooh! Algo anda mal..',
-
           timer: 3000  
-        })
-      });
+        })});
   };
   
 
