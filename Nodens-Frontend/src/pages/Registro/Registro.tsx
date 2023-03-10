@@ -32,7 +32,7 @@ const Registro = () => {
       willClose: () => {
         clearInterval(timerInterval)
       }
-    }).then((result) => {
+    }).then((result:any) => {
       if (result.dismiss === Swal.DismissReason.timer) {
         console.log('I was closed by the timer')
       }

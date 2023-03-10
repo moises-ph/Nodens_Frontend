@@ -1,16 +1,20 @@
 import axios from "axios";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { useNavigate } from "react-router-dom";
+import {changeAppRouter} from "../../store/RouterSlice"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const Login = () => {
+  const dispatch = useDispatch();
   const MySwal = withReactContent(Swal)
   const navigate = useNavigate();
 
   const redirectApp = () : void =>{
     window.setTimeout(()=>{
+      dispatch(changeAppRouter())
       navigate("/", {replace:true})
-      window.clearTimeout;
+      window.clearTimeout();
     }, 1000)
   } 
   
@@ -22,9 +26,8 @@ const Login = () => {
     console.log(data);
     
     axios.post('https://localhost:44384/api/auth/login', data)
-      .then(res => console.log(res))
-      .then(res => redirectApp())
-      .catch(err=> console.log(err))
+      .then((res: any) => {console.log(res); redirectApp(); })
+      .catch((err: any)=> console.log(err))
   }
   return (
     <>

@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { InitialRouter, AppRouter } from "../Routers"
 
 const InitialState = {
-    router: InitialRouter
+    router: false
 }
 
 export const RouterSlice = createSlice({
@@ -10,10 +9,10 @@ export const RouterSlice = createSlice({
     initialState: InitialState,
     reducers: {
         changeAppRouter: (state)=>{
-            state.router = AppRouter;
+            state.router = true;
         },
         changeIntialRouter: (state) => {
-            state.router = InitialRouter;
+            state.router = false;
         }
     }
 })
