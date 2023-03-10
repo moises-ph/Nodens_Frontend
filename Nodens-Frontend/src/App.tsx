@@ -1,20 +1,13 @@
-import {BrowserRouter as Router, Routes, Route, BrowserRouter} from 'react-router-dom'
-import { Home, Login, Registro, Error } from './pages'
+import { useSelector } from "react-redux/es/exports"
+import { RootState } from "./store/store"
 
 function App() {
+  const Router = useSelector(
+    (state: RootState) => state.Router.router
+  );
   return (
     <>
-      <Router>
-        <Routes>
-        <Route path='/' element={<Home />}></Route>
-          <Route path='/registro' element={<Registro />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='*' element={<Error />}></Route>
-          {/* <Route path='/' element={}></Route>
-          <Route path='/' element={}></Route>
-          <Route path='/' element={}></Route> */}
-        </Routes>
-      </Router>
+      <Router />
     </>
   )
 }
