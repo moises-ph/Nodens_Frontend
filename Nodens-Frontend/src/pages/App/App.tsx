@@ -2,7 +2,11 @@ import React from 'react'
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+    <main className=''>
+    <div>App sfighodf</div>
+    </main>
+    </>
   )
 }
 
