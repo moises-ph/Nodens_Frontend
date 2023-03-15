@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { Link } from 'react-router-dom'
 import {FaHome, FaShoppingBag} from 'react-icons/fa'
 import {AiOutlineUserAdd} from 'react-icons/ai'
+import {RiUserReceived2Line} from "react-icons/ri"
 
 interface NavBar {
     inView: boolean;
@@ -17,7 +18,8 @@ const Nav:React.FC<NavBar> = ({inView, setShowNav}) => {
             <Link className="h-[10%] w-11/12 flex items-center gap-2 rounded-lg text-slate-100 text-xl py-4 pl-2 transition-colors duration-300 ease-linear hover:bg-slate-400" to="/"><FaHome /> Home</Link>
             <button className="text-2xl text-slate-100 place-self-end mb-4 nav2" onClick={()=>setShowNav(false)}>X</button>
           </div>
-          <Link className="h-[10%] w-11/12 flex items-center gap-2 rounded-lg text-slate-100 text-xl py-4 pl-2 transition-colors duration-300 ease-linear hover:bg-slate-400" to="/products"><AiOutlineUserAdd /> Registro</Link>
+          <Link className="h-[10%] w-11/12 flex items-center gap-2 rounded-lg text-slate-100 text-xl py-4 pl-2 transition-colors duration-300 ease-linear hover:bg-slate-400" to="/registro"><AiOutlineUserAdd /> Registro</Link>
+          <Link className="h-[10%] w-11/12 flex items-center gap-2 rounded-lg text-slate-100 text-xl py-4 pl-2 transition-colors duration-300 ease-linear hover:bg-slate-400" to="/"><RiUserReceived2Line />Login</Link>
         </nav>
       </div>
   )

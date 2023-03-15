@@ -10,7 +10,7 @@ const Registro = () => {
   const redirectLogin = ():void => {
     window.setTimeout(()=>{
       navigation("/login", {replace:true});
-      window.clearTimeout();
+      window.clearTimeout(1);
     }, 1000)
   }
 
@@ -59,8 +59,8 @@ const Registro = () => {
   
 
   return  (
-    <main className='flex flex-col items-center pt-7 bg-slate-100 text-slate-100 gap-4 py-6 sm:py-4'>    
-      <h1 className="text-6xl text-zinc-900">Registro</h1>
+    <main className='flex flex-col items-center bg-slate-100 text-slate-100 gap-4 py-6 sm:py-4 pt-10'>    
+      <h1 className="text-6xl text-zinc-900 pt-20">Registro</h1>
       <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-auto rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 pl-6 py-4 gap-4">
         <label htmlFor="Email" className="w-full flex flex-col gap-2">
          <h2>Email</h2> 
