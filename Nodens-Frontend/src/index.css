@@ -12,7 +12,7 @@
   }
 .nav1{
   animation-name:n1;
-  animation-duration: 2s;
+  animation-duration: 1s;
   position: relative;
   animation-direction: normal;
   animation-timing-function: ease-out;
