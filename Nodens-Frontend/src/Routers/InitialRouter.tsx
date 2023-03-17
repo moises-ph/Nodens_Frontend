@@ -3,8 +3,9 @@ import { Home, Login, Registro, Error } from '../pages'
 import {Nav} from '../components'
 import {HiMenu} from 'react-icons/hi'
 import { useState } from 'react'
-
+import Footer from '../components/Footer/Footer'
 export const InitialRouter = () => {
+  const [showFoot, setShowFoot] = useState<boolean>(false)
   const [showNav, setShowNav] = useState<boolean>(false)
   return (
     <>
@@ -21,6 +22,7 @@ export const InitialRouter = () => {
           <Route path='/login' element={<Login />}></Route>
           <Route path='*' element={<Error />}></Route>
         </Routes>
+        <Footer />
       </Router>
     </>
   )
