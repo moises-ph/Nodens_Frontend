@@ -15,7 +15,7 @@ function Home() {
           <p className="text-slate-100">Ya eres parte de nosotros?</p>
           <Link className="self-start bg-slate-50 w-[75%] h-10 rounded-3xl flex justify-center items-center" to="/registro">Registrate</Link>
           <div className="w-56 h-0.5 bg-slate-800"></div>
-          <p className="text-slate-50 pl-8"> Ya tienes una cuenta?</p>
+          <p className="text-slate-50 pl-[2.2rem]"> Ya tienes una cuenta?</p>
           <div className="w-56 h-0.5 bg-slate-800"></div>
           <Link className="self-start bg-pink-500 text-slate-50 w-[57%] h-8 rounded-3xl flex justify-center items-center" to="/login">Iniciar Sesion</Link>
 
