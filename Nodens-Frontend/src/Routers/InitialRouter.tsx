@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
 import { Home, Login, Registro, Error } from '../pages'
-import {Nav} from '../components'
-import {HiMenu} from 'react-icons/hi'
+import { Nav } from '../components'
+import { HiMenu } from 'react-icons/hi'
 import { useState } from 'react'
 import Footer from '../components/Footer/Footer'
 export const InitialRouter = () => {

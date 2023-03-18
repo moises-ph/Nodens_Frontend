@@ -12,7 +12,7 @@
   }
 .nav1{
   animation-name:n1;
-  animation-duration: 1s;
+  animation-duration: 1.5s;
   position: relative;
   animation-direction: normal;
   animation-timing-function: ease-out;
@@ -21,7 +21,7 @@
 
 @keyframes n1 {
   0%{
-      clip-path: circle(0px at 0 50px);
+      clip-path: circle(0px at 650px 50px);
   }
 
   50%{

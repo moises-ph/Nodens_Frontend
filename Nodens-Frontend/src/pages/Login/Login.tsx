@@ -31,15 +31,17 @@ const Login = () => {
   }
   return (
     <>
-      <main className="pt-60 pb-72 flex justify-center items-center flex-col">
-        <h1 className="text-3xl">Login</h1>
-        <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col pt-8 gap-4">
+      <main className="h-[79.8vh] pt-16 flex justify-center items-center flex-col border-solid border-2 border-black">
+        <section className="h-[65vh] w-10/12 rounded-2xl pt-8 px-8 flex items-center flex-col border-solid border-2 border-black">
+        <h1 className="w-full text-4xl text-start">Login</h1>
+        <form onSubmit={handleSubmit} className="w-full flex justify-center flex-col pt-8 gap-4">
           <label htmlFor="">Email</label>
           <input type="email" name="email" id="" placeholder="Email" className="bg-slate-800 p-2 rounded-xl text-slate-50"/>
           <label htmlFor="password">Contraseña</label>
           <input type="password" name="password" id="" placeholder="Contraseña" className="bg-slate-800 rounded-xl p-2 text-slate-50"/>
           <input type="submit" className="text-slate-50 bg-slate-800 flex justify-center items-center cursor-pointer h-10 w-28 rounded-2xl" value="Iniciar Sesion"/>
         </form>
+        </section>
       </main>
     </>
   )
