@@ -1,4 +1,5 @@
-import { BsSearch } from "react-icons/bs"
+import { BsSearch, BsPersonSquare } from "react-icons/bs"
+import Logo from "../../assets/react.svg"
 
 export type OffersT = {
 	Title: string,
@@ -200,14 +201,28 @@ const Offers = () => {
 	return (
 		<>
 			<section>
-				<div className="pt-8 pl-6 shadow-xl h-40">
+				<div className="pt-8 pl-6  h-32 flex flex-col gap-4 border-b-[1px] border-solid border-slate-500">
 					<label htmlFor="" className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 						<input type="text" placeholder="Buscar" className="bg-transparent w-full outline-none text-slate-900" />
 						<button>
 							<BsSearch className="text-slate-400" />
 						</button>
 					</label>
-					{/* <p>{offers.length} Posts</p> */}
+					<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
+				</div>
+				<div className="flex flex-col w-full h-auto">
+					{
+						offers.map((offer, i)=> {
+							return <div key={i} className="w-full h-40 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
+								<BsPersonSquare />
+								<h3 className="text-xl font-semibold">{offer.Title}</h3>
+								<p><span className="text-slate-500">Ubicacion: </span>{offer.Event_Ubication.city}, {offer.Event_Ubication.Town}</p>
+								<p>Pago: {offer.Payment}</p>
+								<p className="text-sm">Publicado el {offer.Creation_Date.toDateString()}</p>
+								<p>{offer.vacants} vacantes disponibles</p>
+							</div>
+						})
+					}
 				</div>
 			</section>
 		</>
