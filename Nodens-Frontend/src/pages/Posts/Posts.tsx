@@ -93,9 +93,9 @@ const Posts = () => {
 							<BsSearch className="text-slate-400" />
 						</button>
 					</label>
+					<p>{posts.length} Posts</p>
 				</div>
 			</section>
-			
 		</>
 	);
 };
