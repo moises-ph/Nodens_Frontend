@@ -38,7 +38,7 @@ const Registro = () => {
       }
     })
   
-    axios.post("https://localhost:44384/api/User/Register", object)
+    axios.post("http://nodens-auth.somee.com/api/User/Register", object)
       .then(res=>{
         console.log(res);
         MySwal.fire({
@@ -67,12 +67,12 @@ const Registro = () => {
           <input type="email" name="email" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />
         </label>
         <label htmlFor="name" className="w-full flex flex-col gap-2">
-          <h2>Name</h2>
-          <input type="text" minLength={3} name="name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Name" required/>
+          <h2>Nombre</h2>
+          <input type="text" minLength={3} name="name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Nombre" required/>
         </label>
         <label htmlFor="lastname" className="w-full flex flex-col gap-2">
-          <h2>Lastname</h2>
-          <input type="text" minLength={3} name="lastname" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="First Lastname" required/>
+          <h2>Apellidos</h2>
+          <input type="text" minLength={3} name="lastname" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Apellidos" required/>
         </label>
         <label htmlFor="rol" className="w-full flex flex-col gap-2">
           <h2>Rol</h2>
