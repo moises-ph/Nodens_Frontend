@@ -1,5 +1,6 @@
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
 import Logo from "../../assets/react.svg"
+import { Offer } from "../../components"
 
 export type OffersT = {
 	Title: string,
@@ -210,7 +211,7 @@ const Offers = () => {
 					</label>
 					<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 				</div>
-				<div className="flex flex-col w-full h-auto">
+				<div className="flex flex-col w-full h-screen overflow-y-scroll">
 					{
 						offers.map((offer, i)=> {
 							return <div key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
@@ -226,6 +227,7 @@ const Offers = () => {
 						})
 					}
 				</div>
+				<Offer />
 			</section>
 		</>
 	)
