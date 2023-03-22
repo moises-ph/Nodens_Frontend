@@ -5,12 +5,13 @@ export const AppRouter = () => {
 	return (
 		<>
 			<Router>
-				<Routes>
-					<Route path='/' element={<App />}></Route>
-					<Route path='/posts' element={<Posts />}></Route>
-					<Route path='*' element={<Error />}></Route>
-
-				</Routes>
+				<main>
+					<Routes>
+						<Route path='/' element={<App />}></Route>
+						<Route path='/posts' element={<Posts />}></Route>
+						<Route path='*' element={<Error />}></Route>
+					</Routes>
+				</main>
 			</Router>
 		</>
 	)
