@@ -5,7 +5,6 @@ import { HiMenu } from 'react-icons/hi'
 import { useState } from 'react'
 import Footer from '../components/Footer/Footer'
 export const InitialRouter = () => {
-  const [showFoot, setShowFoot] = useState<boolean>(false)
   const [showNav, setShowNav] = useState<boolean>(false)
   return (
     <>

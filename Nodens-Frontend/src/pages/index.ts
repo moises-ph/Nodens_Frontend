@@ -3,3 +3,4 @@ export * from './Registro'
 export * from "./Login"
 export * from "./Error"
 export * from "./App"
+export * from "./Posts"

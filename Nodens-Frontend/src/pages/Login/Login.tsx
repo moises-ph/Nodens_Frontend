@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <>
-      <main className="h-[79.8vh] pt-16 flex justify-center items-center flex-col border-solid border-2 border-black bg-slate-200">
+      <main className="h-[80vh] pt-16 flex justify-center items-center flex-col border-solid border-2 border-black bg-slate-200">
         <section className="none"> 
 
         </section>
@@ -48,6 +48,7 @@ const Login = () => {
             <input type="password" name="password" placeholder="Contraseña"  className="h-10 bg-slate-200 placeholder:text-slate-700 pl-4 "/>
             <input type="submit" value="Iniciar Sesion" className="w-full h-10 bg-red-500 text-slate-50"/>
             <p>No tienes cuenta? <Link to='/registro' className="text-green-500 underline">Registrate</Link></p>
+            <Link to="/" className="text-sm underline">Olvidaste tu contraseña?</Link>
           </form>
         </section>
       </main>

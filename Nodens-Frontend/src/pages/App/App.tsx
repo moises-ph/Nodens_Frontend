@@ -10,8 +10,8 @@ const App = () => {
   return (
     <>
     <main className=''>
-      <div>App sfighodf</div>
-      <button onClick={handleClick}>Desloguearse</button>
+      <div></div>
+      <button onClick={handleClick}>Salir</button>
     </main>
     </>
   )
