@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const InitialState = {
-    router: false
+    router: localStorage.getItem('authTokenForTheUser') ? true : false
 }
 
 export const RouterSlice = createSlice({
