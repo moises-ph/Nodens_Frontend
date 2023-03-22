@@ -213,9 +213,11 @@ const Offers = () => {
 				<div className="flex flex-col w-full h-auto">
 					{
 						offers.map((offer, i)=> {
-							return <div key={i} className="w-full h-40 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
-								<BsPersonSquare />
-								<h3 className="text-xl font-semibold">{offer.Title}</h3>
+							return <div key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
+								<div className="flex gap-2">
+									<BsPersonSquare className="h-8 w-8 text-sky-500"/>
+									<h3 className="text-xl font-semibold">{offer.Title}</h3>
+								</div>
 								<p><span className="text-slate-500">Ubicacion: </span>{offer.Event_Ubication.city}, {offer.Event_Ubication.Town}</p>
 								<p>Pago: {offer.Payment}</p>
 								<p className="text-sm">Publicado el {offer.Creation_Date.toDateString()}</p>
