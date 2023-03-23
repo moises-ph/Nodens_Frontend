@@ -1,6 +1,11 @@
+import { useState } from "react"
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
 import Logo from "../../assets/react.svg"
 import { Offer } from "../../components"
+
+
+
+	
 
 export type OffersT = {
 	Title: string,
@@ -199,6 +204,12 @@ const offers: OffersT[] = [
 ]
 
 const Offers = () => {
+const [modal, setOpen] = useState(false);
+
+const close = () => setOpen(false);
+const open = () => setOpen(true)
+	
+
 	return (
 		<>
 			<section>
@@ -214,7 +225,7 @@ const Offers = () => {
 				<div className="flex flex-col w-full h-screen overflow-y-scroll">
 					{
 						offers.map((offer, i)=> {
-							return <div key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
+							return <div onClick={()=> (modal ? close () : open())} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
 								<div className="flex gap-2">
 									<BsPersonSquare className="h-8 w-8 text-sky-500"/>
 									<h3 className="text-xl font-semibold">{offer.Title}</h3>
@@ -227,7 +238,7 @@ const Offers = () => {
 						})
 					}
 				</div>
-				<Offer />
+				{/* {modal && <Offer handleClose={modal} />} */}
 			</section>
 		</>
 	)
