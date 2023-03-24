@@ -264,10 +264,10 @@ const Profile = () => {
   return (
     <>
       <main>
-        <p className="border-b-2 pt-2 pl-4 pb-4 shadow-xl text-3xl">Perfiles de <span className="border-b-2 text-red-500 ">Músicos</span></p>
+        <p className="border-b-2 pt-2 pl-4 pb-4 shadow-xl text-3xl">Perfiles de <span className="border-b-2 border-red-500 text-red-500 ">Músicos</span></p>
         {profile.map((profile1, index) => {
           return (
-            <div key={index} className="border-b-2 pb-2 flex pl-">
+            <div key={index} className="border-b-2 pb-2 flex rounded-b-xl rounded-t-xl shadow-sm shadow-slate-300">
               <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
                <div className="pl-4">
                <p>
