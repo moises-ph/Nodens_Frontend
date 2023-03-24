@@ -1,51 +1,24 @@
-import {motion, AnimatePresence} from 'framer-motion'
-import { useState } from 'react'
-import Backdrop from './Backdrop';
-
-
-
-
+import {motion} from 'framer-motion'
 
 const variants = {
-	hidden: {
-		y: "100vh",
-		opacity: 0,
+	open: {
+		translateY: '-50vh'
 	},
-	visible: {
-		y: "0",
-		opacity: 0,
-		transition:{
-			duration:0.1,
-			type: "spring",
-			damping: 25,
-			stiffness: 500,
-		},
-	},
-	exit:{
-		y: "100vh",
-		opacity: 0,
-	},
-};
-const Offer = ({handleClose, text}: {handleClose: any, text: string}) => {
-	return (
-	<>		
-		<Backdrop onClick={handleClose}>
-			<motion.div
-			onClick={(e) => e.stopPropagation()}
-			className="modal oragnde-gradient"
-			variants={variants}
-			initial="hidden"
-			animate="visible"
-			exit="exit"
-			>
-				<p>{text}</p>
-				<button onClick={handleClose}>Close</button>
-			</motion.div>
+	closed : {
+		translateY: '100vh'
+	}
+}
 
-		</Backdrop>
-
-	</>
-	)
+const Offer = ({open}:{open:boolean}) => {
+  return (
+	<motion.div
+		animate={open ? 'open' : 'closed'}
+		variants={variants}
+		className='h-48 w-full bg-black'
+	>
+		<h1 className='text-slate-100'>Holass</h1>
+	</motion.div>
+  )
 }
 
 export default Offer

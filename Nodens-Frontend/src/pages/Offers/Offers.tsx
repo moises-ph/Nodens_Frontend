@@ -1,11 +1,6 @@
 import { useState } from "react"
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
-import Logo from "../../assets/react.svg"
 import { Offer } from "../../components"
-
-
-
-	
 
 export type OffersT = {
 	Title: string,
@@ -204,15 +199,11 @@ const offers: OffersT[] = [
 ]
 
 const Offers = () => {
-const [modal, setOpen] = useState(false);
-
-const close = () => setOpen(false);
-const open = () => setOpen(true)
-	
+	const [modal, setOpen] = useState(false);
 
 	return (
 		<>
-			<section>
+			<section className="h-full overflow-y-hidden">
 				<div className="pt-8 pl-6  h-32 flex flex-col gap-4 border-b-[1px] border-solid border-slate-500">
 					<label htmlFor="" className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 						<input type="text" placeholder="Buscar" className="bg-transparent w-full outline-none text-slate-900" />
@@ -225,7 +216,7 @@ const open = () => setOpen(true)
 				<div className="flex flex-col w-full h-screen overflow-y-scroll">
 					{
 						offers.map((offer, i)=> {
-							return <div onClick={()=> (modal ? close () : open())} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
+							return <div onClick={()=>modal ? setOpen(false) : setOpen(true)} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
 								<div className="flex gap-2">
 									<BsPersonSquare className="h-8 w-8 text-sky-500"/>
 									<h3 className="text-xl font-semibold">{offer.Title}</h3>
@@ -238,7 +229,7 @@ const open = () => setOpen(true)
 						})
 					}
 				</div>
-				{/* {modal && <Offer handleClose={modal} />} */}
+				{modal && <Offer open={modal}/>}
 			</section>
 		</>
 	)

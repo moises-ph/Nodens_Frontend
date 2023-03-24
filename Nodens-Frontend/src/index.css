@@ -64,4 +64,7 @@
   }
 }
 
-
+:not(body, main)::-webkit-scrollbar {
+  width: 2px;
+  height: 100vh;  
+}
