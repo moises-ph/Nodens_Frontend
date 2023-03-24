@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
 import { Offer } from "../../components"
@@ -200,6 +201,12 @@ const offers: OffersT[] = [
 
 const Offers = () => {
 	const [modal, setOpen] = useState(false);
+	const [oferta, setOferta] = useState<OffersT | undefined>()
+
+	const showModal = (oferta: OffersT) => {
+		modal ? setOpen(false) : setOpen(true);
+		setOferta(oferta)
+	}
 
 	return (
 		<>
@@ -216,7 +223,7 @@ const Offers = () => {
 				<div className="flex flex-col w-full h-screen overflow-y-scroll">
 					{
 						offers.map((offer, i)=> {
-							return <div onClick={()=>modal ? setOpen(false) : setOpen(true)} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
+							return <div onClick={()=>showModal(offer)} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
 								<div className="flex gap-2">
 									<BsPersonSquare className="h-8 w-8 text-sky-500"/>
 									<h3 className="text-xl font-semibold">{offer.Title}</h3>
@@ -229,7 +236,9 @@ const Offers = () => {
 						})
 					}
 				</div>
-				{modal && <Offer open={modal}/>}
+				<AnimatePresence>
+					{modal && <Offer open={modal} oferta={oferta}/>}
+				</AnimatePresence>
 			</section>
 		</>
 	)
