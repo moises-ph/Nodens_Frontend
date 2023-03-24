@@ -1,37 +1,8 @@
-import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-export type InstrumentoT = {
-  Nombre: String;
-  Nivel: String;
-};
-export type postPro = {
-  IdAuth: String;
-  Fecha_Nacimiento: Date;
-  Instrumentos: InstrumentoT[];
-  GenerosMusicales: String;
-  Pais: String;
-  Ciudad: String;
-  Experiencia: String;
-  Educacion: [
-    {
-      Nombre: String;
-      Institucion: String;
-      Fecha_Inicio: Date;
-      Fecha_Fin: Date;
-    }
-  ];
-  Url_Foto_Perfil: String;
-  Url_Video_Presentacion: String;
-  Redes_Sociales: [
-    {
-      Nombre: String;
-      Url: String;
-    }
-  ];
-};
+import { ProfileT } from "../../types";
 
-const profile: postPro[] = [
+const profile: ProfileT[] = [
   {
     IdAuth: "1",
     Fecha_Nacimiento: new Date(),
