@@ -286,8 +286,10 @@ const Profile = () => {
             <span key={inst}>
               <p>{instrumentos.Nombre},</p>
             </span>
-          )
-      })}</p>
+        ) 
+      }
+    )
+  }</p>
       </div>
      )
     }
