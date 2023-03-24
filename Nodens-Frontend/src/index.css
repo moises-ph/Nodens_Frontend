@@ -55,11 +55,11 @@
   0%,
   100% {
     color: #fff;
-    text-shadow: 0 0 12px lime, 0 0 50px lime, 0 0 100px lime;
+    text-shadow: 0 0 12px rgb(255, 170, 0), 0 0 50px rgb(0, 255, 217), 0 0 100px rgb(255, 0, 0);
   }
   10%,
   90% {
-    color: rgb(0, 0, 0);
+    color: rgb(0, 110, 255);
     text-shadow: none;
   }
 }
