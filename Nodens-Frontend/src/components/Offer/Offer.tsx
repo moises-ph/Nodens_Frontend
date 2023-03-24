@@ -15,7 +15,7 @@ const Offer = ({open, oferta}:{open:boolean, oferta: OffersT | undefined}) => {
 	<motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='h-60 w-full bg-black rounded-lg shadow-xl shadow-slate-300'
+		className='h-60 w-full bg-black rounded-lg shadow-2xl shadow-slate-300'
 		exit={{translateY: '100vh'}}
 	>
 		<h1 className='text-slate-100 pl-1 pt-1'>{oferta!.Title}</h1>
