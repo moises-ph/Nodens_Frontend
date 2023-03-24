@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import {App, Error, Offers, Posts, Profile} from '../pages'
+import {App, Error, Offers, Posts, Profiles, MainProfile} from '../pages'
 
 export const AppRouter = () => {
 	return (
@@ -10,7 +10,8 @@ export const AppRouter = () => {
 						<Route path='/' element={<App />}></Route>
 						<Route path='/posts' element={<Posts />}></Route>
 						<Route path='/offers' element={<Offers />}></Route>
-						<Route path='/profile' element={<Profile />}></Route>
+						<Route path='/profile' element={<Profiles />}></Route>
+						<Route path='/mainprofile' element={<MainProfile />}></Route>
 						<Route path='*' element={<Error />}></Route>
 					</Routes>
 				</main>
