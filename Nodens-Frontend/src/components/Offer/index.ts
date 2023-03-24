@@ -1,1 +1,1 @@
-export {default as Offer} from './Offer'
+export {default as Modal} from './Modal'

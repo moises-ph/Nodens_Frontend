@@ -1,36 +1,12 @@
 import { AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
-import { Offer } from "../../components"
-
-export type OffersT = {
-	Title: string,
-	Description: string,
-	Creation_Date: Date,
-	Event_Date: Date,
-	Payment: number,
-	OrganizerId: string,
-	Event_Ubication: {
-		city: string,
-		Street: string,
-		career: string,
-		SiteNumber: string,
-		Town: string
-	},
-	Applicant: [{
-		ApplicantId: string,
-		PostulationDate: Date
-	}],
-	Img: string,
-	Requeriments: [{
-		description: string
-	}],
-	vacants: number
-}
+import { Modal } from "../../components"
+import { OffersT } from "../../types"
 
 const offers: OffersT[] = [
 	{
-		Title: 'Oferta 1',
+		Title: 'Titulo mas largo para ver que onda',
 		Description: 'descripcion de la oferta 1',
 		Creation_Date: new Date(),
 		Event_Date: new Date(),
@@ -237,7 +213,7 @@ const Offers = () => {
 					}
 				</div>
 				<AnimatePresence>
-					{modal && <Offer open={modal} oferta={oferta}/>}
+					{modal && <Modal open={modal} oferta={oferta}/>}
 				</AnimatePresence>
 			</section>
 		</>
