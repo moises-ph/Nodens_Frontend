@@ -269,7 +269,7 @@ const Profile = () => {
         {profile.map((profile1, index) => {
           return (
             <div key={index} className="border-b-2 pb-2 flex rounded-b-xl rounded-t-xl shadow-sm shadow-slate-300">
-              <Link to="/mainprofile"><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
+              <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
                <div className="pl-4">
                <p>
                 {profile1.Educacion.map((name, index2) => {
