@@ -4,7 +4,7 @@ import Offer from './Offer'
 
 const variants = {
 	open: {
-		translateY: '-80vh'
+		translateY: '-95vh'
 	},
 	closed : {
 		translateY: '100vh'
@@ -16,7 +16,7 @@ const Modal = ({open, oferta}:{open:boolean, oferta: OffersT | undefined}) => {
 	<motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='h-auto fixed w-full bg-slate-100 rounded-lg shadow-2xl shadow-slate-300'
+		className='h-[80vh] overflow-y-scroll fixed w-full bg-slate-100 rounded-lg shadow-2xl shadow-slate-300'
 		exit={{translateY: '100vh'}}
 	>
 		<Offer oferta={oferta}/>

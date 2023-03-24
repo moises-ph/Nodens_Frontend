@@ -17,8 +17,6 @@ export type OffersT = {
 		PostulationDate: Date
 	}],
 	Img: string,
-	Requeriments: [{
-		description: string
-	}],
+	Requeriments: {description: string}[],
 	vacants: number
 }

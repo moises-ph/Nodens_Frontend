@@ -7,7 +7,7 @@ import { OffersT } from "../../types"
 const offers: OffersT[] = [
 	{
 		Title: 'Titulo mas largo para ver que onda',
-		Description: 'descripcion de la oferta 1',
+		Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!',
 		Creation_Date: new Date(),
 		Event_Date: new Date(),
 		Payment: 150000,
@@ -26,7 +26,17 @@ const offers: OffersT[] = [
 		Img: 'si',
 		Requeriments: [{
 			description: 'descripcion de los requerimientos 1'
-		}],
+		},
+		{
+			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
+		},
+		{
+			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
+		},
+		{
+			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
+		}
+	],
 		vacants: 15
 	},
 	{

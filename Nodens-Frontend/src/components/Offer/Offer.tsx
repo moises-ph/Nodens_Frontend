@@ -1,4 +1,3 @@
-import React from 'react'
 import { OffersT } from '../../types'
 
 const Offer = ({oferta}: {oferta: OffersT | undefined}) => {
