@@ -66,7 +66,7 @@ const Posts = () => {
 					<label htmlFor="" className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 						<input type="text" placeholder="Buscar" className="bg-transparent w-full outline-none text-slate-900" />
 						<button>
-							<BsSearch className="text-slate-400" />
+								<BsSearch className="text-slate-400" />
 						</button>
 					</label>
 					<p>{posts.length} Posts</p>
