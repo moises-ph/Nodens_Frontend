@@ -1,4 +1,5 @@
 import {motion} from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { OffersT } from '../../types'
 import Offer from './Offer'
 
@@ -20,6 +21,11 @@ const Modal = ({open, oferta}:{open:boolean, oferta: OffersT | undefined}) => {
 		exit={{translateY: '100vh'}}
 	>
 		<Offer oferta={oferta}/>
+			<div className='flex justify-center items-center pt-56'>
+				<Link to="" className='fixed h-10 w-28 bg-slate-300 rounded-2xl shadow-xl shadow-slate-400 flex items-center justify-center'>Postularme</Link>
+			</div>
+			
+
 	</motion.div>
   )
 }
