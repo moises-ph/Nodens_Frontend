@@ -18,7 +18,6 @@ const Login = () => {
     }, 1000)
   } 
   
-
   const handleSubmit = (e:any) => {
     e.preventDefault();
     const form: FormData = new FormData(e.target);
@@ -26,7 +25,7 @@ const Login = () => {
 
     console.log(data);
     
-    axios.post('http://nodens-auth.somee.com/api/auth/login', data)
+    axios.post('https://localhost:44384/api/auth/login', data)
       .then((res: any) => {console.log(res);
          redirectApp(); 
          localStorage.setItem('authTokenForTheUser', res.data.token)
@@ -39,7 +38,6 @@ const Login = () => {
     <>
       <main className="h-[80vh] pt-16 flex justify-center items-center flex-col border-solid border-2 border-black bg-slate-200">
         <section className="none"> 
-
         </section>
         <section className="h-[50vh] w-10/12 px-4 flex flex-col gap-6 pt-6 shadow-xl bg-slate-50 rounded-md">
           <h1 className="w-full text-4xl text-start mb-2">Login</h1>

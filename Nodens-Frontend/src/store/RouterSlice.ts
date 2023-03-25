@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+enum State {
+    initial = "initial",
+    App = "app",
+    registro = "registro" 
+}
+
 const InitialState = {
     router: localStorage.getItem('authTokenForTheUser') ? true : false
 }
