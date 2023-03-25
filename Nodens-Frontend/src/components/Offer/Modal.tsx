@@ -18,7 +18,7 @@ const Modal = ({open, oferta}:{open:boolean, oferta: OffersT | undefined}) => {
 	<motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='h-[90vh] overflow-y-scroll fixed w-full bg-slate-100 rounded-lg shadow-2xl shadow-slate-300 rounded-t-xl'
+		className='h-[90vh] overflow-y-scroll fixed w-full bg-slate-100 rounded-lg shadow-2xl shadow-slate-300 shadow-inner rounded-t-xl'
 		exit={{translateY: '100vh'}}
 	>
 		<Offer oferta={oferta}/>
