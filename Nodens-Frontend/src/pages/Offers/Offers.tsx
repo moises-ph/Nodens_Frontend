@@ -40,8 +40,8 @@ const offers: OffersT[] = [
 		vacants: 15
 	},
 	{
-		Title: 'Oferta 2',
-		Description: 'descripcion de la oferta 2',
+		Title: 'Músico con experiencia',
+		Description: "Importante grupo musical requiere para su equipo un Músico con conocimientos avanzados en percusión ",
 		Creation_Date: new Date(),
 		Event_Date: new Date(),
 		Payment: 150000,
@@ -59,7 +59,7 @@ const offers: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 2'
+			description: 'Saber tocar varios instrumentos de percusión'
 		}],
 		vacants: 15
 	},

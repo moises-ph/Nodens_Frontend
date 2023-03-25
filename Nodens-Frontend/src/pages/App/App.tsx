@@ -10,7 +10,9 @@ const App = () => {
   return (
     <>
     <main className=''>
-      <div></div>
+      <div>
+          
+      </div>
       <button onClick={handleClick}>Salir</button>
     </main>
     </>
