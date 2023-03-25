@@ -25,7 +25,7 @@ const Login = () => {
 
     console.log(data);
     
-    axios.post('https://localhost:44384/api/auth/login', data)
+    axios.post('https://localhost:32770/api/auth/login', data)
       .then((res: any) => {console.log(res);
          redirectApp(); 
          localStorage.setItem('authTokenForTheUser', res.data.token)

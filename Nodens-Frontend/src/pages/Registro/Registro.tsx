@@ -38,7 +38,7 @@ const Registro = () => {
       }
     })
   
-    axios.post("https://localhost:44384/api/User/Register", object)
+    axios.post("https://localhost:32770/api/User/Register", object)
       .then(res=>{
         console.log(res);
         MySwal.fire({
