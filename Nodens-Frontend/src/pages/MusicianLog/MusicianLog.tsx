@@ -24,7 +24,7 @@ const variants = {
 };
 
 const MusicianLog = () => {
-  const handleClick = () => {
+  const cerrarSesion = () => {
     localStorage.removeItem("authTokenForTheUser");
     location.reload();
   };
@@ -51,6 +51,14 @@ const MusicianLog = () => {
     ]
   })
 
+  const sumPage = () =>{
+    if(page<Inputs.length-1){
+      setPage([page + 1, 1]);
+    }
+  }
+
+  const [[page, direction], setPage] = useState([0, 0]);
+
   const handler = (key:string, value: any) => {
     if(key !== 'instrumentos' && key !== 'generosMusicales'){
       setMusician({
@@ -63,19 +71,29 @@ const MusicianLog = () => {
         [key]: [...musician[key], value]
       })
     }
-    
+    sumPage()
+  }
+
+  const goBack = () => {
+    setPage([page-1, -1])
   }
 
   useEffect(()=> {
     console.log(musician);
   }, [musician])
 
-  const Inputs = [<Instrumentos handler={handler}/>, <FechaNacimiento handler={handler}/>, <Genero handler={handler}/>, <GenerosMusicales handler={handler}/>, <Pais handler={handler}/>, <Ciudad handler={handler}/>, <Experiencia handler={handler}/>, <Telefono handler={handler}/>]
-
-  const [[page, direction], setPage] = useState([0, 0]);
+  const Inputs = [
+    <FechaNacimiento handler={handler}/>,
+    <Instrumentos goBack={goBack} handler={handler}/>,
+    <Genero goBack={goBack} handler={handler}/>, 
+    <GenerosMusicales goBack={goBack} handler={handler}/>, 
+    <Pais goBack={goBack} handler={handler}/>, 
+    <Ciudad goBack={goBack} handler={handler}/>, 
+    <Experiencia goBack={goBack} handler={handler}/>, 
+    <Telefono goBack={goBack} handler={handler}/>]
   return (
     <>
-      <button onClick={handleClick}>Salir</button>
+      <button onClick={cerrarSesion}>Salir</button>
       <main>
         <h1>Musico</h1>
         <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4'>
@@ -91,30 +109,7 @@ const MusicianLog = () => {
               {Inputs[page]}
             </motion.div>
           </AnimatePresence>
-          {/* <motion.div>
-            <FechaNacimiento handler={handler}/>
-          </motion.div>
-          <motion.div>
-            <Instrumentos handler={handler}/>
-          </motion.div>
-          <motion.div>
-            <Genero handler={handler}/>
-          </motion.div>
-          <motion.div>
-            <GenerosMusicales handler={handler}/>
-          </motion.div>
-          <motion.div>
-            <Pais handler={handler} />
-          </motion.div>
-          <motion.div>
-            <Ciudad handler={handler} />
-          </motion.div>
-          <motion.div>
-            <Experiencia handler={handler} />
-          </motion.div>
-          <motion.div>
-            <Telefono handler={handler} />
-          </motion.div> */}
+          <button onClick={()=>goBack()}>pa atras</button>
         </form>
       </main>
     </>

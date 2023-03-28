@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import {useRef, useContext} from "react"
 
 
-const Instrumentos = ({handler}: {handler: (key:string, value: any)=> void}) => {
+const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
 	const instrumentos = useRef(null)
   return (
     <motion.div>
@@ -10,13 +10,10 @@ const Instrumentos = ({handler}: {handler: (key:string, value: any)=> void}) => 
         instrumentos:
         <input type="text" name="instrumentos" ref={instrumentos} />
       </label>
-      <button
-        onClick={() =>
-          handler('instrumentos', instrumentos.current.value)
-        }
-      >
-        Guardar
-      </button>
+      <div>
+        <button onClick={() => goBack()}>Atras</button>
+        <button onClick={() =>handler('instrumentos', instrumentos.current.value)}>Guardar</button>
+      </div>
     </motion.div>
   );
 };
