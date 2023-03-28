@@ -1,4 +1,6 @@
 import { OffersT } from '../../types'
+import { Link } from 'react-router-dom'
+
 
 const Offer = ({oferta}: {oferta: OffersT | undefined}) => {
   return (
@@ -30,7 +32,7 @@ const Offer = ({oferta}: {oferta: OffersT | undefined}) => {
       </div>
     
       </div>
-    </>
+     </>
   )
 }
 
