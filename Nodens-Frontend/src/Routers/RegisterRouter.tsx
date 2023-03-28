@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { MusicianLog } from "../pages";
 
 export const RegisterRouter = () => {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<h1>holi</h1>} />
+          <Route path="/" element={<MusicianLog />} />
         </Routes>
       </Router>
     </>
