@@ -1,20 +1,14 @@
 import { motion } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react'
-import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales} from './Inputs'
+import { useState, useEffect } from 'react'
+import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono} from './Inputs'
+
+const Inputs = [Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono]
 
 const MusicianLog = () => {
   const handleClick = () => {
     localStorage.removeItem("authTokenForTheUser");
     location.reload();
   };
-
-  
-  const genero = useRef(null)
-  const generosMusicales = useRef(null)
-  const pais = useRef(null)
-  const ciudad = useRef(null)
-  const experiencia = useRef(null)
-  const telefono = useRef(null)
 
   const [musician, setMusician] = useState({
     "fecha_nacimiento" : "",
@@ -65,7 +59,9 @@ const MusicianLog = () => {
           <motion.div>
             <FechaNacimiento handler={handler}/>
           </motion.div>
-          <Instrumentos handler={handler}/>
+          <motion.div>
+            <Instrumentos handler={handler}/>
+          </motion.div>
           <motion.div>
             <Genero handler={handler}/>
           </motion.div>
@@ -73,28 +69,16 @@ const MusicianLog = () => {
             <GenerosMusicales handler={handler}/>
           </motion.div>
           <motion.div>
-            <label htmlFor='pais'>Pais: 
-              <input type="text" name="pais"  ref={pais}/>
-            </label>
-            <button onClick={()=>handler('pais', pais.current.value)}>Guardar</button>
+            <Pais handler={handler} />
           </motion.div>
           <motion.div>
-            <label htmlFor='ciudad'>Ciudad: 
-              <input type="text" name="ciudad"  ref={ciudad}/>
-            </label>
-            <button onClick={()=>handler('ciudad', ciudad.current.value)}>Guardar</button>
+            <Ciudad handler={handler} />
           </motion.div>
           <motion.div>
-            <label htmlFor='experiencia'>Experiencia: 
-              <input type="text" name="experiencia"  ref={experiencia}/>
-            </label>
-            <button onClick={()=>handler('experiencia', experiencia.current.value)}>Guardar</button>
+            <Experiencia handler={handler} />
           </motion.div>
           <motion.div>
-            <label htmlFor='telefono'>telefono: 
-              <input type="text" name="telefono"  ref={telefono}/>
-            </label>
-            <button onClick={()=>handler('telefono', telefono.current.value)}>Guardar</button>
+            <Telefono handler={handler} />
           </motion.div>
         </form>
       </main>
