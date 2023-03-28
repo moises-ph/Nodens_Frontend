@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { App, Error, Offers, Posts, Profiles } from "../pages";
+import { App, Error, Offers, Posts, Profiles, MusiciansProfile } from "../pages";
 
 export const AppRouter = () => {
   return (
@@ -11,6 +11,7 @@ export const AppRouter = () => {
             <Route path="/posts" element={<Posts />}></Route>
             <Route path="/offers" element={<Offers />}></Route>
             <Route path="/profile" element={<Profiles />}></Route>{" "}
+            <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
             <Route path="*" element={<Error />}></Route>
           </Routes>
         </main>

@@ -33,7 +33,7 @@ const change=(e: any)=>{
 		<div  className='flex justify-center items-end w-full pr-16'>
 				<Link to="" className='fixed h-10 w-[10rem] rounded-2xl shadow-xl shadow-slate-400 flex items-center justify-center bg-blue-300 transition-all duration-200 '>Postularme</Link>
 				<div >
-				<Link to="" className=''><BiHeartCircle  onClick={(e)=>  change(color == 'black' ? 'red -500' : 'black')}  className={`text-4xl ml-[16rem] text-${color}  w-10  transition-all duration-200 rounded-full`}/></Link>
+				<Link to="" className=''><BiHeartCircle  onClick={(e)=>  change(color == 'black' ? 'red-500' : 'black')}  className={`text-4xl ml-[16rem] text-${color}  w-10  transition-all duration-200 rounded-full`}/></Link>
 				</div>
 			</div>
 
