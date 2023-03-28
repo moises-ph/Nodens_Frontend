@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import {useRef, useContext} from "react"
 
 
-const Instrumentos = ({handler}: any) => {
+const Instrumentos = ({handler}: {handler: (key:string, value: any)=> void}) => {
 	const instrumentos = useRef(null)
   return (
     <motion.div>

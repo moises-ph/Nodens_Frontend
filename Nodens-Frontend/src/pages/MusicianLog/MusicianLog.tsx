@@ -1,8 +1,27 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
 import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono} from './Inputs'
 
-const Inputs = [Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono]
+const variants = {
+  enter: (direction: number) => {
+    return {
+      y: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  },
+  center: {
+    zIndex: 1,
+    y: 0,
+    opacity: 1
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      y: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  }
+};
 
 const MusicianLog = () => {
   const handleClick = () => {
@@ -30,7 +49,7 @@ const MusicianLog = () => {
     "redes_sociales": [
         
     ]
-})
+  })
 
   const handler = (key:string, value: any) => {
     if(key !== 'instrumentos' && key !== 'generosMusicales'){
@@ -50,13 +69,29 @@ const MusicianLog = () => {
   useEffect(()=> {
     console.log(musician);
   }, [musician])
+
+  const Inputs = [<Instrumentos handler={handler}/>, <FechaNacimiento handler={handler}/>, <Genero handler={handler}/>, <GenerosMusicales handler={handler}/>, <Pais handler={handler}/>, <Ciudad handler={handler}/>, <Experiencia handler={handler}/>, <Telefono handler={handler}/>]
+
+  const [[page, direction], setPage] = useState([0, 0]);
   return (
     <>
       <button onClick={handleClick}>Salir</button>
       <main>
         <h1>Musico</h1>
         <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4'>
-          <motion.div>
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={page}
+              custom={direction}
+              variants={variants}
+              initial='enter'
+              animate='center'
+              exit='exit'
+              transition={{y: {type: 'spring', stiffness: 300, damping: 30}, opacity: {duration: 0.2}}}>
+              {Inputs[page]}
+            </motion.div>
+          </AnimatePresence>
+          {/* <motion.div>
             <FechaNacimiento handler={handler}/>
           </motion.div>
           <motion.div>
@@ -79,7 +114,7 @@ const MusicianLog = () => {
           </motion.div>
           <motion.div>
             <Telefono handler={handler} />
-          </motion.div>
+          </motion.div> */}
         </form>
       </main>
     </>
