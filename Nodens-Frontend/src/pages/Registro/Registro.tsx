@@ -38,7 +38,7 @@ const Registro = () => {
       }
     })
   
-    axios.post("https://localhost:32770/api/User/Register", object)
+    axios.post("http://nodens-auth.somee.com/api/User/Register", object)
       .then(res=>{
         console.log(res);
         MySwal.fire({
