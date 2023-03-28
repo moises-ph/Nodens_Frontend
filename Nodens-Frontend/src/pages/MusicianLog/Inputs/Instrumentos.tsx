@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import {useRef} from "react"
+import {useRef, useContext} from "react"
 
-const Instrumentos = ({handleSave}: any) => {
+
+const Instrumentos = ({handler}: any) => {
 	const instrumentos = useRef(null)
   return (
     <motion.div>
@@ -11,7 +12,7 @@ const Instrumentos = ({handleSave}: any) => {
       </label>
       <button
         onClick={() =>
-          handleSave({ instrumentos: [instrumentos.current.value] })
+          handler('instrumentos', instrumentos.current.value)
         }
       >
         Guardar
