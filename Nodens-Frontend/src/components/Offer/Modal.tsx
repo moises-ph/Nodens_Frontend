@@ -5,8 +5,6 @@ import { OffersT } from '../../types'
 import Offer from './Offer'
 import { BiHeartCircle } from "react-icons/bi"
 
-
-
 const variants = {
 	open: {
 		translateY: '-109vh'

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react'
-
-import {Instrumentos} from './Inputs'
+import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales} from './Inputs'
 
 const MusicianLog = () => {
   const handleClick = () => {
@@ -9,7 +8,7 @@ const MusicianLog = () => {
     location.reload();
   };
 
-  const fecha_nacimiento = useRef(null)
+  
   const genero = useRef(null)
   const generosMusicales = useRef(null)
   const pais = useRef(null)
@@ -64,23 +63,14 @@ const MusicianLog = () => {
         <h1>Musico</h1>
         <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4'>
           <motion.div>
-            <label htmlFor='fecha_nacimiento'>fecha de nacimiento:
-              <input type="date" name="fecha_nacimiento"  ref={fecha_nacimiento}/>
-            </label>
-            <button onClick={()=>handler('fecha_nacimiento', fecha_nacimiento.current.value)}>Guardar</button>
+            <FechaNacimiento handler={handler}/>
           </motion.div>
           <Instrumentos handler={handler}/>
           <motion.div>
-            <label htmlFor='genero'>genero
-              <input type="text" name="genero"  ref={genero}/>
-            </label>
-            <button onClick={()=>handler('genero',genero.current.value)}>Guardar</button>
+            <Genero handler={handler}/>
           </motion.div>
           <motion.div>
-            <label htmlFor='generosMusicales'>Generos Musicales:
-              <input type="text" name="generosMusicales"  ref={generosMusicales}/>
-            </label>
-            <button onClick={()=>handler('generosMusicales', generosMusicales.current.value)}>Guardar</button>
+            <GenerosMusicales handler={handler}/>
           </motion.div>
           <motion.div>
             <label htmlFor='pais'>Pais: 
