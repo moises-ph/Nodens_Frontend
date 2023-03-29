@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
 import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono} from './Inputs'
@@ -48,13 +49,32 @@ const MusicianLog = () => {
     "url_video_presentacion": [],
     "redes_sociales": [
         
-    ]
+    ],
+    telefono: ''
   })
+
+  const registerMusician = () => {
+    const headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser'),
+    }
+    axios.post('/musician', musician, headers )
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    // axios({
+    //   method: 'POST',
+    //   url: '/musician',
+    //   data: musician,
+    //   headers: headers
+    // })
+  }
 
   const sumPage = () =>{
     if(page<Inputs.length-1){
       setPage([page + 1, 1]);
+    } else {
+      registerMusician()
     }
+
   }
 
   const [[page, direction], setPage] = useState([0, 0]);
