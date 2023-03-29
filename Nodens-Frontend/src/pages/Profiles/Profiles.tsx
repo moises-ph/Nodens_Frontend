@@ -2,7 +2,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ProfileT } from "../../types";
 
-const profile: ProfileT[] = [
+export const profile: ProfileT[] = [
   {
     IdAuth: "1",
     Fecha_Nacimiento: new Date(),
@@ -22,7 +22,7 @@ const profile: ProfileT[] = [
     Experiencia: "10 Años",
     Educacion: [
       {
-        Nombre: "Sebastián",
+        Nombre: "Bachillerato",
         Institucion: "Fundanza",
         Fecha_Inicio: new Date(),
         Fecha_Fin: new Date(),
