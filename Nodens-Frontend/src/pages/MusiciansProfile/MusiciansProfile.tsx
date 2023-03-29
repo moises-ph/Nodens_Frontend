@@ -25,7 +25,7 @@ const MusiciansProfile = () => {
             CONTACTAR
           </button>
         </div>
-        <div className="pl-2 pt-8">
+        <div className="pl-2 pt-8 flex flex-col gap-4">
           <p className="text-xl">DESCRIPCIÓN</p>
           <p>Mi nombre es Sebastián soy un músico con {profile[0].Experiencia} de experiencia,
           he tocado {profile[0].GenerosMusicales} en cuanto a generos musicales se refiere.</p>
@@ -34,11 +34,19 @@ const MusiciansProfile = () => {
             <>
               <div key={index}>
 
-                  <p>Inicié mis estudios en el año {Edu.Fecha_Inicio.getFullYear()} en la institución llamada {Edu.Institucion},
-                  terminé mi {Edu.Nombre} en el año {Edu.Fecha_Fin.getFullYear()}</p>
+                  <p>Inicié mis estudios en el año {Edu.Fecha_Inicio.getFullYear()} en la institución educativa llamada {Edu.Institucion},
+                  terminé mi {Edu.Nombre} en el año {Edu.Fecha_Fin.getFullYear()}.</p>
               </div>
             </>
           ))}</p>
+            <span>{profile[0].Redes_Sociales.map((Social, index2)=>(
+              <>
+              <div key={index2}>
+                  <p>Mi redes sociales son <Link to="" className="border-green-500 border-b-2">{Social.Nombre}</Link></p>
+              </div>
+              </>
+            ))}
+            </span>
         </div>
       </main>
     </>
@@ -46,3 +54,6 @@ const MusiciansProfile = () => {
 };
 
 export default MusiciansProfile;
+
+
+/*Primero descripción, después datos personales, ubiación luego el resto de datos faltantes tales como: Experiencia, Instrumentos, Educación */ 
