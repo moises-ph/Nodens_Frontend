@@ -116,7 +116,7 @@ const MusicianLog = () => {
     <>
       <button onClick={cerrarSesion} className="">Salir</button>
       <main className="h-screen flex flex-col w-full items-center">
-        <h1 className="mb-[30%] text-3xl font-semibold">Registro de Musico</h1>
+        <h1 className="mb-[30%] text-3xl font-semibold text-slate-700">Registro de Musico</h1>
         <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
