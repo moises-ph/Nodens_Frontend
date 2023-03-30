@@ -6,7 +6,7 @@ import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, E
 const variants = {
   enter: (direction: number) => {
     return {
-      y: direction > 0 ? 1000 : -1000,
+      y: direction > 0 ? 500 : -500,
       opacity: 0
     };
   },
@@ -18,7 +18,7 @@ const variants = {
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      y: direction < 0 ? 1000 : -1000,
+      y: direction < 0 ? 500 : -500,
       opacity: 0
     };
   }
@@ -111,25 +111,26 @@ const MusicianLog = () => {
     <Ciudad goBack={goBack} handler={handler}/>, 
     <Experiencia goBack={goBack} handler={handler}/>, 
     <Telefono goBack={goBack} handler={handler}/>]
+
   return (
     <>
-      <button onClick={cerrarSesion}>Salir</button>
-      <main>
-        <h1>Musico</h1>
-        <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4'>
+      <button onClick={cerrarSesion} className="">Salir</button>
+      <main className="h-screen flex flex-col w-full items-center">
+        <h1 className="mb-[30%] text-3xl font-semibold">Registro de Musico</h1>
+        <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
+              className='h-5/6 w-full flex justify-center items-center'
               key={page}
               custom={direction}
               variants={variants}
               initial='enter'
               animate='center'
               exit='exit'
-              transition={{y: {type: 'spring', stiffness: 300, damping: 30}, opacity: {duration: 0.2}}}>
+              transition={{y: {type: 'spring', stiffness: 300, damping: 30}, opacity: {duration: 0.5}}}>
               {Inputs[page]}
             </motion.div>
           </AnimatePresence>
-          <button onClick={()=>goBack()}>pa atras</button>
         </form>
       </main>
     </>
