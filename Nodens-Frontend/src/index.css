@@ -59,11 +59,10 @@
   }
   10%,
   90% {
-    color: rgb(0, 110, 255);
+    color: rgb(0, 40, 92);
     text-shadow: none;
   }
 }
-
 :not(body, main)::-webkit-scrollbar {
   width: 2px;
   height: 100vh;  

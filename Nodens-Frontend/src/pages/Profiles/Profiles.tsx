@@ -29,7 +29,7 @@ export const profile: ProfileT[] = [
       },
     ],
     Url_Foto_Perfil: "ichbineinmann.24",
-    Url_Video_Presentacion: "wirbieneinemanner.77",
+    Url_Video_Presentacion: "wirbineinemanner.77",
     Redes_Sociales: [
       {
         Nombre: "ichwilleinehundin",
