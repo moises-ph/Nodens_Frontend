@@ -9,7 +9,7 @@ const FechaNacimiento = ({ handler }: { handler: (key: string, value: any) => vo
 			</label>
 			<div>
 				<button
-					className='bg-green-200 p-2 border-solid border-2 border-green-600 rounded-2xl'
+					className='bg-green-200 p-2 border-solid border-[1px] border-green-600 rounded-md text-green-700'
 					onClick={() => handler('fecha_nacimiento', fecha_nacimiento.current.value)}>Guardar</button>
 			</div>
 		</div>

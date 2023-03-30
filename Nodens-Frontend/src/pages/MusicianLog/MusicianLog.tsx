@@ -6,7 +6,7 @@ import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, E
 const variants = {
   enter: (direction: number) => {
     return {
-      y: direction > 0 ? 500 : -500,
+      y: direction > 0 ? 1000 : -1000,
       opacity: 0
     };
   },
@@ -18,7 +18,7 @@ const variants = {
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      y: direction < 0 ? 500 : -500,
+      y: direction < 0 ? 1000 : -1000,
       opacity: 0
     };
   }
