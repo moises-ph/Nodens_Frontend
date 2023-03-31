@@ -7,7 +7,7 @@ const App = () => {
   }
   return (
     <>
-    <main className=''>
+    <main className='bg-gradient-to-br from-orange-400 to-fuchsia-700 h-screen'>
       <div>
           
       </div>
