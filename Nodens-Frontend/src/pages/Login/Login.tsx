@@ -50,7 +50,7 @@ const Login = () => {
         MySwal.fire({
           position: 'top',
           icon: 'success',
-          title: 'Bien pueda mijo',
+          title: 'Sesión iniciada',
           showConfirmButton: false,
           timer: 1500})
          redirectApp(); 
