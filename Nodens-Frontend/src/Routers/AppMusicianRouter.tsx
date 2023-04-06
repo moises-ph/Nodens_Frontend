@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { App, Error, Offers, Posts, Profiles, MusiciansProfile } from "../pages";
+import { App, Error, Offers, Posts, MusiciansProfile, MusicianLog } from "../pages";
 
-export const AppRouter = () => {
+export const AppMusicianRouter = () => {
+  const musician = true;
   return (
     <>
       <Router>
         <main>
           <Routes>
-            <Route path="/" element={<App />}></Route>
+            <Route path="/" element={musician ? <MusicianLog /> : <App />}></Route>
             <Route path="/posts" element={<Posts />}></Route>
             <Route path="/offers" element={<Offers />}></Route>
-            <Route path="/profile" element={<Profiles />}></Route>{" "}
             <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
             <Route path="*" element={<Error />}></Route>
           </Routes>

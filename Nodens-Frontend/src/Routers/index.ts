@@ -1,3 +1,3 @@
-export * from './AppRouter'
+export * from './AppMusicianRouter'
 export * from './InitialRouter'
-export * from './RegisterRouter'
+export * from './AppOrganizerRouter'
