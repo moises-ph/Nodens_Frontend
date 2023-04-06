@@ -1,7 +1,5 @@
-import { sync } from "framer-motion";
 import { BsPersonSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { Profiles } from "../Profiles";
 import { profile } from '../Profiles/Profiles'
 
 

@@ -6,7 +6,7 @@ function App() {
   const RouterBoolean = useSelector(
     (state: RootState) => state.Router.router
   );
-  const Router = RouterBoolean ? InitialRouter : AppMusicianRouter
+  const Router = RouterBoolean ? AppMusicianRouter : InitialRouter
   return (
     <>
       <Router />
