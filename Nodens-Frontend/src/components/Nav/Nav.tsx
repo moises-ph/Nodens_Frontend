@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { Link } from 'react-router-dom'
-import {FaHome, FaShoppingBag} from 'react-icons/fa'
+import {FaHome} from 'react-icons/fa'
 import {AiOutlineUserAdd} from 'react-icons/ai'
 import {RiUserReceived2Line} from "react-icons/ri"
 
-interface NavBar {
+export interface NavBar {
     inView: boolean;
     setShowNav:  Dispatch<SetStateAction<boolean>>
   }
