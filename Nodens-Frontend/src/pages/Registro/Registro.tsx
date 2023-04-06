@@ -59,7 +59,7 @@ const Registro = () => {
   
 
   return  (
-    <main className='flex flex-col items-center bg-gradient-to-br from-[#E79A77] to-[#B701F7] text-slate-100 gap-4 py-6 sm:py-4 pt-10 sm:h-[80vh]'>    
+    <main className='flex flex-col items-center bg-gradient-to-br from-[#E79A77] to-[#B701F7] text-slate-100 gap-4 py-6 sm:py-4 pt-10 sm:h-fit'>    
       <h1 className="text-6xl text-slate-200 pt-20">Registro</h1>
       <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-full rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 pl-6 py-4 pt-16 gap-4">
         <label htmlFor="Email" className="w-full flex flex-col gap-2">

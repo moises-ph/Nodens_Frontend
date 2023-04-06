@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react'
 import {Ciudad, DescripcionEmpresa, Genero, NombreEmpresa, Pais, Telefono} from './inputs'
 import { OrganizerT } from '../../types';
+import { useState } from 'react'
 
 const variants = {
   enter: (direction: number) => {
@@ -31,6 +31,7 @@ const OrganizerLog = () => {
     localStorage.removeItem("authTokenForTheUser");
     location.reload();
   };
+
 
   const [organizer, setOrganizer] = useState<OrganizerT>({
 		"telefono": '',
@@ -81,6 +82,7 @@ const OrganizerLog = () => {
     }
     sumPage()
   }
+
 
 	const goBack = () => {
     setPage([page-1, -1])

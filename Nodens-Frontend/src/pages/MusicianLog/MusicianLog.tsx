@@ -36,6 +36,7 @@ const MusicianLog = () => {
         
     ],
     "genero": "",
+    "descripcion": "",
     "generosMusicales" : [
         
     ],
@@ -50,7 +51,7 @@ const MusicianLog = () => {
     "redes_sociales": [
         
     ],
-    telefono: ''
+    "telefono": ''
   })
 
   const registerMusician = () => {
@@ -60,12 +61,7 @@ const MusicianLog = () => {
     axios.post('http://localhost:8000/musician', musician, { headers: headers } )
       .then(res => console.log(res))
       .catch(err => console.log(err))
-    // axios({
-    //   method: 'POST',
-    //   url: '/musician',
-    //   data: musician,
-    //   headers: headers
-    // })
+
   }
 
   const sumPage = () =>{
