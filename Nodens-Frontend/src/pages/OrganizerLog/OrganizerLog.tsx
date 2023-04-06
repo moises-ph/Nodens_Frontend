@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import {Ciudad, DescripcionEmpresa, Genero, NombreEmpresa, Pais, Telefono} from './inputs'
+import { OrganizerT } from '../../types';
 
 const variants = {
   enter: (direction: number) => {
@@ -30,7 +32,7 @@ const OrganizerLog = () => {
     location.reload();
   };
 
-  const [organizer, serOrganizer] = useState({
+  const [organizer, setOrganizer] = useState<OrganizerT>({
 		"telefono": '',
     "nombre_empresa" : "",
     "descripcion_empresa": "",
@@ -40,8 +42,8 @@ const OrganizerLog = () => {
     "url_foto_perfil": "",
 		"genero": "",
     "redes_sociales": [
-        
-    ],
+      
+    ]
   })
 
 	const registerOrganizer = () => {
@@ -64,11 +66,34 @@ const OrganizerLog = () => {
   }
 
   const [[page, direction], setPage] = useState([0, 0]);
+
+  const handler = (key:string, value: any) => {
+    if(key !== 'redes_sociales'){
+      setOrganizer({
+        ...organizer,
+        [key]: value
+      })
+    } else {
+      setOrganizer({
+        ...organizer,
+        [key]: [...organizer[key], value]
+      })
+    }
+    sumPage()
+  }
+
 	const goBack = () => {
     setPage([page-1, -1])
   }
 
-	const Inputs: JSX.Element[] = [];
+	const Inputs: JSX.Element[] = [
+    <Ciudad handler={handler} />,
+    <DescripcionEmpresa goBack={goBack} handler={handler} />,
+    <Genero goBack={goBack} handler={handler} />,
+    <NombreEmpresa goBack={goBack} handler={handler} />,
+    <Pais goBack={goBack} handler={handler} />,
+    <Telefono goBack={goBack} handler={handler} />
+  ];
 
   return (
     <>

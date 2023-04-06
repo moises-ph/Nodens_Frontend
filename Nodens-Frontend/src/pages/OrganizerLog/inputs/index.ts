@@ -1,0 +1,6 @@
+export {default as Ciudad} from './Ciudad'
+export {default as DescripcionEmpresa} from './DescripcionEmpresa'
+export {default as Genero} from './Genero'
+export {default as NombreEmpresa} from './NombreEmpresa'
+export {default as Pais} from './Pais'
+export {default as Telefono} from './Telefono'
