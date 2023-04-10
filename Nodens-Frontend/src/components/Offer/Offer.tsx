@@ -1,9 +1,15 @@
+import { BsChevronLeft } from 'react-icons/bs'
 import { OffersT } from '../../types'
 
 
-const Offer = ({oferta}: {oferta: OffersT | undefined}) => {
+const Offer = ({oferta, closeModal}: {oferta: OffersT | undefined, closeModal : any}) => {
   return (
     <>
+
+      <button onClick={closeModal}>
+        <BsChevronLeft />
+      </button>
+
       <h1 className='text-slate-800 text-2xl font-bold text-center'>{oferta!.Title}</h1>
       <p className='text-slate-800 text-start pl-2 pt-1'><p className='text-black text-xl pt-2 pb-1'>Descripción de la oferta</p> {oferta?.Description}.</p>   
      

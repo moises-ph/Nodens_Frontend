@@ -44,7 +44,7 @@ const Login = () => {
         }
       })
     
-    axios.post('http://nodens-auth.somee.com/api/auth/login', data)
+    axios.post('http://127.0.0.1:8000/api/auth/login', data)
       .then(res =>
         {console.log(res);
         MySwal.fire({

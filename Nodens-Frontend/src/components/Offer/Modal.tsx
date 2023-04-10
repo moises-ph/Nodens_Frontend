@@ -7,14 +7,14 @@ import { BiHeartCircle } from "react-icons/bi"
 
 const variants = {
 	open: {
-		translateY: '-109vh'
+		translateY: '22.1%'
 	},
 	closed : {
-		translateY: '100vh'
+		translateY: '33%'
 	}
 }
 
-const Modal = ({open, oferta}:{open:boolean, oferta: OffersT | undefined}) => {
+const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undefined, closeModal : any}) => {
 const [color, setColor] = useState("black");
 const change=(e: any)=>{
 	setColor(e)
@@ -23,10 +23,10 @@ const change=(e: any)=>{
 	<motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='h-[95%] overflow-y-scroll pb-4 fixed w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
+		className='h-[81%] overflow-y-scroll left-[40%] p-4 fixed w-3/5 bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
 		exit={{translateY: '100vh'}}
 	>
-		<Offer oferta={oferta}/>
+		<Offer closeModal={closeModal} oferta={oferta}/>
 			
 		<div  className='flex justify-center items-end w-full pr-16'>
 				<Link to="" className='fixed h-10 w-[10rem] rounded-2xl shadow-xl shadow-slate-400 flex items-center justify-center bg-blue-300 transition-all duration-200 '>Postularme</Link>

@@ -1,10 +1,10 @@
 import { AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
-import { Modal } from "../../components"
+import { IndexLink, Modal, SingleOffer } from "../../components"
 import { OffersT } from "../../types"
 
-const offers: OffersT[] = [
+const offersTemp: OffersT[] = [
 	{
 		Title: 'Titulo mas largo para ver que onda',
 		Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!',
@@ -188,42 +188,51 @@ const offers: OffersT[] = [
 const Offers = () => {
 	const [modal, setOpen] = useState(false);
 	const [oferta, setOferta] = useState<OffersT | undefined>()
+	const [offers,setOffers] = useState(offersTemp);
+
+	const searchInput = useRef(null);
 
 	const showModal = (oferta: OffersT) => {
-		modal ? setOpen(false) : setOpen(true);
+		modal ? null : setOpen(true);
 		setOferta(oferta)
+	}
+
+	const closeModal = () => {
+		setOpen(false);
+	}
+
+	const searchOffer = (e:any)=>{
+		console.log(e.current.value);
+		if(e.current.value.length === 0){
+			setOffers(offersTemp);
+		}
+		else{
+			setOffers(offersTemp.filter(value => value.Title.includes(e.current.value)));
+		}
 	}
 
 	return (
 		<>
 			<section className="h-full overflow-y-hidden">
-				<div className="pt-8 pl-6  h-32 flex flex-col gap-4 border-b-[1px] border-solid border-slate-500">
+				<div className="pt-8 pl-6 fixed h-1/6 flex flex-row gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
+					<IndexLink />
 					<label htmlFor="" className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
-						<input type="text" placeholder="Buscar" className="bg-transparent w-full outline-none text-slate-900" />
+						<input ref={searchInput} type="text" onChange={()=>{searchOffer(searchInput)}} placeholder="Buscar" className="bg-transparent w-full outline-none text-slate-900" />
 						<button>
-							<BsSearch className="text-slate-400" />
+							<BsSearch onClick={()=>{searchOffer(searchInput)}} className="text-slate-400" />
 						</button>
 					</label>
 					<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 				</div>
-				<div className="flex flex-col w-full h-screen overflow-y-scroll">
+				<div className="flex flex-col top-[16.666667%] absolute w-2/5 overflow-y-scroll gap-2 p-2">
 					{
 						offers.map((offer, i)=> {
-							return <div onClick={()=>showModal(offer)} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
-								<div className="flex gap-2">
-									<BsPersonSquare className="h-8 w-8 text-sky-500"/>
-									<h3 className="text-xl font-semibold">{offer.Title}</h3>
-								</div>
-								<p><span className="text-slate-500">Ubicacion: </span>{offer.Event_Ubication.city}, {offer.Event_Ubication.Town}</p>
-								<p>Pago: {offer.Payment}</p>
-								<p className="text-sm">Publicado el {offer.Creation_Date.toDateString()}</p>
-								<p>{offer.vacants} vacantes disponibles</p>
-							</div>
+							return <><SingleOffer showModal={showModal} offer={offer} key={i} Key={i.toString()} /></>
 						})
 					}
 				</div>
 				<AnimatePresence>
-					{modal && <Modal open={modal} oferta={oferta}/>}
+					{modal && <Modal open={modal} closeModal={closeModal} oferta={oferta}/>}
 				</AnimatePresence>
 			</section>
 		</>
