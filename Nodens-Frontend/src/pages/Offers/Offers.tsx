@@ -227,7 +227,7 @@ const Offers = () => {
 				<div className="flex flex-col top-[16.666667%] absolute w-2/5 overflow-y-scroll gap-2 p-2">
 					{
 						offers.map((offer, i)=> {
-							return <><SingleOffer showModal={showModal} offer={offer} key={i} Key={i.toString()} /></>
+							return <SingleOffer showModal={showModal} offer={offer} key={i} Key={i.toString()} />
 						})
 					}
 				</div>

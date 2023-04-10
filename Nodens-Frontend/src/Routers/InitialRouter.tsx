@@ -11,7 +11,7 @@ export const InitialRouter = () => {
     <>
       <Router>
         <Nav inView={showNav} setShowNav={setShowNav} />
-        <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 backdrop-blur shadow-lg z-10">
+        <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 backdrop-blur shadow-lg z-20">
           <IndexLink />
           <button onClick={() => setShowNav(true)}>
             <HiMenu />

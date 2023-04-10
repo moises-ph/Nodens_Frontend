@@ -15,7 +15,7 @@ function IndexLink() {
         <path
           d="M34 10H196C209.255 10 220 20.7452 220 34V355C220 368.255 209.255 379 196 379H34C20.7452 379 10 368.255 10 355V34C10 20.7452 20.7452 10 34 10Z"
           stroke="#E15D12"
-          stroke-width="20"
+          strokeWidth="20"
         />
         <rect x="82" y="38" width="66" height="19" rx="8" fill="#E15D12" />
         <circle
@@ -23,7 +23,7 @@ function IndexLink() {
           cy="332.5"
           r="23.5"
           stroke="#E15D12"
-          stroke-width="10"
+          strokeWidth="10"
         />
         <ellipse
           cx="143.314"
