@@ -9,7 +9,7 @@ export type InstrumentoT = {
 const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
   const [instrumentos, setInstrumentos] = useState<InstrumentoT[]>([])
 	const instrumento = useRef(null)
-  const experiencia = useRef(null)
+  const nivel = useRef(null)
 
   const deleteInstrument = (i:number) => {
     setInstrumentos(instrumentos.filter((e, index) => index != i))
@@ -17,7 +17,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
 
   const addInstrument = () => {
     setInstrumentos([...instrumentos, 
-      {nombre: instrumento.current.value, experiencia: experiencia.current.value}]
+      {nombre: instrumento.current.value, nivel: nivel.current.value}]
     )
   }
   return (
@@ -39,7 +39,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
             <input type="text" name="instrumentos" ref={instrumento} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'/>
           </label>
           <label htmlFor="">Experiencia: 
-            <select name="" id="" ref={experiencia} onInput={e=> addInstrument()}>
+            <select name="" id="" ref={nivel} onInput={e=> addInstrument()}>
               <optgroup>
               <option value="" disabled >Experiencia</option>
               <option value="Menos de 1 año">Menos de 1 año</option>
@@ -53,7 +53,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
       </div>
       <div className="flex w-3/5 gap-4">
         <button className='px-4 bg-blue-300 border-blue-600 border-2 border-solid rounded-md text-blue-600 h-8' onClick={() => goBack()}>Atras</button>
-        <button className='px-4 bg-green-100 border-green-700 border-2 border-solid rounded-md text-green-700 h-8' onClick={() =>handler('instrumentos', instrumento.current.value)}>Guardar</button>
+        <button className='px-4 bg-green-100 border-green-700 border-2 border-solid rounded-md text-green-700 h-8' onClick={() =>handler('instrumentos', instrumentos)}>Guardar</button>
       </div>
     </div>
   );

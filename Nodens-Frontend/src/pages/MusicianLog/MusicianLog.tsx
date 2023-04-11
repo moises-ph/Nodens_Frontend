@@ -32,9 +32,7 @@ const MusicianLog = () => {
 
   const [musician, setMusician] = useState({
     "fecha_nacimiento" : "",
-    "instrumentos": [
-        
-    ],
+    "instrumentos": [],
     "genero": "",
     "descripcion": "",
     "generosMusicales" : [
@@ -58,9 +56,21 @@ const MusicianLog = () => {
     const headers = {
       Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser'),
     }
-    axios.post('http://localhost:8000/musician', musician, { headers: headers } )
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+    // axios.get('http://localhost:8000/musician/all').then(res=>console.log(res))
+    fetch('http://localhost:8000/musician', {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
+      },
+      body: JSON.stringify(musician)
+    }).then(res=>console.log(res))
+    // axios.post('http://localhost:8000/musician/', musician, { headers: headers } )
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err))
 
   }
 
@@ -76,7 +86,7 @@ const MusicianLog = () => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   const handler = (key:string, value: any) => {
-    if(key !== 'instrumentos' && key !== 'generosMusicales'){
+    if(key !== 'generosMusicales'){
       setMusician({
         ...musician,
         [key]: value

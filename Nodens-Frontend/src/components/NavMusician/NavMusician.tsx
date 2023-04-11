@@ -1,11 +1,17 @@
 import { NavLink } from "react-router-dom"
 import { NavBar } from "../Nav/Nav"
+import { VscSignOut } from "react-icons/vsc"
 import { AiOutlineFileSearch, AiOutlineUserAdd } from "react-icons/ai"
 import { IoShareSocialSharp } from "react-icons/io5"
 import { FaHome } from "react-icons/fa"
 import { NavLinkStyles } from "../../services"
 
 const NavMusician:React.FC<NavBar> = ({inView, setShowNav}) =>  {
+	const close = () => {
+		localStorage.removeItem('authTokenForTheUser')
+		location.href='/'
+		location.reload()
+	}
 	if(!inView) return null;
   return (
     <div className="z-[100] w-full h-screen fixed flex flex-col justify-start items-end pr-4 pt-4" onClick={()=>setShowNav(false)}>
@@ -16,7 +22,8 @@ const NavMusician:React.FC<NavBar> = ({inView, setShowNav}) =>  {
 				</div>
 				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/posts"><IoShareSocialSharp /> Posts</NavLink>
 				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/offers"><AiOutlineFileSearch /> Ofertas</NavLink>
-				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/offers"><AiOutlineUserAdd /> Perfil</NavLink>
+				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/mainprofile"><AiOutlineUserAdd /> Perfil</NavLink>
+				<button className="h-[10%] w-11/12 flex items-center gap-2 rounded-lg text-slate-100 text-xl py-4 pl-2 transition-colors duration-300 ease-linear hover:bg-slate-400" onClick={close}><VscSignOut /> Cerrar sesion</button>
 			</nav>
 		</div>
   )

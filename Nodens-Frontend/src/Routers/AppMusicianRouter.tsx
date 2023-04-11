@@ -17,20 +17,22 @@ export const AppMusicianRouter = () => {
   <ellipse cx="156.966" cy="135.474" rx="6.31666" ry="5.18977" transform="rotate(-29.5565 156.966 135.474)" fill="#E15D12"/>
   <ellipse cx="90.9854" cy="161.498" rx="6.31666" ry="5.09978" transform="rotate(27.5891 90.9854 161.498)" fill="#E15D12"/>
   </svg>;
-  const musician = true;
+  let musician: boolean | undefined = false;
   const [showNav, setShowNav] = useState<boolean>(false)
   return (
     <>
       <Router>
-      <NavMusician inView={showNav} setShowNav={setShowNav}/>
+        <div className={musician ? '' : 'hidden'}>
+        <NavMusician inView={showNav} setShowNav={setShowNav} />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50">
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center">{svg} Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
         <NavMusician inView={showNav} setShowNav={setShowNav}/>
-        <main className="py-11">
+        </div>
+        <main className={musician ? 'py-11' : ""}>
           <Routes>
-            <Route path="/" element={musician ? <MusicianLog /> : <App />}></Route>
+            <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
             <Route path="/posts" element={<Posts />}></Route>
             <Route path="/offers" element={<Offers />}></Route>
             <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
