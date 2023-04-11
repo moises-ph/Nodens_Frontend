@@ -36,7 +36,8 @@ const offersTemp: OffersT[] = [
 			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
 		}
 	],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 	{
 		Title: 'Músico con experiencia',
@@ -60,7 +61,8 @@ const offersTemp: OffersT[] = [
 		Requeriments: [{
 			description: 'Saber tocar varios instrumentos de percusión'
 		}],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 	{
 		Title: 'Oferta 3',
@@ -84,7 +86,8 @@ const offersTemp: OffersT[] = [
 		Requeriments: [{
 			description: 'descripcion de los requerimientos 3'
 		}],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 	{
 		Title: 'Oferta 4',
@@ -108,7 +111,8 @@ const offersTemp: OffersT[] = [
 		Requeriments: [{
 			description: 'descripcion de los requerimientos 4'
 		}],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 	{
 		Title: 'Oferta 5',
@@ -132,7 +136,8 @@ const offersTemp: OffersT[] = [
 		Requeriments: [{
 			description: 'descripcion de los requerimientos 5'
 		}],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 	{
 		Title: 'Oferta 6',
@@ -156,7 +161,8 @@ const offersTemp: OffersT[] = [
 		Requeriments: [{
 			description: 'descripcion de los requerimientos 6'
 		}],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 	{
 		Title: 'Oferta 7',
@@ -180,7 +186,8 @@ const offersTemp: OffersT[] = [
 		Requeriments: [{
 			description: 'descripcion de los requerimientos 7'
 		}],
-		vacants: 15
+		vacants: 15,
+		isAvailable : true
 	},
 ]
 
@@ -192,10 +199,14 @@ function Home() {
 
 	const handleSubmit = (e:any)=>{
 		e.preventDefault();
-    const form : FormData = new FormData(e.target);
-    const data = Object.fromEntries(form);
-    console.log(data);
-    setOffers(offersTemp.filter(value => value.Title.includes(data.ubication.toString()) && value.Requeriments.filter(req => req.description.includes(data.instrument.toString()))));
+		const form : FormData = new FormData(e.target);
+		const data = Object.fromEntries(form);
+		console.log(data);
+		setOffers(offersTemp.filter(value => value.Title.includes(data.ubication.toString()) && value.Requeriments.filter(req => req.description.includes(data.instrument.toString()))));
+	}
+
+	const Redirect = () =>{
+		location.replace("/login");
 	}
 
 
@@ -221,7 +232,7 @@ function Home() {
         <div className="flex flex-col self-center top-[16.666667%] w-2/5 gap-2 p-2 z-10">
 					{
 						offers.map((offer, i)=> {
-							return <><SingleOffer showModal={null} offer={offer} key={i} Key={i.toString()} /></>
+							return <><SingleOffer showModal={null} redirect={Redirect} offer={offer} key={i} Key={i.toString()} isHomePage={true} /></>
 						})
 					}
 				</div>

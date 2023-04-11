@@ -18,5 +18,6 @@ export type OffersT = {
 	}],
 	Img: string,
 	Requeriments: {description: string}[],
-	vacants: number
+	vacants: number,
+	isAvailable : boolean
 }

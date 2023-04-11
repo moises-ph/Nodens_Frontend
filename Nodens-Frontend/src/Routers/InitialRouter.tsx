@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Home, Login, Registro, Error } from "../pages";
+import { Home, Login, Registro, Error, Ingreso } from "../pages";
 import { IndexLink, Nav } from "../components";
 import { HiMenu } from "react-icons/hi";
 import { useState } from "react";
@@ -22,6 +22,7 @@ export const InitialRouter = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/registro" element={<Registro />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/ingreso" element={<Ingreso />} ></Route>
           <Route path="*" element={<Error />}></Route>
         </Routes>
         <Footer />
