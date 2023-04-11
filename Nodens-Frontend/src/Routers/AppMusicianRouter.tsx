@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { App, Error, Offers, Posts, MusiciansProfile, MusicianLog } from "../pages";
 import { NavMusician } from "../components";
 import { HiMenu } from "react-icons/hi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const AppMusicianRouter = () => {
   const svg = <svg width="230" height="389" className='h-7 w-7' viewBox="0 0 230 389" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,8 +18,15 @@ export const AppMusicianRouter = () => {
   <ellipse cx="156.966" cy="135.474" rx="6.31666" ry="5.18977" transform="rotate(-29.5565 156.966 135.474)" fill="#E15D12"/>
   <ellipse cx="90.9854" cy="161.498" rx="6.31666" ry="5.09978" transform="rotate(27.5891 90.9854 161.498)" fill="#E15D12"/>
   </svg>;
-  let musician: boolean | undefined = false;
+  const [musician, setMusician] = useState<boolean | undefined>(false)
+  useEffect(()=> {
+    axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+      .then(res=>console.log(res))
+      .then(res => setMusician(true))
+      .catch(err=>{console.log(err); setMusician(false)})
+  }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
+  if (musician===undefined) return null
   return (
     <>
       <Router>

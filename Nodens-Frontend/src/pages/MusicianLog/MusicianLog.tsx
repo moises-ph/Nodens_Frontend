@@ -86,17 +86,11 @@ const MusicianLog = () => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   const handler = (key:string, value: any) => {
-    if(key !== 'generosMusicales'){
-      setMusician({
-        ...musician,
-        [key]: value
-      })
-    } else {
-      setMusician({
-        ...musician,
-        [key]: [...musician[key], value]
-      })
-    }
+    setMusician({
+      ...musician,
+      [key]: value
+    })
+    
     sumPage()
   }
 

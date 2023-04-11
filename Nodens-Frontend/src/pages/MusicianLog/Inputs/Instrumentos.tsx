@@ -3,7 +3,7 @@ import { GrFormClose } from 'react-icons/gr'
 
 export type InstrumentoT = {
   nombre: string;
-  experiencia: string;
+  nivel: string;
 }
 
 const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
