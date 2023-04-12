@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
 import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales} from './Inputs'
@@ -117,7 +116,7 @@ const MusicianLog = () => {
     <>
       <button onClick={cerrarSesion} className="">Salir</button>
       <main className="h-screen flex flex-col w-full items-center">
-        <h1 className="mb-[30%] text-3xl font-semibold text-slate-700">Registro de Musico</h1>
+        <h1 className="mb-8 text-3xl font-semibold text-slate-700">Registro de Musico</h1>
         <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div

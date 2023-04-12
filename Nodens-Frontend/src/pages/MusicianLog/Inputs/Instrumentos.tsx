@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { GrFormClose } from 'react-icons/gr'
+import Swal from 'sweetalert2'
 
 export type InstrumentoT = {
   nombre: string;
@@ -8,22 +9,60 @@ export type InstrumentoT = {
 
 const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
   const [instrumentos, setInstrumentos] = useState<InstrumentoT[]>([])
-	const instrumento = useRef(null)
-  const nivel = useRef(null)
+	const instrumento = useRef<HTMLInputElement>(null)
+  const nivel = useRef<HTMLSelectElement>(null)
 
   const deleteInstrument = (i:number) => {
     setInstrumentos(instrumentos.filter((e, index) => index != i))
   }
 
   const addInstrument = () => {
-    setInstrumentos([...instrumentos, 
-      {nombre: instrumento.current.value, nivel: nivel.current.value}]
-    )
+    if(instrumento.current!.value && nivel.current!.value){
+      if(!instrumentos.find(e => e.nombre === instrumento.current!.value)){
+        setInstrumentos([...instrumentos, 
+          {nombre: instrumento.current!.value, nivel: nivel.current!.value}]
+        )
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa un instrumento diferente',
+          timer: 3000  
+        })  
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un instrumento y un nivel de experiencia',
+        timer: 3000  
+      })
+    }
   }
+
+  const checkLength = () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: '6 instrumentos maximo'
+    })
+  }
+  
   return (
-    <div className='bg-slate-200 h-5/6 border-solid border-2 border-slate-400 rounded-lg w-10/12 flex flex-col  gap-10 px-2 pt-4 text-slate-600'>
-      <div className='text-2xl h-4/5 flex flex-col gap-[12%]'>
-        <p>Instrumentos:</p>
+    <div className='bg-slate-200 h-full border-solid border-2 border-slate-400 rounded-lg w-10/12 flex flex-col  gap-10 px-2 pt-4 text-slate-600'>
+      <div className='text-2xl h-4/5 flex flex-col'>
+        <p className="mb-2">Instrumentos:</p>
         <div className='grid grid-cols-2 grid-rows-3 h-20 w-full gap-2'>
           {
             instrumentos.map((instr, i)=>{
@@ -39,7 +78,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
             <input type="text" name="instrumentos" ref={instrumento} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'/>
           </label>
           <label htmlFor="">Experiencia: 
-            <select name="" id="" ref={nivel} onInput={e=> addInstrument()}>
+            <select name="" id="" ref={nivel}>
               <optgroup>
               <option value="" disabled >Experiencia</option>
               <option value="Menos de 1 año">Menos de 1 año</option>
@@ -49,6 +88,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
               </optgroup>
             </select>
           </label>
+          <button onClick={instrumentos.length < 6 ? addInstrument : checkLength}>Agregar</button>
         </div>
       </div>
       <div className="flex w-3/5 gap-4">
