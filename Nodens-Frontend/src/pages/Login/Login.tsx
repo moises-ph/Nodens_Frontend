@@ -95,7 +95,7 @@ const Login = () => {
               <Link to="/" className="text-xs underline text-slate-500">Olvidaste tu contraseña?</Link>
             </div>
             <button type="submit" className="w-full h-10 bg-red-500 text-slate-50">Iniciar Sesion</button>
-            <p className="my-2">No tienes cuenta? <Link to='/registro' className="text-green-500 underline">Registrate</Link></p>
+            <p className="my-2 text-center">No tienes cuenta? <Link to='/registro' className="text-green-500 underline">Registrate</Link></p>
           </form>
         </section>
       </main>
