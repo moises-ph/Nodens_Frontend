@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { NavBar } from "../Nav/Nav"
 import { VscSignOut } from "react-icons/vsc"
 import { AiOutlineFileSearch, AiOutlineUserAdd } from "react-icons/ai"
@@ -7,9 +7,10 @@ import { FaHome } from "react-icons/fa"
 import { NavLinkStyles } from "../../services"
 
 const NavMusician:React.FC<NavBar> = ({inView, setShowNav}) =>  {
+	const navigation = useNavigate();
 	const close = () => {
 		localStorage.removeItem('authTokenForTheUser')
-		location.href='/'
+		navigation('/', {replace: true})
 		location.reload()
 	}
 	if(!inView) return null;

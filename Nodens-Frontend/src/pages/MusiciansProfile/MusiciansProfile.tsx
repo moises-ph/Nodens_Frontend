@@ -1,9 +1,18 @@
 import { BsPersonSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { profile } from '../Profiles/Profiles'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { MusicianT } from "../../types";
 
 
 const MusiciansProfile = () => {
+  const [user, setUser] = useState<MusicianT>();
+  useEffect(()=> {
+    axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+      .then(res => {console.log(res); setUser(res.data)})
+  }, [])
+  if(!user) return <h1>Loading...</h1>
   return (
     <>
       <main>
@@ -12,7 +21,7 @@ const MusiciansProfile = () => {
           <BsPersonSquare className="text-6xl mt-8 text-blue-900" />
           <div className="flex justify-center items-center flex-col gap-3 pb-4 text-xl">
             <p className="w-28 text-center ">SEBASTIÁN GARCÍA</p>
-            <p>ARMENIA QUINDÍO</p>
+            <p>{user.pais}, {user.ciudad}</p>
           </div>
         </div>
         <div className="flex justify-evenly items-center">
@@ -25,9 +34,9 @@ const MusiciansProfile = () => {
         </div>
         <div className="pl-2 pt-8 flex flex-col gap-4">
           <p className="text-xl">DESCRIPCIÓN</p>
-          <p>Mi nombre es Sebastián soy un músico con {profile[0].Experiencia} de experiencia,
-          he tocado {profile[0].GenerosMusicales} en cuanto a generos musicales se refiere.</p>
-          <p>Soy del pais de {profile[0].Pais} de la ciudad de {profile[0].Ciudad}.</p>
+          <p>Mi nombre es Sebastián soy un músico con {user.experiencia} de experiencia,
+          he tocado {user.generosMusicales.map((g, i)=><span key={i}>{g}, </span>)} en cuanto a generos musicales se refiere.</p>
+          <p>Soy del pais de {user.pais} de la ciudad de {user.ciudad}.</p>
           <p>{profile[0].Educacion.map((Edu, index)=>(
             <>
               <div key={index}>

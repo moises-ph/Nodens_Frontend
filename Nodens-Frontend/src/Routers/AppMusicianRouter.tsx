@@ -18,7 +18,7 @@ export const AppMusicianRouter = () => {
   <ellipse cx="156.966" cy="135.474" rx="6.31666" ry="5.18977" transform="rotate(-29.5565 156.966 135.474)" fill="#E15D12"/>
   <ellipse cx="90.9854" cy="161.498" rx="6.31666" ry="5.09978" transform="rotate(27.5891 90.9854 161.498)" fill="#E15D12"/>
   </svg>;
-  const [musician, setMusician] = useState<boolean | undefined>(false)
+  const [musician, setMusician] = useState<boolean | undefined>(undefined)
   useEffect(()=> {
     axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
     .then(res=>{
@@ -32,6 +32,7 @@ export const AppMusicianRouter = () => {
       .catch(err=>{console.log(err); setMusician(false)})
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
+  if(musician === undefined ) return <h1>Loading...</h1>
   return (
     <>
       <Router>
@@ -45,7 +46,7 @@ export const AppMusicianRouter = () => {
         </div>
         <main className={musician ? 'py-11' : ""}>
           <Routes>
-            <Route path="/" element={<App />}></Route>
+            <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
             <Route path="/posts" element={<Posts />}></Route>
             <Route path="/offers" element={<Offers />}></Route>
             <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
