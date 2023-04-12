@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import {useRef, useContext, useState} from "react"
+import {useRef, useState} from "react"
 import { GrFormClose } from "react-icons/gr";
 
 
@@ -30,7 +29,7 @@ const GenerosMusicales = ({ handler, goBack }: { handler: (key: string, value: a
       </div>
       <div className="flex w-3/5 gap-4">
         <button onClick={() => goBack()} className='px-4 bg-blue-300 border-blue-600 border-2 border-solid rounded-md text-blue-600 h-8'>Atras</button>
-        <button onClick={() => handler('generosMusicales', generosMusicales.current.value)} className='px-4 bg-green-100 border-green-700 border-2 border-solid rounded-md text-green-700 h-8'>Guardar</button>
+        <button onClick={() => handler('generosMusicales', generos)} className='px-4 bg-green-100 border-green-700 border-2 border-solid rounded-md text-green-700 h-8'>Guardar</button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
-import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono} from './Inputs'
+import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales} from './Inputs'
 
 const variants = {
   enter: (direction: number) => {
@@ -109,7 +109,8 @@ const MusicianLog = () => {
     <GenerosMusicales goBack={goBack} handler={handler}/>, 
     <Pais goBack={goBack} handler={handler}/>, 
     <Ciudad goBack={goBack} handler={handler}/>, 
-    <Experiencia goBack={goBack} handler={handler}/>, 
+    <Experiencia goBack={goBack} handler={handler}/>,
+    <RedesSociales goBack={goBack} handler={handler}/>, 
     <Telefono goBack={goBack} handler={handler}/>]
 
   return (
