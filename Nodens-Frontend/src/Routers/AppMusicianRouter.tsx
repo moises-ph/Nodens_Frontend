@@ -21,12 +21,17 @@ export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(false)
   useEffect(()=> {
     axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
-      .then(res=>console.log(res))
-      .then(res => setMusician(true))
+    .then(res=>{
+      console.log(res);
+      if(!res.data) {
+        setMusician(false);
+      } else {
+        setMusician(true);
+      }
+    })
       .catch(err=>{console.log(err); setMusician(false)})
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
-  if (musician===undefined) return null
   return (
     <>
       <Router>
@@ -40,7 +45,7 @@ export const AppMusicianRouter = () => {
         </div>
         <main className={musician ? 'py-11' : ""}>
           <Routes>
-            <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
+            <Route path="/" element={<App />}></Route>
             <Route path="/posts" element={<Posts />}></Route>
             <Route path="/offers" element={<Offers />}></Route>
             <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
