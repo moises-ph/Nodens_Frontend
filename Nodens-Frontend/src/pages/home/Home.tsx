@@ -233,7 +233,7 @@ function Home() {
             <button type="submit" className="bg-[#B701F7] py-2 w-10/12 md:w-[68%] rounded-lg text-slate-200 font-semibold hover:bg-[#a10bd8] transition">Buscar Trabajos</button>
           </form>
         </section>
-        <div className="flex flex-col self-center top-[16.666667%] w-full gap-2 p-2 z-10">
+        <div className="flex flex-col self-center top-[16.666667%] md:w-5/6 w-full gap-2 p-2 z-10">
 			{
 				offers.length > 0 ? 
 				offers.map((offer, i)=> {
