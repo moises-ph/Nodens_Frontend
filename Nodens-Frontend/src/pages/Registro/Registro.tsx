@@ -66,9 +66,9 @@ const Registro = () => {
          <h2>Email</h2> 
           <input type="email" name="email" id="" className="placeholder:text-slate-600 w-full text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />
         </label>
-        <label htmlFor="name" className="w-full flex flex-col gap-2">
+        <label htmlFor="userName" className="w-full flex flex-col gap-2">
           <h2>Nombre</h2>
-          <input type="text" minLength={3} name="name" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Nombre" required/>
+          <input type="text" minLength={3} name="userName" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Nombre" required/>
         </label>
         <label htmlFor="lastname" className="w-full flex flex-col gap-2">
           <h2>Apellidos</h2>

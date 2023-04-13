@@ -4,10 +4,32 @@ import Swal from "sweetalert2";
 
 const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
   const [redes, setRedes] = useState<{nombre: String;url: String}[]>([])
-	const redes_sociales = useRef<HTMLInputElement>(null)
+	const redes_sociales = useRef<HTMLSelectElement>(null)
   const url = useRef<HTMLInputElement>(null)
   const deleteRed = (i:number) => {
     setRedes(redes.filter((e, index) => index != i))
+  }
+
+  const checkUrl = (dom: string) => {
+    let exp:RegExp | string = '';
+    switch(dom){
+      case 'Facebook': 
+      exp = /^https?:\/\/(?:www\.)?facebook\.com\/[\w.-]+$/i;
+      break;
+    }
+    const urlChecker = new RegExp(exp);
+    if(urlChecker.test(url.current!.value)) {
+      addRed()
+    } else {
+      console.log(exp);
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa una url valida',
+        timer: 3000  
+      })
+    }
   }
 
   const addRed = () => {
@@ -47,7 +69,7 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
     
     Toast.fire({
       icon: 'error',
-      title: '4 redes maximo'
+      title: '5 redes maximo'
     })
   }
 
@@ -65,13 +87,21 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
         </div>
         <div>
           <label htmlFor="genero">Red:
-            <input type="text" name="genero" ref={redes_sociales} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'/>
+            <select name="genero" ref={redes_sociales} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'>
+              <optgroup>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Linkedin">Linkedin</option>
+                <option value="TikTok">TikTok</option>
+                <option value="Youtube">Youtube</option>
+              </optgroup>
+            </select>
           </label>
           <label htmlFor="url">Url: 
             <input type="text" name="url" ref={url} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'/>
           </label>
         </div>
-        <button onClick={redes.length < 4 ? addRed : checkLength}>Agregar</button>
+        <button onClick={()=>redes.length < 5 ? checkUrl(redes_sociales.current!.value) : checkLength()}>Agregar</button>
       </div>
       <div className="flex w-3/5 gap-4">
         <button onClick={() => goBack()} className='px-4 bg-blue-300 border-blue-600 border-2 border-solid rounded-md text-blue-600 h-8'>Atras</button>
