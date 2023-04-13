@@ -4,12 +4,14 @@ const Genero = ({ handler, goBack }: { handler: (key: string, value: any) => voi
     const genero = useRef(null)
     return (
     <>
-      <label htmlFor='genero'>Genero:
-        <input type="text" name="genero" ref={genero} />
+    <div className='flex flex-col items-center justify-center gap-10 pb-48'>
+      <label className='flex flex-col justify-center items-center gap-4' htmlFor='genero'>Genero
+        <input className='shadow-lg h-8 bg-slate-100 rounded-lg pl-3' placeholder='Genero' type="text" name="genero" ref={genero} />
       </label>
-      <div>
+      <div className='flex gap-4'>
         <button onClick={() => goBack()}>Atras</button>
-        <button onClick={() => handler('genero', genero.current.value)}>Guardar</button>
+        <button className='bg-red-200 h-8 w-[5rem] rounded-lg' onClick={() => handler('genero', genero.current.value)}>Guardar</button>
+      </div>
       </div>
     </>
     )
