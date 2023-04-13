@@ -99,7 +99,7 @@ const OrganizerLog = () => {
 
   return (
     <>
-    	<button onClick={cerrarSesion} className="">Salir</button>
+    	<button onClick={cerrarSesion} className="pt-6">Salir</button>
       	<main className="h-screen flex flex-col w-full items-center">
       	  <h1 className="mb-[30%] text-3xl font-semibold text-slate-700">Registro de Organizador</h1>
       	  <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center'>
