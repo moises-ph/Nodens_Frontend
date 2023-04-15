@@ -16,6 +16,18 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
       case 'Facebook': 
       exp = /^https?:\/\/(?:www\.)?facebook\.com\/[\w.-]+$/i;
       break;
+      case 'Instagram': 
+      exp = /^https?:\/\/(?:www\.)?instagram\.com\/[\w.-]+\/?$/i;
+      break;
+      case 'TikTok': 
+      exp = /^https?:\/\/(?:www\.)?tiktok\.com\/@[\w.-]+$/i;
+      break;
+      case 'Youtube': 
+      exp = /^https?:\/\/(?:www\.)?youtube\.com\/@[\w-]+$/i;
+      break;
+      case 'Linkedin': 
+      exp = /^https?:\/\/(?:www\.)?linkedin\.com\/in\/[\w-]+$/i;
+      break;
     }
     const urlChecker = new RegExp(exp);
     if(urlChecker.test(url.current!.value)) {
