@@ -66,7 +66,10 @@ const MusicianLog = () => {
         Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
       },
       body: JSON.stringify(musician)
-    }).then(res=>console.log(res))
+    }).then(res=>{
+      console.log(res);
+      location.reload();
+    })
     // axios.post('http://localhost:8000/musician/', musician, { headers: headers } )
     //   .then(res => console.log(res))
     //   .catch(err => console.log(err))

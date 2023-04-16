@@ -38,7 +38,7 @@ const OrganizerProfile = () => {
       <Link to=""><BsFacebook onClick={(a)=>change2(color2 == "black" ? "[#1773EB]" : "black")} className={`text-${color2} text-2xl`}/></Link>
       <Link to=""><BsInstagram className="text-2xl"/></Link>
       </div>
-    </main>
+    </main> 
     </>
     
   )
