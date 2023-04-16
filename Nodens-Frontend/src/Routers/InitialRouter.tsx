@@ -7,9 +7,9 @@ import Footer from '../components/Footer/Footer'
 
 export const InitialRouter = () => {
   const svg = <svg width="230" height="389" className='h-7 w-7' viewBox="0 0 230 389" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M34 10H196C209.255 10 220 20.7452 220 34V355C220 368.255 209.255 379 196 379H34C20.7452 379 10 368.255 10 355V34C10 20.7452 20.7452 10 34 10Z" stroke="#E15D12" stroke-width="20"/>
+  <path d="M34 10H196C209.255 10 220 20.7452 220 34V355C220 368.255 209.255 379 196 379H34C20.7452 379 10 368.255 10 355V34C10 20.7452 20.7452 10 34 10Z" stroke="#E15D12" strokeWidth="20"/>
   <rect x="82" y="38" width="66" height="19" rx="8" fill="#E15D12"/>
-  <circle cx="114.5" cy="332.5" r="23.5" stroke="#E15D12" stroke-width="10"/>
+  <circle cx="114.5" cy="332.5" r="23.5" stroke="#E15D12" strokeWidth="10"/>
   <ellipse cx="143.314" cy="215.512" rx="20.2472" ry="15.6314" transform="rotate(-19.5762 143.314 215.512)" fill="#E15D12"/>
   <ellipse cx="82.3143" cy="237.512" rx="20.2472" ry="15.6314" transform="rotate(-19.5762 82.3143 237.512)" fill="#E15D12"/>
   <rect x="146" y="135" width="17" height="76" fill="#E15D12"/>

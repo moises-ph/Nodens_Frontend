@@ -10,7 +10,7 @@ const Telefono = ({ handler, goBack }: { handler: (key: string, value: any) => v
         </label>
         <div className="flex w-3/5 gap-4">
           <button onClick={() => goBack()} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Atras</button>
-          <button onClick={() => handler('telefono', telefono.current!.value)} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Guardar</button>
+          <button onClick={() => handler('telefono', telefono.current!.value)} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Enviar</button>
         </div>
       </div>
     </>

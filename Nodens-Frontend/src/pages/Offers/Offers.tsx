@@ -206,7 +206,7 @@ const Offers = () => {
 					</label>
 					<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 				</div>
-				<div className="flex flex-col w-full h-screen overflow-y-scroll">
+				<div className="flex flex-col w-full">
 					{
 						offers.map((offer, i)=> {
 							return <div onClick={()=>showModal(offer)} key={i} className="w-full h-44 flex flex-col p-4 border-b-[1px] border-solid border-slate-300 gap-1">
@@ -223,7 +223,7 @@ const Offers = () => {
 					}
 				</div>
 				<AnimatePresence>
-					{modal && <Modal open={modal} oferta={oferta}/>}
+					{modal && <Modal open={modal} oferta={oferta} setOpen={setOpen}/>}
 				</AnimatePresence>
 			</section>
 		</>

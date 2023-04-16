@@ -106,11 +106,11 @@ const MusicianLog = () => {
 
   const Inputs = [
     <FechaNacimiento handler={handler}/>,
-    <Instrumentos goBack={goBack} handler={handler}/>,
-    <Genero goBack={goBack} handler={handler}/>, 
-    <GenerosMusicales goBack={goBack} handler={handler}/>, 
+    <Genero goBack={goBack} handler={handler}/>,
     <Pais goBack={goBack} handler={handler}/>, 
-    <Ciudad goBack={goBack} handler={handler}/>, 
+    <Ciudad goBack={goBack} handler={handler}/>,
+    <Instrumentos goBack={goBack} handler={handler}/>,
+    <GenerosMusicales goBack={goBack} handler={handler}/>,  
     <Experiencia goBack={goBack} handler={handler}/>,
     <RedesSociales goBack={goBack} handler={handler}/>, 
     <Telefono goBack={goBack} handler={handler}/>]
