@@ -27,12 +27,12 @@ const OrganizerProfile = () => {
           <Link to=""><AiOutlineMail  className="text-2xl"/></Link>
         </div>
       </div>
-      <h2 className="text-2xl pl-4 pt-3">Organizer name</h2>
-      <p className="pl-5">What he does</p>
-      <p className="pl-5">Rating</p>
+      <h2 className="text-2xl pl-4 pt-3 text-blue-500">Organizer name</h2>
+      <p className="pl-5 text-slate-500">What he does</p>
+      <p className="pl-5">Rating (Stars)</p>
 
 
-      <p className="pl-5 pt-8 text-sm">Profile: </p>
+      <p className="pl-5 pt-8 text-sm text-blue-800">Profile: </p>
       <p className="pl-5 text-xs">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores, quis officiis? Exercitationem commodi quasi aut nihil eligendi illum at vero possimus modi vitae ullam, recusandae rerum aliquam id quae. Delectus?</p>
       <div className="flex mt-5 gap-2 ml-5">
       <Link to=""><BsFacebook onClick={(a)=>change2(color2 == "black" ? "[#1773EB]" : "black")} className={`text-${color2} text-2xl`}/></Link>
