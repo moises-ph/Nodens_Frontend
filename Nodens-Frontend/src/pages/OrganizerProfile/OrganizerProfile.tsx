@@ -23,8 +23,8 @@ const OrganizerProfile = () => {
         <Link to="" className="ml-4 text-9xl"><BiUserCircle className="text-black"/></Link>
         <p className="pl-5">(Acá va una imagen)</p>
         <div className="flex justify-end items-end flex-col mr-2 gap-3">
-          <Link to=""><BiHeartCircle onClick={(e)=>change(color == "black" ? "red-500" : "black")} className={`text-2xl text-${color}`} /></Link> 
-          <Link to=""><AiOutlineMail  className="text-xl"/></Link>
+          <Link to=""><BiHeartCircle onClick={(e)=>change(color == "black" ? "red-500" : "black")} className={`text-[1.7rem] text-${color}`} /></Link> 
+          <Link to=""><AiOutlineMail  className="text-2xl"/></Link>
         </div>
       </div>
       <h2 className="text-2xl pl-4 pt-3">Organizer name</h2>
