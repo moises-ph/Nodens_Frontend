@@ -86,20 +86,20 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
   }
 
   return (
-    <div className='bg-slate-200 h-full border-solid border-2 border-slate-400 rounded-lg w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-600'>
-      <div className='flex flex-col text-2xl h-4/5'>
-        <h3 className="mb-5">Redes Sociales:</h3>
-        <div className="h-2/4 grid grid-cols-2 grid-rows-3 gap-2">
+    <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600'>
+      <div className='text-2xl h-5/6 flex flex-col'>
+        <h3 className="mb-2">Redes Sociales:</h3>
+        <div className='grid grid-cols-2 grid-rows-3 h-4/5 w-full gap-2 mb-8'>
           {redes.map((gen, i)=>{
-              return <span key={i} className='flex items-center justify-around text-base bg-slate-100 h-6 col-span-1 rounded-lg text-slate-700 font-semibold border-solid border-slate-600 border-2'>
-                {gen.nombre}
-                <button><GrFormClose onClick={()=>deleteRed(i)}/></button>
-              </span>
+              return <div key={i} className='flex items-center justify-between px-3 text-base  bg-slate-100 h-4/5 col-span-1 rounded-md text-slate-700 font-normal border-solid border-slate-600 border-[1px]'>
+                <span className='text-ellipsis overflow-hidden whitespace-nowrap'>{gen.nombre}</span>
+                <button><GrFormClose className='h-6 w-6' onClick={()=>deleteRed(i)}/></button>
+              </div>
             })}
         </div>
-        <div>
-          <label htmlFor="genero">Red:
-            <select name="genero" ref={redes_sociales} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'>
+        <div className="flex flex-col gap-3">
+          <label htmlFor="genero" className="w-11/12">Red:
+            <select name="genero" ref={redes_sociales} className="ml-2 bg-transparent">
               <optgroup>
                 <option value="Facebook">Facebook</option>
                 <option value="Instagram">Instagram</option>
@@ -109,15 +109,15 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
               </optgroup>
             </select>
           </label>
-          <label htmlFor="url">Url: 
-            <input type="text" name="url" ref={url} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'/>
+          <label htmlFor="url">
+            <input type="text" name="url" placeholder="URL" ref={url} className='w-full bg-transparent border-solid border-b-2 border-slate-300 text-slate-700 font-medium text-lg pl-2 outline-none focus:border-slate-500'/>
           </label>
         </div>
         <button onClick={()=>redes.length < 5 ? checkUrl(redes_sociales.current!.value) : checkLength()}>Agregar</button>
       </div>
       <div className="flex w-3/5 gap-4">
-        <button onClick={() => goBack()} className='px-4 bg-blue-300 border-blue-600 border-2 border-solid rounded-md text-blue-600 h-8'>Atras</button>
-        <button onClick={() => handler('redes_sociales', redes)} className='px-4 bg-green-100 border-green-700 border-2 border-solid rounded-md text-green-700 h-8'>Guardar</button>
+        <button onClick={() => goBack()} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Atras</button>
+        <button onClick={() => handler('redes_sociales', redes)} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Guardar</button>
       </div>
     </div>
   )
