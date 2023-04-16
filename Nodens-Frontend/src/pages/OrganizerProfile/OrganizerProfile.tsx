@@ -18,7 +18,7 @@ const OrganizerProfile = () => {
  
   return (
     <>
-    <main className="bg-gradient-to-b from-slate-900 to-white">
+    <main className="bg-gradient-to-b from-zinc-400 to-white">
       <div className="pb-5">
         <Link to="" className="ml-4 text-9xl"><BiUserCircle className="text-black"/></Link>
         <p className="pl-5">(Acá va una imagen)</p>
