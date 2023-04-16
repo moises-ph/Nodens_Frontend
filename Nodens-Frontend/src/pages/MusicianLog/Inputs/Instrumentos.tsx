@@ -60,9 +60,9 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
   }
   
   return (
-    <div className='bg-slate-200 h-full border-solid border-2 border-slate-400 rounded-lg w-10/12 flex flex-col  gap-10 px-2 pt-4 text-slate-600'>
+    <div className='bg-slate-100 h-full shadow-2xl border-solid border-1  rounded-lg w-10/12 flex flex-col  gap-10 px-2 pt-4 text-slate-600'>
       <div className='text-2xl h-4/5 flex flex-col'>
-        <p className="mb-2">Instrumentos:</p>
+        <p className="mb-2 text-center">Instrumentos</p>
         <div className='grid grid-cols-2 grid-rows-3 h-20 w-full gap-2'>
           {
             instrumentos.map((instr, i)=>{
@@ -74,7 +74,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
           }
         </div>
         <div className="flex flex-col">
-          <label htmlFor="" className="w-11/12">Instrumento:
+          <label htmlFor="" className="w-11/12">Instrumentos:
             <input type="text" name="instrumentos" ref={instrumento} className='w-full bg-transparent border-solid border-2 border-slate-400 rounded-md text-slate-700 font-medium text-lg pl-2'/>
           </label>
           <label htmlFor="">Experiencia: 
@@ -91,7 +91,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
           <button onClick={instrumentos.length < 6 ? addInstrument : checkLength}>Agregar</button>
         </div>
       </div>
-      <div className="flex w-3/5 gap-4">
+      <div className="flex pl-9 w-3/5 gap-4">
         <button className='px-4 bg-blue-300 border-blue-600 border-2 border-solid rounded-md text-blue-600 h-8' onClick={() => goBack()}>Atras</button>
         <button className='px-4 bg-green-100 border-green-700 border-2 border-solid rounded-md text-green-700 h-8' onClick={() =>handler('instrumentos', instrumentos)}>Guardar</button>
       </div>
