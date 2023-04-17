@@ -12,7 +12,7 @@ const MusiciansProfile = () => {
     axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
       .then(res => {console.log(res); setUser(res.data)})
   }, [])
-  if(!user) return <h1>Loading...</h1>
+  if(!user) return <h1 className="text-2xl">Loading...</h1>
   return (
     <>
       <main>

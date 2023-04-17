@@ -4,7 +4,7 @@ const Experiencia = ({ handler, goBack }: { handler: (key: string, value: any) =
     const experiencia = useRef<HTMLSelectElement>(null)
     return (
     <>
-      <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600'>
+      <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600 shadow-lg'>
         <div className='text-2xl h-5/6 flex flex-col justify-center gap-[15%]'>
           <p className="mb-2">Experiencia:</p>
           <label htmlFor="experiencia" className='flex-col text-lg md:flex'>Experiencia:
