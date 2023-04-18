@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { App, Error, Offers, Posts, MusiciansProfile, MusicianLog } from "../pages";
-import { NavMusician } from "../components";
+import { Loading, NavMusician } from "../components";
 import { HiMenu } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -32,7 +32,7 @@ export const AppMusicianRouter = () => {
       .catch(err=>{console.log(err); setMusician(false)})
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
-  if(musician === undefined ) return <h1>Loading...</h1>
+  if(musician === undefined ) return <Loading />
   return (
     <>
       <Router>
