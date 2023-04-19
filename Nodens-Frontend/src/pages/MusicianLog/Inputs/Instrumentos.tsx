@@ -59,6 +59,18 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
     })
   }
   
+  const checking = () => {
+    if(instrumentos.length < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa al menos un instrumento',
+        timer: 2000  
+      })
+    } else {
+      handler('instrumentos', instrumentos)
+    }
+  }
   return (
     <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-600 shadow-lg'>
       <div className='text-2xl h-5/6 flex flex-col'>
@@ -93,7 +105,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
       </div>
       <div className="flex w-3/5 gap-4">
         <button className='px-4 bg-blue-500 rounded-md text-blue-900 h-8' onClick={() => goBack()}>Atras</button>
-        <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() =>handler('instrumentos', instrumentos)}>Guardar</button>
+        <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => checking()}>Guardar</button>
       </div>
     </div>
   );

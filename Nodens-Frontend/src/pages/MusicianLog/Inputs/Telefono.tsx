@@ -1,7 +1,22 @@
 import { useRef } from 'react'
+import Swal from 'sweetalert2'
 
 const Telefono = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
     const telefono = useRef<HTMLInputElement>(null)
+
+    const checking = () => {
+      if(telefono.current!.value.length < 10) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa tu numero de telefono',
+          timer: 2000  
+        })
+      } else {
+        handler('telefono', telefono.current!.value)
+      }
+    }
+  
     return (
     <>
       <div className='h-2/4 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-600 shadow-lg'>
@@ -10,7 +25,7 @@ const Telefono = ({ handler, goBack }: { handler: (key: string, value: any) => v
         </label>
         <div className="flex w-3/5 gap-4">
           <button onClick={() => goBack()} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Atras</button>
-          <button onClick={() => handler('telefono', telefono.current!.value)} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Enviar</button>
+          <button onClick={() => checking()} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Enviar</button>
         </div>
       </div>
     </>

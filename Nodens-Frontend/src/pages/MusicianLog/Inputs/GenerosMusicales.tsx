@@ -49,6 +49,19 @@ const GenerosMusicales = ({ handler, goBack }: { handler: (key: string, value: a
       title: '6 generos maximo'
     })
   }
+
+  const checking = () => {
+    if(generos.length < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa al menos un genero musical',
+        timer: 2000  
+      })
+    } else {
+      handler('generosMusicales', generos)
+    }
+  }
   return (
     <div className='h-full w-10/12 flex flex-col justify-center gap-8 px-2 pb-2 text-slate-600 shadow-lg'>
       <div className='flex flex-col text-2xl h-4/5 '>
@@ -66,7 +79,7 @@ const GenerosMusicales = ({ handler, goBack }: { handler: (key: string, value: a
       </div>
       <div className="flex w-3/5 gap-4">
         <button onClick={() => goBack()} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Atras</button>
-        <button onClick={() => handler('generosMusicales', generos)} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Guardar</button>
+        <button onClick={() => checking()} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Guardar</button>
       </div>
     </div>
   );

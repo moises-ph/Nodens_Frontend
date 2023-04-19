@@ -1,8 +1,9 @@
 import { useRef } from "react";
+import Swal from "sweetalert2";
 
 const Pais = ({  handler,  goBack} : {  handler: (key: string, value: any) => void;  goBack: () => void;}) => {
   const paises = [
-    "-",
+    '',
     "Antigua y Barbuda",
     "Argentina",
     "Bahamas",
@@ -36,6 +37,19 @@ const Pais = ({  handler,  goBack} : {  handler: (key: string, value: any) => vo
     "Venezuela",
   ];
   const pais = useRef<HTMLSelectElement>(null);
+
+  const checking = () => {
+    if(!pais.current!.value) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un pais',
+        timer: 2000  
+      })
+    } else {
+      handler("pais", pais.current!.value)
+    }
+  }
   return (
     <>
       <div className='h-5/6 border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600 shadow-lg'>
@@ -54,7 +68,7 @@ const Pais = ({  handler,  goBack} : {  handler: (key: string, value: any) => vo
           </label>
           <div className="flex w-3/5 gap-4">
             <button className='px-4 bg-blue-500 rounded-md text-blue-900 h-8' onClick={() => goBack()}>Atras</button>
-            <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => handler("pais", pais.current!.value)}>Guardar</button>
+            <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => checking()}>Guardar</button>
           </div>
         </div>
       </div>

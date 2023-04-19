@@ -1,16 +1,32 @@
 import { useRef } from 'react'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Ciudad = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
     const ciudad = useRef<HTMLSelectElement>(null)
+
+    const checking = () => {
+      if(!ciudad.current!.value) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa una ciudad',
+          timer: 2000  
+        })
+      } else {
+        handler("ciudad", ciudad.current!.value)
+      }
+    }
+
     return (
     <>
       <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600 shadow-lg'>
         <div className='text-2xl h-5/6 flex flex-col justify-center gap-[15%]'>
           <p className="mb-2">Ciudad:</p>
           <label htmlFor="Ciudad" className='flex-col text-lg md:flex'>Ciudad:
-            <select name="" id="" ref={ciudad} className="ml-2 bg-transparent">
+            <select name="" id="" ref={ciudad} className="ml-2 bg-transparent border-b-2 border-solid border-slate-400">
               <optgroup>
-                <option value="">-</option>
+                <option value=""></option>
                 <option value="Arauca">Arauca</option>
                 <option value="Armenia">Armenia</option>
                 <option value="Barranquilla">Barranquilla</option>
@@ -48,7 +64,7 @@ const Ciudad = ({ handler, goBack }: { handler: (key: string, value: any) => voi
           </label>
           <div className="flex w-3/5 gap-4">
             <button className='px-4 bg-blue-500 rounded-md text-blue-900 h-8' onClick={() => goBack()}>Atras</button>
-            <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => handler("ciudad", ciudad.current!.value)}>Guardar</button>
+            <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => checking()}>Guardar</button>
           </div>
         </div>
       </div>

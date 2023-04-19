@@ -6,6 +6,7 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
   const [redes, setRedes] = useState<{nombre: String;url: String}[]>([])
 	const redes_sociales = useRef<HTMLSelectElement>(null)
   const url = useRef<HTMLInputElement>(null)
+  
   const deleteRed = (i:number) => {
     setRedes(redes.filter((e, index) => index != i))
   }
@@ -85,6 +86,19 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
     })
   }
 
+  const checking = () => {
+    if(redes.length < 1) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa al menos una red social',
+        timer: 2000  
+      })
+    } else {
+      handler('redes_sociales', redes)
+    }
+  }
+
   return (
     <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-600 shadow-lg'>
       <div className='text-2xl h-5/6 flex flex-col'>
@@ -117,7 +131,7 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
       </div>
       <div className="flex w-3/5 gap-4">
         <button onClick={() => goBack()} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Atras</button>
-        <button onClick={() => handler('redes_sociales', redes)} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Guardar</button>
+        <button onClick={() => checking()} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Guardar</button>
       </div>
     </div>
   )
