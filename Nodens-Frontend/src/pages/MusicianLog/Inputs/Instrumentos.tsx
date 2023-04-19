@@ -60,7 +60,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
   }
   
   return (
-    <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600 shadow-lg'>
+    <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-600 shadow-lg'>
       <div className='text-2xl h-5/6 flex flex-col'>
         <p className="mb-2">Instrumentos:</p>
         <div className='grid grid-cols-2 grid-rows-3 h-4/5 w-full gap-2 mb-8'>
@@ -77,8 +77,8 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
           <label htmlFor="" className="w-11/12">
             <input type="text" name="instrumentos" placeholder="Instrumento" ref={instrumento} className='w-full bg-transparent border-solid border-b-2 border-slate-300 text-slate-700 font-medium text-lg pl-2 outline-none focus:border-slate-500'/>
           </label>
-          <label htmlFor="" className='flex-col text-lg md:flex'>Experiencia: 
-            <select name="" id="" ref={nivel} className="ml-2 bg-transparent">
+          <label htmlFor="" className=' flex flex-col text-lg md:flex-row md:gap-4'>Experiencia: 
+            <select name="" id="" ref={nivel} className="ml-2 bg-transparent border-b-2 border-solid border-slate-400 md:w-2/4">
               <optgroup>
               <option value="" ></option>
               <option value="Menos de 1 año">Menos de 1 año</option>

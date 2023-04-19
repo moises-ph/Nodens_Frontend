@@ -86,7 +86,7 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
   }
 
   return (
-    <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600 shadow-lg'>
+    <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-600 shadow-lg'>
       <div className='text-2xl h-5/6 flex flex-col'>
         <h3 className="mb-2">Redes Sociales:</h3>
         <div className='grid grid-cols-2 grid-rows-3 h-4/5 w-full gap-2 mb-8'>

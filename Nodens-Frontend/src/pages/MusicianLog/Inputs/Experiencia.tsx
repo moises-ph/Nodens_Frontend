@@ -8,7 +8,7 @@ const Experiencia = ({ handler, goBack }: { handler: (key: string, value: any) =
         <div className='text-2xl h-5/6 flex flex-col justify-center gap-[15%]'>
           <p className="mb-2">Experiencia:</p>
           <label htmlFor="experiencia" className='flex-col text-lg md:flex'>Experiencia:
-            <select name="" id="" ref={experiencia} className="ml-2 bg-transparent">
+            <select name="" id="" ref={experiencia} className="ml-2 bg-transparent border-b-2 border-solid border-slate-400">
               <optgroup>
               <option value="">-</option>
                 <option value="Sin Experiencia">Sin Experiencia</option>

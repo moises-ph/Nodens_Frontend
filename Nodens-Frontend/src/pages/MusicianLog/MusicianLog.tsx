@@ -117,10 +117,9 @@ const MusicianLog = () => {
 
   return (
     <>
-      <button onClick={cerrarSesion} className="">Salir</button>
-      <main className="h-screen flex flex-col w-full items-center">
+      <main className="h-screen flex flex-col w-full items-center py-4">
         <h1 className="mb-8 text-3xl font-semibold text-slate-700">Registro de Musico</h1>
-        <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center'>
+        <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center md:w-3/4'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               className='h-5/6 w-full flex justify-center items-center'
