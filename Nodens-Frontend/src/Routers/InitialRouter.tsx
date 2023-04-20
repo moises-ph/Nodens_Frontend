@@ -20,7 +20,6 @@ export const InitialRouter = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/registro" element={<Registro />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          {/* <Route path="/ingreso" element={<Ingreso />} ></Route> */}
           <Route path="*" element={<Error />}></Route>
         </Routes>
         <Footer />
