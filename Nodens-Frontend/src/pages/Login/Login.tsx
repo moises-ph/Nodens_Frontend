@@ -72,7 +72,7 @@ const Login = () => {
 
   return (
     <>
-      <main className="min-h-[100vh] pt-16 flex justify-center items-center flex-col border-solid border-2 border-black bg-gradient-to-br from-[#E79A77] to-[#B701F7] ">
+      <main className="min-h-[100vh] pt-16 flex justify-center items-center flex-col bg-gradient-to-br from-[#E79A77] to-[#B701F7] ">
         <section className="none"> 
         </section>
         <section className="w-10/12 md:w-1/3 px-10 flex flex-col gap-4 py-8 shadow-xl bg-slate-50 rounded-md">

@@ -10,8 +10,7 @@ export const InitialRouter = () => {
   return (
     <>
     	<Router>
-        {/* <Nav inView={showNav} setShowNav={setShowNav}/> */}
-        <NavRes inView={showNav} setShowNav={setShowNav}/>
+        <NavRes />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions='h-7 w-7'/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
