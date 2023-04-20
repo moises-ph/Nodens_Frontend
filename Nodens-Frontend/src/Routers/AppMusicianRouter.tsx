@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { App, Error, Offers, Posts, MusiciansProfile, MusicianLog } from "../pages";
-import { Loading, NavMusician } from "../components";
+import { Loading, Logo, NavMusician } from "../components";
 import { HiMenu } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -39,7 +39,7 @@ export const AppMusicianRouter = () => {
         <div className={musician ? '' : 'hidden'}>
         <NavMusician inView={showNav} setShowNav={setShowNav} />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50">
-          <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center">{svg} Nodens</h1></Link>
+          <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions="h-7 w-7"/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
         <NavMusician inView={showNav} setShowNav={setShowNav}/>

@@ -70,7 +70,7 @@ const Login = () => {
 
   return (
     <>
-      <main className="h-[80vh] pt-16 flex justify-center items-center flex-col border-solid border-2 border-black bg-gradient-to-br from-[#E79A77] to-[#B701F7] ">
+      <main className="h-screen pt-16 flex justify-center items-center flex-col border-solid border-2 border-black bg-gradient-to-br from-[#E79A77] to-[#B701F7] ">
         <section className="none"> 
         </section>
         <section className="h-[50vh] w-10/12 px-4 flex flex-col gap-6 pt-6 shadow-xl bg-slate-50 rounded-md">
