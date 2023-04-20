@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import {Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
+import { Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
 import { OrganizerT } from '../../types';
 import { useEffect, useState } from 'react'
 import { Genero, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';

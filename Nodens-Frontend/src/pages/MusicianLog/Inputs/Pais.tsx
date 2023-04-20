@@ -56,7 +56,7 @@ const Pais = ({  handler,  goBack} : {  handler: (key: string, value: any) => vo
         <div className='text-2xl h-5/6 flex flex-col justify-center gap-[15%]'>
           <p className="mb-2">Pais:</p>
           <label htmlFor="pais" className='flex-col text-lg md:flex'>Pais:
-            <select name="" id="" ref={pais} className="ml-2 bg-transparent">
+            <select name="" id="" ref={pais} className="ml-2 bg-transparent border-b-2 border-solid border-slate-400">
               <optgroup>
                 {paises.map((p, i) => {
                   return (
