@@ -6,7 +6,7 @@ import { useState } from 'react'
 import Footer from '../components/Footer/Footer'
 
 export const InitialRouter = () => {
-  const [showNav, setShowNav] = useState<boolean>(false)
+  const [showNav, setShowNav] = useState<boolean>(false);
   return (
     <>
     	<Router>
@@ -16,15 +16,16 @@ export const InitialRouter = () => {
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions='h-7 w-7'/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
-        <Nav inView={showNav} setShowNav={setShowNav}/>
+        <Nav inView={showNav} setShowNav={setShowNav} />
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/registro' element={<Registro />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='*' element={<Error />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/registro" element={<Registro />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          {/* <Route path="/ingreso" element={<Ingreso />} ></Route> */}
+          <Route path="*" element={<Error />}></Route>
         </Routes>
         <Footer />
       </Router>
     </>
-  )
-}
+  );
+};

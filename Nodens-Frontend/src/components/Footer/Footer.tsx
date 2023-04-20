@@ -6,7 +6,7 @@ import { TbBrandGithub } from 'react-icons/tb'
 const Footer = () => {
   return (
     <>
-      <footer className="absolute h-44 w-full bg-slate-900 flex justify-center items-center flex-col gap-4"> 
+      <footer className="h-44 w-full bg-slate-900 flex justify-center self-end items-center flex-col gap-4 relative"> 
         <div className="text-2xl text-slate-50 font-serif drop-shadow-2xl shadow-white ">Nodens</div>
         <p className="text-center text-slate-50">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
         <div className="flex justify-center items-center flex-row gap-4">

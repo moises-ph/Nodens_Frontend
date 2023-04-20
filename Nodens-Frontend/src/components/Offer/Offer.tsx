@@ -1,14 +1,16 @@
-import { GrFormClose } from 'react-icons/gr'
+import { BsChevronLeft } from 'react-icons/bs'
 import { OffersT } from '../../types'
 
 
-const Offer = ({oferta, setOpen}: {oferta: OffersT | undefined, setOpen: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const Offer = ({oferta, closeModal}: {oferta: OffersT | undefined, closeModal : any}) => {
   return (
     <>
-      <div className='flex justify-center'>
-        <h1 className='text-slate-800 text-2xl font-bold text-center'>{oferta!.Title}</h1>
-        <button onClick={()=>setOpen(false)} className='absolute right-2'><GrFormClose className='h-6 w-6' /></button>
-      </div>
+
+      <button onClick={closeModal}>
+        <BsChevronLeft />
+      </button>
+
+      <h1 className='text-slate-800 text-2xl font-bold text-center'>{oferta!.Title}</h1>
       <p className='text-slate-800 text-start pl-2 pt-1'><p className='text-black text-xl pt-2 pb-1'>Descripción de la oferta</p> {oferta?.Description}.</p>   
      
       <p className='text-slate-800 text-start pl-2 pt-3'><p className='text-black text-md'>Pago</p> {oferta?.Payment}</p>

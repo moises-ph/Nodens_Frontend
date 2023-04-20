@@ -11,3 +11,4 @@ export * from "./MusiciansProfile"
 export * from "./OrganizerLog"
 export * from "./AppOrganizer"
 export * from "./OrganizerProfile"
+export * from './Ingreso'

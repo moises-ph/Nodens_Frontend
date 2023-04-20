@@ -5,3 +5,5 @@ export * from "./NavMusician"
 export * from "./NavOrganizer"
 export * from "./Loading"
 export * from "./Logo"
+export * from "./SingleOffer";
+export * from "./IndexLink";
