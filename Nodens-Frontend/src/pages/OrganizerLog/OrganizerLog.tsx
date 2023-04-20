@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
-import {Ciudad, DescripcionEmpresa, Genero, NombreEmpresa, Pais, Telefono} from './inputs'
+import {Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
 import { OrganizerT } from '../../types';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Genero, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
 
 const variants = {
   enter: (direction: number) => {
@@ -27,12 +27,6 @@ const variants = {
 
 
 const OrganizerLog = () => {
-	const cerrarSesion = () => {
-    localStorage.removeItem("authTokenForTheUser");
-    location.reload();
-  };
-
-
   const [organizer, setOrganizer] = useState<OrganizerT>({
 		"telefono": '',
     "nombre_empresa" : "",
@@ -48,13 +42,20 @@ const OrganizerLog = () => {
   })
 
 	const registerOrganizer = () => {
-    const headers = {
-      Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser'),
-    }
-    axios.post('', organizer, { headers: headers } )
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-
+    fetch('http://localhost:8000/organizer', {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
+      },
+      body: JSON.stringify(organizer)
+    }).then(res=>{
+      console.log(res);
+      location.reload();
+    })
   }
 
 	const sumPage = () =>{
@@ -63,62 +64,55 @@ const OrganizerLog = () => {
     } else {
       registerOrganizer()
     }
-
   }
 
   const [[page, direction], setPage] = useState([0, 0]);
 
   const handler = (key:string, value: any) => {
-    if(key !== 'redes_sociales'){
       setOrganizer({
         ...organizer,
         [key]: value
       })
-    } else {
-      setOrganizer({
-        ...organizer,
-        [key]: [...organizer[key], value]
-      })
-    }
     sumPage()
   }
 
-
+  useEffect(()=> {
+    console.log(organizer);
+  }, [organizer])
 	const goBack = () => {
     setPage([page-1, -1])
   }
-
+ 
 	const Inputs: JSX.Element[] = [
     <Ciudad handler={handler} />,
-    <DescripcionEmpresa goBack={goBack} handler={handler} />,
+    <Pais goBack={goBack} handler={handler} />,
     <Genero goBack={goBack} handler={handler} />,
     <NombreEmpresa goBack={goBack} handler={handler} />,
-    <Pais goBack={goBack} handler={handler} />,
+    <DescripcionEmpresa goBack={goBack} handler={handler} />,
+    <RedesSociales goBack={goBack} handler={handler} />,
     <Telefono goBack={goBack} handler={handler} />
   ];
 
   return (
     <>
-    	
-      	<main className="h-screen flex flex-col w-full items-center">
-        <button onClick={cerrarSesion} className="flex self-start pt-6">Salir</button>
-      	  <h1 className="mb-[30%] text-3xl font-semibold text-slate-700">Registro de Organizador</h1>
-      	  <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center'>
-      	    <AnimatePresence initial={false} custom={direction}>
-      	      <motion.div
-      	        className='h-5/6 w-full flex justify-center items-center'
-      	        key={page}
-      	        custom={direction}
-      	        variants={variants}
-      	        initial='enter'
-      	        animate='center'
-      	        exit='exit'
-      	        transition={{y: {type: 'spring', stiffness: 300, damping: 30}, opacity: {duration: 0.5}}}>
-      	        {Inputs[page]}
-      	      </motion.div>
-      	    </AnimatePresence>
-      	  </form>
-      	</main>
+      <main className="h-screen flex flex-col w-full items-center py-4">
+        <h1 className="mb-8 text-3xl font-semibold text-slate-700">Registro de Organizador</h1>
+        <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center md:w-3/4'>
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              className='h-5/6 w-full flex justify-center items-center'
+              key={page}
+              custom={direction}
+              variants={variants}
+              initial='enter'
+              animate='center'
+              exit='exit'
+              transition={{y: {type: 'spring', stiffness: 300, damping: 30}, opacity: {duration: 0.5}}}>
+              {Inputs[page]}
+            </motion.div>
+          </AnimatePresence>
+        </form>
+      </main>
     </>
   )
 }

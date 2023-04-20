@@ -24,11 +24,6 @@ const variants = {
 };
 
 const MusicianLog = () => {
-  const cerrarSesion = () => {
-    localStorage.removeItem("authTokenForTheUser");
-    location.reload();
-  };
-
   const [musician, setMusician] = useState({
     "fecha_nacimiento" : "",
     "instrumentos": [],
@@ -52,10 +47,6 @@ const MusicianLog = () => {
   })
 
   const registerMusician = () => {
-    const headers = {
-      Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser'),
-    }
-    // axios.get('http://localhost:8000/musician/all').then(res=>console.log(res))
     fetch('http://localhost:8000/musician', {
       method: 'POST',
       mode: 'cors',
@@ -70,10 +61,6 @@ const MusicianLog = () => {
       console.log(res);
       location.reload();
     })
-    // axios.post('http://localhost:8000/musician/', musician, { headers: headers } )
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err))
-
   }
 
   const sumPage = () =>{
@@ -82,7 +69,6 @@ const MusicianLog = () => {
     } else {
       registerMusician()
     }
-
   }
 
   const [[page, direction], setPage] = useState([0, 0]);

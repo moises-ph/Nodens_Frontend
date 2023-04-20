@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 const Ciudad = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
     const ciudad = useRef<HTMLSelectElement>(null)
