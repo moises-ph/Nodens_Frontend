@@ -9,14 +9,23 @@ import axios from "axios";
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
   useEffect(()=> {
-    axios.get('http://localhost:8000/organizer', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+    fetch('http://localhost:8000/organizer',{
+      method: 'GET',
+      mode: 'no-cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
+      }
+    })
     .then(res=>{
       console.log(res);
-      if(!res.data) {
-        setOrganizador(false);
-      } else {
-        setOrganizador(true);
-      }
+      // if(!res) {
+      //   setOrganizador(false);
+      // } else {
+      //   setOrganizador(true);
+      // }
     })
       .catch(err=>{console.log(err); setOrganizador(false)})
   }, [])

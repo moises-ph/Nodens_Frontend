@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
-import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales} from './Inputs'
+import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales, Name, Lastname} from './Inputs'
 
 const variants = {
   enter: (direction: number) => {
@@ -26,6 +26,8 @@ const variants = {
 const MusicianLog = () => {
   const [musician, setMusician] = useState({
     "fecha_nacimiento" : "",
+    "Name": "",
+    "Lastname": "",
     "instrumentos": [],
     "genero": "",
     "descripcion": "",
@@ -92,6 +94,8 @@ const MusicianLog = () => {
 
   const Inputs = [
     <FechaNacimiento handler={handler}/>,
+    <Name goBack={goBack} handler={handler}/>,
+    <Lastname goBack={goBack} handler={handler}/>,
     <Genero goBack={goBack} handler={handler}/>,
     <Pais goBack={goBack} handler={handler}/>, 
     <Ciudad goBack={goBack} handler={handler}/>,

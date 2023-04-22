@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
 import { OrganizerT } from '../../types';
 import { useEffect, useState } from 'react'
-import { Genero, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
+import { Genero, Lastname, Name, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
 
 const variants = {
   enter: (direction: number) => {
@@ -42,7 +42,7 @@ const OrganizerLog = () => {
   })
 
 	const registerOrganizer = () => {
-    fetch('http://localhost:8000/organizer', {
+    fetch('http://127.0.0.1:8002/organizer', {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -86,6 +86,8 @@ const OrganizerLog = () => {
 	const Inputs: JSX.Element[] = [
     <Ciudad handler={handler} />,
     <Pais goBack={goBack} handler={handler} />,
+    <Name goBack={goBack} handler={handler}/>,
+    <Lastname goBack={goBack} handler={handler}/>,
     <Genero goBack={goBack} handler={handler} />,
     <NombreEmpresa goBack={goBack} handler={handler} />,
     <DescripcionEmpresa goBack={goBack} handler={handler} />,
