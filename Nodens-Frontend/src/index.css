@@ -10,6 +10,13 @@
     -o-background-size: cover;
     background-size: cover;
   }
+  .fondoorgprof{
+    background: url("./images/organizerProf.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
 .nav1{
   animation-name:n1;
