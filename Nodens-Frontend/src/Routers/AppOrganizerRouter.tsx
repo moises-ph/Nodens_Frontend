@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppOrganizer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } from "../pages";
+import { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } from "../pages";
 import { useEffect, useState } from "react";
 import { Loading, Logo, NavOrganizer } from "../components";
 import { HiMenu } from "react-icons/hi";
@@ -48,6 +48,7 @@ export const AppOrganizerRouter = () => {
             <Route path="/posts" element={<Posts />} />
             <Route path="/profiles" element={<Profiles />} />
             <Route path="/mainprofile" element={<OrganizerProfile />} />
+            <Route path="/create-offer" element={<CreateOffer />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
