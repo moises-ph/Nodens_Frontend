@@ -1,5 +1,5 @@
 import { BiUserCircle, BiHeartCircle } from "react-icons/bi";
-import { AiOutlineMail, AiFillEye } from "react-icons/ai";
+import { AiOutlineMail, AiFillEye,AiOutlinePhone } from "react-icons/ai";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,12 +14,11 @@ const OrganizerProfile = () => {
   const change2 = (a: any) => {
     setColor2(a);
   };
-
   return (
     <>
-      <main className="bg-slate-100 h-screen w-full">
-        <div className="pt-10 bg-gradient-to-t from-white to-zinc-300 shadow-2xl">
-        <div className="flex  h-[31rem] bg-slate-50 rounded-lg justify-start flex-col">
+      <main className="bg-slate-300 h-screen w-full">
+        <div className="pt-10 shadow-2xl">
+        <div className="flex  h-[40rem] bg-slate-50 rounded-2xl justify-start flex-col">
           <Link to="" className="ml-4 text-9xl">
             <BiUserCircle className="text-black mt-2"/>
           </Link>
@@ -44,6 +43,9 @@ const OrganizerProfile = () => {
               illum at vero possimus modi vitae ullam, recusandae rerum aliquam
               id quae. Delectus?
             </p>
+            <p className="text-blue-600 underline flex pl-5 pt-2">
+              Información de contacto:              
+            </p>
             <div className="flex mt-5 gap-2 ml-5">
               <Link to="">
                 <BsFacebook
@@ -55,6 +57,9 @@ const OrganizerProfile = () => {
               </Link>
               <Link to="">
                 <BsInstagram className="text-2xl " />
+              </Link>
+              <Link to="" >
+                <AiOutlinePhone className="text-2xl"/>
               </Link>
               </div>
             </div>
