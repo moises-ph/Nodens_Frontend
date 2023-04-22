@@ -2,7 +2,7 @@
 import { BiUserCircle, BiHeartCircle } from "react-icons/bi";
 import { AiOutlineMail, AiFillEye,AiOutlinePhone } from "react-icons/ai";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const OrganizerProfile = () => {
@@ -14,13 +14,18 @@ const OrganizerProfile = () => {
   const [color2, setColor2] = useState("white");
   const change2 = (a: any) => {
     setColor2(a);
-  };
+  };  
+
+
+    const [ChangeB, setChangeB] = useState("")
+    const divRef = useRef().current
+
   return (
     <>
-      <main className="h-screen fondoorgprof ">
+      <main className="h-screen overflow-y-scroll fondoorgprof ">
         <div className="pt-10 shadow-2xl">
-        <div className="flex  h-[40rem] bg-zinc-200 z-10 bg-opacity-10 rounded-2xl justify-start flex-col shadow-2xl">
-          <div className="flex bg-zinc-100 rounded-2xl justify-start w-[50%] bg-opacity-10 h-52">
+        <div className="flex  h-[40rem] bg-zinc-500 z-10 bg-opacity-10 rounded-2xl justify-start flex-col shadow-2xl">
+          <div className="flex bg-zinc-300 rounded-2xl justify-start w-[100%] bg-opacity-10 h-52">
           <Link to="" className="ml-4 text-9xl">
             <BiUserCircle className="text-black mt-10 z-20"/>
           </Link>
@@ -71,13 +76,19 @@ const OrganizerProfile = () => {
       </div>
       
       <div className="pt-5">
-          <div className="bg-opacity-10 bg-zinc-200 shadow-2xl rounded-lg pt-2">
+          <div className="bg-opacity-10 bg-zinc-500 shadow-2xl rounded-lg pt-2">
             <p className="text-xl pl-5 text-slate-50">Sugerencias</p>
             <p className="flex pl-5 text-slate-500 text-sm"> <Link to=""><AiFillEye className="mt-1 mr-1"/></Link> Solo para ti </p>
             <p className="pl-5 text-sm text-slate-400">(En este lugar se recomendará al usuario poner cierta información para que el perfil quede más llamativo)</p>
           </div>
       </div>
+      
+      <div className="h-80 pt-5">
+        <div style={{height: "180vh", background: `${ChangeB}`}} className="bg-opacity-10 bg-zinc-500 shadow-2xl rounded-lg pt-2">
+          <p className="text-xl pl-5 text-slate-50">Crear publicacicón</p>
 
+        </div>
+      </div>
 
       </main>
     </>
