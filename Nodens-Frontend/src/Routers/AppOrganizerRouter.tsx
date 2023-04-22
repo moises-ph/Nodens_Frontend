@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppOrganizer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } from "../pages";
+import { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } from "../pages";
 import { useEffect, useState } from "react";
 import { Loading, Logo, NavOrganizer } from "../components";
 import { HiMenu } from "react-icons/hi";
@@ -9,14 +9,23 @@ import axios from "axios";
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
   useEffect(()=> {
-    axios.get('http://localhost:8000/organizer', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+    fetch('http://localhost:8000/organizer',{
+      method: 'GET',
+      mode: 'no-cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
+      }
+    })
     .then(res=>{
       console.log(res);
-      if(!res.data) {
-        setOrganizador(false);
-      } else {
-        setOrganizador(true);
-      }
+      // if(!res) {
+      //   setOrganizador(false);
+      // } else {
+      //   setOrganizador(true);
+      // }
     })
       .catch(err=>{console.log(err); setOrganizador(false)})
   }, [])
@@ -39,6 +48,7 @@ export const AppOrganizerRouter = () => {
             <Route path="/posts" element={<Posts />} />
             <Route path="/profiles" element={<Profiles />} />
             <Route path="/mainprofile" element={<OrganizerProfile />} />
+            <Route path="/create-offer" element={<CreateOffer />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>

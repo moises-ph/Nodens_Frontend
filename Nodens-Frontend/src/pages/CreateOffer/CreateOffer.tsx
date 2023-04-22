@@ -1,6 +1,14 @@
 const CreateOffer = () => {
   return (
-    <div>CreateOffer</div>
+    <>
+      <main>
+        <form action="">
+          <label htmlFor="">
+            <input type="text" name="Title" placeholder="Titulo"/>
+          </label>
+        </form>
+      </main>
+    </>
   )
 }
 
