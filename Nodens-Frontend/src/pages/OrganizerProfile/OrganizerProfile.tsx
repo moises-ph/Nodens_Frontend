@@ -15,10 +15,10 @@ const OrganizerProfile = () => {
   const change2 = (a: any) => {
     setColor2(a);
   };  
-
-
     const [ChangeB, setChangeB] = useState("")
     const divRef = useRef().current
+
+
 
   return (
     <>
@@ -44,17 +44,18 @@ const OrganizerProfile = () => {
             <h2 className="text-2xl pl-4 pt-3 text-blue-100">Organizer name</h2>
             <p className="pl-5 text-slate-50">What he does</p>
             <p className="pl-5 text-slate-50">Rating (Stars)</p>
-            <p className="pl-5 pt-8 text-sm text-blue-600">Profile: </p>
+            <p className="pl-5 pt-8 text-sm text-blue-400">Profile: </p>
             <p className="pl-5 text-xs text-slate-50">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores,
               quis officiis? Exercitationem commodi quasi aut nihil eligendi
               illum at vero possimus modi vitae ullam, recusandae rerum aliquam
               id quae. Delectus?
             </p>
-            <p className="text-blue-600 underline flex pl-5 pt-2">
+            <p className="text-blue-400 underline flex pl-5 pt-2">
               Información de contacto:              
             </p>
-            <div className="flex mt-5 gap-2 ml-5">
+            <div className="flex mt-5 gap-2 ml-5 justify-start">
+          
               <Link to="">
                 <BsFacebook
                   onClick={(a) =>
@@ -69,6 +70,7 @@ const OrganizerProfile = () => {
               <Link to="" >
                 <AiOutlinePhone className="text-2xl text-white"/>
               </Link>
+           
               </div>
             </div>
           </div>
