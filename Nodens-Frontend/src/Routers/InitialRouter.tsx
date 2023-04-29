@@ -4,25 +4,32 @@ import { Loading, Logo, Nav, NavRes } from '../components'
 import { HiMenu } from 'react-icons/hi'
 import { useState } from 'react'
 import Footer from '../components/Footer/Footer'
+import { PasswordRecovery } from '../pages/PasswordRecovery'
 
 export const InitialRouter = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
+  const visibility = () => location.pathname.replace("/", "") === 'recovery' ? false : true 
   return (
     <>
     	<Router>
+      {visibility() &&
+      <>
         <NavRes />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions='h-7 w-7'/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
         <Nav inView={showNav} setShowNav={setShowNav} />
+      </>
+      }
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/registro" element={<Registro />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/recovery" element={<PasswordRecovery />}></Route>
           <Route path="*" element={<Error />}></Route>
         </Routes>
-        <Footer />
+        {visibility() && <Footer />}
       </Router>
     </>
   );
