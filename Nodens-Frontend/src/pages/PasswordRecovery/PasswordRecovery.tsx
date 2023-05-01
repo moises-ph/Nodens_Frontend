@@ -12,6 +12,7 @@ function PasswordRecovery() {
 
     const [isQuery, setIsQuery] = useState(false);
     const [token, setToken]  = useState("");
+    const [alreadySubmit, setAlreadySubmit] = useState(false);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const gdusr : string | null = searchParams.get("gdusr");
@@ -26,7 +27,7 @@ function PasswordRecovery() {
             showCancelButton : false,
             showConfirmButton : false
         });
-        fetch(`http://20.253.63.70/api/auth/recovery/request?gdusr=${gdusr}&mn=${mn}`, {
+        fetch(`http://52.191.90.184/api/auth/recovery/request?gdusr=${gdusr}&mn=${mn}`, {
             method : "POST"
         }).then(async res => {
             if(res.status != 200){
@@ -56,7 +57,13 @@ function PasswordRecovery() {
         e.preventDefault();
         const form: FormData = new FormData(e.target);
         const data : any = Object.fromEntries(form);
-        console.log(data);
+        Swal.fire({
+            title : 'Cambiando contraseña',
+            text : 'Espere un momento por favor...',
+            allowEscapeKey : false,
+            showCancelButton : false,
+            showConfirmButton : false
+        })
         if(data.pass1 != data.pass2) Swal.fire({
             title : "Cuidado!",
             text : "Las contraseñas deben coincidir",
@@ -64,23 +71,59 @@ function PasswordRecovery() {
             showConfirmButton : true
         })
         else{
+            setAlreadySubmit(true);
             let body  = {
                 Password : data.pass1
             }
-            fetch("http://20.253.63.70/api/auth/recovery/reset",{
+            fetch("http://52.191.90.184/api/auth/recovery/reset",{
                 body : JSON.stringify(body),
-                method : "POST",
-                headers : {
-                    Authorization : token
+                method : "PUT",
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization" : `Bearer ${token}`
                 }
-            })
+            }).then(async res => {
+                console.log(res);
+                
+                if(res.status != 200){
+                    let data = await res.json();
+                    throw new Error(data.msg || data.Message);
+                }
+                else{
+                    return res.json();
+                }
+            }).then(data =>{
+                // setTimeout(() => location.replace("/") , 4000);
+                Swal.fire({
+                    title : data.Message,
+                    text : 'Será redirigido en 4 segundos',
+                    icon : 'success',
+                    allowEscapeKey : false,
+                    showCancelButton : false,
+                    showConfirmButton : false   
+                });
+            }).catch(err => {
+                // setTimeout(() => location.replace("/") , 4000);
+                Swal.fire({
+                    title : "Hubo un error al cambiar la contraseña :(",
+                    text : err + " Será redirigido en 4 segundos",
+                    icon : 'error',
+                    allowEscapeKey : false,
+                    showCancelButton : false,
+                    showConfirmButton : false
+                });
+            });
+            console.log(body);
         }
     }
     
     useEffect(() => {
         if(gdusr != null && mn != null){
             setIsQuery(true);
-            // verifyRecovery(gdusr, mn);
+            verifyRecovery(gdusr, mn);
         }
     },[])
 
@@ -98,9 +141,9 @@ function PasswordRecovery() {
                     <form onSubmit={changePass} className='flex flex-col gap-3 p-4 w-full'>
                         <label htmlFor="pass1">Introduce tu nueva contraseña</label>
                         <input name="pass1" id='pass1' className='bg-slate-200 transition ease-in-out focus:scale-105 p-1 border-solid border-slate-800 border' type='password' />
-                        <label htmlFor="pass2" className='pt-4' >Introduce tu nueva contraseña</label>
+                        <label htmlFor="pass2" className='pt-4' >Confirma tu nueva contraseña</label>
                         <input name="pass2" id='pass2' className='bg-slate-200 transition ease-in-out focus:scale-105 p-1 border-solid border-slate-800 border' type='password' />
-                        <button type='submit' className='rounded bg-[#B701F7] w-1/2 h-9 text-slate-200 font-semibold transition ease-in-out self-center hover:bg-[#bc4ae5] hover:scale-105'>Cambiar Contraseña</button>
+                        <button disabled={alreadySubmit} id="btnSubmit" type='submit' className='rounded bg-[#B701F7] w-1/2 h-9 text-slate-200 font-semibold transition ease-in-out self-center hover:bg-[#bc4ae5] hover:scale-105 disabled:bg-[#e3bbf2] disabled:hover:bg-[#e3bbf2] disabled:hover:scale-100'>Cambiar Contraseña</button>
                     </form>
                 </div>
             </main>
