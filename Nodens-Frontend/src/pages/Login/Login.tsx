@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {changeAppRouter} from "../../store/RouterSlice"
 import Swal from 'sweetalert2'
 import { AiOutlineMail, AiOutlineUser } from "react-icons/ai"
-import { BsFillKeyFill, BsGoogle, BsLinkedin } from "react-icons/bs";
+import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
@@ -44,9 +44,9 @@ const Login = () => {
         }
       })
     
-    axios.post('http://4.157.130.212:80/api/auth/login', data)
-      .then(res =>
-        {console.log(res);
+    axios.post('http://4.157.130.212/api/auth/login', data)
+      .then(res =>{
+        console.log(res);
         Swal.fire({
           position: 'top',
           icon: 'success',
@@ -65,7 +65,16 @@ const Login = () => {
             text: 'Correo o contraseña incorrecto',
             timer: 3000  
           })
-        } else {
+        }
+         else if(err.response.status===400){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El usuario no existe.',
+            timer: 3000  
+          })
+        }
+        else {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -84,8 +93,8 @@ const Login = () => {
         <section className="w-10/12 md:w-1/3 px-10 flex flex-col gap-4 py-8 shadow-xl bg-slate-50 rounded-md">
           <h1 className="w-full text-4xl text-start mb-2 drop-shadow-lg">Login</h1>
           <div className="w-full flex flex-col items-center gap-3">
-            <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><FcGoogle/> Continúe con Google</button>
-            <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><BsLinkedin/> Continúe con Linkedin</button>
+            <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><FcGoogle className="ml-2"/> Continúe con Google</button>
+            <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><BsLinkedin className="ml-2"/> Continúe con Linkedin</button>
           </div>
           <p className="w-full before:content-[''] before:block before:w-[28%] before:h-[1px] before:absolute before:bg-black before:top-[44.5%] before:left-[19%] md:before:w-[13%] md:before:top-[44.62%] md:before:left-[36%] after:right-[19%] after:content-[''] after:block after:w-[28%] after:h-[1px] after:absolute after:bg-black after:top-[44.5%] md:after:w-[13%] md:after:top-[44.62%] md:after:right-[36%] text-center justify-center h-min">o</p>
           <form onSubmit={handleSubmit} className="w-full flex justify-center flex-col mt-0 gap-4">        
