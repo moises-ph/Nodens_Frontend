@@ -27,7 +27,7 @@ function PasswordRecovery() {
             showCancelButton : false,
             showConfirmButton : false
         });
-        fetch(`http://52.191.90.184/api/auth/recovery/request?gdusr=${gdusr}&mn=${mn}`, {
+        fetch(`http://4.157.130.212/api/auth/recovery/request?gdusr=${gdusr}&mn=${mn}`, {
             method : "POST"
         }).then(async res => {
             if(res.status != 200){
@@ -75,7 +75,7 @@ function PasswordRecovery() {
             let body  = {
                 Password : data.pass1
             }
-            fetch("http://52.191.90.184/api/auth/recovery/reset",{
+            fetch("http://4.157.130.212/api/auth/recovery/reset",{
                 body : JSON.stringify(body),
                 method : "PUT",
                 mode: 'cors',
