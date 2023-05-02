@@ -38,7 +38,7 @@ const Registro = () => {
       }
     })
   
-    axios.post("http://20.241.203.176:80/api/user/register", object)
+    axios.post("http://4.157.130.212:80/api/user/register", object)
       .then(res=>{
         console.log(res);
         MySwal.fire({

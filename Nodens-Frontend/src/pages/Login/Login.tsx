@@ -3,14 +3,12 @@ import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { Link, useNavigate } from "react-router-dom";
 import {changeAppRouter} from "../../store/RouterSlice"
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import { AiOutlineMail, AiOutlineUser } from "react-icons/ai"
 import { BsFillKeyFill, BsGoogle, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const MySwal = withReactContent(Swal)
   const navigate = useNavigate();
 
   const redirectApp = () : void =>{
@@ -46,10 +44,10 @@ const Login = () => {
         }
       })
     
-    axios.post('http://20.241.203.176:80/api/auth/login', data)
+    axios.post('http://4.157.130.212:80/api/auth/login', data)
       .then(res =>
         {console.log(res);
-        MySwal.fire({
+        Swal.fire({
           position: 'top',
           icon: 'success',
           title: 'Sesión iniciada',
@@ -60,14 +58,22 @@ const Login = () => {
         })
         .then(e=> console.log(localStorage.getItem('authTokenForTheUser')))
       .catch(err => {console.log(err)
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Ooh! Algo anda mal..',
-          timer: 3000  
-        })
+        if(err.response.status===401){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Correo o contraseña incorrecto',
+            timer: 3000  
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ooh! Algo anda mal.. Intentalo de nuevo',
+            timer: 3000  
+          })
+        }
       })
-      
   }
 
   return (
@@ -92,7 +98,7 @@ const Login = () => {
                 <input name="remember" type="checkbox" id="checkIn" className="mr-1 w-4 h-4 hover:cursor-pointer" />
                 <label htmlFor="checkIn" className="text-xs">Recordarme</label>
               </div>
-              <Link to="/" className="text-xs underline text-slate-500">Olvidaste tu contraseña?</Link>
+              <Link to="/recovery" className="text-xs underline text-slate-500">Olvidaste tu contraseña?</Link>
             </div>
             <button type="submit" className="w-full h-10 bg-red-500 text-slate-50">Iniciar Sesion</button>
             <p className="my-2 text-center">No tienes cuenta? <Link to='/registro' className="text-green-500 underline">Registrate</Link></p>
