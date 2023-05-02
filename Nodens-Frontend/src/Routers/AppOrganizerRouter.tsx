@@ -8,7 +8,7 @@ import axios from "axios";
 import { CreatePost } from "../pages/CreatePost";
 
 export const AppOrganizerRouter = () => {
-  const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
+  const [organizador, setOrganizador] = useState<boolean | undefined>(false);
   useEffect(()=> {
     fetch('http://localhost:8000/organizer',{
       method: 'GET',

@@ -1,14 +1,42 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { GrFormClose } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 const CreateOffer = () => {
-  const [requeriments, setRequeriments] = useState([
-    <input type="text" />
-  ])
+  const [requeriments, setRequeriments] = useState<{description: string}[]>([]);
+  const requeriment = useRef<HTMLInputElement>(null);
+
   const handle = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData();
+    const form = new FormData((e.target as HTMLFormElement));
     const object= Object.fromEntries(form);
+    object.requeriments = [...requeriments];
     console.log(object)
+  }
+
+  const deleteRequeriment = (i: number) => {
+    setRequeriments(requeriments.filter((e, index) => index != i))
+  }
+  const addRequeriment = () => {
+    if(requeriment.current!.value){
+      if(!requeriments.find(e => e.description === requeriment.current!.value)){
+        setRequeriments([...requeriments, {description: requeriment.current!.value}])
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa un requrimiento diferente',
+          timer: 3000  
+        })  
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un requrimiento',
+        timer: 3000  
+      })
+    }
   }
   
   return (
@@ -17,7 +45,7 @@ const CreateOffer = () => {
         <form className="w-full flex flex-col items-center bg-transparent gap-4"  onSubmit={handle}>
           <label htmlFor="Title" className="w-5/6 h-1/6 bg-slate-100 rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-2xl font-semibold">Titulo de Oferta</h5>
-            <input type="text" name="Title" placeholder="Titulo" className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
+            <input type="text" id="Title" name="Title" placeholder="Titulo" className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
           <label htmlFor="Description" className="w-5/6 h-[30vh] bg-slate-100 rounded-xl p-3 flex flex-col gap-4">
             <h5 className="text-2xl font-semibold">Descripcion de Oferta</h5>
@@ -52,8 +80,15 @@ const CreateOffer = () => {
           <label className="w-5/6 h-1/6 bg-slate-100 rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-2xl font-semibold">Requerimientos</h5>
             {
-
+              requeriments.map((req, i ) => {
+                return <div key={i} className='flex items-center justify-between px-3 text-base  bg-slate-100 h-4/5 col-span-1 rounded-md text-slate-700 font-normal border-solid border-slate-600 border-[1px]'>
+                <span className='text-ellipsis overflow-hidden whitespace-nowrap'>{req.description}</span>
+                <button><GrFormClose className='h-6 w-6' onClick={()=>deleteRequeriment(i)}/></button>
+              </div>
+              })
             }
+            <input type="text" name="requeriment" placeholder="Requerimiento" ref={requeriment}/>
+            <button onClick={()=>addRequeriment()}>Agregar Requerimiento</button>
           </label>
           <label htmlFor="isAvailable " className="w-5/6 h-1/6 bg-slate-100 rounded-xl p-3 flex flex-col gap-4">
             <h5 className="text-2xl font-semibold">Esta disponible:</h5>
