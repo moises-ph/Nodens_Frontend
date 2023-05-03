@@ -1,10 +1,11 @@
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
-import { Home, Login, Registro, Error } from '../pages'
 import { Loading, Logo, Nav, NavRes } from '../components'
 import { HiMenu } from 'react-icons/hi'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Footer from '../components/Footer/Footer'
-import { PasswordRecovery } from '../pages/PasswordRecovery'
+import {lazily} from 'react-lazily';
+
+const { Home, Login, Registro, Error, PasswordRecovery } = lazily(()=>import('../pages'));
 
 export const InitialRouter = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
@@ -23,13 +24,15 @@ export const InitialRouter = () => {
       </>
       }
         <main className='flex flex-col pt-4 gap-4 bg-gradient-to-br from-[#E79A77] to-[#B701F7]'>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/registro" element={<Registro />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/recovery" element={<PasswordRecovery />}></Route>
-            <Route path="*" element={<Error />}></Route>
-          </Routes>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/registro" element={<Registro />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/recovery" element={<PasswordRecovery />}></Route>
+              <Route path="*" element={<Error />}></Route>
+            </Routes>
+          </Suspense>
         {visibility() && <Footer />}
         </main>
       </Router>
