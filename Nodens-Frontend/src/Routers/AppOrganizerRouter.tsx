@@ -12,7 +12,7 @@ export const AppOrganizerRouter = () => {
   useEffect(()=> {
     fetch('http://localhost:8000/organizer',{
       method: 'GET',
-      mode: 'no-cors',
+      // mode: 'no-cors',
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
@@ -22,11 +22,11 @@ export const AppOrganizerRouter = () => {
     })
     .then(res=>{
       console.log(res);
-      // if(!res) {
-      //   setOrganizador(false);
-      // } else {
-      //   setOrganizador(true);
-      // }
+      if(!res) {
+        setOrganizador(false);
+      } else {
+        setOrganizador(true);
+      }
     })
       .catch(err=>{console.log(err); setOrganizador(false)})
   }, [])
