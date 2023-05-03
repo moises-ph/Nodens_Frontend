@@ -34,6 +34,8 @@ export const AppMusicianRouter = () => {
         </header>
         <NavMusician inView={showNav} setShowNav={setShowNav}/>
         </div>
+
+        
         <main className={musician ? 'py-11' : ""}>
           <Routes>
             <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>

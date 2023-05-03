@@ -49,12 +49,25 @@ const Registro = () => {
         timer: 1500
       }); redirectLogin()})
       .catch(err=>{console.log(err)
+        if(!err){
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Ooh! Algo anda mal..',
+          text: 'El email ya existe',
           timer: 3000  
-        })});
+        
+      })
+    }
+      else if(err.response.data === 400){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Datos invalidos',
+          timer: 3000  
+        
+      })
+      }
+    });
   };
   
 
