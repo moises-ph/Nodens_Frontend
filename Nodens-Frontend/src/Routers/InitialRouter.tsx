@@ -22,14 +22,16 @@ export const InitialRouter = () => {
         <Nav inView={showNav} setShowNav={setShowNav} />
       </>
       }
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/registro" element={<Registro />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/recovery" element={<PasswordRecovery />}></Route>
-          <Route path="*" element={<Error />}></Route>
-        </Routes>
+        <main className='flex flex-col pt-4 gap-4 bg-gradient-to-br from-[#E79A77] to-[#B701F7]'>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/registro" element={<Registro />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/recovery" element={<PasswordRecovery />}></Route>
+            <Route path="*" element={<Error />}></Route>
+          </Routes>
         {visibility() && <Footer />}
+        </main>
       </Router>
     </>
   );
