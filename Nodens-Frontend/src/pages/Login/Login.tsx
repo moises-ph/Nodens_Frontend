@@ -44,7 +44,7 @@ const Login = () => {
         }
       })
     
-    axios.post('http://4.157.130.212/api/auth/login', data)
+    axios.post('http://4.157.130.212:80/api/auth/login', data)
       .then(res =>{
         console.log(res);
         Swal.fire({
@@ -71,6 +71,14 @@ const Login = () => {
             icon: 'error',
             title: 'Oops...',
             text: 'El usuario no existe.',
+            timer: 3000  
+          })
+        }
+        else if (!err){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error desconocido.',
             timer: 3000  
           })
         }
