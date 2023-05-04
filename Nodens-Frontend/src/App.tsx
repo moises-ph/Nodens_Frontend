@@ -1,7 +1,11 @@
 import { useSelector } from "react-redux/es/exports";
-import { AppMusicianRouter, InitialRouter, AppOrganizerRouter } from "./Routers";
 import { RootState } from "./store/store";
 import * as jose from 'jose';
+import {lazily} from 'react-lazily'
+import { Suspense } from "react";
+import { Loading } from "./components";
+
+const {AppMusicianRouter, InitialRouter, AppOrganizerRouter} = lazily(()=> import('./Routers'))
 
 function App() {
   const RouterBoolean = useSelector(
@@ -20,7 +24,9 @@ function App() {
   const Router = RouterBoolean ? checkRole() : InitialRouter 
   return (
     <>
-      <Router />
+      <Suspense fallback={<Loading />}>
+        <Router />
+      </Suspense>
     </>
   )
 }

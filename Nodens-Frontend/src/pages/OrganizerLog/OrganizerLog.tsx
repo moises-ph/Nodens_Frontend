@@ -42,9 +42,9 @@ const OrganizerLog = () => {
   })
 
 	const registerOrganizer = () => {
-    fetch('http://127.0.0.1:8002/organizer', {
+    fetch('http://localhost:8000/Organizer', {
       method: 'POST',
-      mode: 'cors',
+      mode: 'no-cors',
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {

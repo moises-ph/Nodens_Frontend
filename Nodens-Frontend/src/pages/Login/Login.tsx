@@ -98,13 +98,13 @@ const Login = () => {
       <main className="min-h-[100vh] pt-16 flex justify-center items-center flex-col bg-gradient-to-br from-[#E79A77] to-[#B701F7] ">
         <section className="none"> 
         </section>
-        <section className="w-10/12 md:w-1/3 px-10 flex flex-col gap-4 py-8 shadow-xl bg-slate-50 rounded-md">
+        <section className="w-10/12 md:w-2/3 px-10 flex flex-col gap-4 py-8 shadow-xl bg-slate-50 rounded-md">
           <h1 className="w-full text-4xl text-start mb-2 drop-shadow-lg">Login</h1>
           <div className="w-full flex flex-col items-center gap-3">
             <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><FcGoogle className="ml-2"/> Continúe con Google</button>
             <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><BsLinkedin className="ml-2"/> Continúe con Linkedin</button>
           </div>
-          <p className="w-full before:content-[''] before:block before:w-[28%] before:h-[1px] before:absolute before:bg-black before:top-[44.5%] before:left-[19%] md:before:w-[13%] md:before:top-[44.62%] md:before:left-[36%] after:right-[19%] after:content-[''] after:block after:w-[28%] after:h-[1px] after:absolute after:bg-black after:top-[44.5%] md:after:w-[13%] md:after:top-[44.62%] md:after:right-[36%] text-center justify-center h-min">o</p>
+          <p className="w-full before:content-[''] before:block before:w-[28%] before:h-[1px] before:bg-black md:before:w-[30%] after:content-[''] after:block after:w-[28%] after:h-[1px] after:bg-black md:after:w-[30%] text-center flex justify-center items-center gap-8 h-min">o</p>
           <form onSubmit={handleSubmit} className="w-full flex justify-center flex-col mt-0 gap-4">        
             <label htmlFor="emailIn" className="w-full items-center flex flex-row gap-2 text-lg"><AiOutlineUser /> <span className="text-sm">Email</span></label>
             <input type="email" name="email" placeholder="Email" id="emailIn" className="w-full h-10 bg-slate-200 placeholder:text-slate-700 pl-4 "/>

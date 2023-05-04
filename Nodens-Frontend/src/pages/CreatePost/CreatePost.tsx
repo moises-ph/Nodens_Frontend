@@ -1,4 +1,3 @@
-import React from "react";
 import { BsFileEarmarkPost } from "react-icons/bs"
 import { Link } from "react-router-dom";
 

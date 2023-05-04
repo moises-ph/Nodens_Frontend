@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { App, Error, Offers, Posts, MusiciansProfile, MusicianLog } from "../pages";
-import { Loading, Logo, NavMusician } from "../components";
+import { Loading, Logo, NavMusician, NavMusicianRes } from "../components";
 import { HiMenu } from "react-icons/hi";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import axios from "axios";
-import NavMusicianRes from "../components/NavMusician/NavMusicianRes";
+import { lazily } from "react-lazily";
+
+const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog} = lazily(()=> import('../pages'))
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
@@ -37,13 +38,15 @@ export const AppMusicianRouter = () => {
 
         
         <main className={musician ? 'py-11' : ""}>
-          <Routes>
-            <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
-            <Route path="/posts" element={<Posts />}></Route>
-            <Route path="/offers" element={<Offers />}></Route>
-            <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
-            <Route path="*" element={<Error />}></Route>
-          </Routes>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
+              <Route path="/posts" element={<Posts />}></Route>
+              <Route path="/offers" element={<Offers />}></Route>
+              <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
+              <Route path="*" element={<Error />}></Route>
+            </Routes>
+          </Suspense>
         </main>
       </Router>
     </>

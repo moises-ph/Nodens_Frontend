@@ -1,18 +1,19 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } from "../pages";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Loading, Logo, NavOrganizer } from "../components";
 import { HiMenu } from "react-icons/hi";
 import NavOrganizerRes from "../components/NavOrganizer/NavOrganizerRes";
 import axios from "axios";
 import { CreatePost } from "../pages/CreatePost";
+import {lazily} from 'react-lazily';
+const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(false);
   useEffect(()=> {
     fetch('http://localhost:8000/organizer',{
       method: 'GET',
-      mode: 'no-cors',
+      // mode: 'no-cors',
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
@@ -22,11 +23,11 @@ export const AppOrganizerRouter = () => {
     })
     .then(res=>{
       console.log(res);
-      // if(!res) {
-      //   setOrganizador(false);
-      // } else {
-      //   setOrganizador(true);
-      // }
+      if(!res) {
+        setOrganizador(false);
+      } else {
+        setOrganizador(true);
+      }
     })
       .catch(err=>{console.log(err); setOrganizador(false)})
   }, [])
@@ -44,15 +45,17 @@ export const AppOrganizerRouter = () => {
         </header>
       </div>
         <main className={organizador ? 'py-11' : ''}>
-          <Routes>
-            <Route path="/" element={ organizador ? <AppOrganizer /> : <OrganizerLog /> } />
-            <Route path="/posts" element={<Posts />} />
-            <Route path="/profiles" element={<Profiles />} />
-            <Route path="/mainprofile" element={<OrganizerProfile />} />
-            <Route path="/create-offer" element={<CreateOffer />} />
-            <Route path="/create-post" element={<CreatePost />}></Route>
-            <Route path="*" element={<Error />} />
-          </Routes>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path="/" element={ organizador ? <AppOrganizer /> : <OrganizerLog /> } />
+              <Route path="/posts" element={<Posts />} />
+              <Route path="/profiles" element={<Profiles />} />
+              <Route path="/mainprofile" element={<OrganizerProfile />} />
+              <Route path="/create-offer" element={<CreateOffer />} />
+              <Route path="/create-post" element={<CreatePost />}></Route>
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </Suspense>
         </main>
       </Router>
     </>
