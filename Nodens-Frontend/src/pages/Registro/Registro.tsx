@@ -49,20 +49,20 @@ const Registro = () => {
         timer: 1500
       }); redirectLogin()})
       .catch(err=>{console.log(err)
-        if(!err){
+        if(err.response.status === 400){
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'El email ya existe',
+          text: 'Datos invalidos o el correo ya existe...',
           timer: 3000  
         
       })
     }
-      else if(err.response.data === 400){
+      else{
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Datos invalidos',
+          text: 'Datos invalidos ',
           timer: 3000  
         
       })
@@ -73,8 +73,8 @@ const Registro = () => {
 
   return  (
     <main className='h-screen flex flex-col items-center bg-gradient-to-br from-[#E79A77] to-[#B701F7] text-slate-100 gap-4 py-6 sm:py-4 pt-10'>    
-      <h1 className="text-6xl text-slate-200 pt-20">Registro</h1>
-      <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-full rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 pl-6 py-4 pt-16 gap-4">
+      <h1 className="text-6xl text-slate-200 pt-20 pb-9">Registro</h1>
+      <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-[31rem] rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 pl-6 py-4 pt-16 gap-4">
         <label htmlFor="Email" className="w-full flex flex-col gap-2">
          <h2>Email</h2> 
           <input type="email" name="email" id="" className="placeholder:text-slate-600 w-full text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />

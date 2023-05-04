@@ -3,7 +3,7 @@ import { BsPersonSquare } from 'react-icons/bs'
 
 function SingleOffer(props : any) {
 
-    const classDiv = `w-full h-44 flex flex-col p-4 border-2 border-solid border-slate-300 gap-1 rounded-lg transition-colors hover:bg-slate-100 hover:cursor-pointer ${props.isHomePage ? "backdrop-blur-md shadow-md" : null}`
+    const classDiv = `w-full min-h-full flex flex-col p-4 border-2 border-solid border-slate-300 gap-1 rounded-lg transition-colors hover:bg-slate-100 hover:cursor-pointer ${props.isHomePage ? "backdrop-blur-md shadow-md" : null}`
     
     return (
         <div onClick={()=> props.isHomePage ? props.redirect() : props.showModal(props.offer)} key={parseInt(props.Key)} className={classDiv}>
