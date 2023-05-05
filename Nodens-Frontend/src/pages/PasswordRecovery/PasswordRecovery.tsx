@@ -2,11 +2,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import { Logo } from '../../components'
 import { useSearchParams } from 'react-router-dom'
 import Swal from 'sweetalert2';
-
-interface Response200 {
-    token : string,
-    upResult : Object
-}
+import axios from 'axios';
 
 function PasswordRecovery() {
 
@@ -17,7 +13,7 @@ function PasswordRecovery() {
     const [searchParams, setSearchParams] = useSearchParams();
     const gdusr : string | null = searchParams.get("gdusr");
     const mn : string | null = searchParams.get("mn");
-    
+
     const verifyRecovery = (gdusr : string, mn : string) => {
         console.log(gdusr);
         console.log(mn);
@@ -27,7 +23,7 @@ function PasswordRecovery() {
             showCancelButton : false,
             showConfirmButton : false
         });
-        fetch(`http://4.157.130.212:80/api/auth/recovery/request?gdusr=${gdusr}&mn=${mn}`, {
+        fetch(`http://20.242.223.125/api/auth/recovery/request?gdusr=${gdusr}&mn=${mn}`, {
             method : "POST"
         }).then(async res => {
             if(res.status != 200){
@@ -75,48 +71,34 @@ function PasswordRecovery() {
             let body  = {
                 Password : data.pass1
             }
-            fetch("http://4.157.130.212/api/auth/recovery/reset",{
-                body : JSON.stringify(body),
+            console.log(body);
+            fetch('http://20.242.223.125/api/auth/recovery/reset',{
                 method : "PUT",
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization" : `Bearer ${token}`
-                }
-            }).then(async res => {
+                headers : {
+                    Authorization : `Bearer ${token}`,
+                    "Content-Type" : "applications/json"
+                },
+                body : JSON.stringify(body),
+                mode : 'cors'
+            })
+            .then(res => {
                 console.log(res);
-                
                 if(res.status != 200){
-                    let data = await res.json();
-                    throw new Error(data.msg || data.Message);
+                    throw new Error()
                 }
                 else{
                     return res.json();
                 }
-            }).then(data =>{
-                // setTimeout(() => location.replace("/") , 4000);
+            })
+            .then(data => {
+                // setTimeout(()=> location.replace("/"), 4000)
                 Swal.fire({
-                    title : data.Message,
-                    text : 'Será redirigido en 4 segundos',
-                    icon : 'success',
-                    allowEscapeKey : false,
-                    showCancelButton : false,
-                    showConfirmButton : false   
+                    title : 'Contraseña cambiada correctamente',
+                    text : 'Será redirigido en 4 segundos'
                 });
             }).catch(err => {
-                // setTimeout(() => location.replace("/") , 4000);
-                Swal.fire({
-                    title : "Hubo un error al cambiar la contraseña :(",
-                    text : err + " Será redirigido en 4 segundos",
-                    icon : 'error',
-                    allowEscapeKey : false,
-                    showCancelButton : false,
-                    showConfirmButton : false
-                });
-            });
-            console.log(body);
+                console.log(err);
+            })
         }
     }
     
