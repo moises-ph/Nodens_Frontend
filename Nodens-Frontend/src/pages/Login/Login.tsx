@@ -25,37 +25,40 @@ const Login = () => {
     const data = Object.fromEntries(form);
     console.log(data);
       
-      let timerInterval: number
-      Swal.fire({
-        title: 'Iniciando sesión.',
-        html: 'Iniciando sesión, danos un momento :).',
-        background: "#C3EEFF",
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading()
-        },
-        willClose: () => {
-          clearInterval(timerInterval)
-        }
-      }).then((result:any) => {
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
-        }
-      })
-    
-    axios.post('http://4.157.130.212:80/api/auth/login', data)
-      .then(res =>{
-        console.log(res);
-        Swal.fire({
-          position: 'top',
-          icon: 'success',
-          title: 'Sesión iniciada',
-          showConfirmButton: false,
-          timer: 1500})
-         redirectApp(); 
-         localStorage.setItem('authTokenForTheUser', res.data.token)
-        })
+    let timerInterval: number
+    Swal.fire({
+      title: 'Iniciando sesión.',
+      html: 'Iniciando sesión, danos un momento :).',
+      background: "#C3EEFF",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result:any) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+    fetch('http://4.157.130.212/api/auth/login', {
+      body: JSON.stringify(data),
+      method: 'POST',
+    })
+    // axios.post('http://4.157.130.212/api/auth/login', data)
+    //   .then(res =>{
+    //     console.log(res);
+    //     Swal.fire({
+    //       position: 'top',
+    //       icon: 'success',
+    //       title: 'Sesión iniciada',
+    //       showConfirmButton: false,
+    //       timer: 1500})
+    //      redirectApp(); 
+    //      localStorage.setItem('authTokenForTheUser', res.data.token)
+    //     })
         .then(e=> console.log(localStorage.getItem('authTokenForTheUser')))
       .catch(err => {console.log(err)
         if(err.response.status===401){

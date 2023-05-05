@@ -3,6 +3,7 @@ import { Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
 import { OrganizerT } from '../../types';
 import { useEffect, useState } from 'react'
 import { Genero, Lastname, Name, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
+import axios from 'axios';
 
 const variants = {
   enter: (direction: number) => {
@@ -42,17 +43,23 @@ const OrganizerLog = () => {
   })
 
 	const registerOrganizer = () => {
-    fetch('http://localhost:8000/Organizer', {
-      method: 'POST',
-      mode: 'no-cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
-      },
-      body: JSON.stringify(organizer)
-    }).then(res=>{
+    const request = axios.create({
+      baseURL: 'http://40.118.207.63/',
+      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+    });
+    request.post('/organizer', organizer)
+    // fetch('http://localhost:8000/Organizer', {
+    //   method: 'POST',
+    //   mode: 'no-cors',
+    //   cache: 'no-cache',
+    //   credentials: 'same-origin',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
+    //   },
+    //   body: JSON.stringify(organizer)
+    // })
+    .then(res=>{
       console.log(res);
       location.reload();
     })
