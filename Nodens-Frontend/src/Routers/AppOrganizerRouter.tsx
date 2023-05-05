@@ -18,7 +18,7 @@ export const AppOrganizerRouter = () => {
     request.get("/Organizer")
     .then(res=>{
       console.log(res);
-      if(!res) {
+      if(res.data==null) {
         setOrganizador(false);
       } else {
         setOrganizador(true);
