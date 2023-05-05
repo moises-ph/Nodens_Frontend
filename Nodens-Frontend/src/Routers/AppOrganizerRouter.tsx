@@ -11,16 +11,11 @@ const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts,
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(false);
   useEffect(()=> {
-    axios.get('http://13.87.187.226/organizer',{
-      withCredentials : true,
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('authTokenForTheUser')}`,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
-        'Content-Type': 'application/json',
-        
-      }
+    const request = axios.create({
+      baseURL : 'http://40.118.207.63/',
+      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     })
+    request.get("/Organizer")
     .then(res=>{
       console.log(res);
       if(!res) {
