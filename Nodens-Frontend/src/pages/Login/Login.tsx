@@ -6,8 +6,12 @@ import Swal from 'sweetalert2'
 import { AiOutlineMail, AiOutlineUser } from "react-icons/ai"
 import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import {wrapper} from 'axios-cookiejar-support'
+import {CookieJar} from 'tough-cookie'
 
 const Login = () => {
+  const jar = new CookieJar();
+  const client = wrapper(axios.create({jar}))
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,22 +47,22 @@ const Login = () => {
         console.log('I was closed by the timer')
       }
     })
-    fetch('http://4.157.130.212/api/auth/login', {
-      body: JSON.stringify(data),
-      method: 'POST',
-    })
-    // axios.post('http://4.157.130.212/api/auth/login', data)
-    //   .then(res =>{
-    //     console.log(res);
-    //     Swal.fire({
-    //       position: 'top',
-    //       icon: 'success',
-    //       title: 'Sesión iniciada',
-    //       showConfirmButton: false,
-    //       timer: 1500})
-    //      redirectApp(); 
-    //      localStorage.setItem('authTokenForTheUser', res.data.token)
-    //     })
+    // fetch('http://4.157.130.212/api/auth/login', {
+    //   body: JSON.stringify(data),
+    //   method: 'POST',
+    // })
+    client.post('http://20.242.223.125/api/auth/login', data)
+      .then(res =>{
+        console.log(res);
+        Swal.fire({
+          position: 'top',
+          icon: 'success',
+          title: 'Sesión iniciada',
+          showConfirmButton: false,
+          timer: 1500})
+         //redirectApp(); 
+         localStorage.setItem('authTokenForTheUser', res.data.token)
+        })
         .then(e=> console.log(localStorage.getItem('authTokenForTheUser')))
       .catch(err => {console.log(err)
         if(err.response.status===401){

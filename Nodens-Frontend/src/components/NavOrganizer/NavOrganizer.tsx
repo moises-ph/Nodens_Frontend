@@ -1,11 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { NavBar } from "../Nav/Nav";
 import { FaHome, FaUsers } from "react-icons/fa";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { NavLinkStyles } from "../../services";
+import { VscSignOut } from "react-icons/vsc";
 
 const NavOrganizer:React.FC<NavBar> = ({inView, setShowNav}) =>  {
+	const navigation = useNavigate();
+	const close = () => {
+		localStorage.removeItem('authTokenForTheUser')
+		navigation('/', {replace: true})
+		location.reload()
+	}
 	if(!inView) return null;
   return (
     <div className="z-[100] w-full h-screen fixed flex flex-col justify-start items-end pr-4 pt-4" onClick={()=>setShowNav(false)}>
@@ -17,6 +24,7 @@ const NavOrganizer:React.FC<NavBar> = ({inView, setShowNav}) =>  {
 				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/posts"><IoShareSocialSharp /> Posts</NavLink>
 				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/profiles"><FaUsers /> Perfiles</NavLink>
 				<NavLink className={({isActive})=>NavLinkStyles({isActive})} to="/mainprofile"><AiOutlineUserAdd /> Perfil</NavLink>
+				<button className="h-[10%] w-11/12 flex items-center gap-2 rounded-lg text-slate-100 text-xl py-4 pl-2 transition-colors duration-300 ease-linear hover:bg-slate-400" onClick={close}><VscSignOut /> Cerrar sesion</button>
 			</nav>
 		</div>
   )

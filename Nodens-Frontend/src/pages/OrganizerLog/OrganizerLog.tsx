@@ -47,7 +47,7 @@ const OrganizerLog = () => {
       baseURL: 'http://40.118.207.63/',
       headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     });
-    request.post('/organizer', organizer)
+    request.post('/Organizer', organizer)
     // fetch('http://localhost:8000/Organizer', {
     //   method: 'POST',
     //   mode: 'no-cors',
