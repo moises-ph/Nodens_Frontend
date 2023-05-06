@@ -54,15 +54,16 @@ const Login = () => {
     // })
     client.post('http://nodensauth.gqdjevebebg0aba3.eastus.azurecontainer.io/api/auth/login', data)
       .then(res =>{
-        console.log(res.headers);
+        console.log(res);
         Swal.fire({
           position: 'top',
           icon: 'success',
           title: 'Sesión iniciada',
           showConfirmButton: false,
           timer: 1500})
-         //redirectApp(); 
+         redirectApp(); 
          localStorage.setItem('authTokenForTheUser', res.data.token)
+         localStorage.setItem('renewToken', res.data.renewToken)
         })
         .then(e=> console.log(localStorage.getItem('authTokenForTheUser')))
       .catch(err => {console.log(err)

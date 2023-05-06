@@ -15,11 +15,11 @@ const CreateOffer = () => {
     const object= Object.fromEntries(form);
     object.requeriments = [...requeriments];
     console.log(object)
-    const request = axios.create({
-      baseURL: 'http://40.118.207.63/',
-      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-    });
-    request.post('/Organizer', object)
+    // const request = axios.create({
+    //   baseURL: 'http://40.118.207.63/',
+    //   headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+    // });
+    // request.post('/Organizer', object)
   }
 
   const deleteRequeriment = (i: number) => {
@@ -49,9 +49,9 @@ const CreateOffer = () => {
   
   return (
     <>
-      <main className="w-full h-fit flex flex-col items-center justify-center gap-2 pt-4 bg-slate-300">
+      <main className="w-full h-fit flex flex-col items-center justify-center gap-2 pt-6 bg-slate-300">
         <h1 className="text-2xl font-semibold">Crear Oferta</h1>
-        <form className="w-full md:w-4/6 lg:w-3/6 flex flex-col items-center bg-transparent gap-4 pb-4"  onSubmit={handle}>
+        <form className="w-full md:w-4/6 lg:w-3/6 flex flex-col items-center bg-transparent gap-4 pb-6"  onSubmit={handle}>
           <label htmlFor="Title" className="w-5/6 h-1/6 bg-slate-100 rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold">Titulo de Oferta</h5>
             <input type="text" id="Title" name="Title" placeholder="Titulo" className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>

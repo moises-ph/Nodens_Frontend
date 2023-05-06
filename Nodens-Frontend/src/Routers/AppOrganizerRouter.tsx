@@ -9,7 +9,7 @@ import {lazily} from 'react-lazily';
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
-  const [organizador, setOrganizador] = useState<boolean | undefined>(false);
+  const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
   useEffect(()=> {
     const request = axios.create({
       baseURL : 'http://40.118.207.63/',
@@ -39,7 +39,7 @@ export const AppOrganizerRouter = () => {
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
       </div>
-        <main className={organizador ? 'py-11' : ''}>
+        <main className={organizador ? 'pt-11' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={ organizador ? <AppOrganizer /> : <OrganizerLog /> } />
