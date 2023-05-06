@@ -37,7 +37,7 @@ export const AppMusicianRouter = () => {
         </div>
 
         
-        <main className={musician ? 'py-11' : ""}>
+        <main className={musician ? 'pt-11' : ""}>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>

@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useRef, useState } from "react";
 import { GrFormClose } from "react-icons/gr";
 import Swal from "sweetalert2";
+import {renewToken} from "../../services";
 
 const CreateOffer = () => {
   const [requeriments, setRequeriments] = useState<{description: string}[]>([]);
@@ -8,10 +10,16 @@ const CreateOffer = () => {
 
   const handle = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    renewToken();
     const form = new FormData((e.target as HTMLFormElement));
     const object= Object.fromEntries(form);
     object.requeriments = [...requeriments];
     console.log(object)
+    const request = axios.create({
+      baseURL: 'http://40.118.207.63/',
+      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+    });
+    request.post('/Organizer', object)
   }
 
   const deleteRequeriment = (i: number) => {
