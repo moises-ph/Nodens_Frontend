@@ -71,33 +71,45 @@ function PasswordRecovery() {
             let body  = {
                 Password : data.pass1
             }
-            console.log(body);
-            fetch('http://20.242.223.125/api/auth/recovery/reset',{
-                method : "PUT",
+            console.log( JSON.stringify(body));
+            axios.put('http://20.242.223.125/api/auth/recovery/reset',body, {
                 headers : {
                     Authorization : `Bearer ${token}`,
-                    "Content-Type" : "applications/json"
-                },
-                body : JSON.stringify(body),
-                mode : 'cors'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                }
             })
             .then(res => {
                 console.log(res);
-                if(res.status != 200){
-                    throw new Error()
+                Swal.fire({
+                    title : res.data.message,
+                    text : "Será redirigido en unos instantes",
+                    icon : 'success',
+                    allowEscapeKey : false,
+                    allowOutsideClick : false,
+                    showCancelButton : false,
+                    showConfirmButton : false,
+                    showCloseButton : false,
+                    showDenyButton : false
+                });
+                setTimeout(()=> location.replace("/login"), 4500)
+            })
+            .catch(err => {
+                console.log(err);
+                if(err.response.data.title.includes("validation")){  
+                    setAlreadySubmit(false);
+                    Swal.fire({
+                        title : err.response.data.errors.Password[0],
+                        icon : 'error'
+                    });
                 }
                 else{
-                    return res.json();
+                    Swal.fire({
+                        title : err,
+                        icon : 'error'
+                    });
+                    setTimeout(()=> location.replace('/'), 4500)
                 }
-            })
-            .then(data => {
-                // setTimeout(()=> location.replace("/"), 4000)
-                Swal.fire({
-                    title : 'Contraseña cambiada correctamente',
-                    text : 'Será redirigido en 4 segundos'
-                });
-            }).catch(err => {
-                console.log(err);
             })
         }
     }
