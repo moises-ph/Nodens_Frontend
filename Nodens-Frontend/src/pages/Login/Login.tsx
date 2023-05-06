@@ -8,6 +8,7 @@ import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import {wrapper} from 'axios-cookiejar-support'
 import {CookieJar} from 'tough-cookie'
+import Cookies from "js-cookie";
 
 const Login = () => {
   const jar = new CookieJar();
@@ -22,7 +23,7 @@ const Login = () => {
       window.clearTimeout(1);
     }, 1000)
   } 
-  
+
   const handleSubmit = (e:any) => {
     e.preventDefault();
     const form: FormData = new FormData(e.target);
@@ -51,9 +52,9 @@ const Login = () => {
     //   body: JSON.stringify(data),
     //   method: 'POST',
     // })
-    client.post('http://20.242.223.125/api/auth/login', data)
+    client.post('http://nodensauth.gqdjevebebg0aba3.eastus.azurecontainer.io/api/auth/login', data)
       .then(res =>{
-        console.log(res);
+        console.log(res.headers);
         Swal.fire({
           position: 'top',
           icon: 'success',
@@ -65,6 +66,7 @@ const Login = () => {
         })
         .then(e=> console.log(localStorage.getItem('authTokenForTheUser')))
       .catch(err => {console.log(err)
+        console.log(err);
         if(err.response.status===401){
           Swal.fire({
             icon: 'error',
