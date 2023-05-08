@@ -15,11 +15,11 @@ const CreateOffer = () => {
     const object= Object.fromEntries(form);
     object.requeriments = [...requeriments];
     console.log(object)
-    // const request = axios.create({
-    //   baseURL: 'http://40.118.207.63/',
-    //   headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-    // });
-    // request.post('/Organizer', object)
+    const request = axios.create({
+      baseURL: 'http://40.118.207.63/',
+      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+    });
+    request.post('/Organizer', object)
   }
 
   const deleteRequeriment = (i: number) => {
