@@ -1,8 +1,11 @@
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ProfileT } from "../../types";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Modal } from "../../components";
 
-export const profile: ProfileT[] = [
+export const profiles: ProfileT[] = [
   {
     IdAuth: "1",
     Fecha_Nacimiento: new Date(),
@@ -232,39 +235,68 @@ export const profile: ProfileT[] = [
 ];
 
 const Profile = () => {
+  const [modal, setOpen] = useState(false);
+	const [profile, setProfile] = useState<ProfileT | undefined>()
+	const [pfps,setPfps] = useState(profiles);
+
+  const showModal = (perfil: ProfileT) => {
+		modal ? null : setOpen(true);
+		setProfile(perfil)
+	}
+
+  const closeModal = () => {
+		setOpen(false);
+	}
+
+  const searchProfile = (e:any)=>{
+		console.log(e.current.value);
+		if(e.current.value.length === 0){
+			setPfps(profiles);
+		}
+		else{
+			setPfps(profiles.filter(value => value.Educacion[0].Nombre.includes(e.current.value)));
+		}
+	}
 
   return (
     <>
       <main>
-        <p className="border-b-2 pt-2 pl-4 pb-4 shadow-xl text-3xl">Perfiles de <span className="border-b-2 border-red-500 text-red-500 ">Músicos</span></p>
-        {profile.map((profile1, index) => {
-          return (
-            <div key={index} className="border-b-2 pb-2 flex rounded-b-xl rounded-t-xl shadow-sm shadow-slate-300">
-              <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
-               <div className="pl-4">
-               <p>
-                {profile1.Educacion.map((name, index2) => {
-                  return (
-                    <span className="" key={index2}>
-                      <p className="text-2xl ">{name.Nombre}</p>
-                    </span>
-                  );
-                })}
-              </p>
-              <p className="text-lg">{profile1.Experiencia}</p>
-              <p className="flex">
-                {profile1.Instrumentos.map((instrumentos, inst) => {
-                  return (
-                    <span className="flex align-center justify-center" key={inst}>
-                      <p>{instrumentos.Nombre},</p>
-                    </span>
-                  );
-                })}
-              </p>
-               </div>
-            </div>
-          );
-        })}
+        <h1 className="border-b-2 pt-2 pl-4 pb-4 shadow-xl text-3xl">Perfiles de <span className="border-b-2 border-red-500 text-red-500 ">Músicos</span></h1>
+        <section>
+          <div>
+          {pfps.map((profile1, index) => {
+            return (
+              <div key={index} className="border-b-2 pb-2 flex rounded-b-xl rounded-t-xl shadow-sm shadow-slate-300" >
+                <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
+                 <div className="pl-4">
+                 <p>
+                  {profile1.Educacion.map((name, index2) => {
+                    return (
+                      <span className="" key={index2}>
+                        <p className="text-2xl ">{name.Nombre}</p>
+                      </span>
+                    );
+                  })}
+                </p>
+                <p className="text-lg">{profile1.Experiencia}</p>
+                <p className="flex">
+                  {profile1.Instrumentos.map((instrumentos, inst) => {
+                    return (
+                      <span className="flex align-center justify-center" key={inst}>
+                        <p>{instrumentos.Nombre},</p>
+                      </span>
+                    );
+                  })}
+                </p>
+                 </div>
+              </div>
+            );
+          })}
+          </div>
+          <AnimatePresence>
+					  {modal && <Modal open={modal} closeModal={closeModal} content={profile}/>}
+				  </AnimatePresence>
+        </section>
       </main>
     </>
   );

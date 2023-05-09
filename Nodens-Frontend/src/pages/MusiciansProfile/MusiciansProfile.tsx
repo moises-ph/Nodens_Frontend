@@ -1,6 +1,6 @@
 import { BsPersonSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { profile } from '../Profiles/Profiles'
+import { profiles } from '../Profiles/Profiles'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { MusicianT } from "../../types";
