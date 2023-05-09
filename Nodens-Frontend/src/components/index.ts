@@ -6,4 +6,5 @@ export * from "./NavOrganizer"
 export * from "./Loading"
 export * from "./Logo"
 export * from "./SingleOffer";
+export * from "./SingleProfile";
 export * from "./IndexLink";

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ProfileT } from "../../types";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Modal } from "../../components";
+import { Modal, SingleProfile } from "../../components";
 
 export const profiles: ProfileT[] = [
   {
@@ -240,6 +240,8 @@ const Profile = () => {
 	const [pfps,setPfps] = useState(profiles);
 
   const showModal = (perfil: ProfileT) => {
+    console.log(modal);
+    
 		modal ? null : setOpen(true);
 		setProfile(perfil)
 	}
@@ -248,23 +250,18 @@ const Profile = () => {
 		setOpen(false);
 	}
 
-  const searchProfile = (e:any)=>{
-		console.log(e.current.value);
-		if(e.current.value.length === 0){
-			setPfps(profiles);
-		}
-		else{
-			setPfps(profiles.filter(value => value.Educacion[0].Nombre.includes(e.current.value)));
-		}
-	}
-
   return (
     <>
       <main>
         <h1 className="border-b-2 pt-2 pl-4 pb-4 shadow-xl text-3xl">Perfiles de <span className="border-b-2 border-red-500 text-red-500 ">Músicos</span></h1>
         <section>
           <div>
-          {pfps.map((profile1, index) => {
+          {
+            pfps.map((prof, i)=>{
+              return <SingleProfile showModal={showModal} redirect={null} profile={prof} key={i} isHomePage={false}/>
+            })
+          }
+          {/* {pfps.map((profile1, index) => {
             return (
               <div key={index} className="border-b-2 pb-2 flex rounded-b-xl rounded-t-xl shadow-sm shadow-slate-300" >
                 <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
@@ -291,7 +288,7 @@ const Profile = () => {
                  </div>
               </div>
             );
-          })}
+          })} */}
           </div>
           <AnimatePresence>
 					  {modal && <Modal open={modal} closeModal={closeModal} content={profile}/>}
