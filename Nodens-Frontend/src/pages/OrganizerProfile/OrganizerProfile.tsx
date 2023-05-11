@@ -3,8 +3,16 @@ import { AiOutlineMail, AiFillEye, AiOutlinePhone } from "react-icons/ai";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import * as jose from 'jose'
 
 const OrganizerProfile = () => {
+  const client = axios.create({
+    baseURL: 'http://40.118.207.63/',
+    headers: { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+  });
+  const id = jose.decodeJwt(localStorage.getItem('authTokenForTheUser')!)
+
   const [color, setColor] = useState("white");
   const change = (e: any) => {
     setColor(e);
@@ -14,6 +22,10 @@ const OrganizerProfile = () => {
   const change2 = (a: any) => {
     setColor2(a);
   };
+
+  useEffect(()=> {
+    client.get(`/${id}`).then(res => console.log(res))  
+  }, [])
 
   return (
     <>

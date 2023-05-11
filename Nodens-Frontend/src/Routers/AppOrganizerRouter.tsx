@@ -6,7 +6,7 @@ import NavOrganizerRes from "../components/NavOrganizer/NavOrganizerRes";
 import axios from "axios";
 import { CreatePost } from "../pages/CreatePost";
 import {lazily} from 'react-lazily';
-const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles } = lazily(()=>import('../pages'))
+const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
@@ -48,6 +48,7 @@ export const AppOrganizerRouter = () => {
               <Route path="/mainprofile" element={<OrganizerProfile />} />
               <Route path="/create-offer" element={<CreateOffer />} />
               <Route path="/create-post" element={<CreatePost />}></Route>
+              <Route path="/offers" element={<OrganizerOffers />}></Route>
               <Route path="*" element={<Error />} />
             </Routes>
           </Suspense>

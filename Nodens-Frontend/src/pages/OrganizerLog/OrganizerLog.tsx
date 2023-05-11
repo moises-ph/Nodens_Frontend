@@ -48,17 +48,6 @@ const OrganizerLog = () => {
       headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     });
     request.post('/Organizer', organizer)
-    // fetch('http://localhost:8000/Organizer', {
-    //   method: 'POST',
-    //   mode: 'no-cors',
-    //   cache: 'no-cache',
-    //   credentials: 'same-origin',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
-    //   },
-    //   body: JSON.stringify(organizer)
-    // })
     .then(res=>{
       console.log(res);
       location.reload();

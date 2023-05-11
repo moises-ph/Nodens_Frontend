@@ -13,3 +13,4 @@ export * from "./AppOrganizer";
 export * from "./OrganizerProfile";
 export * from "./CreateOffer";
 export * from "./PasswordRecovery"
+export * from "./OrganizerOffers"
