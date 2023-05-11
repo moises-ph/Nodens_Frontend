@@ -5,6 +5,10 @@ import {lazily} from 'react-lazily'
 import { Suspense } from "react";
 import { Loading } from "./components";
 
+// Organizadores nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io
+// Musicos nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io
+// Ofertas nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io
+
 const {AppMusicianRouter, InitialRouter, AppOrganizerRouter} = lazily(()=> import('./Routers'))
 
 function App() {

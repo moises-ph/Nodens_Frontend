@@ -4,14 +4,16 @@ import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import * as jose from 'jose'
+import { OrganizerT } from "../../types";
+import { Loading } from "../../components";
 
 const OrganizerProfile = () => {
+  const [organizer, setOrganizer] = useState<OrganizerT>();
   const client = axios.create({
-    baseURL: 'http://40.118.207.63/',
+    baseURL: 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
     headers: { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   });
-  const id = jose.decodeJwt(localStorage.getItem('authTokenForTheUser')!)
+  const id = localStorage.getItem("OrganizerId")
 
   const [color, setColor] = useState("white");
   const change = (e: any) => {
@@ -23,10 +25,13 @@ const OrganizerProfile = () => {
     setColor2(a);
   };
 
-  useEffect(()=> {
-    client.get(`/${id}`).then(res => console.log(res))  
+  useEffect(()=> {    
+    client.get(`/Organizer/${id}`)
+      .then(res => {console.log(res);setOrganizer(res.data)})  
+      .catch(err=> console.log(err))
   }, [])
 
+  if (!organizer) return <Loading />
   return (
     <>
       <main className="h-screen overflow-y-scroll fondoorgprof ">
@@ -41,8 +46,9 @@ const OrganizerProfile = () => {
               <div className="flex justify-start flex-col ">
                 <div className="flex min-w-full justify-between">
                   <div>
+                    <h1 className="text-3xl pl-4 pt-3 text-blue-100">{organizer.nombre_empresa}</h1>
                     <h2 className="text-2xl pl-4 pt-3 text-blue-100">
-                      Organizer name
+                      {organizer.Name}
                     </h2>
                     <p className="pl-5 text-slate-50">What he does</p>
                     <p className="pl-5 text-slate-50">Rating (Stars)</p>
@@ -63,10 +69,7 @@ const OrganizerProfile = () => {
                 </div>
                 <p className="pl-5 pt-8 text-sm text-blue-400">Profile: </p>
                 <p className="pl-5 text-xs text-slate-50">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Dolores, quis officiis? Exercitationem commodi quasi aut nihil
-                  eligendi illum at vero possimus modi vitae ullam, recusandae
-                  rerum aliquam id quae. Delectus?
+                  {organizer.descripcion_empresa}
                 </p>
                 <p className="text-blue-400 underline flex pl-5 pt-2">
                   Información de contacto:

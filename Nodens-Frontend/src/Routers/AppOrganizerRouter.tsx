@@ -12,7 +12,7 @@ export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
   useEffect(()=> {
     const request = axios.create({
-      baseURL : 'http://40.118.207.63/',
+      baseURL : 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
       headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     })
     request.get("/Organizer")
@@ -22,6 +22,7 @@ export const AppOrganizerRouter = () => {
         setOrganizador(false);
       } else {
         setOrganizador(true);
+        localStorage.setItem("OrganizerId", res.data._id.$oid)
       }
     })
       .catch(err=>{console.log(err); setOrganizador(false)})
