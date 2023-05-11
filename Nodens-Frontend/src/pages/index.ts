@@ -14,3 +14,4 @@ export * from "./OrganizerProfile";
 export * from "./CreateOffer";
 export * from "./PasswordRecovery"
 export * from "./OrganizerOffers"
+export * from "./ApplicantsOffers"

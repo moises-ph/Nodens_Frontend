@@ -1,0 +1,1 @@
+export {default as ApplicantsOffers} from './ApplicantsOffers'

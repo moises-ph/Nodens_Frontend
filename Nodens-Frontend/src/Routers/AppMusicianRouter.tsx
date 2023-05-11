@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import axios from "axios";
 import { lazily } from "react-lazily";
 
-const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog} = lazily(()=> import('../pages'))
+const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers} = lazily(()=> import('../pages'))
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
@@ -44,6 +44,7 @@ export const AppMusicianRouter = () => {
               <Route path="/posts" element={<Posts />}></Route>
               <Route path="/offers" element={<Offers />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
+              <Route path="/applicant-offers" element={<ApplicantsOffers />}></Route>
               <Route path="*" element={<Error />}></Route>
             </Routes>
           </Suspense>
