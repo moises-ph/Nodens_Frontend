@@ -1,5 +1,3 @@
-import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { ProfileT } from "../../types";
 import { useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -266,7 +264,6 @@ const Profile = () => {
   return (
     <>
       <main className="h-full overflow-y-hidden">
-        {/* <h1 className="border-b-2 pt-2 pl-4 pb-4 shadow-xl text-3xl">Perfiles de <span className="border-b-2 border-red-500 text-red-500 ">Músicos</span></h1> */}
         <div className="pt-8 pb-3 fixed h-min md:h-1/6 w-full flex flex-col  items-center md:flex-row ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
 					<div className="flex flex-row gap-4 m-0 h-min left-0">
 						<IndexLink />
