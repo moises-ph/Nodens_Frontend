@@ -1,6 +1,7 @@
 import { transform } from "framer-motion";
 import { useState } from "react";
 import { BsFileEarmarkPost } from "react-icons/bs"
+import { BiUserCircle } from "react-icons/bi"
 import { Link } from "react-router-dom";
 import  Modal  from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
@@ -14,8 +15,9 @@ const CreatePost = () => {
   return (
     <>
       <main className="bg-slate-900 min-h-screen min-w-full">
-        <div className="pt-2 pl-20 ">
-          <div className="bg-opacity-10 bg-slate-100 w-44 h-10 rounded-md flex items-center justify-center ">
+        <div className="pt-2 flex justify-center" >
+          <div className="bg-opacity-10 bg-slate-100 w-full h-10 rounded-md flex items-center justify-center "> 
+          <p><BiUserCircle className="text-slate-50 text-4xl mr-3" /></p>
             <Button variant="primary" onClick={handleShow} className="text-slate-50 pl-2 flex justify-center items-center gap-2 "><p><BsFileEarmarkPost /></p> 
              Crear publicación </Button>
             <Modal show={show} onHide={handleClose} className="min-h-[40rem]">
