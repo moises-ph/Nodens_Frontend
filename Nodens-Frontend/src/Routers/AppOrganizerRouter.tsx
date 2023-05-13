@@ -6,10 +6,12 @@ import NavOrganizerRes from "../components/NavOrganizer/NavOrganizerRes";
 import axios from "axios";
 import { CreatePost } from "../pages/CreatePost";
 import {lazily} from 'react-lazily';
+import { renewToken } from "../services";
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
+
   useEffect(()=> {
     const request = axios.create({
       baseURL : 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
@@ -29,6 +31,7 @@ export const AppOrganizerRouter = () => {
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
   if(organizador === undefined ) return <Loading />
+  
   return (
     <>
       <Router>
@@ -40,7 +43,7 @@ export const AppOrganizerRouter = () => {
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
       </div>
-        <main className={organizador ? 'pt-11' : ''}>
+        <main className={organizador ? 'pt-16' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={ organizador ? <AppOrganizer /> : <OrganizerLog /> } />
