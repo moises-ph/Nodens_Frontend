@@ -15,3 +15,4 @@ export * from "./CreateOffer";
 export * from "./PasswordRecovery"
 export * from "./OrganizerOffers"
 export * from "./ApplicantsOffers"
+export * from "./SingleOffer"

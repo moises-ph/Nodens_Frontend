@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Loading } from "../../components";
 import { renewToken } from "../../services";
+import { Link } from "react-router-dom";
 
 const OrganizerOffers = () => {
   const [offers, setOffers] = useState([]);
@@ -35,17 +36,18 @@ const OrganizerOffers = () => {
           <tbody className="overflow-scroll shadow-2xl rounded-b-3xl w-full h-full flex flex-col items-center bg-teal-600">
             {
               offers.map((off, i) => {
-                const {Event_Date, Creation_Date} = off;
+                const {Event_Date, Creation_Date, Title, Payment, Vacants, isAvailable, _id} = off;
                 const event_date = new Date(Event_Date).toLocaleDateString()
                 const creation_date = new Date(Creation_Date).toLocaleDateString()
-                return <tr className="flex flex-row h-9 items-center w-full justify-around cursor-pointer px-5 transition-all duration-500 ease hover:bg-slate-500/70" key={i}>
-                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{off.Title}</td>
+                return <Link to={`/offers/${_id}`} className="w-full"><tr className="flex flex-row h-9 items-center w-full justify-around cursor-pointer px-5 transition-all duration-500 ease hover:bg-slate-500/70" key={_id}>
+                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{Title}</td>
                 <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{event_date}</td>
                 <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{creation_date}</td>
-                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{off.Payment}</td>
-                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{off.Vacants}</td>
-                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{off.isAvailable ? 'Disponible': 'No disponible'}</td>
+                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{Payment}</td>
+                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{Vacants}</td>
+                <td className="w-[16.666%] flex justify-center text-slate-100 text-sm font-bold text-ellipsis overflow-hidden whitespace-nowrap">{isAvailable ? 'Disponible': 'No disponible'}</td>
               </tr>
+              </Link>
               })
             }
           </tbody>

@@ -1,14 +1,15 @@
 export type OffersT = {
 	Title: string,
+	_id: string,
 	Description: string,
 	Creation_Date: Date,
 	Event_Date: Date,
 	Payment: number,
 	OrganizerId: string,
 	Event_Ubication: {
-		city: string,
+		City: string,
 		Street: string,
-		career: string,
+		Career: string,
 		SiteNumber: string,
 		Town: string
 	},
@@ -18,6 +19,6 @@ export type OffersT = {
 	}],
 	Img: string,
 	Requeriments: {description: string}[],
-	vacants: number,
+	Vacants: number,
 	isAvailable : boolean
 }
