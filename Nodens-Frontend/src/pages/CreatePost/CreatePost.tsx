@@ -21,14 +21,14 @@ const CreatePost = () => {
           <p><BiUserCircle className="text-slate-50 text-4xl mr-3" /></p>
             <Button variant="primary" onClick={handleShow} className="text-slate-50 pl-2 flex justify-center items-center gap-2"><p><BsFileEarmarkPost className="text-2xl"/></p> 
              Crear publicación </Button>
-            <Modal show={show} onHide={handleClose} className="min-h-[40rem] bg-gradient-to-br from-orange-400 to-fuchsia-700 bg-opacity-100 shadow-inner shadow-blue-900">
+            <Modal show={show} onHide={handleClose} className="min-h-[40rem] bg-slate-500 shadow-inner shadow-neutral-900">
               <Modal.Header closeButton className="">
                 <Modal.Title></Modal.Title>
               </Modal.Header>
               <Modal.Body className="pl-2"><p className="text-slate-50">EEEEEo</p></Modal.Body>
               <Modal.Footer className="flex justify-end items-end pt-[32rem] gap-2 pr-2">
-                <Button variant="secondary" onClick={handleClose} className="pr-4 bg-red-200 w-14 text-center">Close</Button>
-                <Button variant="primary" onClick={handleClose} className="pr-2 bg-green-200 w-14 text-center">Save</Button>
+                <Button variant="secondary" onClick={handleClose} className=" bg-zinc-900 w-16 h-8 rounded-2xl flex justify-center items-center text-slate-50">Close</Button>
+                <Button variant="primary" onClick={handleClose} className=" bg-zinc-900 w-16 h-8 rounded-2xl flex justify-center items-center text-slate-50">Save</Button>
               </Modal.Footer>
             </Modal>
           </div>
