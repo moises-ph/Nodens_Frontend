@@ -8,3 +8,4 @@ export * from "./Logo"
 export * from "./SingleOffer";
 export * from "./SingleProfile";
 export * from "./IndexLink";
+export * from "./InfoOffer"

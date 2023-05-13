@@ -5,8 +5,7 @@ import axios from "axios";
 import { renewToken } from "../../services";
 import { OffersT } from "../../types";
 
-
-const SingleOffer = () => {
+const SingleOfferApplicant = () => {
   const params = useParams();
   const client = axios.create({
     baseURL: "http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io",
@@ -21,13 +20,10 @@ const SingleOffer = () => {
   }, [])
   if(!offer) return <Loading />
   return (
-    <>
-      <section className="flex flex-col gap-4 h-screen overflow-y-scroll">
+    <section className="flex flex-col gap-4 h-screen overflow-y-scroll">
         <InfoOffer offer={offer} />
-        
       </section>
-    </>
   )
 }
 
-export default SingleOffer
+export default SingleOfferApplicant

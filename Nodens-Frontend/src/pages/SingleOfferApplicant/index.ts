@@ -1,0 +1,1 @@
+export {default as SingleOfferApplicant} from './SingleOfferApplicant'
