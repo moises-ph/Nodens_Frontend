@@ -1,8 +1,10 @@
 import { AnimatePresence } from "framer-motion"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { BsSearch, BsPersonSquare } from "react-icons/bs"
-import { IndexLink, Modal, SingleOffer } from "../../components"
+import { IndexLink, Loading, Modal, SingleOffer } from "../../components"
 import { OffersT } from "../../types"
+import axios from "axios"
+import { renewToken } from "../../services"
 
 const offersTemp: OffersT[] = [
 	{
@@ -194,9 +196,20 @@ const offersTemp: OffersT[] = [
 
 
 const Offers = () => {
+	const client = axios.create({
+		baseURL: 'http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io',
+    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+	})
 	const [modal, setOpen] = useState(false);
 	const [oferta, setOferta] = useState<OffersT | undefined>()
 	const [offers,setOffers] = useState(offersTemp);
+
+	useEffect(()=> {
+		renewToken();
+		client.get('offers')
+		  .then(res=>console.log(res))
+			.catch(err=>console.log(err))
+	})
 
 	const searchInput = useRef(null);
 
@@ -219,6 +232,7 @@ const Offers = () => {
 		}
 	}
 
+	if(!offers) return <Loading />
 	return (
 		<>
 			<section className="h-full overflow-y-hidden">

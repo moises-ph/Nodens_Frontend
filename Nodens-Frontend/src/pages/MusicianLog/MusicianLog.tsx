@@ -51,7 +51,7 @@ const MusicianLog = () => {
   })
 
   const client = axios.create({
-    baseURL: 'nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io',
+    baseURL: 'http://nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io',
     headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   })
 
