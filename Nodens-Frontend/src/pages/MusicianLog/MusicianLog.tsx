@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
 import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales, Name, Lastname} from './Inputs'
+import axios from 'axios';
+import { renewToken } from '../../services';
 
 const variants = {
   enter: (direction: number) => {
@@ -48,21 +50,19 @@ const MusicianLog = () => {
     "telefono": ''
   })
 
+  const client = axios.create({
+    baseURL: 'nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io',
+    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+  })
+
   const registerMusician = () => {
-    fetch('http://localhost:8000/musician', {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('authTokenForTheUser')}`
-      },
-      body: JSON.stringify(musician)
-    }).then(res=>{
-      console.log(res);
-      location.reload();
-    })
+    renewToken()
+    client.post('/musician', musician)
+      .then(res=>{
+        console.log(res);
+        location.reload();
+      })
+      .catch(err=> console.log(err));
   }
 
   const sumPage = () =>{

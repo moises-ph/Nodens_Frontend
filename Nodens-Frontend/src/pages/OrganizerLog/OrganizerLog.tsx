@@ -39,7 +39,9 @@ const OrganizerLog = () => {
 		"genero": "",
     "redes_sociales": [
       
-    ]
+    ],
+    "Lastname": '',
+    "Name": ''
   })
 
 	const registerOrganizer = () => {

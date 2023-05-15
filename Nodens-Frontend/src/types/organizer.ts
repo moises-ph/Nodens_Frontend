@@ -1,9 +1,9 @@
 export type OrganizerT = {
-    IdAuth: number,
+    IdAuth?: number,
     Name: string,
     Lastname: string,
     telefono: string,
-    _id: {$oid: string},
+    _id?: {$oid: string},
     nombre_empresa : string,
     descripcion_empresa: string,
     pais: string,

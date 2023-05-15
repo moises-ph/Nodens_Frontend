@@ -9,8 +9,12 @@ const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog, ApplicantsOffer
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
+  const client = axios.create({
+    baseURL: 'nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io',
+    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
+  })
   useEffect(()=> {
-    axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+    client.get('/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
     .then(res=>{
       console.log(res);
       if(!res.data) {
