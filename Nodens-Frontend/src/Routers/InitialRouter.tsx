@@ -4,12 +4,13 @@ import { HiMenu } from 'react-icons/hi'
 import { Suspense, useState } from 'react'
 import Footer from '../components/Footer/Footer'
 import {lazily} from 'react-lazily';
+import { VerifyUser } from '../pages'
 
 const { Home, Login, Registro, Error, PasswordRecovery } = lazily(()=>import('../pages'));
 
 export const InitialRouter = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
-  const visibility = () => location.pathname.replace("/", "") === 'recovery' ? false : true 
+  const visibility = () => location.pathname.replace("/", "") === 'recovery' || location.pathname.replace("/", "") === 'verify' ? false : true 
   return (
     <>
     	<Router>
@@ -30,6 +31,7 @@ export const InitialRouter = () => {
               <Route path="/registro" element={<Registro />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/recovery" element={<PasswordRecovery />}></Route>
+              <Route path="/verify" element={<VerifyUser />}></Route>
               <Route path="*" element={<Error />}></Route>
             </Routes>
           </Suspense>

@@ -1,6 +1,6 @@
-import { FormEvent, useEffect, useState } from 'react'
-import { Logo } from '../../components'
-import { useSearchParams } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Logo } from '../../components';
+import { useSearchParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
@@ -45,8 +45,8 @@ function PasswordRecovery() {
                 allowEscapeKey : false,
                 showCancelButton : false,
                 showConfirmButton : false
-            })
-        })
+            });
+        });
     }
     
     const changePass = (e : any) => {
@@ -59,13 +59,13 @@ function PasswordRecovery() {
             allowEscapeKey : false,
             showCancelButton : false,
             showConfirmButton : false
-        })
+        });
         if(data.pass1 != data.pass2) Swal.fire({
             title : "Cuidado!",
             text : "Las contraseñas deben coincidir",
             icon : 'info',
             showConfirmButton : true
-        })
+        });
         else{
             setAlreadySubmit(true);
             let body  = {
@@ -110,7 +110,7 @@ function PasswordRecovery() {
                     });
                     setTimeout(()=> location.replace('/'), 4500)
                 }
-            })
+            });
         }
     }
     
@@ -120,10 +120,6 @@ function PasswordRecovery() {
             verifyRecovery(gdusr, mn);
         }
     },[])
-
-    useEffect(()=>{
-        console.log(token);
-    }, [token]);
     
     
     return (
