@@ -4,8 +4,8 @@ import { Loading, Logo, NavOrganizer } from "../components";
 import { HiMenu } from "react-icons/hi";
 import NavOrganizerRes from "../components/NavOrganizer/NavOrganizerRes";
 import axios from "axios";
-import { CreatePost } from "../pages/CreatePost";
 import {lazily} from 'react-lazily';
+import { renewToken } from "../services";
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
@@ -16,12 +16,14 @@ export const AppOrganizerRouter = () => {
       baseURL : 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
       headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     })
+    renewToken()
     request.get("/Organizer")
     .then(res=>{
       console.log(res);
       if(res.data==null) {
         setOrganizador(false);
       } else {
+        
         setOrganizador(true);
         localStorage.setItem("OrganizerId", res.data._id.$oid)
       }
@@ -42,7 +44,7 @@ export const AppOrganizerRouter = () => {
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
       </div>
-        <main className={organizador ? 'pt-16' : ''}>
+        <main className={organizador ? 'pt-16 md:pt-11' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={ organizador ? <AppOrganizer /> : <OrganizerLog /> } />
@@ -50,7 +52,6 @@ export const AppOrganizerRouter = () => {
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />
               <Route path="/create-offer" element={<CreateOffer />} />
-              <Route path="/create-post" element={<CreatePost />}></Route>
               <Route path="/offers" element={<OrganizerOffers />}></Route>
               <Route path="/offers/:id" element={<SingleOffer />}></Route>
               <Route path="*" element={<Error />} />
