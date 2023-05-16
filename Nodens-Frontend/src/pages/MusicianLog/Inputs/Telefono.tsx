@@ -13,7 +13,7 @@ const Telefono = ({ handler, goBack }: { handler: (key: string, value: any) => v
           timer: 2000  
         })
       } else {
-        handler('telefono', Number(telefono.current!.value))
+        handler('telefono', [...[],telefono.current!.value])
       }
     }
   
