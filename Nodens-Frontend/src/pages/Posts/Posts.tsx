@@ -129,6 +129,7 @@ const Posts = () => {
                   type="submit"
                   variant="primary"
                   onClick={handleClose}
+                  
                   className=" bg-zinc-900 w-16 h-8 rounded-2xl flex justify-center items-center text-slate-50"
                 >
                   Save
