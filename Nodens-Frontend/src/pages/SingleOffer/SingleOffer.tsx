@@ -22,7 +22,7 @@ const SingleOffer = () => {
   if(!offer) return <Loading />
   return (
     <>
-      <section className="flex flex-col gap-4 h-screen overflow-y-scroll">
+      <section className="flex flex-col md:items-center w-full gap-4 overflow-y-scroll">
         <InfoOffer offer={offer} />
         
       </section>
