@@ -7,7 +7,7 @@ function VerifyUser() {
 
     const [isValid, setValid] = useState(false);
     const [isLoad, setLoad] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [isSuccess, setSuccess] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const [message, setMessage] = useState("Verificando...")
     const guid : string | null = searchParams.get("guid");
@@ -44,7 +44,7 @@ function VerifyUser() {
                 {isLoad ? 
                     <div className='w-[60px] h-[60px] rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div> 
                     : 
-                    success ?
+                    isSuccess ?
                     <FcApproval className='w-[60px] h-[60px] motion-safe:animate-bounce'></FcApproval>
                     : 
                     <FcCancel className='w-[60px] h-[60px] animate-pulse'></FcCancel>
