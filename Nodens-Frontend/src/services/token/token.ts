@@ -2,7 +2,7 @@ import axios from "axios";
 
 const renewToken = () =>  {
   const request = axios.create({
-    baseURL: 'http://nodensauth.gqdjevebebg0aba3.eastus.azurecontainer.io/api',
+    baseURL: 'https://nodensapim.azure-api.net/auth/api',
     headers: {"Authorization": localStorage.getItem('renewToken')}
   })
   request.put(`/auth/renew?token=${localStorage.getItem('authTokenForTheUser')}`)

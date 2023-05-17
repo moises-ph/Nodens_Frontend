@@ -13,7 +13,7 @@ export const AppOrganizerRouter = () => {
 
   useEffect(()=> {
     const request = axios.create({
-      baseURL : 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
+      baseURL : 'https://nodensorganizers.azurewebsites.net',
       headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     })
     renewToken()

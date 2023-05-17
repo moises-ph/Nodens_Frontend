@@ -10,7 +10,7 @@ const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog, ApplicantsOffer
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
   const client = axios.create({
-    baseURL: 'nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io',
+    baseURL: 'https://nodensmusicians.azurewebsites.net',
     headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   })
   useEffect(()=> {

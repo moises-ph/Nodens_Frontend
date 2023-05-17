@@ -8,7 +8,6 @@ import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import {wrapper} from 'axios-cookiejar-support'
 import {CookieJar} from 'tough-cookie'
-import Cookies from "js-cookie";
 
 const Login = () => {
   const jar = new CookieJar();
@@ -52,7 +51,7 @@ const Login = () => {
     //   body: JSON.stringify(data),
     //   method: 'POST',
     // })
-    client.post('http://nodensauth.gqdjevebebg0aba3.eastus.azurecontainer.io/api/auth/login', data)
+    client.post('https://nodensapim.azure-api.net/auth/api/auth/login', data)
       .then(res =>{
         console.log(res);
         Swal.fire({
