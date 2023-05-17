@@ -25,7 +25,6 @@ function VerifyUser() {
             })
             .catch(err => {
                 setLoad(false);
-                console.log(err.response.data.message);
                 setMessage(err.response.data.message);
             });
     }
