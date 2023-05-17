@@ -10,7 +10,7 @@ import { Loading } from "../../components";
 const OrganizerProfile = () => {
   const [organizer, setOrganizer] = useState<OrganizerT>();
   const client = axios.create({
-    baseURL: 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
+    baseURL: 'https://nodensorganizers.azurewebsites.net',
     headers: { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   });
   const id = localStorage.getItem("OrganizerId")
@@ -38,9 +38,16 @@ const OrganizerProfile = () => {
         <div className="pt-10 shadow-2xl">
           <div className="flex  h-[40rem] bg-zinc-500 z-10 bg-opacity-10 rounded-2xl justify-start flex-col shadow-2xl">
             <div className="flex bg-zinc-300 rounded-2xl justify-start w-[100%] bg-opacity-10 h-52">
-              <Link to="" className="ml-4 text-9xl">
-                <BiUserCircle className="text-black mt-10 z-20" />
-              </Link>
+              <button className="ml-4 text-9xl">
+                {
+                  organizer.url_foto_perfil.length<1 ?
+                  <>
+                    <BiUserCircle className="text-black mt-10 z-20" />
+                    <div className="relative text-sm">Agrega una foto de perfil</div>
+                  </>
+                  : <img src={organizer.url_foto_perfil} alt="" />
+                }
+              </button>
             </div>
             <div className="flex justify-end items-end flex-col pt-2 mr-2 gap-3">
               <div className="flex justify-start flex-col ">
