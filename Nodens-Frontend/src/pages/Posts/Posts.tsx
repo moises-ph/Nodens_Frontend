@@ -114,7 +114,7 @@ const Posts = () => {
               </Modal.Header>
               <Modal.Body className="pl-2">
 				
-                <p className="text-slate-50">Publicá algo, mamaguebo</p>
+                <p className="text-slate-50">Publicá algo, mamaguebooooo</p>
 				
               </Modal.Body>
               <Modal.Footer className="flex justify-end items-end pt-[32rem] gap-2 pr-2">
