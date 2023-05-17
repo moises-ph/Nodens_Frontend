@@ -31,10 +31,10 @@ const Offer = ({
       </div>
       <div className="text-slate-800 text-start pl-2 pt-3">
         <p className="text-black text-md">Ubicación de la oferta</p>
-        {oferta?.Event_Ubication.city}, {oferta?.Event_Ubication.Town}
+        {oferta?.Event_Ubication.City}, {oferta?.Event_Ubication.Town}
       </div>
       <p className="text-black text-start pl-2 pt-1 pb-1 text-lg">
-        {oferta?.vacants} vacantes disponibles
+        {oferta?.Vacants} vacantes disponibles
       </p>
 
       <div>
@@ -43,7 +43,7 @@ const Offer = ({
             return (
               <p className="text-slate-800 text-start pl-2" key={i}>
                 <p className="text-black text-xl pt-1 pb-1">Requerimentos</p>{" "}
-                {req.description}
+                {req.Description}
               </p>
             );
           })}

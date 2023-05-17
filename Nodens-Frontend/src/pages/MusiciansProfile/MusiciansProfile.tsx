@@ -37,7 +37,7 @@ const MusiciansProfile = () => {
           <p>Mi nombre es Sebastián soy un músico con {/*user.experiencia*/} de experiencia,
           he tocado {/*user.generosMusicales.map((g, i)=><span key={i}>{g}, </span>)*/} en cuanto a generos musicales se refiere.</p>
           <p>Soy del pais de {/*user.pais} de la ciudad de {user.ciudad*/}.</p>
-          <p>{profile[0].Educacion.map((Edu, index)=>(
+          <p>{profiles[0].Educacion.map((Edu, index)=>(
             <>
               <div key={index}>
 
@@ -46,7 +46,7 @@ const MusiciansProfile = () => {
               </div>
             </>
           ))}</p>
-            <span>{profile[0].Redes_Sociales.map((Social, index2)=>(
+            <span>{profiles[0].Redes_Sociales.map((Social, index2)=>(
               <>
               <div key={index2}>
                   <p>Mi redes sociales son <Link to="" className="border-green-500 border-b-2">{Social.Nombre}</Link></p>

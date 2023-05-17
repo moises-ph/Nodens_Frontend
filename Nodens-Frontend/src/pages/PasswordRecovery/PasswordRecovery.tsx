@@ -72,7 +72,7 @@ function PasswordRecovery() {
                 Password : data.pass1
             }
             console.log( JSON.stringify(body));
-            axios.put('http://20.242.223.125/api/auth/recovery/reset',body, {
+            axios.put('https://nodensapim.azure-api.net/auth/api/auth/recovery/reset',body, {
                 headers : {
                     Authorization : `Bearer ${token}`,
                     'Accept': 'application/json',
