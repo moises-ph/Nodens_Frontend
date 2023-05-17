@@ -4,6 +4,7 @@ export type InstrumentoT = {
   };
   
   export type ProfileT = {
+    IdAuth ?: string;
     Fecha_Nacimiento: Date;
     Instrumentos: InstrumentoT[];
     GenerosMusicales: String;

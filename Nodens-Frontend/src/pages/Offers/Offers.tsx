@@ -15,9 +15,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '1',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -27,20 +27,21 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 1'
+			Description: 'descripcion de los requerimientos 1'
 		},
 		{
-			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
+			Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
 		},
 		{
-			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
+			Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
 		},
 		{
-			description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
+			Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
 		}
 	],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 	{
 		Title: 'Músico con experiencia',
@@ -50,9 +51,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '2',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -62,10 +63,11 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'Saber tocar varios instrumentos de percusión'
+			Description: 'Saber tocar varios instrumentos de percusión'
 		}],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 	{
 		Title: 'Oferta 3',
@@ -75,9 +77,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '3',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -87,10 +89,11 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 3'
+			Description: 'descripcion de los requerimientos 3'
 		}],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 	{
 		Title: 'Oferta 4',
@@ -100,9 +103,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '4',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -112,10 +115,11 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 4'
+			Description: 'descripcion de los requerimientos 4'
 		}],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 	{
 		Title: 'Oferta 5',
@@ -125,9 +129,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '5',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -137,10 +141,11 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 5'
+			Description: 'descripcion de los requerimientos 5'
 		}],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 	{
 		Title: 'Oferta 6',
@@ -150,9 +155,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '6',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -162,10 +167,11 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 6'
+			Description: 'descripcion de los requerimientos 6'
 		}],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 	{
 		Title: 'Oferta 7',
@@ -175,9 +181,9 @@ const offersTemp: OffersT[] = [
 		Payment: 150000,
 		OrganizerId: '7',
 		Event_Ubication: {
-			city: 'Cali',
+			City: 'Cali',
 			Street: '15',
-			career: '23b',
+			Career: '23b',
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
@@ -187,10 +193,11 @@ const offersTemp: OffersT[] = [
 		}],
 		Img: 'si',
 		Requeriments: [{
-			description: 'descripcion de los requerimientos 7'
+			Description: 'descripcion de los requerimientos 7'
 		}],
-		vacants: 15,
-		isAvailable : true
+		Vacants: 15,
+		isAvailable : true,
+		tags : []
 	},
 ]
 

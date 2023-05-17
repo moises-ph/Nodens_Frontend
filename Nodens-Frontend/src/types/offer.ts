@@ -1,6 +1,7 @@
 export type OffersT = {
+	IdAuth?: any,
 	Title: string,
-	_id: string,
+	_id?: string,
 	Description: string,
 	Creation_Date: Date,
 	Event_Date: Date,
