@@ -4,6 +4,7 @@ import { HiMenu } from "react-icons/hi";
 import { Suspense, useEffect, useState } from "react";
 import axios from "axios";
 import { lazily } from "react-lazily";
+import { renewToken } from "../services";
 
 const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOfferApplicant} = lazily(()=> import('../pages'))
 
@@ -14,6 +15,7 @@ export const AppMusicianRouter = () => {
     headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   })
   useEffect(()=> {
+    renewToken();
     client.get('/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
     .then(res=>{
       console.log(res);

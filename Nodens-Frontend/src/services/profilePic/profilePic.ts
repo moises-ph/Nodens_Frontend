@@ -9,7 +9,7 @@ const profilePic = (baseURL: string, image: any) => {
       "Content-Length": `${image.size}`
     },
   });
-  axios.post('')
+  axios.post('', image)
 }
 
 export default profilePic;

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { OrganizerT } from "../../types";
 import { Loading } from "../../components";
+import { profilePic } from "../../services";
 
 const OrganizerProfile = () => {
   const [organizer, setOrganizer] = useState<OrganizerT>();
@@ -14,6 +15,8 @@ const OrganizerProfile = () => {
     headers: { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   });
   const id = localStorage.getItem("OrganizerId")
+
+  const profile = useRef<HTMLInputElement>(null);
 
   const [color, setColor] = useState("white");
   const change = (e: any) => {
@@ -43,7 +46,7 @@ const OrganizerProfile = () => {
                   organizer.url_foto_perfil.length<1 ?
                   <>
                     <BiUserCircle className="text-black mt-10 z-20" />
-                    <input type="file" accept="image/*" className="relative text-sm"/>
+                    <input type="file" ref={profile} accept="image/*" onInput={()=>profilePic('http://nodensapim.azure-api.net/organizers/Organizer/profile', profile.current!.files![0])} className="relative text-sm"/>
                   </>
                   : <img src={organizer.url_foto_perfil} alt="" />
                 }
