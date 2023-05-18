@@ -43,7 +43,7 @@ const OrganizerProfile = () => {
                   organizer.url_foto_perfil.length<1 ?
                   <>
                     <BiUserCircle className="text-black mt-10 z-20" />
-                    <div className="relative text-sm">Agrega una foto de perfil</div>
+                    <input type="file" accept="image/*" className="relative text-sm"/>
                   </>
                   : <img src={organizer.url_foto_perfil} alt="" />
                 }

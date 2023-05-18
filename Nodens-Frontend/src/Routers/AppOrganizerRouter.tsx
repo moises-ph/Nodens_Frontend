@@ -12,11 +12,11 @@ export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
 
   useEffect(()=> {
+    renewToken()
     const request = axios.create({
       baseURL : 'https://nodensorganizers.azurewebsites.net',
       headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
     })
-    renewToken()
     request.get("/Organizer")
     .then(res=>{
       console.log(res);
