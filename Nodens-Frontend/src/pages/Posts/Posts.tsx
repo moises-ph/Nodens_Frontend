@@ -67,11 +67,14 @@ const Posts = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+
   return (
     <>
-      <main>
-        <section>
-          <div className="pt-8 pl-6 shadow-xl h-40">
+      <main className="">
+        <section className="">
+          <div className="pt-8 pl-6 shadow-xl rounded-lg h-40">
             <label
               htmlFor=""
               className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl"
@@ -88,9 +91,9 @@ const Posts = () => {
             <p>{posts.length} Posts </p>
           </div>
         </section>
-        <section className="">
+        <section className="pb-2">
           <div className="pt-2 flex justify-center">
-            <div className="bg-opacity-10 bg-slate-900 w-full h-10 rounded-md flex items-center justify-center ">
+            <div className="bg-opacity-10 bg-gradient-to-t from-slate-300 to-slate-50 w-72 h-10 rounded-md flex items-center justify-center shadow-xl">
               <p>
                 <BiUserCircle className="text-slate-900 text-4xl mr-3" />
               </p>
@@ -139,14 +142,14 @@ const Posts = () => {
             </div>
           </div>
         </section>
-        <section className="pt-4">
+        <section className=" h-screen bg-gradient-to-tr from-fuchsia-900 to-purple-300 bg-opacity-40 pt-4">
           <div className="pl-2 pr-2 flex flex-col justify-center items-start">
-            <div className="flex flex-col gap-1 bg-zinc-900 bg-opacity-10 min-w-full min-h-full rounded-xl shadow-xl">
-              <span className="ml-1 mt-2">{posts[0].IDAuth}</span>
-              <span className="ml-1 mt-2">{posts[0].title}</span>
-              <span className="ml-1 mt-2">{posts[0].content.text}</span>
-              <span className="ml-1 mt-2">{posts[0].date.getFullYear()}</span>
-              <span className="ml-1 mt-2 mb-2">{posts[0].likes}</span>
+            <div className="flex flex-col gap-1 bg-gradient-to-t from-slate-200 to-slate-50 bg-opacity-10 min-w-full min-h-full rounded-xl shadow-xl">
+              <span className="ml-2 mt-2">{posts[0].IDAuth}</span>
+              <span className="ml-2 mt-2">{posts[0].title}</span>
+              <span className="ml-2 mt-2">{posts[0].content.text}</span>
+              <span className="ml-2 mt-2">{posts[0].date.getFullYear()}</span>
+              <span className="ml-2 mt-2 mb-2">{posts[0].likes}</span>
             </div>
           </div>
         </section>
