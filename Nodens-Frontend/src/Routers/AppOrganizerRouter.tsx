@@ -14,7 +14,8 @@ export const AppOrganizerRouter = () => {
 
   useEffect(()=> {
     renewToken()
-    clientHttp.get("/organizers/Organizer")
+    setTimeout('', 1000)
+    clientHttp().get("/organizers/Organizer")
       .then(res=>{
         console.log(res);
         if(res.data==null) {

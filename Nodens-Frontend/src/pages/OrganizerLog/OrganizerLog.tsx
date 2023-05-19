@@ -45,7 +45,7 @@ const OrganizerLog = () => {
   })
 
 	const registerOrganizer = () => {
-    clientHttp.post('/organizers/Organizer', organizer)
+    clientHttp().post('/organizers/Organizer', organizer)
     .then(res=>{
       console.log(res);
       location.reload();

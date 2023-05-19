@@ -22,7 +22,7 @@ const OrganizerProfile = () => {
   };
 
   useEffect(()=> {    
-    clientHttp.get(`/organizers/Organizer/${id}`)
+    clientHttp().get(`/organizers/Organizer/${id}`)
       .then(res => {console.log(res);setOrganizer(res.data)})  
       .catch(err=> console.log(err))
   }, [])

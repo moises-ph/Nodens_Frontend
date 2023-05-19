@@ -1,14 +1,9 @@
 import axios from "axios"
 
-const client = () => {
-  const headers = !localStorage.getItem('authTokenForTheUser') ? {} : {
-    Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}`
-  }
+export const clientHttp = () => {
   const client = axios.create({
     baseURL: 'https://nodensapim.azure-api.net',
-    headers
+    headers: {Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}`}
   })
   return client
 }
-
-export const clientHttp = client()

@@ -12,7 +12,7 @@ const SingleOffer = () => {
 
   useEffect(()=> {
     renewToken()
-    clientHttp.get(`/offers/offers/${params.id}`)
+    clientHttp().get(`/offers/offers/${params.id}`)
       .then(res=>{console.log(res); setOffer(res.data)})
       .catch(err=>console.log(err))
   }, [])

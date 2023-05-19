@@ -11,7 +11,7 @@ export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
   
   useEffect(()=> {
-    clientHttp.get('/musicians/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+    clientHttp().get('/musicians/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
     .then(res=>{
       console.log(res);
       if(!res.data) {

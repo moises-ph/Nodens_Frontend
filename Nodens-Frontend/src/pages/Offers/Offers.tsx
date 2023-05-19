@@ -209,7 +209,7 @@ const Offers = () => {
 
 	useEffect(()=> {
 		renewToken();
-		clientHttp.get('/offers/offers')
+		clientHttp().get('/offers/offers')
 		  .then(res=>console.log(res))
 			.catch(err=>console.log(err))
 	})

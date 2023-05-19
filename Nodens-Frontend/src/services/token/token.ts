@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const renewToken = () =>  {
+  console.log(localStorage.getItem('authTokenForTheUser'));
+  
   const request = axios.create({
     baseURL: 'https://nodensapim.azure-api.net/',
     headers: {"Authorization": localStorage.getItem('renewToken')}

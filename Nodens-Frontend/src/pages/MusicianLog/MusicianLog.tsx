@@ -52,7 +52,7 @@ const MusicianLog = () => {
 
   const registerMusician = () => {
     renewToken()
-    clientHttp.post('/musicians/musician', musician)
+    clientHttp().post('/musicians/musician', musician)
       .then(res=>{
         console.log(res);
         location.reload();

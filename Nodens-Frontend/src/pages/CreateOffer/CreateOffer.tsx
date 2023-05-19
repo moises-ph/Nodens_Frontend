@@ -25,7 +25,7 @@ const CreateOffer = () => {
     e.preventDefault();
     renewToken();
    
-    clientHttp.post('/offers/offers', {
+    clientHttp().post('/offers/offers', {
       "Title" : title.current?.value,
       "Description": description.current?.value,
       "Creation_Date": new Date().toISOString(),

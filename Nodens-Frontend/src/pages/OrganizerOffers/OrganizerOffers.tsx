@@ -9,9 +9,9 @@ const OrganizerOffers = () => {
 
   useEffect(()=> {
     renewToken()
-    clientHttp.get('/offers/offers/organizer')
-      .then(res=> {console.log(res);setOffers(res.data)})
-      .catch(err=> console.log(err))
+    clientHttp().get('/offers/offers/organizer')
+      .then(res => {console.log(res);setOffers(res.data)})
+      .catch(err => console.log(err))
   }, [])
 
   if(!offers) return <Loading />
