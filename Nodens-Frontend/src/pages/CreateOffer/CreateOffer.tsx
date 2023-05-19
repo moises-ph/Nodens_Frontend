@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useRef, useState } from "react";
 import { GrFormClose } from "react-icons/gr";
 import Swal from "sweetalert2";
 import {renewToken} from "../../services";
+import { clientHttp } from "../../services/client";
 
 const CreateOffer = () => {
   const [requeriments, setRequeriments] = useState<{Description: string}[]>([]);
@@ -24,12 +24,8 @@ const CreateOffer = () => {
   const handle = (e:React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.preventDefault();
     renewToken();
-
-    const request = axios.create({
-      baseURL: 'http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io',
-      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-    });    
-    request.post('/offers', {
+   
+    clientHttp.post('/offers/offers', {
       "Title" : title.current?.value,
       "Description": description.current?.value,
       "Creation_Date": new Date().toISOString(),

@@ -1,19 +1,15 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { Loading } from "../../components";
 import { renewToken } from "../../services";
 import { Link } from "react-router-dom";
+import { clientHttp } from "../../services/client";
 
 const OrganizerOffers = () => {
   const [offers, setOffers] = useState([]);
-  const client = axios.create({
-    baseURL: "http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io",
-    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-  })
 
   useEffect(()=> {
     renewToken()
-    client.get('/offers/organizer')
+    clientHttp.get('/offers/offers/organizer')
       .then(res=> {console.log(res);setOffers(res.data)})
       .catch(err=> console.log(err))
   }, [])

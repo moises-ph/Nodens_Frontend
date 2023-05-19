@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
 import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales, Name, Lastname} from './Inputs'
-import axios from 'axios';
 import { renewToken } from '../../services';
+import { clientHttp } from '../../services/client';
 
 const variants = {
   enter: (direction: number) => {
@@ -50,14 +50,9 @@ const MusicianLog = () => {
     "telefono": ''
   })
 
-  const client = axios.create({
-    baseURL: 'http://nodensmusicians.dndfckexb4ftexc7.westus.azurecontainer.io',
-    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-  })
-
   const registerMusician = () => {
     renewToken()
-    client.post('/musician', musician)
+    clientHttp.post('/musicians/musician', musician)
       .then(res=>{
         console.log(res);
         location.reload();
