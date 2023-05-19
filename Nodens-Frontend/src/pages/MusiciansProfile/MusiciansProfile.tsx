@@ -4,15 +4,16 @@ import { profiles } from '../Profiles/Profiles'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { MusicianT } from "../../types";
+import { clientHttp } from "../../services/client";
 
 
 const MusiciansProfile = () => {
   const [user, setUser] = useState<MusicianT>();
   useEffect(()=> {
-    axios.get('http://localhost:8000/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+    clientHttp().get('musicians/musician')
       .then(res => {console.log(res); setUser(res.data)})
   }, [])
-  //if(!user) return <h1 className="text-2xl">Loading...</h1>
+  if(!user) return <h1 className="text-2xl">Loading...</h1>
   return (
     <>
       <main>

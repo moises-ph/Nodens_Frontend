@@ -205,14 +205,14 @@ const offersTemp: OffersT[] = [
 const Offers = () => {
 	const [modal, setOpen] = useState(false);
 	const [oferta, setOferta] = useState<OffersT | undefined>()
-	const [offers,setOffers] = useState(offersTemp);
+	const [offers,setOffers] = useState<OffersT[]>([]);
 
 	useEffect(()=> {
 		renewToken();
 		clientHttp().get('/offers/offers')
-		  .then(res=>console.log(res))
+		  .then(res=>{console.log(res); setOffers(res.data)})
 			.catch(err=>console.log(err))
-	})
+	}, [])
 
 	const searchInput = useRef(null);
 
@@ -228,10 +228,10 @@ const Offers = () => {
 	const searchOffer = (e:any)=>{
 		console.log(e.current.value);
 		if(e.current.value.length === 0){
-			setOffers(offersTemp);
+			setOffers(offers);
 		}
 		else{
-			setOffers(offersTemp.filter(value => value.Title.includes(e.current.value)));
+			setOffers(offers.filter(value => value.Title.includes(e.current.value)));
 		}
 	}
 
@@ -251,10 +251,10 @@ const Offers = () => {
 					</div>
 					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 				</div>
-				<div className="flex flex-col top-[18%] md:top-[16.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
+				<div className="flex flex-col top-[23%] md:top-[16.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
 					{
 						offers.map((offer, i)=> {
-							return offer.isAvailable ? <SingleOffer showModal={showModal} redirect={null} offer={offer} key={i} Key={i.toString()} isHomePage={false} /> : null
+							return <SingleOffer showModal={showModal} redirect={null} offer={offer} key={i} Key={i.toString()} isHomePage={false} /> 
 						})
 					}
 				</div>
