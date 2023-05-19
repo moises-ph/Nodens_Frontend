@@ -1,1 +1,0 @@
-export {default as profilePic} from './profilePic'

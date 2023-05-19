@@ -204,7 +204,7 @@ const offersTemp: OffersT[] = [
 
 const Offers = () => {
 	const client = axios.create({
-		baseURL: 'https://nodensoffers.azureewbsites.net',
+		baseURL: 'http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io',
     headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
 	})
 	const [modal, setOpen] = useState(false);

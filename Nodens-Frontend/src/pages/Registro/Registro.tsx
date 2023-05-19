@@ -38,7 +38,7 @@ const Registro = () => {
       }
     })
   
-    axios.post("http://nodensauth.gqdjevebebg0aba3.eastus.azurecontainer.io/api/user/register", object)
+    axios.post("https://nodensapim.azure-api.net/auth/api/user/Register", object)
       .then(res=>{
         console.log(res);
         MySwal.fire({
