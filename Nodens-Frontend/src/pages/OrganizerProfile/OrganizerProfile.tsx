@@ -1,22 +1,15 @@
 import { BiUserCircle, BiHeartCircle } from "react-icons/bi";
 import { AiOutlineMail, AiFillEye, AiOutlinePhone } from "react-icons/ai";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { OrganizerT } from "../../types";
 import { Loading } from "../../components";
-import { profilePic } from "../../services";
+import { clientHttp } from "../../services/client";
 
 const OrganizerProfile = () => {
   const [organizer, setOrganizer] = useState<OrganizerT>();
-  const client = axios.create({
-    baseURL: 'https://nodensorganizers.azurewebsites.net',
-    headers: { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-  });
   const id = localStorage.getItem("OrganizerId")
-
-  const profile = useRef<HTMLInputElement>(null);
 
   const [color, setColor] = useState("white");
   const change = (e: any) => {
@@ -29,7 +22,7 @@ const OrganizerProfile = () => {
   };
 
   useEffect(()=> {    
-    client.get(`/Organizer/${id}`)
+    clientHttp.get(`/organizers/Organizer/${id}`)
       .then(res => {console.log(res);setOrganizer(res.data)})  
       .catch(err=> console.log(err))
   }, [])
@@ -41,16 +34,9 @@ const OrganizerProfile = () => {
         <div className="pt-10 shadow-2xl">
           <div className="flex  h-[40rem] bg-zinc-500 z-10 bg-opacity-10 rounded-2xl justify-start flex-col shadow-2xl">
             <div className="flex bg-zinc-300 rounded-2xl justify-start w-[100%] bg-opacity-10 h-52">
-              <button className="ml-4 text-9xl">
-                {
-                  organizer.url_foto_perfil.length<1 ?
-                  <>
-                    <BiUserCircle className="text-black mt-10 z-20" />
-                    <input type="file" ref={profile} accept="image/*" onInput={()=>profilePic('http://nodensapim.azure-api.net/organizers/Organizer/profile', profile.current!.files![0])} className="relative text-sm"/>
-                  </>
-                  : <img src={organizer.url_foto_perfil} alt="" />
-                }
-              </button>
+              <Link to="" className="ml-4 text-9xl">
+                <BiUserCircle className="text-black mt-10 z-20" />
+              </Link>
             </div>
             <div className="flex justify-end items-end flex-col pt-2 mr-2 gap-3">
               <div className="flex justify-start flex-col ">

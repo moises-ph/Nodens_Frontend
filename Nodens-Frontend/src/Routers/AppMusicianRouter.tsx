@@ -2,21 +2,16 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Loading, Logo, NavMusician, NavMusicianRes } from "../components";
 import { HiMenu } from "react-icons/hi";
 import { Suspense, useEffect, useState } from "react";
-import axios from "axios";
 import { lazily } from "react-lazily";
-import { renewToken } from "../services";
+import { clientHttp } from "../services/client";
 
 const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOfferApplicant} = lazily(()=> import('../pages'))
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
-  const client = axios.create({
-    baseURL: 'https://nodensmusicians.azurewebsites.net',
-    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-  })
+  
   useEffect(()=> {
-    renewToken();
-    client.get('/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+    clientHttp.get('/musicians/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
     .then(res=>{
       console.log(res);
       if(!res.data) {

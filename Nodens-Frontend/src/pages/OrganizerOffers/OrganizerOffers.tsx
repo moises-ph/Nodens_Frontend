@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const OrganizerOffers = () => {
   const [offers, setOffers] = useState([]);
   const client = axios.create({
-    baseURL: "https://nodensoffers.azureewbsites.net",
+    baseURL: "http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io",
     headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
   })
 
