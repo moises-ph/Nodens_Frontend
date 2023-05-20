@@ -79,7 +79,10 @@ const OrganizerLog = () => {
  
 	const Inputs: JSX.Element[] = [
     <Ciudad handler={handler} />,
-    <Pais goBack={goBack} handler={handler} />,
+
+
+
+    
     <Name goBack={goBack} handler={handler}/>,
     <Lastname goBack={goBack} handler={handler}/>,
     <Genero goBack={goBack} handler={handler} />,

@@ -1,6 +1,7 @@
 import { BsSearch } from "react-icons/bs";
 import { PostT } from "../../types";
 import { BiUserCircle } from "react-icons/bi";
+import {  AiOutlinePlus, AiFillHome  } from "react-icons/ai"
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
@@ -12,7 +13,7 @@ const posts: PostT[] = [
     content: {
       text: "asdasdasdasdasdasdasdasda o ",
       images: [
-        "Chupame la pija mamaguebo"
+        "Jijiji"
       ],
     },
     date: new Date(),
@@ -73,23 +74,23 @@ const Posts = () => {
 
   return (
     <>
-      <main className="">
-        <section className="bg-gray-900 rounded-b-2xl">
+      <main className="bg-black">
+        <section className="bg-zinc-800 z-50 rounded-b-2xl text-slate-50">
           <div className="pl-3 pt-7">
             <span className="flex flex-row gap-3 items-center">
               <BiUserCircle className="text-4xl" />
               <p>Nombre de perfil</p>
             </span>
           </div>
-          <div className="pt-8 pl-6 shadow-xl rounded-lg h-40">
+          <div className="pt-8 pl-6 shadow-xl rounded-lg h-36">
             <label
               htmlFor=""
-              className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl"
+              className="w-[85vw] flex items-center gap-2 h-12 bg-slate-200 text-slate-900 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl"
             >
               <input
                 type="text"
                 placeholder="Buscar"
-                className="bg-transparent w-full outline-none text-slate-900"
+                className="bg-transparent w-full outline-none"
               />
               <button>
                 <BsSearch className="text-slate-400" />
@@ -98,20 +99,36 @@ const Posts = () => {
             <p className="pt-4">{posts.length} Posts </p>
           </div>
         </section>
-        <section className=" h-screen w-full pt-4">
+        <section className=" h-screen w-full">
           
-          <div className="pl-2 pr-2  bg-black h-screen flex flex-col justify-center items-start">
+          <div className="pl-3 pr-2  bg-black min-h-full flex flex-col justify-start items-start pt-3">
           <div className="pt-2 flex justify-center">
-            <div className="bg-opacity-10 bg-gradient-to-t from-slate-300 to-slate-50 w-72 h-10 rounded-md flex items-center justify-center shadow-xl">
-              <p>
-                <BiUserCircle className="text-slate-900 text-4xl mr-3" />
-              </p>
+            
+          </div>
+            <div className="flex flex-col text-slate-50 text-start gap-1 min-w-full min-h-full">
+              <span className="ml-2 mt-2">{posts[0].IDAuth}</span>              <span className="ml-2 mt-2">{posts[0].title}</span>
+              <span className="ml-2 mt-2 ">{posts[0].content.text}</span>
+              <span className="ml-2 mt-2 ">{posts[0].content.images}</span>
+              <span className="ml-2 mt-2">{posts[0].date.getFullYear()}</span>
+              <span className="ml-2 mt-2 mb-2">{posts[0].likes}</span>
+            </div>
+          </div>
+        </section>
+
+
+        <footer className="h-14 w-full bg-zinc-800 flex justify-center items-center rounded-t-2xl z-50 shadow-2xl shadow-zinc-500">
+        <div className="flex flex-row justify-between items-center gap-20">
+            <Button
+            href="/"
+            >
+              <AiFillHome className="text-slate-50 text-2xl"/>
+            </Button>
               <Button
                 variant="primary"
                 onClick={handleShow}
-                className="text-slate-900 pl-2 flex justify-center items-center gap-2"
+                className="text-slate-900 flex justify-center items-center gap-2"
               >
-                Crear publicación{" "}
+                <AiOutlinePlus className="text-slate-50 text-3xl"/>
               </Button>
               <Modal
                 show={show}
@@ -148,17 +165,13 @@ const Posts = () => {
                   </Button>
                 </Modal.Footer>
               </Modal>
+              <Button
+              href="/mainprofile"
+              >
+                <BiUserCircle className="text-slate-50 text-2xl"/>
+              </Button>
             </div>
-          </div>
-            <div className="flex flex-col text-slate-50 text-start gap-1 min-w-full min-h-full">
-              <span className="ml-2 mt-2">{posts[0].IDAuth}</span>              <span className="ml-2 mt-2">{posts[0].title}</span>
-              <span className="ml-2 mt-2 ">{posts[0].content.text}</span>
-              <span className="ml-2 mt-2 ">{posts[0].content.images}</span>
-              <span className="ml-2 mt-2">{posts[0].date.getFullYear()}</span>
-              <span className="ml-2 mt-2 mb-2">{posts[0].likes}</span>
-            </div>
-          </div>
-        </section>
+          </footer>
       </main>
     </>
   );
