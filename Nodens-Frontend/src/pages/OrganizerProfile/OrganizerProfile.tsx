@@ -1,25 +1,30 @@
-import { BiUserCircle, BiHeartCircle } from "react-icons/bi";
-import { AiOutlineMail, AiFillEye, AiOutlinePhone } from "react-icons/ai";
-import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import { OrganizerT } from "../../types";
 import { Loading } from "../../components";
 import { clientHttp } from "../../services/client";
 import { profilePic, renewToken } from "../../services";
 import Swal from "sweetalert2";
+import DefaultUserImg from "../../assets/DefaultUser.webp";
+import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp, BsYoutube } from "react-icons/bs";
+import { FaTiktok } from "react-icons/fa";
 
 const OrganizerProfile = () => {
-  const imageInput = useRef(null);
+  const imageInput = useRef<HTMLInputElement>(null);
   const image = useRef(null);
   const [email, setEmail] = useState<string>();
   const [organizer, setOrganizer] = useState<OrganizerT>();
   const id = localStorage.getItem("OrganizerId")
 
-  const [color, setColor] = useState("white");
-  const change = (e: any) => {
-    setColor(e);
-  };
+  const SocialMedias : any = {
+    instagram : <BsInstagram className="h-10 w-10 text-slate-50 bg-gradient-to-tr via-pink-600 from-indigo-600 to-amber-500 rounded-xl drop-shadow"/>,
+    facebook : <BsFacebook className="h-10 w-10 text-blue-600 drop-shadow"/>,
+    tiktok : <FaTiktok className="h-10 w-10 drop-shadow"/>,
+    twitter : <BsTwitter className="h-10 w-10 text-blue-500 drop-shadow"/>,
+    linkedin : <BsLinkedin className="h-10 w-10 text-blue-700 drop-shadow"/>,
+    snapchat : <BsSnapchat className="h-10 w-10 text-yellow-400 drop-shadow"/>,
+    youtube : <BsYoutube className="h-10 w-10 text-red-700 drop-shadow"/>,
+    whatsapp : <BsWhatsapp className="h-10 w-10 text-green-600 drop-shadow" />
+  }
 
   const getOrganizer = () => {
     renewToken();
@@ -30,7 +35,7 @@ const OrganizerProfile = () => {
 
   const getOrganizerEmail = () => {
     clientHttp().get(`/auth/api/user/${organizer?.IdAuth}`)
-      .then(res => setEmail(res.data.Email))
+      .then(res => setEmail(res.data.email))
       .catch(err =>{
         if(err.response.status === 401) return renewToken()
         Swal.fire({
@@ -43,19 +48,67 @@ const OrganizerProfile = () => {
       })
   }
 
-  const [color2, setColor2] = useState("white");
-  const change2 = (a: any) => {
-    setColor2(a);
-  };
+  const hasCompany = () : boolean => organizer!.nombre_empresa.length > 0 && organizer!.descripcion_empresa.length > 0
+
+  const hasCompanyLogo = () => organizer!.url_logo.length > 0
 
   const handleProfile = async () => {
-    await profilePic("/organizers/Organizer/profile",imageInput.current!.files);
+    await profilePic("/organizers/Organizer/profile",(imageInput.current!.files));
     getOrganizer();
   }
 
   useEffect(()=> {    
+    // setOrganizer({
+    //   Name: "Moises",
+    //   Lastname: "Pineda",
+    //   fecha_nacimiento: "2005-01-01",
+    //   telefono: "123456789",
+    //   nombre_empresa: "Si",
+    //   descripcion_empresa: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam amet asperiores eum, voluptatum esse saepe maxime, sapiente perferendis dolor dicta animi cum hic sed reprehenderit eos quas rem ratione officia",
+    //   pais: "Colombia",
+    //   ciudad: "Armenia",
+    //   url_foto_perfil: "https://res.cloudinary.com/dx9vdom9p/image/upload/v1684541629/profileOrg7.jpg",
+    //   url_logo : "",
+    //   genero: "Hombre",
+    //   redes_sociales: [
+    //     {
+    //       nombre: "Facebook",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "Instagram",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "TikTok",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "Twitter",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "Linkedin",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "Snapchat",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "Youtube",
+    //       url: "facebook.com"
+    //     },
+    //     {
+    //       nombre: "Whatsapp",
+    //       url: "facebook.com"
+    //     }
+    //   ],
+    //   IdAuth: 7
+    // });
+    // setEmail("mois.mp8@gmail.com");
     getOrganizer();
-    // getOrganizerEmail();
+    getOrganizerEmail();
   }, [])
 
   useEffect(() => {
@@ -65,89 +118,44 @@ const OrganizerProfile = () => {
   if (!organizer) return <Loading />
   return (
     <>
-      <main className="h-screen overflow-y-scroll fondoorgprof ">
-        <div className="pt-10 shadow-2xl">
-          <div className="flex  h-[40rem] bg-zinc-500 z-10 bg-opacity-10 rounded-2xl justify-start flex-col shadow-2xl">
-            <div className="flex bg-zinc-300 rounded-2xl justify-start w-[100%] bg-opacity-10 h-52">
-              <button className="ml-4 text-9xl" onClick={()=>imageInput.current.click()}>
-              <input type="file" accept="images/*" onChange={()=>handleProfile()} ref={imageInput} className="hidden"/>
-                {
-                  organizer.url_foto_perfil.length < 1 ?
-                  <><BiUserCircle  className="text-black mt-10 z-20" /></>
-                  : 
-                  <><img ref={image} src={organizer.url_foto_perfil} loading="lazy" /></>
-                }
-              </button>
+      <main className="min-h-screen bg-zinc-200 flex flex-col items-center gap-4 p-4"> 
+        <section className=" flex flex-col gap-1 items-center px-4">
+          <div className="w-full h-[300px] shadow-lg absolute bg-slate-700 bg-opacity-30 md:w-1/3 z-[1] rounded-b-full"></div>
+          <div className="flex flex-col gap-1 items-center my-4 p-4 z-10">
+            <img src={organizer.url_foto_perfil || DefaultUserImg} loading="lazy" alt="Organizer Profile" className="rounded-full h-40 w-40 object-cover mb-1" />
+            <div className="flex flex-col items-center">
+              <h1 className="text-center text-3xl organizerNameFont"><span className="font-semibold">{organizer.Name}</span> <span className="organizerNameFont font-thin">{organizer.Lastname}</span></h1>
+              <h3 className="font-light">{email}</h3>
             </div>
-            <div className="flex justify-end items-end flex-col pt-2 mr-2 gap-3">
-              <div className="flex justify-start flex-col ">
-                <div className="flex min-w-full justify-between">
-                  <div>
-                    <h1 className="text-3xl pl-4 pt-3 text-blue-100">{organizer.nombre_empresa}</h1>
-                    <h2 className="text-2xl pl-4 pt-3 text-blue-100">
-                      {organizer.Name}
-                    </h2>
-                    <p className="pl-5 text-slate-50">What he does</p>
-                    <p className="pl-5 text-slate-50">Rating (Stars)</p>
-                  </div>
-                  <div className="pt-6 pl-8 gap-2">
-                    <Link to="">
-                      <BiHeartCircle
-                        onClick={(e) =>
-                          change(color == "white" ? "red-500" : "white")
-                        }
-                        className={`text-[1.7rem] text-${color}`}
-                      />
-                    </Link>
-                    <Link to="">
-                      <AiOutlineMail className="text-2xl text-slate-50" />
-                    </Link>
-                  </div>
-                </div>
-                <p className="pl-5 pt-8 text-sm text-blue-400">Profile: </p>
-                <p className="pl-5 text-xs text-slate-50">
-                  {organizer.descripcion_empresa}
-                </p>
-                <p className="text-blue-400 underline flex pl-5 pt-2">
-                  Información de contacto:
-                </p>
-                <div className="flex mt-5 gap-2 ml-5 justify-start">
-                  <Link to="">
-                    <BsFacebook
-                      onClick={(a) =>
-                        change2(color2 == "white" ? "blue-500" : "white")
-                      }
-                      className={`text-${color2} text-2xl`}
-                    />
-                  </Link>
-                  <Link to="">
-                    <BsInstagram className="text-2xl text-white" />
-                  </Link>
-                  <Link to="">
-                    <AiOutlinePhone className="text-2xl text-white" />
-                  </Link>
-                </div>
+          </div>
+        </section>
+        <section className="bg-white rounded-2xl drop-shadow-xl grid grid-cols-2 grid-rows-2 w-3/5 gap-3 grid-flow-col-dense md:w-1/5 p-3">
+          <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Genero:</span> <span className="font-extralight text-gray-700">{organizer.genero}</span></div>
+          <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Telefono:</span> <span className="font-extralight text-gray-700">{organizer.telefono}</span></div>
+          <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(organizer.fecha_nacimiento).getFullYear() - 1}</span></div>
+          <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Ciudad:</span> <span className="font-extralight text-gray-700">{organizer.ciudad}</span></div>
+        </section>
+        { hasCompany() &&
+          <section className="bg-white rounded-2xl drop-shadow-xl p-4 flex flex-col w-4/5 md:w-1/3">
+            <span className="font-semibold text-gray-900 text-base">Empresa:</span> 
+            <h2 className="organizerNameFont mb-2 text-2xl">{organizer.nombre_empresa}</h2>
+            <p className="text-base">{organizer.descripcion_empresa}</p>
+            { hasCompanyLogo() && <img src={organizer.url_logo} alt={`(${organizer.nombre_empresa} logo)`} className="text-sm italic"></img> }
+          </section>
+        }
+        <section className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-1/3 gap-2">
+          <h2 className="font-semibold">Redes Sociales:</h2>
+          <div className="grid grid-cols-2 place-items-center gap-3">
+          {organizer.redes_sociales.map(socialmedia => {
+            return(
+              <div className="flex flex-col items-center hover:scale-110 transition w-fit">
+                <a href={socialmedia.url} className="text-lg hover:underline w-fit">{SocialMedias[socialmedia.nombre.toLowerCase()]}</a>
+                <span className="text-xs">{socialmedia.nombre}</span>
               </div>
-            </div>
+            )
+          })}
           </div>
-        </div>
-
-        <div className="pt-5">
-          <div className="bg-opacity-10 bg-zinc-500 shadow-2xl rounded-lg pt-2">
-            <p className="text-xl pl-5 text-slate-50">Sugerencias</p>
-            <p className="flex pl-5 text-slate-500 text-sm">
-              {" "}
-              <Link to="">
-                <AiFillEye className="mt-1 mr-1" />
-              </Link>{" "}
-              Solo para ti{" "}
-            </p>
-            <p className="pl-5 text-sm text-slate-400">
-              (En este lugar se recomendará al usuario poner cierta información
-              para que el perfil quede más llamativo)
-            </p>
-          </div>
-        </div>
+        </section>
       </main>
     </>
   );

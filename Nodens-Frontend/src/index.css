@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer custom {
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400&display=swap');
+  .organizerNameFont{
+    font-family: 'Noto Sans', sans-serif;
+  }
+
   .fondo1 {
     background: url("./images/Astronauta.gif") no-repeat center center fixed;
     -webkit-background-size: cover;

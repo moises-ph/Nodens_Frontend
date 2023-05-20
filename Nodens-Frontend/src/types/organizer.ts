@@ -2,6 +2,7 @@ export type OrganizerT = {
     IdAuth?: number,
     Name: string,
     Lastname: string,
+    fecha_nacimiento : string,
     telefono: string | number,
     _id?: {$oid: string},
     nombre_empresa : string,
