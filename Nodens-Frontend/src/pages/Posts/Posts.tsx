@@ -73,15 +73,15 @@ const Posts = () => {
 
   return (
     <>
-      <main className="">
-        <section className="bg-gray-900 rounded-b-2xl">
+      <main className="bg-black">
+        <section className="bg-zinc-900 z-50 rounded-b-2xl text-slate-50">
           <div className="pl-3 pt-7">
             <span className="flex flex-row gap-3 items-center">
               <BiUserCircle className="text-4xl" />
               <p>Nombre de perfil</p>
             </span>
           </div>
-          <div className="pt-8 pl-6 shadow-xl rounded-lg h-40">
+          <div className="pt-8 pl-6 shadow-xl rounded-lg h-36">
             <label
               htmlFor=""
               className="w-[85vw] flex items-center gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl"
@@ -98,18 +98,18 @@ const Posts = () => {
             <p className="pt-4">{posts.length} Posts </p>
           </div>
         </section>
-        <section className=" h-screen w-full pt-4">
+        <section className=" h-screen w-full">
           
-          <div className="pl-2 pr-2  bg-black h-screen flex flex-col justify-center items-start">
+          <div className="pl-3 pr-2  bg-black min-h-full flex flex-col justify-start items-start pt-3">
           <div className="pt-2 flex justify-center">
-            <div className="bg-opacity-10 bg-gradient-to-t from-slate-300 to-slate-50 w-72 h-10 rounded-md flex items-center justify-center shadow-xl">
+            <div className="bg-opacity-10 bg-gradient-to-t ml-1 from-slate-300 to-slate-50 w-72 h-10 rounded-md flex items-center justify-center shadow-xl">
               <p>
                 <BiUserCircle className="text-slate-900 text-4xl mr-3" />
               </p>
               <Button
                 variant="primary"
                 onClick={handleShow}
-                className="text-slate-900 pl-2 flex justify-center items-center gap-2"
+                className="text-slate-900 flex justify-center items-center gap-2"
               >
                 Crear publicación{" "}
               </Button>
