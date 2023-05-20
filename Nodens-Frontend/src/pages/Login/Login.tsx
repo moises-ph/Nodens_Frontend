@@ -1,18 +1,14 @@
-import axios from "axios";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { Link, useNavigate } from "react-router-dom";
 import {changeAppRouter} from "../../store/RouterSlice"
 import Swal from 'sweetalert2'
-import { AiOutlineMail, AiOutlineUser } from "react-icons/ai"
+import { AiOutlineUser } from "react-icons/ai"
 import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import {wrapper} from 'axios-cookiejar-support'
-import {CookieJar} from 'tough-cookie'
-import Cookies from "js-cookie";
+import { clientHttp } from "../../services/client";
+
 
 const Login = () => {
-  const jar = new CookieJar();
-  const client = wrapper(axios.create({jar}))
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,11 +44,8 @@ const Login = () => {
         console.log('I was closed by the timer')
       }
     })
-    // fetch('http://4.157.130.212/api/auth/login', {
-    //   body: JSON.stringify(data),
-    //   method: 'POST',
-    // })
-    client.post('http://nodensauth.gqdjevebebg0aba3.eastus.azurecontainer.io/api/auth/login', data)
+    
+    clientHttp().post('https://nodensapim.azure-api.net/auth/api/auth/login', data)
       .then(res =>{
         console.log(res);
         Swal.fire({

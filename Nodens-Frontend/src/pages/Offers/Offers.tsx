@@ -1,222 +1,22 @@
 import { AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
-import { BsSearch, BsPersonSquare } from "react-icons/bs"
+import { BsSearch } from "react-icons/bs"
 import { IndexLink, Loading, Modal, SingleOffer } from "../../components"
 import { OffersT } from "../../types"
-import axios from "axios"
 import { renewToken } from "../../services"
-
-const offersTemp: OffersT[] = [
-	{
-		Title: 'Titulo mas largo para ver que onda',
-		Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!',
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '1',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '1',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'descripcion de los requerimientos 1'
-		},
-		{
-			Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
-		},
-		{
-			Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
-		},
-		{
-			Description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus voluptatem exercitationem recusandae accusantium praesentium quisquam commodi explicabo quas possimus nam expedita inventore vel, tempora deserunt impedit numquam provident dolore totam!'
-		}
-	],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-	{
-		Title: 'Músico con experiencia',
-		Description: "Importante grupo musical requiere para su equipo un Músico con conocimientos avanzados en percusión ",
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '2',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '2',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'Saber tocar varios instrumentos de percusión'
-		}],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-	{
-		Title: 'Oferta 3',
-		Description: 'descripcion de la oferta 3',
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '3',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '3',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'descripcion de los requerimientos 3'
-		}],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-	{
-		Title: 'Oferta 4',
-		Description: 'descripcion de la oferta 4',
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '4',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '4',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'descripcion de los requerimientos 4'
-		}],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-	{
-		Title: 'Oferta 5',
-		Description: 'descripcion de la oferta 5',
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '5',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '5',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'descripcion de los requerimientos 5'
-		}],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-	{
-		Title: 'Oferta 6',
-		Description: 'descripcion de la oferta 6',
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '6',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '6',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'descripcion de los requerimientos 6'
-		}],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-	{
-		Title: 'Oferta 7',
-		Description: 'descripcion de la oferta 7',
-		Creation_Date: new Date(),
-		Event_Date: new Date(),
-		Payment: 150000,
-		OrganizerId: '7',
-		Event_Ubication: {
-			City: 'Cali',
-			Street: '15',
-			Career: '23b',
-			SiteNumber: '#15-48',
-			Town: 'Colon'
-		},
-		Applicant: [{
-			ApplicantId: '7',
-			PostulationDate: new Date()
-		}],
-		Img: 'si',
-		Requeriments: [{
-			Description: 'descripcion de los requerimientos 7'
-		}],
-		Vacants: 15,
-		isAvailable : true,
-		tags : []
-	},
-]
-
+import { clientHttp } from "../../services/client"
 
 const Offers = () => {
-	const client = axios.create({
-		baseURL: 'http://nodensoffers.c8ckgnaca0gagdcg.eastus.azurecontainer.io',
-    headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-	})
 	const [modal, setOpen] = useState(false);
 	const [oferta, setOferta] = useState<OffersT | undefined>()
-	const [offers,setOffers] = useState(offersTemp);
+	const [offers,setOffers] = useState<OffersT[]>([]);
 
 	useEffect(()=> {
 		renewToken();
-		client.get('offers')
-		  .then(res=>console.log(res))
+		clientHttp().get('/offers/offers')
+		  .then(res=>{console.log(res); setOffers(res.data)})
 			.catch(err=>console.log(err))
-	})
+	}, [])
 
 	const searchInput = useRef(null);
 
@@ -232,10 +32,10 @@ const Offers = () => {
 	const searchOffer = (e:any)=>{
 		console.log(e.current.value);
 		if(e.current.value.length === 0){
-			setOffers(offersTemp);
+			setOffers(offers);
 		}
 		else{
-			setOffers(offersTemp.filter(value => value.Title.includes(e.current.value)));
+			setOffers(offers.filter(value => value.Title.includes(e.current.value)));
 		}
 	}
 
@@ -255,10 +55,10 @@ const Offers = () => {
 					</div>
 					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 				</div>
-				<div className="flex flex-col top-[18%] md:top-[16.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
+				<div className="flex flex-col top-[23%] md:top-[16.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
 					{
 						offers.map((offer, i)=> {
-							return offer.isAvailable ? <SingleOffer showModal={showModal} redirect={null} offer={offer} key={i} Key={i.toString()} isHomePage={false} /> : null
+							return <SingleOffer showModal={showModal} redirect={null} offer={offer} key={i} Key={i.toString()} isHomePage={false} /> 
 						})
 					}
 				</div>

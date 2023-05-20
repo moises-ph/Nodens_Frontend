@@ -3,7 +3,7 @@ import { Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
 import { OrganizerT } from '../../types';
 import { useEffect, useState } from 'react'
 import { Genero, Lastname, Name, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
-import axios from 'axios';
+import { clientHttp } from '../../services/client';
 
 const variants = {
   enter: (direction: number) => {
@@ -45,11 +45,7 @@ const OrganizerLog = () => {
   })
 
 	const registerOrganizer = () => {
-    const request = axios.create({
-      baseURL: 'http://40.118.207.63/',
-      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-    });
-    request.post('/Organizer', organizer)
+    clientHttp().post('/organizers/Organizer', organizer)
     .then(res=>{
       console.log(res);
       location.reload();

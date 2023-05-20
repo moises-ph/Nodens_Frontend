@@ -3,31 +3,28 @@ import { Suspense, useEffect, useState } from "react";
 import { Loading, Logo, NavOrganizer } from "../components";
 import { HiMenu } from "react-icons/hi";
 import NavOrganizerRes from "../components/NavOrganizer/NavOrganizerRes";
-import axios from "axios";
 import {lazily} from 'react-lazily';
 import { renewToken } from "../services";
+import { clientHttp } from "../services/client";
+
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
 
   useEffect(()=> {
-    const request = axios.create({
-      baseURL : 'http://nodensorganizers.deengmb3dnb6h4b4.westus.azurecontainer.io/',
-      headers : { Authorization : `Bearer ${localStorage.getItem('authTokenForTheUser')}` }
-    })
     renewToken()
-    request.get("/Organizer")
-    .then(res=>{
-      console.log(res);
-      if(res.data==null) {
-        setOrganizador(false);
-      } else {
-        
-        setOrganizador(true);
-        localStorage.setItem("OrganizerId", res.data._id.$oid)
-      }
-    })
+    setTimeout('', 1000)
+    clientHttp().get("/organizers/Organizer")
+      .then(res=>{
+        console.log(res);
+        if(res.data==null) {
+          setOrganizador(false);
+        } else {
+          setOrganizador(true);
+          localStorage.setItem("OrganizerId", res.data._id.$oid)
+        }
+      })
       .catch(err=>{console.log(err); setOrganizador(false)})
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)

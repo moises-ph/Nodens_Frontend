@@ -2,6 +2,8 @@ import React from 'react'
 import { BsPersonSquare } from 'react-icons/bs'
 
 function SingleOffer(props : any) {
+    const {Creation_Date} = props.offer;
+    const creation_date = new Date(Creation_Date)
 
     const classDiv = `w-full min-h-full flex flex-col p-4 border-2 border-solid border-slate-300 gap-1 rounded-lg transition-colors hover:bg-slate-100 hover:cursor-pointer ${props.isHomePage ? "backdrop-blur-md shadow-md" : null}`
     
@@ -13,7 +15,7 @@ function SingleOffer(props : any) {
             </div>
             <p><span className="text-slate-500">Ubicacion: </span>{props.offer.Event_Ubication.city}, {props.offer.Event_Ubication.Town}</p>
             <p>Pago: {props.offer.Payment}</p>
-            <p className="text-sm">Publicado el {props.offer.Creation_Date.toDateString()}</p>
+            <p className="text-sm">Publicado el {creation_date.toDateString()}</p>
             <p>{props.offer.vacants} vacantes disponibles</p>
         </div>
     )
