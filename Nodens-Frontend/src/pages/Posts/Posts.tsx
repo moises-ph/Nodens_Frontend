@@ -8,9 +8,12 @@ import { useState } from "react";
 const posts: PostT[] = [
   {
     IDAuth: "1",
-    title: "Titulo 1",
+    title: "Vamos a poner algo más largo para ver como se ve",
     content: {
-      text: "texto de post 1",
+      text: "asdasdasdasdasdasdasdasda o ",
+      images: [
+        "Chupame la pija mamaguebo"
+      ],
     },
     date: new Date(),
     likes: 20,
@@ -28,7 +31,7 @@ const posts: PostT[] = [
     IDAuth: "3",
     title: "Titulo 3",
     content: {
-      text: "texto de post 3",
+      text: "texto de post 3", 
     },
     date: new Date(),
     likes: 20,
@@ -46,7 +49,7 @@ const posts: PostT[] = [
     IDAuth: "5",
     title: "Titulo 5",
     content: {
-      text: "texto de post 5",
+      text: "texto de post 5", 
     },
     date: new Date(),
     likes: 20,
@@ -68,12 +71,16 @@ const Posts = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-
   return (
     <>
       <main className="">
-        <section className="">
+        <section className="bg-gray-900 rounded-b-2xl">
+          <div className="pl-3 pt-7">
+            <span className="flex flex-row gap-3 items-center">
+              <BiUserCircle className="text-4xl" />
+              <p>Nombre de perfil</p>
+            </span>
+          </div>
           <div className="pt-8 pl-6 shadow-xl rounded-lg h-40">
             <label
               htmlFor=""
@@ -88,10 +95,12 @@ const Posts = () => {
                 <BsSearch className="text-slate-400" />
               </button>
             </label>
-            <p>{posts.length} Posts </p>
+            <p className="pt-4">{posts.length} Posts </p>
           </div>
         </section>
-        <section className="pb-2">
+        <section className=" h-screen w-full pt-4">
+          
+          <div className="pl-2 pr-2  bg-black h-screen flex flex-col justify-center items-start">
           <div className="pt-2 flex justify-center">
             <div className="bg-opacity-10 bg-gradient-to-t from-slate-300 to-slate-50 w-72 h-10 rounded-md flex items-center justify-center shadow-xl">
               <p>
@@ -141,13 +150,10 @@ const Posts = () => {
               </Modal>
             </div>
           </div>
-        </section>
-        <section className=" h-screen bg-gradient-to-tr from-fuchsia-900 to-purple-300 bg-opacity-40 pt-4">
-          <div className="pl-2 pr-2 flex flex-col justify-center items-start">
-            <div className="flex flex-col gap-1 bg-gradient-to-t from-slate-200 to-slate-50 bg-opacity-10 min-w-full min-h-full rounded-xl shadow-xl">
-              <span className="ml-2 mt-2">{posts[0].IDAuth}</span>
-              <span className="ml-2 mt-2">{posts[0].title}</span>
-              <span className="ml-2 mt-2">{posts[0].content.text}</span>
+            <div className="flex flex-col text-slate-50 text-start gap-1 min-w-full min-h-full">
+              <span className="ml-2 mt-2">{posts[0].IDAuth}</span>              <span className="ml-2 mt-2">{posts[0].title}</span>
+              <span className="ml-2 mt-2 ">{posts[0].content.text}</span>
+              <span className="ml-2 mt-2 ">{posts[0].content.images}</span>
               <span className="ml-2 mt-2">{posts[0].date.getFullYear()}</span>
               <span className="ml-2 mt-2 mb-2">{posts[0].likes}</span>
             </div>
