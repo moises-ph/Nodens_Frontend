@@ -6,9 +6,13 @@ import { Link } from "react-router-dom";
 import { OrganizerT } from "../../types";
 import { Loading } from "../../components";
 import { clientHttp } from "../../services/client";
+import { profilePic, renewToken } from "../../services";
+import Swal from "sweetalert2";
 
 const OrganizerProfile = () => {
-  const image = useRef(null)
+  const imageInput = useRef(null);
+  const image = useRef(null);
+  const [email, setEmail] = useState<string>();
   const [organizer, setOrganizer] = useState<OrganizerT>();
   const id = localStorage.getItem("OrganizerId")
 
@@ -17,21 +21,46 @@ const OrganizerProfile = () => {
     setColor(e);
   };
 
+  const getOrganizer = () => {
+    renewToken();
+    clientHttp().get(`/organizers/Organizer`)
+      .then(res => {console.log(res);setOrganizer(res.data)})  
+      .catch(err=> console.log(err));
+  }
+
+  const getOrganizerEmail = () => {
+    clientHttp().get(`/auth/api/user/${organizer?.IdAuth}`)
+      .then(res => setEmail(res.data.Email))
+      .catch(err =>{
+        if(err.response.status === 401) return renewToken()
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: err.data.message,
+          showConfirmButton: false,
+          timer: 1000
+        });
+      })
+  }
+
   const [color2, setColor2] = useState("white");
   const change2 = (a: any) => {
     setColor2(a);
   };
 
-  const handleProfile = () => {
-    console.log(image.current.files);
-
+  const handleProfile = async () => {
+    await profilePic("/organizers/Organizer/profile",imageInput.current!.files);
+    getOrganizer();
   }
 
   useEffect(()=> {    
-    clientHttp().get(`/organizers/Organizer/${id}`)
-      .then(res => {console.log(res);setOrganizer(res.data)})  
-      .catch(err=> console.log(err))
+    getOrganizer();
+    // getOrganizerEmail();
   }, [])
+
+  useEffect(() => {
+    console.log(image);
+  }, [image])
 
   if (!organizer) return <Loading />
   return (
@@ -40,11 +69,13 @@ const OrganizerProfile = () => {
         <div className="pt-10 shadow-2xl">
           <div className="flex  h-[40rem] bg-zinc-500 z-10 bg-opacity-10 rounded-2xl justify-start flex-col shadow-2xl">
             <div className="flex bg-zinc-300 rounded-2xl justify-start w-[100%] bg-opacity-10 h-52">
-              <button className="ml-4 text-9xl">
+              <button className="ml-4 text-9xl" onClick={()=>imageInput.current.click()}>
+              <input type="file" accept="images/*" onChange={()=>handleProfile()} ref={imageInput} className="hidden"/>
                 {
                   organizer.url_foto_perfil.length < 1 ?
-                  <><input type="file" accept="images/*" onChange={()=>handleProfile()} ref={image} className="hidden"/><BiUserCircle onClick={()=>image.current.click()} className="text-black mt-10 z-20" /></>
-                  : <></>
+                  <><BiUserCircle  className="text-black mt-10 z-20" /></>
+                  : 
+                  <><img ref={image} src={organizer.url_foto_perfil} loading="lazy" /></>
                 }
               </button>
             </div>
