@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react'
-import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales, Name, Lastname} from './Inputs'
+import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, Experiencia, Telefono, RedesSociales, Name, Lastname, Descripcion} from './Inputs'
 import { renewToken } from '../../services';
 import { clientHttp } from '../../services/client';
 
@@ -91,6 +91,7 @@ const MusicianLog = () => {
     <FechaNacimiento handler={handler}/>,
     <Name goBack={goBack} handler={handler}/>,
     <Lastname goBack={goBack} handler={handler}/>,
+    <Descripcion goBack={goBack} handler={handler} />,
     <Genero goBack={goBack} handler={handler}/>,
     <Pais goBack={goBack} handler={handler}/>, 
     <Ciudad goBack={goBack} handler={handler}/>,

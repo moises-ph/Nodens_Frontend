@@ -1,11 +1,13 @@
 import { FaUserCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 
 const SingleProfile = (props: any) => {
   const classDiv = `w-full min-h-full flex flex-col p-4 border-2 border-solid border-slate-300 gap-1 rounded-lg transition-colors hover:bg-slate-100 hover:cursor-pointer ${props.isHomePage ? "backdrop-blur-md shadow-md" : null}`
     return (
       <div onClick={()=> props.showModal(props.profile)} key={parseInt(props.Key)} className={classDiv}>
-        <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
+        {props.profile.url_foto_perfil 
+          ? <img src={props.profile.url_foto_perfil} className="w-16 h-16 object-cover rounded-full"/> 
+          : <FaUserCircle className="text-[3rem] ml-2 mt-6"/>
+        }
          <div className="pl-4">
          <p>
           {props.profile.educacion.map((name: any, index: any) => {
