@@ -1,8 +1,10 @@
 import { ProfileT } from "../../types";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { IndexLink, ModalProfile, SingleProfile } from "../../components";
+import { IndexLink, Loading, ModalProfile, SingleProfile } from "../../components";
 import { BsSearch } from "react-icons/bs";
+import { clientHttp } from "../../services/client";
+import { renewToken } from "../../services";
 
 export const profiles: ProfileT[] = [
   {
@@ -236,9 +238,16 @@ export const profiles: ProfileT[] = [
 const Profile = () => {
   const [modal, setOpen] = useState(false);
 	const [profile, setProfile] = useState<ProfileT | undefined>()
-	const [pfps,setPfps] = useState(profiles);
+	const [pfps,setPfps] = useState<ProfileT[]>([]);
 
   const searchInput = useRef(null)
+
+  useEffect(()=> {
+    renewToken();
+    clientHttp().get("/musicians/musician/all")
+      .then(res => {console.log(res); setPfps(res.data)}).
+      catch(err=> console.log(err));
+  }, [])
 
   const showModal = (perfil: ProfileT) => {
     console.log(modal);
@@ -261,6 +270,7 @@ const Profile = () => {
 		}
 	}
 
+  if(!pfps) return <Loading />
   return (
     <>
       <main className="h-full overflow-y-hidden">
@@ -276,7 +286,7 @@ const Profile = () => {
 					</div>
 					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{pfps.length}</span> Perfiles</p>
 				</div>
-        <section className="flex flex-col top-[18%] md:top-[16.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
+        <section className="flex flex-col top-[18%] md:top-[19.666667%] pt-7 absolute w-full md:w-2/5 overflow-y-scroll gap-6 p-2">
           <div>
             {
               pfps.map((prof, i)=>{

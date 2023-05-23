@@ -13,7 +13,7 @@ const Profile = ({
       <button onClick={closeModal}>
         <BsChevronLeft />
       </button>
-      <h1 className='text-3xl'>{profile?.Instrumentos[0].Nombre}</h1>
+      <h1 className='text-3xl'>{profile?.instrumentos[0].nombre}</h1>
     </>
   )
 }

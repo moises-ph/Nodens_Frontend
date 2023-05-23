@@ -8,20 +8,20 @@ const SingleProfile = (props: any) => {
         <Link to=""><FaUserCircle className="text-[3rem] ml-2 mt-6"/></Link>
          <div className="pl-4">
          <p>
-          {props.profile.Educacion.map((name: any, index: any) => {
+          {props.profile.educacion.map((name: any, index: any) => {
             return (
               <span className="" key={index}>
-                <p className="text-2xl ">{name.Nombre}</p>
+                <p className="text-2xl ">{name.nombre}</p>
               </span>
             );
           })}
         </p>
-        <p className="text-lg">{props.profile.Experiencia}</p>
+        <p className="text-lg">{props.profile.experiencia}</p>
         <p className="flex">
-          {props.profile.Instrumentos.map((instrumentos: any, inst: any) => {
+          {props.profile.instrumentos.map((instrumentos: any, inst: any) => {
             return (
               <span className="flex align-center justify-center" key={inst}>
-                <p>{instrumentos.Nombre},</p>
+                <p>{instrumentos.nombre},</p>
               </span>
             );
           })}

@@ -1,30 +1,30 @@
 export type InstrumentoT = {
-    Nombre: String;
-    Nivel: String;
+    nombre: String;
+    nivel: String;
   };
   
   export type ProfileT = {
     IdAuth ?: string;
-    Fecha_Nacimiento: Date;
-    Instrumentos: InstrumentoT[];
-    GenerosMusicales: String;
-    Pais: String;
-    Ciudad: String;
-    Experiencia: String;
-    Educacion: [
+    fecha_nacimiento: Date;
+    instrumentos: InstrumentoT[];
+    generosMusicales: String;
+    pais: String;
+    ciudad: String;
+    experiencia: String;
+    educacion: [
       {
-        Nombre: String;
-        Institucion: String;
-        Fecha_Inicio: Date;
-        Fecha_Fin: Date;
+        nombre: String;
+        institucion: String;
+        fecha_inicio: Date;
+        fecha_fin: Date;
       }
     ];
-    Url_Foto_Perfil: String;
-    Url_Video_Presentacion: String;
-    Redes_Sociales: [
+    url_foto_perfil: String;
+    url_video_presentacion: String;
+    redes_sociales: [
       {
-        Nombre: String;
-        Url: String;
+        nombre: String;
+        url: String;
       }
     ];
   };
