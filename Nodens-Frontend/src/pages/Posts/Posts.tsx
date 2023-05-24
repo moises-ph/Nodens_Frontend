@@ -2,6 +2,7 @@ import { BsSearch } from "react-icons/bs";
 import { PostT } from "../../types";
 import { BiUserCircle } from "react-icons/bi";
 import {  AiOutlinePlus, AiFillHome  } from "react-icons/ai"
+import { BsSun, BsFillMoonFill } from "react-icons/bs"
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import { useState } from "react";
@@ -72,17 +73,26 @@ const Posts = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const  [handlechange, sethandleChange] = useState("black");
+
+  const Change = () =>{
+
+  }
+
   return (
     <>
       <main className="bg-black">
         <section className="bg-zinc-800 z-50 rounded-b-2xl text-slate-50">
-          <div className="pl-3 pt-7">
+          <div className="pl-3 pt-7 flex gap-20">
             <span className="flex flex-row gap-3 items-center">
               <BiUserCircle className="text-4xl" />
               <p>Nombre de perfil</p>
             </span>
+            <Button onClick={(c)=>{handlechange ? "black" : "slate-500"}} className={`flex items-center text-${handlechange}`}>
+              <BsFillMoonFill className="w-10"/>
+            </Button>
           </div>
-          <div className="pt-8 pl-6 shadow-xl rounded-lg h-36">
+          <div className="pt-8 pl-6 shadow-xl rounded-lg h-32">
             <label
               htmlFor=""
               className="w-[85vw] flex items-center gap-2 h-12 bg-slate-200 text-slate-900 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl"
