@@ -43,13 +43,6 @@ const Offer = ({ oferta, closeModal}: { oferta: OffersT | undefined; closeModal:
               </p>
             );
           })}
-          {/* {oferta?.Applicants.map((Apliccants, key2) => (
-            <>
-              <div key={key2} className="pl-2 pt-2">
-                <p className="">{Apliccants.PostulationDate.toDateString()}</p>
-              </div>
-            </>
-          ))} */}
         </div>
       </div>
     </>

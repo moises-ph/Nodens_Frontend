@@ -66,62 +66,9 @@ const OrganizerProfile = () => {
   }
 
   useEffect(()=> {    
-    // setOrganizer({
-    //   Name: "Moises",
-    //   Lastname: "Pineda",
-    //   fecha_nacimiento: "2005-01-01",
-    //   telefono: "123456789",
-    //   nombre_empresa: "Si",
-    //   descripcion_empresa: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam amet asperiores eum, voluptatum esse saepe maxime, sapiente perferendis dolor dicta animi cum hic sed reprehenderit eos quas rem ratione officia",
-    //   pais: "Colombia",
-    //   ciudad: "Armenia",
-    //   url_foto_perfil: "https://res.cloudinary.com/dx9vdom9p/image/upload/v1684541629/profileOrg7.jpg",
-    //   url_logo : "",
-    //   genero: "Hombre",
-    //   redes_sociales: [
-    //     {
-    //       nombre: "Facebook",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "Instagram",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "TikTok",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "Twitter",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "Linkedin",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "Snapchat",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "Youtube",
-    //       url: "facebook.com"
-    //     },
-    //     {
-    //       nombre: "Whatsapp",
-    //       url: "facebook.com"
-    //     }
-    //   ],
-    //   IdAuth: 7
-    // });
-    // setEmail("mois.mp8@gmail.com");
     getOrganizer();
     getOrganizerEmail();
   }, [])
-
-  useEffect(() => {
-    console.log(image);
-  }, [image])
 
   if (!organizer) return <Loading />
   return (

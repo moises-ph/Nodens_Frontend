@@ -9,7 +9,7 @@ import { BiHeartCircle } from "react-icons/bi"
 const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undefined, closeModal : any}) => {
 	const variants = {
 		open: {
-			translateY: window.innerWidth > 768 ? '22.1%' : '20%'
+			translateY: window.innerWidth > 768 ? '25.1%' : '20%'
 		},
 		closed : {
 			translateY: window.innerWidth > 768 ? '33%' : '-100%'
@@ -24,7 +24,7 @@ const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undef
 	<motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='md:h-[82%] h-[100%] overflow-y-scroll md:left-[40%] p-4 pb-2 fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
+		className='md:h-[72%] h-[100%] overflow-y-scroll md:left-[40%] p-4 pb-2 fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
 		exit={{translateY: '120vh'}}
 	>
 		<Offer closeModal={closeModal} oferta={oferta}/>
