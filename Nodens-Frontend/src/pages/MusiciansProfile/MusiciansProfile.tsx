@@ -2,7 +2,6 @@ import { BsPersonSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { profiles } from '../Profiles/Profiles'
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { MusicianT } from "../../types";
 import { clientHttp } from "../../services/client";
 
@@ -22,7 +21,6 @@ const MusiciansProfile = () => {
           <BsPersonSquare className="text-6xl mt-8 text-blue-900" />
           <div className="flex justify-center items-center flex-col gap-3 pb-4 text-xl">
             <p className="w-28 text-center ">SEBASTIÁN GARCÍA</p>
-            <p>{/*user.pais}, {user.ciudad*/}</p>
           </div>
         </div>
         <div className="flex justify-evenly items-center">
@@ -38,12 +36,12 @@ const MusiciansProfile = () => {
           <p>Mi nombre es Sebastián soy un músico con {/*user.experiencia*/} de experiencia,
           he tocado {/*user.generosMusicales.map((g, i)=><span key={i}>{g}, </span>)*/} en cuanto a generos musicales se refiere.</p>
           <p>Soy del pais de {/*user.pais} de la ciudad de {user.ciudad*/}.</p>
-          <p>{profiles[0].Educacion.map((Edu, index)=>(
+          <p>{user.educacion.map((Edu, index)=>(
             <>
               <div key={index}>
 
-                  <p>Inicié mis estudios en el año {Edu.Fecha_Inicio.getFullYear()} en la institución educativa llamada {Edu.Institucion},
-                  terminé mi {Edu.Nombre} en el año {Edu.Fecha_Fin.getFullYear()}.</p>
+                  <p>Inicié mis estudios en el año {Edu.fecha_Inicio.getFullYear()} en la institución educativa llamada {Edu.Institucion},
+                  terminé mi {Edu.nombre} en el año {Edu.fecha_fin.getFullYear()}.</p>
               </div>
             </>
           ))}</p>
@@ -62,6 +60,3 @@ const MusiciansProfile = () => {
 };
 
 export default MusiciansProfile;
-
-
-/*Primero descripción, después datos personales, ubiación luego el resto de datos faltantes tales como: Experiencia, Instrumentos, Educación */ 
