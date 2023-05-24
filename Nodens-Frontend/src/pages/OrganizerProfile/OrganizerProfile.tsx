@@ -40,14 +40,19 @@ const OrganizerProfile = () => {
     clientHttp().get(`/auth/api/user/${organizer?.IdAuth}`)
       .then(res => setEmail(res.data.email))
       .catch(err =>{
-        if(err.response.status === 401) return renewToken()
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: err.data.message,
-          showConfirmButton: false,
-          timer: 1000
-        });
+        if(err.response.status === 401){
+          renewToken();
+          getOrganizerEmail();
+        }
+        else{
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: err.data.message,
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
       })
   }
 
@@ -153,9 +158,9 @@ const OrganizerProfile = () => {
         <section className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-1/3 gap-2">
           <h2 className="font-semibold">Redes Sociales:</h2>
           <div className="grid grid-cols-2 place-items-center gap-3">
-          {organizer.redes_sociales.map(socialmedia => {
+          {organizer.redes_sociales.map((socialmedia, index) => {
             return(
-              <div className="flex flex-col items-center hover:scale-110 transition w-fit">
+              <div key={index} className="flex flex-col items-center hover:scale-110 transition w-fit">
                 <a href={socialmedia.url} className="text-lg hover:underline w-fit">{SocialMedias[socialmedia.nombre.toLowerCase()]}</a>
                 <span className="text-xs">{socialmedia.nombre}</span>
               </div>
