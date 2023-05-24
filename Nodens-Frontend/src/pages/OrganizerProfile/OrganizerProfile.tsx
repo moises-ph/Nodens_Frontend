@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 import DefaultUserImg from "../../assets/DefaultUser.webp";
 import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp, BsYoutube } from "react-icons/bs";
 import { FaTiktok } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg"
+import { Link } from "react-router-dom";
 
 const OrganizerProfile = () => {
   const imageInput = useRef<HTMLInputElement>(null);
@@ -50,7 +53,7 @@ const OrganizerProfile = () => {
 
   const hasCompany = () : boolean => organizer!.nombre_empresa.length > 0 && organizer!.descripcion_empresa.length > 0
 
-  const hasCompanyLogo = () => organizer!.url_logo.length > 0
+  const hasCompanyLogo = () => organizer!.url_logo != null
 
   const handleProfile = async () => {
     await profilePic("/organizers/Organizer/profile",(imageInput.current!.files));
@@ -118,7 +121,7 @@ const OrganizerProfile = () => {
   if (!organizer) return <Loading />
   return (
     <>
-      <main className="min-h-screen bg-zinc-200 flex flex-col items-center gap-4 p-4"> 
+      <main className="min-h-screen bg-zinc-200 flex flex-col items-center gap-4"> 
         <section className=" flex flex-col gap-1 items-center px-4">
           <div className="w-full h-[300px] shadow-lg absolute bg-slate-700 bg-opacity-30 md:w-1/3 z-[1] rounded-b-full"></div>
           <div className="flex flex-col gap-1 items-center my-4 p-4 z-10">
@@ -126,6 +129,10 @@ const OrganizerProfile = () => {
             <div className="flex flex-col items-center">
               <h1 className="text-center text-3xl organizerNameFont"><span className="font-semibold">{organizer.Name}</span> <span className="organizerNameFont font-thin">{organizer.Lastname}</span></h1>
               <h3 className="font-light">{email}</h3>
+            </div>
+            <div className="flex w-full items-center justify-around">
+              <Link to="/changeProfile" className="bg-slate-300 rounded p-1 shadow hover:scale-110 hover:shadow-lg transition"><FiEdit className="w-7 h-7"/></Link>
+              <button className="bg-slate-300 rounded p-1 shadow hover:scale-110 hover:shadow-lg transition"><CgProfile className="w-7 h-7"/> </button>
             </div>
           </div>
         </section>

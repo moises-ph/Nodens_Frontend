@@ -7,6 +7,7 @@ import {lazily} from 'react-lazily';
 import { renewToken } from "../services";
 import { clientHttp } from "../services/client";
 import { OrganizerT } from "../types";
+import { ChangeOrganizerProfile } from "../pages";
 
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
@@ -71,6 +72,7 @@ export const AppOrganizerRouter = () => {
               <Route path="/create-offer" element={<CreateOffer />} />
               <Route path="/offers" element={<OrganizerOffers />}></Route>
               <Route path="/offers/:id" element={<SingleOffer />}></Route>
+              <Route path="/changeProfile" element={<ChangeOrganizerProfile />}></Route>
               <Route path="*" element={<Error />} />
             </Routes>
           </Suspense>
