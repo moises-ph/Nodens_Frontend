@@ -18,4 +18,3 @@ export * from "./ApplicantsOffers"
 export * from "./SingleOffer"
 export * from "./SingleOfferApplicant"
 export * from "./VerifyUser";
-export * from "./ChangeOrganizerProfile";

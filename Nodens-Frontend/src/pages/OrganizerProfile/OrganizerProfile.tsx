@@ -9,15 +9,22 @@ import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp,
 import { FaTiktok } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg"
-import { Link } from "react-router-dom";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { ImCancelCircle } from "react-icons/im";
 
 const OrganizerProfile = () => {
   const imageInput = useRef<HTMLInputElement>(null);
   const image = useRef(null);
+  const SocialMediaName = useRef<HTMLSelectElement>(null);
+  const SocialMediaUrl = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState<string>();
   const [organizer, setOrganizer] = useState<OrganizerT>();
   const [editProfileMode, setEditMode] = useState<boolean>(false);
-  const id = localStorage.getItem("OrganizerId")
+  const [socialMedias, setSocials] = useState<{nombre:string, url: string}[]>([]);
+  const [addingSocial, setAddingSocial] = useState<boolean>(false);
+  const [willSendCompany, setSendCompany] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const SocialMedias : any = {
     instagram : <BsInstagram className="h-10 w-10 text-slate-50 bg-gradient-to-tr via-pink-600 from-indigo-600 to-amber-500 rounded-xl drop-shadow"/>,
@@ -30,11 +37,27 @@ const OrganizerProfile = () => {
     whatsapp : <BsWhatsapp className="h-10 w-10 text-green-600 drop-shadow" />
   }
 
-  const getOrganizer = () => {
-    renewToken();
+
+  const deleteSocial = (e : any) => {
+    e.preventDefault();+
+    setSocials(lastSocials => lastSocials.filter((social,i) => i != e.target.parentNode.value))
+  }
+
+  const addSocialMedia = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setSocials([... socialMedias, {nombre : SocialMediaName.current!.value, url : SocialMediaUrl.current!.value}]);
+    setAddingSocial(false);
+  }
+
+  const getOrganizer = async () => {
     clientHttp().get(`/organizers/Organizer`)
       .then(res => {console.log(res);setOrganizer(res.data)})  
-      .catch(err=> console.log(err));
+      .catch( async (err) => {
+        if(err.response.status === 401){
+          await renewToken();
+          getOrganizer();
+        }
+      });
   }
 
   const getOrganizerEmail = () => {
@@ -61,9 +84,66 @@ const OrganizerProfile = () => {
 
   const hasCompanyLogo = () => organizer!.url_logo != null
 
+  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const form : FormData = new FormData(e.target as HTMLFormElement);
+    const entries : any = Object.fromEntries(form);
+    console.log(entries);
+    let updatedOrganizer : OrganizerT = {
+      redes_sociales : socialMedias,
+      Name : entries.Name.length > 0 ? entries.Name : organizer!.Name,
+      Lastname : entries.Lastname.length > 0 ? entries.Lastname : organizer!.Lastname,
+      fecha_nacimiento : entries.fecha_nacimiento,
+      telefono : entries.telefono.toString().length > 0 ? entries.telefono : organizer!.telefono,
+      nombre_empresa : willSendCompany ? entries.nombre_empresa.length > 0 ? entries.nombre_empresa : organizer!.nombre_empresa : "",
+      descripcion_empresa : willSendCompany ? entries.descripcion_empresa.length > 0 ? entries.descripcion_empresa : organizer!.descripcion_empresa : "",
+      ciudad : entries.ciudad.length > 0 ? entries.ciudad : organizer!.ciudad,
+      pais : organizer!.pais,
+      genero : entries.genero.length > 0 ? entries.genero : organizer!.genero,
+      url_foto_perfil : organizer!.url_foto_perfil
+    };
+
+    clientHttp().put('/organizers/Organizer',updatedOrganizer)
+      .then(res => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1000
+        });
+        getOrganizer();
+        setEditMode(false);
+      })
+      .catch(err => {
+        console.log(err);
+        if(err.response.status === 401){
+          renewToken();
+          getOrganizer();
+        }
+        else{
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: err.data.message,
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
+      })
+    
+  }
+
   const handleProfile = async () => {
     await profilePic("/organizers/Organizer/profile",(imageInput.current!.files));
     getOrganizer();
+  }
+
+  const cancelProfileEdition = (e : any) => {
+    e.preventDefault();
+    setSocials(organizer!.redes_sociales);
+    setEditMode(false);
   }
 
   useEffect(()=> {    
@@ -71,13 +151,26 @@ const OrganizerProfile = () => {
     getOrganizerEmail();
   }, [])
 
+  useEffect(()=> {
+    if(organizer != null) {
+      setSocials(organizer.redes_sociales);
+      setSendCompany(hasCompany());
+      setLoading(false)
+    }
+  },[organizer])
+
+  useEffect(()=>{
+    console.log(socialMedias);
+  },[socialMedias])
+
   if (!organizer) return <Loading />
   return (
     <>
-      <main className="flex flex-col items-center md:flex-row justify-evenly w-full bg-zinc-200 pb-3">
-        <section className="h-screen flex w-full md:w-1/2 mb-4 overflow-scroll flex-col items-center gap-4"> 
+      <main className="flex flex-col items-start md:flex-row justify-evenly w-full h-full bg-zinc-200 pb-3">
+      {loading && <div className={`absolute right-4 md:${editProfileMode ? '' : 'right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
+        <section className="slide-top min-h-screen flex w-full md:w-1/2 flex-col items-center gap-4 transition"> 
           <div className=" flex flex-col gap-1 items-center px-4">
-            <div className="w-full h-[300px] shadow-lg absolute bg-slate-700 bg-opacity-30 md:w-1/3 z-[1] rounded-b-full"></div>
+            <div className="min-w-[70%] h-[300px] shadow-lg absolute bg-slate-700 bg-opacity-30 md:w-1/3 z-[1] rounded-b-full" />
             <div className="flex flex-col gap-1 items-center my-4 p-4 z-10">
               <img src={organizer.url_foto_perfil || DefaultUserImg} loading="lazy" alt="Organizer Profile" className="rounded-full h-40 w-40 object-cover mb-1" />
               <div className="flex flex-col items-center">
@@ -93,7 +186,7 @@ const OrganizerProfile = () => {
           <div className="bg-white rounded-2xl drop-shadow-xl grid grid-cols-2 grid-rows-2 w-3/5 gap-3 grid-flow-col-dense md:w-2/5 p-3">
             <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Genero:</span> <span className="font-extralight text-gray-700">{organizer.genero}</span></div>
             <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Telefono:</span> <span className="font-extralight text-gray-700">{organizer.telefono}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(organizer.fecha_nacimiento).getFullYear() - 1}</span></div>
+            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(organizer.fecha_nacimiento).getFullYear()}</span></div>
             <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Ciudad:</span> <span className="font-extralight text-gray-700">{organizer.ciudad}</span></div>
           </div>
           { hasCompany() &&
@@ -120,59 +213,104 @@ const OrganizerProfile = () => {
         </section>
         {editProfileMode && 
         <>
-          <section className="md:w-1/2 w-full flex justify-center overflow-auto">
-            <form className=' bg-blue-800 shadow-2xl transition hover:drop-shadow-2xl p-5 w-5/6 md:w-2/3 gap-3 rounded flex flex-col items-center'>
-              <h2 className='text-2xl my-2 text-slate-100 font-semibold'>Edita tu información Personal</h2>
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <label className='text-slate-100 font-semibold ' htmlFor='name'>Nombre</label>
-                  <input placeholder={organizer?.Name} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='name' type='text' name='Name'/>
+          <section className="md:w-1/2 w-full min-h-screen pt-4 flex justify-center overflow-scroll">
+            <form onSubmit={handleSubmit} className='slide-top h-fit bg-transparent p-2 w-5/6 md:w-2/3 gap-3 rounded flex flex-col items-center'>
+              <h2 className='text-3xl my-2 text-black font-semibold'>Edita tu información Personal</h2>
+              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className='flex flex-col w-full'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='name'>Nombre</label>
+                    <input placeholder={organizer?.Name} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='name' type='text' name='Name'/>
+                </div>
+                <div className='flex flex-col w-full'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='lastname'>Apellido</label>
+                    <input placeholder={organizer?.Lastname} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='lastname' type='text' name='Lastname'/>
+                </div>
               </div>
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <label className='text-slate-100 font-semibold ' htmlFor='lastname'>Apellido</label>
-                  <input placeholder={organizer?.Lastname} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='lastname' type='text' name='Lastname'/>
+              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className='w-full flex flex-col'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='phone'>Telefono</label>
+                    <input placeholder={organizer?.telefono as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='phone' type='number' name='telefono'/>
+                </div>
+                <div className='w-full flex flex-col'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='city'>Ciudad</label>
+                    <input placeholder={organizer?.ciudad} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='city' type='text' name='ciudad'/>
+                </div>
               </div>
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <label className='text-slate-100 font-semibold ' htmlFor='birthdate'>Fecha de nacimiento</label>
-                  <input value={organizer?.fecha_nacimiento} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
+              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className='w-full flex flex-col'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='birthdate'>Fecha de nacimiento</label>
+                    <input defaultValue={organizer?.fecha_nacimiento} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
+                </div>
+                <div className='w-full flex flex-col'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='gender'>Genero</label>
+                    <select name="genero" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='gender'>
+                        <option selected={organizer?.genero.toLowerCase() === "mujer"} value="Mujer">Mujer</option>
+                        <option selected={organizer?.genero.toLowerCase() === "hombre"} value="Hombre">Hombre</option>
+                        <option selected={organizer?.genero.toLowerCase() === "otro"} value="Otro">Otro</option>
+                    </select>
+                </div>
               </div>
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <label className='text-slate-100 font-semibold ' htmlFor='phone'>Telefono</label>
-                  <input placeholder={organizer?.telefono as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='phone' type='number' name='telefono'/>
+              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className="w-fit flex gap-2 items-center justify-center">
+                  <h3 className="text-slate-100 font-semibold text-xl">Empresa</h3>
+                  <button onClick={(e) => {e.preventDefault(); setSendCompany(!willSendCompany)}}>{willSendCompany ?  <ImCancelCircle className="text-red-600" /> : <IoIosAddCircleOutline className="text-white" />}</button>
+                </div>
+                {willSendCompany ?
+                  <>
+                    <div className="w-full flex flex-col">
+                      <label htmlFor="companyname" className="text-slate-100 font-semibold">Nombre de la Empresa</label>
+                      <input id="companyname" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' name="nombre_empresa" placeholder={organizer?.nombre_empresa} />
+                    </div>
+                    <div className="w-full flex flex-col">
+                      <label htmlFor="companydescription" className="text-slate-100 font-semibold">Descripción de la Empresa</label>
+                      <textarea id="companydescription" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' placeholder={organizer?.descripcion_empresa} name="descripcion_empresa" />
+                    </div>
+                  </>
+                  :
+                  <></>
+                }
               </div>
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <label className='text-slate-100 font-semibold ' htmlFor='city'>Ciudad</label>
-                  <input placeholder={organizer?.ciudad} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='city' type='text' name='ciudad'/>
-              </div>
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <label className='text-slate-100 font-semibold ' htmlFor='gender'>Genero</label>
-                  <select className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='gender'>
-                      <option selected={organizer?.genero.toLowerCase() === "mujer"} value="Mujer">Mujer</option>
-                      <option selected={organizer?.genero.toLowerCase() === "hombre"} value="Hombre">Hombre</option>
-                      <option selected={organizer?.genero.toLowerCase() === "otro"} value="Otro">Otro</option>
-                  </select>
-              </div>
-              {hasCompany() &&
-                <>
-                  <div className="w-5/6  md:w-2/3 flex flex-col">
-                    <label htmlFor="companyname" className="text-slate-100 font-semibold">Nombre de la Empresa</label>
-                    <input id="companyname" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' name="nombre_empresa" placeholder={organizer?.nombre_empresa} />
+              <div className='w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg'>
+                  <div className="flex items-center justify-center w-fit gap-1">
+                    <span className='text-slate-100 font-semibold'>Redes Sociales</span>
+                    <button className="h-3 w-3 rounded-full hover:scale-110 transition" onClick={(e) => {e.preventDefault(); setAddingSocial(!addingSocial)}}>{addingSocial ?  <ImCancelCircle className="text-red-600" /> : <IoIosAddCircleOutline className="text-white" />}</button>
                   </div>
-                  <div className="w-5/6  md:w-2/3 flex flex-col">
-                    <label htmlFor="companydescription" className="text-slate-100 font-semibold">Descripción de la Empresa</label>
-                    <textarea id="companydescription" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' placeholder={organizer?.descripcion_empresa} name="descripcion_empresa" />
-                  </div>
-                </>
-              }
-              <div className='w-5/6  md:w-2/3 flex flex-col'>
-                  <span className='text-slate-100 font-semibold'>Redes Sociales</span>
+                  <div className="flex justify-evenly content-start p-2 flex-wrap gap-3 max-w-full">
                   {
-                      organizer.redes_sociales.map((element :{nombre:string, url: string} | null , index : number)=>
-                      <div className='w-fit flex-col p-2 bg-blue-200 rounded shadow-xl hover:scale-110 transition' key={index}>
-                          <button className='w-fit flex flex-col items-center'>{SocialMedias[element?.nombre.toLocaleLowerCase() as string]} <span>{element?.nombre}</span></button>
+                      socialMedias.map((element :{nombre:string, url: string} | null , index : number)=>
+                      <div className='w-24 flex flex-col gap-1 items-center justify-center p-2 bg-blue-200 rounded shadow-xl ' key={index}>
+                          <button className='flex flex-col items-center hover:scale-110 transition'>{SocialMedias[element?.nombre.toLocaleLowerCase() as string]} <span>{element?.nombre}</span></button>
+                          <button onClick={deleteSocial} value={index} className='hover:scale-110 transition hover:text-red-500'><RiDeleteBinLine /></button>
                       </div>)
                   }
-                  <button onClick={(e) => e.preventDefault()}>Añadir</button>
+                  </div>
+                  {
+                    addingSocial &&
+                    <div className="flex flex-col items-center gap-1 p-4 w-full">
+                    <div className="w-full">
+                      <label className="text-slate-100 font-semibold" htmlFor="socialname">Nombre de la Red Social</label>
+                      <select defaultValue={""} ref={SocialMediaName} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id="socialname">
+                        <option selected>Selecciona una</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="youtube">Youtube</option>
+                        <option value="linkedin">Linkedin</option>
+                        <option value="snapchat">Snapchat</option>
+                        <option value="tiktok">Tiktok</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="whatsapp">Whatsapp</option>
+                      </select>
+                    </div>
+                    <div className="w-full">
+                      <label className="text-slate-100 font-semibold" htmlFor="socialurl">Url de la Red Social</label>
+                      <input ref={SocialMediaUrl} className='w-full rounded shadow hover:drop-shadow-lg transition text-sm p-1' id="socialurl" placeholder="Ingresa el link de la red Social" type="url"  />
+                    </div>
+                    <button className="p-2 bg-blue-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition " onClick={addSocialMedia}>Añadir</button>
+                  </div>
+                  }
               </div>
+              <button type="submit" className="p-4 bg-blue-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition ">Actualizar Perfil</button>
+              <button onClick={cancelProfileEdition} type="button" className="p-4 flex items-center justify-center gap-3 bg-red-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition ">Cancelar <ImCancelCircle className="w-5 h-5" /></button>
           </form>
           </section>
         </>}
