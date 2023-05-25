@@ -13,6 +13,7 @@ export const AppMusicianRouter = () => {
   
   useEffect(()=> {
     renewToken()
+    setTimeout(() => {}, 1000);
     clientHttp().get('/musicians/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
     .then(res=>{
       console.log(res);
@@ -20,6 +21,8 @@ export const AppMusicianRouter = () => {
         setMusician(false);
       } else {
         setMusician(true);
+        localStorage.setItem('musicianName', `${res.data.Name} ${res.data.Lastname}`)
+        localStorage.setItem('musicianId', res.data.IdAuth)
       }
     })
       .catch(err=>{console.log(err); setMusician(false)})
