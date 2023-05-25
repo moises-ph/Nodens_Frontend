@@ -36,10 +36,6 @@ function ChangeOrganizerProfile() {
         clientHttp().get(`/organizers/Organizer`)
           .then(res => {console.log(res);setOrganizer(res.data); setLoading(false)})  
           .catch(err=> {
-            if(err.response?.status === 401){
-                getOrganizer();
-            }
-            else{
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
@@ -47,7 +43,6 @@ function ChangeOrganizerProfile() {
                     showConfirmButton: false,
                     timer: 1000
                 });
-            }
           });
     }
 
@@ -100,26 +95,9 @@ function ChangeOrganizerProfile() {
                 <span className='text-slate-100 font-semibold'>Redes Sociales</span>
                 {
                     socialMedias.map((element :{nombre:string, url: string} | null , index : number)=>
-                    <div className='max-w-full flex-col p-3 bg-blue-400 rounded shadow-xl' key={index}>
-                        <div className='mb-3'>
-                            <label htmlFor={`name${index+1}`}>Nombre de la red social #{index+1}</label>
-                            <select onChange={(e) => changeSocialMediaName(e,index)} className='p-1 rounded font-semibold' id={`name${index+1}`}>
-                                <option defaultValue={""}>Select</option>
-                                <option selected={element?.nombre.toLowerCase() === "instagram"} value="instagram">Instagram</option>
-                                <option selected={element?.nombre.toLowerCase() === "facebook"} value="facebook">Facebook</option>
-                                <option selected={element?.nombre.toLowerCase() === "tiktok"} value="tiktok">Tiktok</option>
-                                <option selected={element?.nombre.toLowerCase() === "twitter"} value="twitter">Twitter</option>
-                                <option selected={element?.nombre.toLowerCase() === "linkedin"} value="linkedin">Linkedin</option>
-                                <option selected={element?.nombre.toLowerCase() === "snapchat"} value="snapchat">Snapchat</option>
-                                <option selected={element?.nombre.toLowerCase() === "youtube"} value="youtube">Youtube</option>
-                                <option selected={element?.nombre.toLowerCase() === "whatsapp"} value="whatsapp">Whatsapp</option>
-                            </select>
-                            <a href={element?.url} className="text-lg hover:underline w-fit">{SocialMedias[element?.nombre.toLowerCase() as string]}</a>
-                        </div>
-                        <div>
-                            <label htmlFor={`name${index+1}`}>Link de la red social #{index+1}</label>
-                            <input className='p-1 rounded font-semibold' id={`name${index+1}`} value={element?.url} name='url' />
-                        </div>
+                    <div className='w-fit flex-col p-2 bg-blue-200 rounded shadow-xl hover:scale-110 transition' key={index}>
+                        
+                        <button className='w-fit flex flex-col items-center'>{SocialMedias[element?.nombre.toLocaleLowerCase() as string]} <span>{element?.nombre}</span></button>
                     </div>)
                 }
                 <button onClick={()=>setSocialMedias([...socialMedias, null])}>Añadir</button>
