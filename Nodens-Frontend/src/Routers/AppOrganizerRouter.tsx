@@ -14,38 +14,18 @@ export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<OrganizerT | undefined>(undefined);
 
   useEffect(()=> {
-    // renewToken()
-    // setTimeout('', 1000)
-    // clientHttp().get("/organizers/Organizer")
-    //   .then(res=>{
-    //     console.log(res);
-    //     if(res.data==null) {
-    //       setOrganizador(false);
-    //     } else {
-    //       setOrganizador(true);
-    //     }
-    //   })
-    //   .catch(err=>{console.log(err); setOrganizador(false)})
-    setOrganizador({
-      Name: "Moises",
-      Lastname: "Pineda",
-      fecha_nacimiento: "2000-01-01",
-      telefono: "123455",
-      nombre_empresa: "Si",
-      descripcion_empresa: "Si",
-      pais: "Colombia",
-      ciudad: "Armenia",
-      url_foto_perfil: "https://res.cloudinary.com/dx9vdom9p/image/upload/v1684541629/profileOrg7.jpg",
-      url_logo : "",
-      genero: "Hombre",
-      redes_sociales: [
-        {
-          nombre: "Facebook",
-          url: "facebook.com"
+    renewToken()
+    setTimeout('', 1000)
+    clientHttp().get("/organizers/Organizer")
+      .then(res=>{
+        console.log(res);
+        if(res.data==null) {
+          setOrganizador(false);
+        } else {
+          setOrganizador(res.data);
         }
-      ],
-      IdAuth: 7
-    });
+      })
+      .catch(err=>{console.log(err); setOrganizador(false)})
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
   if(organizador === undefined ) return <Loading />
