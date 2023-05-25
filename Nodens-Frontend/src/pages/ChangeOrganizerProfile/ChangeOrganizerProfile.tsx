@@ -76,6 +76,7 @@ function ChangeOrganizerProfile() {
                 <label className='text-slate-100 font-semibold ' htmlFor='lastname'>Apellido</label>
                 <input placeholder={currentOrganizer?.Lastname} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='lastname' type='text' name='Lastname'/>
             </div>
+            
             <div className='w-5/6  md:w-2/3 flex flex-col'>
                 <label className='text-slate-100 font-semibold ' htmlFor='birthdate'>Fecha de nacimiento</label>
                 <input value={currentOrganizer?.fecha_nacimiento} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
