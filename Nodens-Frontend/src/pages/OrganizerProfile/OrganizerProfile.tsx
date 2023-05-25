@@ -104,7 +104,7 @@ const OrganizerProfile = () => {
         }
         <section className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-1/3 gap-2">
           <h2 className="font-semibold">Redes Sociales:</h2>
-          <div className="grid grid-cols-2 place-items-center gap-3">
+          <div className="flex flex-row items-center justify-evenly max-w-full gap-3">
           {organizer.redes_sociales.map((socialmedia, index) => {
             return(
               <div key={index} className="flex flex-col items-center hover:scale-110 transition w-fit">

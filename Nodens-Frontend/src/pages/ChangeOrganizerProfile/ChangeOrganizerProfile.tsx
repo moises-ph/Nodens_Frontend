@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { renewToken } from '../../services';
 import { clientHttp } from '../../services/client';
 import { OrganizerT } from '../../types';
@@ -65,7 +65,7 @@ function ChangeOrganizerProfile() {
 
     return (
     <main className='min-h-screen w-full flex flex-col items-center justify-center'>
-        {loading && <div className='absolute top-[4.25rem] flex items-center justify-center'><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div><span>Cargando información del Organizador...</span></div>}
+        {loading && <div className='absolute top-[4.25rem] md:top-[4.75rem] flex items-center justify-center'><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div><span>Cargando información del Organizador...</span></div>}
         <form className=' bg-blue-800 shadow-2xl transition hover:drop-shadow-2xl p-5 w-5/6 md:w-1/3 gap-3 rounded flex flex-col items-center'>
             <h2 className='text-2xl my-2 text-slate-100 font-semibold'>Edita tu información Personal</h2>
             <div className='w-5/6  md:w-2/3 flex flex-col'>
