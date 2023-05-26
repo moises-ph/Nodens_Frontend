@@ -9,7 +9,6 @@ import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp,
 import { FaTiktok } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg"
-import { Link } from "react-router-dom";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { ImCancelCircle } from "react-icons/im";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -17,7 +16,6 @@ import { RiDeleteBinLine } from "react-icons/ri";
 
 const MusiciansProfile = () => {
   const imageInput = useRef<HTMLInputElement>(null);
-  const image = useRef(null);
   const [email, setEmail] = useState<string>();
   const id = localStorage.getItem("musicianId")
   const [user, setUser] = useState<MusicianT>();
@@ -26,7 +24,7 @@ const MusiciansProfile = () => {
   const [editProfileMode, setEditMode] = useState<boolean>(false);
   const [socialMedias, setSocials] = useState<{nombre:string, url: string}[]>([]);
   const [addingSocial, setAddingSocial] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const SocialMedias : any = {
     instagram : <BsInstagram className="h-10 w-10 text-slate-50 bg-gradient-to-tr via-pink-600 from-indigo-600 to-amber-500 rounded-xl drop-shadow"/>,
@@ -136,6 +134,7 @@ const MusiciansProfile = () => {
     setLoading(true);
     await profilePic("/musicians/musician/profile",(imageInput.current!.files));
     getUser();
+    setLoading(false);
   }
 
   const cancelProfileEdition = (e : any) => {

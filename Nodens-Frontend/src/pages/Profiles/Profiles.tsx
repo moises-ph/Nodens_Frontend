@@ -263,10 +263,10 @@ const Profile = () => {
   const searchOffer = (e:any)=>{
 		console.log(e.current.value);
 		if(e.current.value.length === 0){
-			setPfps(profiles);
+			setPfps(pfps);
 		}
 		else{
-			setPfps(profiles.filter(value => value.Instrumentos[0].Nombre.includes(e.current.value)));
+			setPfps(pfps.filter(value => value.instrumentos[0].nombre.includes(e.current.value)));
 		}
 	}
 
@@ -286,7 +286,7 @@ const Profile = () => {
 					</div>
 					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{pfps.length}</span> Perfiles</p>
 				</div>
-        <section className="flex flex-col top-[18%] md:top-[19.666667%] pt-7 absolute w-full md:w-2/5 overflow-y-scroll gap-6 p-2">
+        <section className="flex flex-col top-[29%] md:top-[19.666667%] pt-7 absolute w-full md:w-2/5 overflow-y-scroll gap-6 p-2">
           <div>
             {
               pfps.map((prof, i)=>{
