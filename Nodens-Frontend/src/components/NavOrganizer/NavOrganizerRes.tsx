@@ -4,7 +4,7 @@ import { IndexLink } from "../IndexLink"
 const NavOrganizerRes = () => {
   const navigation = useNavigate()
   const close = () => {
-		localStorage.removeItem('authTokenForTheUser')
+    localStorage.clear()
 		navigation('/', {replace: true})
 		location.reload()
 	}

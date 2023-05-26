@@ -6,14 +6,14 @@ import NavOrganizerRes from "../components/NavOrganizer/NavOrganizerRes";
 import {lazily} from 'react-lazily';
 import { renewToken } from "../services";
 import { clientHttp } from "../services/client";
+import { OrganizerT } from "../types";
 
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
-  const [organizador, setOrganizador] = useState<boolean | undefined>(undefined);
+  const [organizador, setOrganizador] = useState<OrganizerT | boolean | undefined>(undefined);
 
-  useEffect(()=> {
-    renewToken()
+  const getOrganizer = async() => {
     setTimeout('', 1000)
     clientHttp().get("/organizers/Organizer")
       .then(res=>{
@@ -21,11 +21,22 @@ export const AppOrganizerRouter = () => {
         if(res.data==null) {
           setOrganizador(false);
         } else {
-          setOrganizador(true);
-          localStorage.setItem("OrganizerId", res.data._id.$oid)
+          setOrganizador(res.data);
         }
       })
-      .catch(err=>{console.log(err); setOrganizador(false)})
+      .catch(async err=>{
+        if(err.response.status === 401){
+          await renewToken();
+        }
+        else{
+          console.log(err); 
+          setOrganizador(false);
+        }
+      })
+  }
+
+  useEffect(()=> {
+    getOrganizer();
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
   if(organizador === undefined ) return <Loading />

@@ -4,7 +4,7 @@ import { OffersT } from '../../types'
 
 const InfoOffer = ({offer}:{offer: OffersT}) => {
   return (
-    <div className="md:bg-slate-200">
+    <div className="md:bg-slate-200 md:w-2/3 min-h-screen">
       <div className="px-2 h-auto pb-4 bg-blue-200  pt-4 rounded-b-2xl">
         <h1 className="text-4xl font-semibold text-slate-900">{offer.Title}</h1>
         <p>{offer.Event_Ubication.City} - {offer.Event_Ubication.Town}</p>
@@ -14,7 +14,7 @@ const InfoOffer = ({offer}:{offer: OffersT}) => {
         <div className="grid grid-cols-4 gap-3">
           {
             offer.tags.map((tag, i) => {
-              return <span key={i} className="border-[1px] border-slate-300 flex justify-center items-center rounded-xl">{tag}</span>
+              return <span key={i} className="border-[1px] border-slate-300 flex justify-center items-center rounded-xl w-fit p-1">{tag}</span>
             })
           }
         </div>
