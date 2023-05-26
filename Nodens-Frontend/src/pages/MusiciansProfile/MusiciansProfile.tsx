@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { MusicianT } from "../../types";
+import { MusicianT, InstrumentoT } from "../../types";
 import { Loading } from "../../components";
 import { clientHttp } from "../../services/client";
 import { profilePic, renewToken } from "../../services";
@@ -12,10 +12,14 @@ import { CgProfile } from "react-icons/cg"
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { ImCancelCircle } from "react-icons/im";
 import { RiDeleteBinLine } from "react-icons/ri";
-
+import { GrFormClose } from "react-icons/gr";
 
 const MusiciansProfile = () => {
   const imageInput = useRef<HTMLInputElement>(null);
+  const instrumentRef = useRef<HTMLInputElement>(null);
+  const nivelRef = useRef<HTMLSelectElement>(null);
+  const [instrumentos, setInstrumentos] =useState<InstrumentoT[]>([]);
+  const [generos, setGeneros] =useState<string[]>([]);
   const [email, setEmail] = useState<string>();
   const id = localStorage.getItem("musicianId")
   const [user, setUser] = useState<MusicianT>();
@@ -85,16 +89,11 @@ const MusiciansProfile = () => {
       telefono : entries.telefono.toString().length > 0 ? entries.telefono : user!.telefono,
       ciudad : entries.ciudad.length > 0 ? entries.ciudad : user!.ciudad,
       pais : user!.pais,
-      educacion: [{
-        nombre: '',
-        fecha_Fin: new Date(),
-        fecha_Inicio: new Date(),
-        institucion: ''
-      }],
+      educacion: [],
       experiencia: '',
       generosMusicales: [],
-      instrumentos: [],
-      url_video_presentacion: '',
+      instrumentos: instrumentos,
+      url_video_presentacion: [],
       genero : entries.genero.length > 0 ? entries.genero : user!.genero,
       url_foto_perfil : user!.url_foto_perfil
     };
@@ -129,6 +128,38 @@ const MusiciansProfile = () => {
       })
     
   }
+
+  const deleteInstrument = (e: any,i:number) => {
+    e.preventDefault();
+    setInstrumentos(instrumentos.filter((e, index) => index != i))
+  }
+
+  const addInstrument = (e: any) => {
+    e.preventDefault();
+    if(instrumentRef.current!.value && nivelRef.current!.value){
+      if(!instrumentos.find(e => e.nombre === instrumentRef.current!.value)){
+        setInstrumentos([...instrumentos, 
+          {nombre: instrumentRef.current!.value, nivel: nivelRef.current!.value}]
+        )
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa un instrumento diferente',
+          timer: 3000  
+        })  
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un instrumento y un nivel de experiencia',
+        timer: 3000  
+      })
+    }
+  }
+
+
 
   const handleProfile = async () => {
     setLoading(true);
@@ -214,6 +245,40 @@ const MusiciansProfile = () => {
                 </div>
               </div>
               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className="w-full flex flex-col gap-2">
+                  <label className='text-slate-100 font-semibold ' htmlFor='phone'>Instrumentos</label>
+                  <div className="w-full flex flex-col">
+                    {
+                      instrumentos.map((ins, i)=> {
+                        return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{ins.nombre} <GrFormClose onClick={(e)=>deleteInstrument(e, i)}/> </span>
+                      })
+                    }
+                  </div>
+                  <input ref={instrumentRef} placeholder="Instrumento" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' type='text'/>
+                  <select ref={nivelRef} placeholder="Nivel" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1'>
+                    <optgroup>
+                      <option value="" >Nivel de Experiencia</option>
+                      <option value="Menos de 1 año">Menos de 1 año</option>
+                      <option value="Mas de 1 año">Mas de 1 año</option>
+                      <option value="Mas de 2 años">Mas de 2 años</option>
+                      <option value="Mas de 5 años">Mas de 5 años</option>
+                    </optgroup>
+                  </select>
+                  <button onClick={(e)=>addInstrument(e)}>Añadir</button>
+                </div>  
+              </div>
+              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className='w-full flex flex-col'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='phone'>Instrumentos</label>
+                    <input placeholder={user?.telefono as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='phone' type='number' name='intrumentos'/>
+                </div>
+                <div className='w-full flex flex-col'>
+                    <label className='text-slate-100 font-semibold ' htmlFor='city'>Experiencia</label>
+                    <textarea placeholder={user?.ciudad} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='city' name='Experiencia'/>
+                </div>
+              </div>
+              
+              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
                 <div className='w-full flex flex-col'>
                     <label className='text-slate-100 font-semibold ' htmlFor='birthdate'>Fecha de nacimiento</label>
                     <input defaultValue={user?.fecha_nacimiento} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
@@ -266,7 +331,7 @@ const MusiciansProfile = () => {
                   </div>
                   }
               </div>
-              <button type="submit" className="p-4 bg-blue-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition ">Actualizar Perfil</button>
+              <input type="submit" className="p-4 bg-blue-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition " value='Actualizar Perfil'/>
               <button onClick={cancelProfileEdition} type="button" className="p-4 flex items-center justify-center gap-3 bg-red-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition ">Cancelar <ImCancelCircle className="w-5 h-5" /></button>
           </form>
           </section>
