@@ -11,10 +11,9 @@ import { OrganizerT } from "../types";
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
-  const [organizador, setOrganizador] = useState<OrganizerT | undefined>(undefined);
+  const [organizador, setOrganizador] = useState<OrganizerT | boolean | undefined>(undefined);
 
-  useEffect(()=> {
-    renewToken()
+  const getOrganizer = async() => {
     setTimeout('', 1000)
     clientHttp().get("/organizers/Organizer")
       .then(res=>{
@@ -25,7 +24,19 @@ export const AppOrganizerRouter = () => {
           setOrganizador(res.data);
         }
       })
-      .catch(err=>{console.log(err); setOrganizador(false)})
+      .catch(async err=>{
+        if(err.response.status === 401){
+          await renewToken();
+        }
+        else{
+          console.log(err); 
+          setOrganizador(false);
+        }
+      })
+  }
+
+  useEffect(()=> {
+    getOrganizer();
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
   if(organizador === undefined ) return <Loading />

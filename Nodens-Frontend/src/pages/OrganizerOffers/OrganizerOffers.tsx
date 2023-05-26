@@ -8,10 +8,13 @@ const OrganizerOffers = () => {
   const [offers, setOffers] = useState([]);
 
   useEffect(()=> {
-    renewToken()
     clientHttp().get('/offers/offers/organizer')
       .then(res => {console.log(res);setOffers(res.data)})
-      .catch(err => console.log(err))
+      .catch(async err => {
+        if(err.response.status === 401){
+          await renewToken()
+        }
+      })
   }, [])
 
   if(!offers) return <Loading />
@@ -19,14 +22,14 @@ const OrganizerOffers = () => {
     <>
       <main  className="w-full flex justify-center pt-[2%]">
       <table className="w-[93%] h-4/5 flex flex-col overflow-x-scroll items-centers rounded-3xl shadow-xl mb-14">
-          <thead className="sm:w-full w-[180vw] h-[8%]  flex items-center pt-4 bg-slate-700 rounded-t-3xl">
+          <thead className="sm:w-full w-[180vw] h-10 flex items-center bg-slate-700 rounded-t-3xl">
           <tr className="flex flex-row w-full h-full justify-around items-center px-5">
-            <td className="w-[16.666%] flex justify-center text-gray-50 text-sm font-bold ">Title</td>
-            <td className="w-[16.666%] flex justify-center text-gray-50 text-sm font-bold ">Fecha de Evento</td>
-            <td className="w-[16.666%] flex justify-center text-gray-50 text-sm font-bold ">Fecha de Creacion</td>
-            <td className="w-[16.666%] flex justify-center text-gray-50 text-sm font-bold ">Pago</td>
-            <td className="w-[16.666%] flex justify-center text-gray-50 text-sm font-bold ">Vacantes</td>
-            <td className="w-[16.666%] flex justify-center text-gray-50 text-sm font-bold ">Disponibilidad</td>
+            <td className="w-[16.666%] flex justify-center text-center text-gray-50 text-sm font-bold ">Title</td>
+            <td className="w-[16.666%] flex justify-center text-center text-gray-50 text-sm font-bold ">Fecha de Evento</td>
+            <td className="w-[16.666%] flex justify-center text-center text-gray-50 text-sm font-bold ">Fecha de Creacion</td>
+            <td className="w-[16.666%] flex justify-center text-center text-gray-50 text-sm font-bold ">Pago</td>
+            <td className="w-[16.666%] flex justify-center text-center text-gray-50 text-sm font-bold ">Vacantes</td>
+            <td className="w-[16.666%] flex justify-center text-center text-gray-50 text-sm font-bold ">Disponibilidad</td>
           </tr>
           </thead>
           <tbody className="overflow-scroll shadow-2xl rounded-b-3xl sm:w-full w-[180vw] h-full flex flex-col items-center bg-teal-600">
