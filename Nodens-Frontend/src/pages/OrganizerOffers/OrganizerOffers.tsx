@@ -3,18 +3,24 @@ import { Loading } from "../../components";
 import { renewToken } from "../../services";
 import { Link } from "react-router-dom";
 import { clientHttp } from "../../services/client";
+import { OffersT } from "../../types";
 
 const OrganizerOffers = () => {
-  const [offers, setOffers] = useState([]);
+  const [offers, setOffers] = useState<OffersT[]>([]);
 
-  useEffect(()=> {
+  const getOffers = ()=>{
     clientHttp().get('/offers/offers/organizer')
       .then(res => {console.log(res);setOffers(res.data)})
       .catch(async err => {
         if(err.response.status === 401){
-          await renewToken()
+          await renewToken();
+          getOffers();
         }
       })
+  }
+
+  useEffect(()=> {
+    getOffers();
   }, [])
 
   if(!offers) return <Loading />

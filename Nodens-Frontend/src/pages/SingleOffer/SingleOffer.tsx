@@ -4,17 +4,26 @@ import { useParams } from "react-router-dom";
 import { renewToken } from "../../services";
 import { OffersT } from "../../types";
 import { clientHttp } from "../../services/client";
+import { AxiosError } from "axios";
 
 
 const SingleOffer = () => {
   const params = useParams();
   const [offer, setOffer] = useState<OffersT>();
 
-  useEffect(()=> {
-    renewToken()
+  const getSingleOffer = () => {
     clientHttp().get(`/offers/offers/${params.id}`)
       .then(res=>{console.log(res); setOffer(res.data)})
-      .catch(err=>console.log(err))
+      .catch(async (err : AxiosError<{message : string}>)=>{
+        if(err.response!.status === 401){
+          await renewToken();
+          getSingleOffer();
+        }
+      })
+  }
+
+  useEffect(()=> {
+    getSingleOffer();
   }, [])
   if(!offer) return <Loading />
   return (

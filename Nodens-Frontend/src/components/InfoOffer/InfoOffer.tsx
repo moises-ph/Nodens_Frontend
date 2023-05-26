@@ -14,7 +14,7 @@ const InfoOffer = ({offer}:{offer: OffersT}) => {
         <div className="grid grid-cols-4 gap-3">
           {
             offer.tags.map((tag, i) => {
-              return <span key={i} className="border-[1px] border-slate-300 flex justify-center items-center rounded-xl">{tag}</span>
+              return <span key={i} className="border-[1px] border-slate-300 flex justify-center items-center rounded-xl w-fit p-1">{tag}</span>
             })
           }
         </div>

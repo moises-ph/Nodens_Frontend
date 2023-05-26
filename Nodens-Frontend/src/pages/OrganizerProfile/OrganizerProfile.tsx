@@ -115,10 +115,10 @@ const OrganizerProfile = () => {
         getOrganizer();
         setEditMode(false);
       })
-      .catch(err => {
+      .catch(async err => {
         console.log(err);
         if(err.response.status === 401){
-          renewToken();
+          await renewToken();
           getOrganizer();
         }
         else{
