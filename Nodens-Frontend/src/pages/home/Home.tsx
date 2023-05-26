@@ -217,7 +217,7 @@ function Home() {
 	}
 
 	const Redirect = () =>{
-		location.replace("/login");
+		
 	}
 
   return (
@@ -243,7 +243,7 @@ function Home() {
 			{
 				offers.length > 0 ? 
 				offers.map((offer, i)=> {
-					return <><SingleOffer showModal={null} redirect={Redirect} offer={offer} key={i} Key={i.toString()} isHomePage={true} /></>
+					return <Link to="/login"><SingleOffer showModal={null} redirect={Redirect} offer={offer} key={i} Key={i.toString()} isHomePage={true} /></Link>
 				}) 
 				: 
 				<>
