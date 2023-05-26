@@ -1,3 +1,4 @@
+
 import { AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { BsSearch } from "react-icons/bs"
@@ -55,7 +56,7 @@ const Offers = () => {
 					</div>
 					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 				</div>
-				<div className="flex flex-col top-[23%] md:top-[22.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
+				<div className="flex flex-col top-[29%] md:top-[22.666667%] pt-3 absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
 					{
 						offers.map((offer, i)=> {
 							return <SingleOffer showModal={showModal} redirect={null} offer={offer} key={i} Key={i.toString()} isHomePage={false} /> 
