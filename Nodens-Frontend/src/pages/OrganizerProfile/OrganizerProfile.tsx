@@ -15,7 +15,6 @@ import { ImCancelCircle } from "react-icons/im";
 
 const OrganizerProfile = () => {
   const imageInput = useRef<HTMLInputElement>(null);
-  const image = useRef(null);
   const SocialMediaName = useRef<HTMLSelectElement>(null);
   const SocialMediaUrl = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState<string>();
@@ -136,6 +135,7 @@ const OrganizerProfile = () => {
   }
 
   const handleProfile = async () => {
+    setLoading(true);
     await profilePic("/organizers/Organizer/profile",(imageInput.current!.files));
     getOrganizer();
   }
@@ -159,19 +159,16 @@ const OrganizerProfile = () => {
     }
   },[organizer])
 
-  useEffect(()=>{
-    console.log(socialMedias);
-  },[socialMedias])
-
   if (!organizer) return <Loading />
   return (
     <>
-      <main className="flex flex-col items-start md:flex-row justify-evenly w-full h-full bg-zinc-200 pb-3">
-      {loading && <div className={`absolute right-4 md:${editProfileMode ? '' : 'right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
+      <main className="flex flex-col items-start md:flex-row justify-evenly w-full h-full bg-zinc-200 pb-3 md:pt-5">
+      {loading && <div className={`absolute right-4 ${editProfileMode ? '' : 'md:right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
         <section className="slide-top min-h-screen flex w-full md:w-1/2 flex-col items-center gap-4 transition"> 
           <div className=" flex flex-col gap-1 items-center px-4">
             <div className="min-w-[70%] h-[300px] shadow-lg absolute bg-slate-700 bg-opacity-30 md:w-1/3 z-[1] rounded-b-full" />
             <div className="flex flex-col gap-1 items-center my-4 p-4 z-10">
+              <input onChange={handleProfile} type="file" className="hidden" ref={imageInput}/>
               <img src={organizer.url_foto_perfil || DefaultUserImg} loading="lazy" alt="Organizer Profile" className="rounded-full h-40 w-40 object-cover mb-1" />
               <div className="flex flex-col items-center">
                 <h1 className="text-center text-3xl organizerNameFont"><span className="font-semibold">{organizer.Name}</span> <span className="organizerNameFont font-thin">{organizer.Lastname}</span></h1>
@@ -179,7 +176,7 @@ const OrganizerProfile = () => {
               </div>
               <div className="flex w-full items-center justify-around">
                 <button onClick={()=> setEditMode(!editProfileMode)} className={`${editProfileMode ? 'bg-blue-500' : 'bg-slate-300'} rounded p-1 shadow hover:scale-110 hover:shadow-lg transition`}><FiEdit className="w-7 h-7"/></button>
-                <button className="bg-slate-300 rounded p-1 shadow hover:scale-110 hover:shadow-lg transition"><CgProfile className="w-7 h-7"/> </button>
+                <button onClick={()=> imageInput.current!.click() } className="bg-slate-300 rounded p-1 shadow hover:scale-110 hover:shadow-lg transition"><CgProfile className="w-7 h-7"/> </button>
               </div>
             </div>
           </div>
@@ -199,7 +196,7 @@ const OrganizerProfile = () => {
           }
           <div className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-2/3 gap-2">
             <h2 className="font-semibold">Redes Sociales:</h2>
-            <div className="grid grid-cols-2 place-items-center gap-3">
+            <div className="flex justify-evenly flex-wrap place-items-center gap-3">
             {organizer.redes_sociales.map((socialmedia, index) => {
               return(
                 <div key={index} className="flex flex-col items-center hover:scale-110 transition w-fit">
@@ -213,7 +210,7 @@ const OrganizerProfile = () => {
         </section>
         {editProfileMode && 
         <>
-          <section className="md:w-1/2 w-full min-h-screen pt-4 flex justify-center overflow-scroll">
+          <section className="md:w-1/2 w-full min-h-screen md:pt-8 pt-4 flex justify-center overflow-scroll">
             <form onSubmit={handleSubmit} className='slide-top h-fit bg-transparent p-2 w-5/6 md:w-2/3 gap-3 rounded flex flex-col items-center'>
               <h2 className='text-3xl my-2 text-black font-semibold'>Edita tu información Personal</h2>
               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
@@ -250,13 +247,13 @@ const OrganizerProfile = () => {
                     </select>
                 </div>
               </div>
-              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+              <div className={`w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg ${willSendCompany ? 'expand-down' : ''} z-10`}>
                 <div className="w-fit flex gap-2 items-center justify-center">
                   <h3 className="text-slate-100 font-semibold text-xl">Empresa</h3>
                   <button onClick={(e) => {e.preventDefault(); setSendCompany(!willSendCompany)}}>{willSendCompany ?  <ImCancelCircle className="text-red-600" /> : <IoIosAddCircleOutline className="text-white" />}</button>
                 </div>
                 {willSendCompany ?
-                  <>
+                  <div className="w-full appear-down z-0">
                     <div className="w-full flex flex-col">
                       <label htmlFor="companyname" className="text-slate-100 font-semibold">Nombre de la Empresa</label>
                       <input id="companyname" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' name="nombre_empresa" placeholder={organizer?.nombre_empresa} />
@@ -265,7 +262,7 @@ const OrganizerProfile = () => {
                       <label htmlFor="companydescription" className="text-slate-100 font-semibold">Descripción de la Empresa</label>
                       <textarea id="companydescription" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' placeholder={organizer?.descripcion_empresa} name="descripcion_empresa" />
                     </div>
-                  </>
+                  </div>
                   :
                   <></>
                 }
@@ -280,14 +277,14 @@ const OrganizerProfile = () => {
                       socialMedias.map((element :{nombre:string, url: string} | null , index : number)=>
                       <div className='w-24 flex flex-col gap-1 items-center justify-center p-2 bg-blue-200 rounded shadow-xl ' key={index}>
                           <button className='flex flex-col items-center hover:scale-110 transition'>{SocialMedias[element?.nombre.toLocaleLowerCase() as string]} <span>{element?.nombre}</span></button>
-                          <button onClick={deleteSocial} value={index} className='hover:scale-110 transition hover:text-red-500'><RiDeleteBinLine /></button>
+                          <button onClick={deleteSocial} value={index} className='hover:scale-110 transition hover:text-white hover:bg-red-500 rounded-full w-5 h-5 flex justify-center items-center bg-transparent text-red-500'><RiDeleteBinLine /></button>
                       </div>)
                   }
                   </div>
                   {
                     addingSocial &&
-                    <div className="flex flex-col items-center gap-1 p-4 w-full">
-                    <div className="w-full">
+                    <div className="flex flex-col items-center p-4 w-full gap-2">
+                    <div className="w-full flex flex-col">
                       <label className="text-slate-100 font-semibold" htmlFor="socialname">Nombre de la Red Social</label>
                       <select defaultValue={""} ref={SocialMediaName} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id="socialname">
                         <option selected>Selecciona una</option>
