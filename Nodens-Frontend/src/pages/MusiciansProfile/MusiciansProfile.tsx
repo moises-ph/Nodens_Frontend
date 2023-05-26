@@ -93,7 +93,7 @@ const MusiciansProfile = () => {
       experiencia: '',
       generosMusicales: [],
       instrumentos: instrumentos,
-      url_video_presentacion: [],
+      url_video_presentacion: "",
       genero : entries.genero.length > 0 ? entries.genero : user!.genero,
       url_foto_perfil : user!.url_foto_perfil
     };
@@ -281,7 +281,7 @@ const MusiciansProfile = () => {
               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
                 <div className='w-full flex flex-col'>
                     <label className='text-slate-100 font-semibold ' htmlFor='birthdate'>Fecha de nacimiento</label>
-                    <input defaultValue={user?.fecha_nacimiento} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
+                    <input defaultValue={user!.fecha_nacimiento.toString()} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
                 </div>
                 <div className='w-full flex flex-col'>
                     <label className='text-slate-100 font-semibold ' htmlFor='gender'>Genero</label>

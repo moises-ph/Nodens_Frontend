@@ -26,7 +26,7 @@ const ModalProfile = ({open, profile, closeModal}:{open:boolean, profile: Profil
 		className='md:h-[82%] h-[67%] overflow-y-scroll md:left-[40%] p-4 pb-2 fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
 		exit={{translateY: '100vh'}}
 	>
-		<Profile closeModal={closeModal} profile={profile} />
+		<Profile closeModal={closeModal} profile={profile as ProfileT} />
 			
 		<div  className='flex mt-2 md:m-0 justify-center items-end w-full pr-16'>
 				<Link to="" className='fixed h-10 w-[10rem] rounded-2xl shadow-xl shadow-slate-400 flex items-center justify-center bg-blue-300 transition-all duration-200 '>Postularme</Link>

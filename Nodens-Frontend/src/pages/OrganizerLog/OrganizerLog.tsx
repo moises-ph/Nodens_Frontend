@@ -41,7 +41,8 @@ const OrganizerLog = () => {
       
     ],
     "Lastname": '',
-    "Name": ''
+    "Name": '',
+    fecha_nacimiento : ""
   })
 
 	const registerOrganizer = () => {
