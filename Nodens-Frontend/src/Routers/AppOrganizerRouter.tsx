@@ -27,6 +27,7 @@ export const AppOrganizerRouter = () => {
       .catch(async err=>{
         if(err.response.status === 401){
           await renewToken();
+          getOrganizer();
         }
         else{
           console.log(err); 
@@ -55,7 +56,7 @@ export const AppOrganizerRouter = () => {
         <main className={organizador ? 'pt-16 md:pt-11' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={ organizador ? <AppOrganizer /> : <OrganizerLog /> } />
+              <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador}/> : <OrganizerLog /> } />
               <Route path="/posts" element={<Posts />} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />

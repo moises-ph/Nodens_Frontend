@@ -11,7 +11,7 @@ export type InstrumentoT = {
     telefono: string;
     descripcion: string;
     instrumentos: InstrumentoT[];
-    generosMusicales: String;
+    generosMusicales: String[];
     pais: String;
     ciudad: String;
     experiencia: String;
