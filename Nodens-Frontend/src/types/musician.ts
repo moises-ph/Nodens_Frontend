@@ -5,6 +5,7 @@ export type MusicianT = {
   fecha_nacimiento: Date;
   Name: string;
   Lastname: string;
+  descripcion: string;
   instrumentos: InstrumentoT[];
   generosMusicales: string[];
   genero: string;
@@ -19,6 +20,6 @@ export type MusicianT = {
     fecha_Fin: Date;
   }[];
   url_foto_perfil: string;
-  url_video_presentacion: string;
+  url_video_presentacion: string[];
   redes_sociales: {nombre: string;url: string}[];
 };
