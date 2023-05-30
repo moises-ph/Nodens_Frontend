@@ -35,7 +35,7 @@ const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undef
 	<motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='md:h-[72%] sm:h-[80%] h-[90%] overflow-y-scroll md:left-[40%] z-30 p-4 pt-8 pb-2 fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
+		className='md:h-[72%] sm:h-[90%] h-[79%] overflow-y-scroll md:left-[40%] z-30 p-4 pt-8 pb-2 fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
 		exit={{translateY: '120vh'}}
 	>
 		<Offer closeModal={closeModal} oferta={oferta}/>
