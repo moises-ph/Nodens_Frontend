@@ -5,11 +5,13 @@ import { IndexLink, Loading, ModalProfile, SingleProfile } from "../../component
 import { BsSearch } from "react-icons/bs";
 import { clientHttp } from "../../services/client";
 import { renewToken } from "../../services";
+import { GoSettings } from "react-icons/go";
 
 const Profile = () => {
   const [modal, setOpen] = useState(false);
 	const [profile, setProfile] = useState<ProfileT | undefined>()
 	const [pfps,setPfps] = useState<ProfileT[]>([]);
+  const [showFilterOptions, setFilter] = useState<boolean>(false);
 
   const searchInput = useRef(null)
 
@@ -45,9 +47,10 @@ const Profile = () => {
   return (
     <>
       <main className="h-full overflow-y-hidden">
-        <div className="pt-8 pb-3 fixed h-min md:h-1/6 w-full flex flex-col  items-center md:flex-row ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
-					<div className="flex flex-row gap-4 m-0 h-min left-0">
+        <div className="pt-8 md:p-8 pb-3 fixed h-min w-full flex flex-col  items-center md:flex-row ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
+					<div className="flex flex-row items-center gap-4 m-0 h-min left-0">
 						<IndexLink />
+            {/* <button className="h-fot w-fit"><GoSettings className="w-8 h-8" /></button> */}
 						<label htmlFor="" className="md:w-[85vw] w-[80%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 							<input ref={searchInput} type="text" onChange={()=>{searchOffer(searchInput)}} placeholder="Buscar" className="bg-transparent md:w-full outline-none text-slate-900" />
 							<button>
@@ -57,17 +60,21 @@ const Profile = () => {
 					</div>
 					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{pfps.length}</span> Perfiles</p>
 				</div>
-        <section className="flex flex-col top-[29%] md:top-[19.666667%] pt-7 absolute w-full md:w-2/5 overflow-y-scroll gap-6 p-2">
-          <div>
+        <section className="flex top-[29%] md:top-[19.666667%] flex-col pt-7 absolute w-full md:h-full overflow-y-scroll gap-6 p-2">
+          <div className="md:w-2/5 w-full md:px-3">
             {
               pfps.map((prof, i)=>{
-                return <SingleProfile showModal={showModal} redirect={null} profile={prof} key={i} isHomePage={false}/>
+                return <SingleProfile showModal={showModal} redirect={null} profile={prof} key={i} Key={i} isHomePage={false}/>
               })
             }
           </div>
         </section>
         <AnimatePresence>
-					  {modal && <ModalProfile open={modal} closeModal={closeModal} profile={profile}/>}
+					  {modal ? <ModalProfile canPostulate={false} open={modal} closeModal={closeModal} profile={profile}/> : 
+              <div className="top-96 hidden">
+                <h2>Selcciona un músico para visualizar su perfil aquí</h2>
+              </div> 
+            }
 				  </AnimatePresence>
       </main>
     </>
