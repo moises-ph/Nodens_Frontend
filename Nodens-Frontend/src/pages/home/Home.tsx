@@ -5,6 +5,7 @@ import { Logo } from "../../components"
 import { SingleOffer } from "../../components";
 import hands from "../../assets/Captura desde 2023-05-30 15-58-21.png"
 
+
 const offersTemp: OffersT[] = [
 	{
 		Title: 'Titulo mas largo para ver que onda',
@@ -229,8 +230,8 @@ function Home() {
         </div>        
         <section className="flex flex-col items-center w-full gap-4 pb-4 px-4 mt-10 z-10">          
           <div className="flex flex-col md:flex-row justify-start md:px-[5%] md:items-center gap-4 md:place-self-start md:w-[95%] w-full">
-            <div className="flex flex-col items-center md:w-[40vw]">
-              <Logo dimensions="h-[25vh] w-[38w] md:h-[30vh] w-[28vw]"/>
+            <div className="flex flex-col items-center md:w-[40vw] animate-pulse logo">
+              <Logo dimensions="h-[25vh] w-[38w] md:h-[30vh] w-[28vw] "/>
               <h1 className="text-2xl font-semibold text-slate-100">NODENS</h1>
             </div>
             <p className="text-slate-100 text-center text-xl">Encuentra tu ritmo laboral con Nodens: Tu puerta al exito musical</p>
@@ -259,7 +260,7 @@ function Home() {
 
         <section className="z-10">
           <div className="h-[60vh] md:h-[50vh] md:place-self-center md:px-[8%]  w-full bg-transparent backdrop-blur p-2 flex gap-[6%] items-center">
-            <img src={hands} className="w-[49%] h-[45vh] object-cover"/>
+            <img src={hands} className="w-[49%] h-[45vh] object-cover shadow-2xl rounded-md"/>
             <div className="flex flex-col gap-4 w-[45%]">
               <h3 className="text-2xl text-slate-100">Quienes Somos?</h3>
               <p className="text-slate-100">

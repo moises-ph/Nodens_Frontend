@@ -70,25 +70,17 @@ const posts: PostT[] = [
 const Posts = () => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const  [handlechange, sethandleChange] = useState("black");
-
-  const Change = () =>{
-
-  }
 
   return (
     <>
-      <main className="bg-black">
-        <section className="bg-zinc-800 z-50 rounded-b-2xl text-slate-50">
+      <main className="bg-slate-50">
+        <section className="bg-slate-400 z-50 rounded-b-2xl text-slate-900">
           <div className="pl-3 pt-7 flex gap-20">
             <span className="flex flex-row gap-3 items-center">
               <BiUserCircle className="text-4xl" />
               <p>Nombre de perfil</p>
             </span>
-            <Button onClick={(c)=>{handlechange ? "black" : "slate-500"}} className={`flex items-center text-${handlechange}`}>
+            <Button className="flex items-center text-slate-50">
               <BsFillMoonFill className="w-10"/>
             </Button>
           </div>
@@ -103,7 +95,7 @@ const Posts = () => {
                 className="bg-transparent w-full outline-none"
               />
               <button>
-                <BsSearch className="text-slate-400" />
+                <BsSearch className="text-slate-900" />
               </button>
             </label>
             <p className="pt-4">{posts.length} Posts </p>
@@ -111,11 +103,11 @@ const Posts = () => {
         </section>
         <section className=" h-screen w-full">
           
-          <div className="pl-3 pr-2  bg-black min-h-full flex flex-col justify-start items-start pt-3">
+          <div className="pl-3 pr-2  bg-slate-100 min-h-full flex flex-col justify-start items-start pt-3">
           <div className="pt-2 flex justify-center">
             
           </div>
-            <div className="flex flex-col text-slate-50 text-start gap-1 min-w-full min-h-full">
+            <div className="flex flex-col text-slate-900 text-start gap-1 min-w-full min-h-full">
               <span className="ml-2 mt-2">{posts[0].IDAuth}</span>              <span className="ml-2 mt-2">{posts[0].title}</span>
               <span className="ml-2 mt-2 ">{posts[0].content.text}</span>
               <span className="ml-2 mt-2 ">{posts[0].content.images}</span>
@@ -133,53 +125,7 @@ const Posts = () => {
             >
               <AiFillHome className="text-slate-50 text-2xl"/>
             </Button>
-              <Button
-                variant="primary"
-                onClick={handleShow}
-                className="text-slate-900 flex justify-center items-center gap-2"
-              >
-                <AiOutlinePlus className="text-slate-50 text-3xl"/>
-              </Button>
-              <Modal
-                show={show}
-                onHide={handleClose}
-                className="min-h-[40rem] bg-slate-500 shadow-inner shadow-neutral-900"
-              >
-                <Modal.Header closeButton className="">
-                  <Modal.Title className="pl-2 pt-2">
-                    <div className="bg-slate-50 bg-opacity-25 w-52 rounded-xl">
-                      <p className="text-slate-50 text-center">
-                        Crea tu propio Post
-                      </p>
-                    </div>
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="pl-2">
-                  <p></p>
-                </Modal.Body>
-                <Modal.Footer className="flex justify-end items-end pt-[32rem] gap-2 pr-2">
-                  <Button
-                    variant="secondary"
-                    onClick={handleClose}
-                    className=" bg-zinc-900 w-16 h-8 rounded-2xl flex justify-center items-center text-slate-50"
-                  >
-                    Close
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    onClick={handleClose}
-                    className=" bg-zinc-900 w-16 h-8 rounded-2xl flex justify-center items-center text-slate-50"
-                  >
-                    Save
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-              <Button
-              href="/mainprofile"
-              >
-                <BiUserCircle className="text-slate-50 text-2xl"/>
-              </Button>
+             
             </div>
           </footer>
       </main>
