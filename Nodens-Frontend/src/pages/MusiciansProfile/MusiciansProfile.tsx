@@ -281,7 +281,7 @@ const MusiciansProfile = () => {
                   <div className="w-full flex flex-col gap-2">
                     {
                       instrumentos.map((ins, i)=> {
-                        return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{ins.nombre} <GrFormClose onClick={(e)=>deleteInstrument(e, i)}/> </span>
+                        return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{ins.nombre} <GrFormClose onClick={(e : any)=>deleteInstrument(e, i)}/> </span>
                       })
                     }
                   </div>
