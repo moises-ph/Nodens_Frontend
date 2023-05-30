@@ -50,7 +50,7 @@ const CreateOffer = () => {
         position : 'center',
         icon : "success",
         title : res.data.message,
-        html : <a href={`https://nodensapim.azure-api.net/offers/offers/${res.data.id}`}></a>
+        html : <a href={`https://nodensapi.azure-api.net/offers/offers/${res.data.id}`}></a>
       })
     })
     .catch(async (err : AxiosError<{error : string, message : string}>) =>{

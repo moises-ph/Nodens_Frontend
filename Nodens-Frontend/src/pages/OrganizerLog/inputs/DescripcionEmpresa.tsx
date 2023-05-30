@@ -15,7 +15,7 @@ const DescripcionEmpresa = ({ handler, goBack, gotCompany }: { handler: (key: st
         handler('descripcion_empresa', descripcion_empresa.current!.value)
       }
     }
-    useEffect(()=> {if(gotCompany)handler('descripcion_empresa', "")}  ,[])
+    useEffect(()=> {if(!gotCompany) handler('descripcion_empresa', "")},[])
     return (
     <>
       <div className='h-3/4 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-600 shadow-lg'>

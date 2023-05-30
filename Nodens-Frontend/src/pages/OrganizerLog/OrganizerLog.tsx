@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Ciudad, DescripcionEmpresa, NombreEmpresa } from './inputs'
 import { OrganizerT } from '../../types';
 import { useEffect, useState } from 'react'
-import { Genero, Lastname, Name, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
+import { FechaNacimiento, Genero, Lastname, Name, Pais, RedesSociales, Telefono } from '../MusicianLog/Inputs';
 import { clientHttp } from '../../services/client';
 
 const variants = {
@@ -34,7 +34,6 @@ const OrganizerLog = () => {
     "descripcion_empresa": "",
     "pais": "",
     "ciudad": "",
-    "url_logo": "",
     "url_foto_perfil": "",
 		"genero": "",
     "redes_sociales": [
@@ -80,11 +79,15 @@ const OrganizerLog = () => {
  
 	const Inputs: JSX.Element[] = [
     <Ciudad handler={handler} />,
+
+
+
+    <FechaNacimiento goBack={goBack} handler={handler} />,
     <Name goBack={goBack} handler={handler}/>,
     <Lastname goBack={goBack} handler={handler}/>,
     <Genero goBack={goBack} handler={handler} />,
     <NombreEmpresa goBack={goBack} handler={handler} />,
-    <DescripcionEmpresa goBack={goBack} handler={handler} gotCompany={organizer.nombre_empresa.length === 0} />,
+    <DescripcionEmpresa goBack={goBack} handler={handler} gotCompany={organizer.nombre_empresa.length > 0} />,
     <RedesSociales goBack={goBack} handler={handler} />,
     <Telefono goBack={goBack} handler={handler} />
   ];

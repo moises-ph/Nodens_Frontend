@@ -88,7 +88,7 @@ const MusicianLog = () => {
   }, [musician])
 
   const Inputs = [
-    <FechaNacimiento handler={handler}/>,
+    <FechaNacimiento goBack={goBack} handler={handler}/>,
     <Name goBack={goBack} handler={handler}/>,
     <Lastname goBack={goBack} handler={handler}/>,
     <Descripcion goBack={goBack} handler={handler} />,

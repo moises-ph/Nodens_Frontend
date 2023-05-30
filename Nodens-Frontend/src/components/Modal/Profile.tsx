@@ -16,7 +16,7 @@ const Profile = ({
       </button>
       <div className='flex items-center gap-6'>
         {profile?.url_foto_perfil 
-          ? <img src={profile!.url_foto_perfil} className="w-32 h-32 object-cover rounded-full" /> 
+          ? <img src={profile!.url_foto_perfil as string} className="w-32 h-32 object-cover rounded-full" /> 
           : <FaUserCircle className="text-[8rem] ml-2 mt-6"/>
         }
         <div>
