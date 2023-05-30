@@ -195,16 +195,20 @@ const OrganizerProfile = () => {
             </div>
           }
           <div className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-2/3 gap-2">
-            <h2 className="font-semibold">Redes Sociales:</h2>
+            <h2 className="font-semibold text-gray-900">Redes Sociales:</h2>
             <div className="flex justify-evenly flex-wrap place-items-center gap-3">
-            {organizer.redes_sociales.map((socialmedia, index) => {
+            {organizer.redes_sociales.length > 0 ? 
+            organizer.redes_sociales.map((socialmedia, index) => {
               return(
                 <div key={index} className="flex flex-col items-center hover:scale-110 transition w-fit">
                   <a href={socialmedia.url} className="text-lg hover:underline w-fit">{SocialMedias[socialmedia.nombre.toLowerCase()]}</a>
                   <span className="text-xs">{socialmedia.nombre}</span>
                 </div>
               )
-            })}
+            })
+            :
+            <div><span className="font-extralight text-gray-700">Tus Redes sociales van aquí</span></div>
+            }
             </div>
           </div>
         </section>
@@ -274,11 +278,16 @@ const OrganizerProfile = () => {
                   </div>
                   <div className="flex justify-evenly content-start p-2 flex-wrap gap-3 max-w-full">
                   {
+                    socialMedias.length > 0 ? 
                       socialMedias.map((element :{nombre:string, url: string} | null , index : number)=>
                       <div className='w-24 flex flex-col gap-1 items-center justify-center p-2 bg-blue-200 rounded shadow-xl ' key={index}>
                           <button className='flex flex-col items-center hover:scale-110 transition'>{SocialMedias[element?.nombre.toLocaleLowerCase() as string]} <span>{element?.nombre}</span></button>
                           <button onClick={deleteSocial} value={index} className='hover:scale-110 transition hover:text-white hover:bg-red-500 rounded-full w-5 h-5 flex justify-center items-center bg-transparent text-red-500'><RiDeleteBinLine /></button>
                       </div>)
+                      :
+                      <>
+                      <div><span className="text-slate-100 font-semibold">Añade una red social aquí</span></div>
+                      </>
                   }
                   </div>
                   {

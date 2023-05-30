@@ -13,7 +13,7 @@ function SingleOffer(props : any) {
         <BsPersonSquare className="h-8 w-8 text-sky-500" />
         <h3 className="text-xl font-semibold">{props.offer.Title}</h3>
       </div>
-        <p><span className="text-slate-500">Ubicacion: </span>{props.offer.Event_Ubication.city}, {props.offer.Event_Ubication.Town}</p>
+        <p><span className="text-slate-500">Ubicacion: </span>{props.offer.Event_Ubication.City}, {props.offer.Event_Ubication.Town}</p>
         <p>Pago: {props.offer.Payment}</p>
         <p className="text-sm">Publicado el {creation_date.toDateString()}</p>
         <p>{props.offer.vacants} vacantes disponibles</p>

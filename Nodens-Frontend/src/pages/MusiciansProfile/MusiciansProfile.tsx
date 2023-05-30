@@ -15,6 +15,9 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { GrFormClose } from "react-icons/gr";
 
 const MusiciansProfile = () => {
+  const descripcion = useRef<HTMLTextAreaElement>(null);
+  const GeneroRef = useRef<HTMLInputElement>(null);
+  const nivelGenRef = useRef<HTMLSelectElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
   const instrumentRef = useRef<HTMLInputElement>(null);
   const nivelRef = useRef<HTMLSelectElement>(null);
@@ -59,8 +62,8 @@ const MusiciansProfile = () => {
       .catch(err=> console.log(err));
   }
 
-  const getUserEmail = () => {
-    renewToken();
+  const getUserEmail = async () => {
+    await renewToken();
     clientHttp().get(`/auth/api/user/${user?.IdAuth}`)
       .then(res => setEmail(res.data.email))
       .catch(err =>{
@@ -75,8 +78,9 @@ const MusiciansProfile = () => {
       })
   }
 
-  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await renewToken();
     setLoading(true);
     const form : FormData = new FormData(e.target as HTMLFormElement);
     const entries : any = Object.fromEntries(form);
@@ -90,10 +94,11 @@ const MusiciansProfile = () => {
       ciudad : entries.ciudad.length > 0 ? entries.ciudad : user!.ciudad,
       pais : user!.pais,
       educacion: [],
+      descripcion: (descripcion.current!.value.length > 0  ? descripcion.current!.value : user?.descripcion as string),
       experiencia: '',
-      generosMusicales: [],
+      generosMusicales: (generos.length > 0 ? generos : user?.generosMusicales as string[]),
       instrumentos: instrumentos,
-      url_video_presentacion: "",
+      url_video_presentacion: [],
       genero : entries.genero.length > 0 ? entries.genero : user!.genero,
       url_foto_perfil : user!.url_foto_perfil
     };
@@ -129,12 +134,12 @@ const MusiciansProfile = () => {
     
   }
 
-  const deleteInstrument = (e: any,i:number) => {
+  const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:number) => {
     e.preventDefault();
     setInstrumentos(instrumentos.filter((e, index) => index != i))
   }
 
-  const addInstrument = (e: any) => {
+  const addInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if(instrumentRef.current!.value && nivelRef.current!.value){
       if(!instrumentos.find(e => e.nombre === instrumentRef.current!.value)){
@@ -159,7 +164,33 @@ const MusiciansProfile = () => {
     }
   }
 
+  const deleteGen = (e: any,i:number) => {
+    e.preventDefault();
+    setGeneros(generos.filter((e, index) => index != i))
+  }
 
+  const addGen = (e: any) => {
+    e.preventDefault();
+    if(GeneroRef.current!.value){
+      if(!generos.find(e => e === GeneroRef.current!.value)){
+        setGeneros([...generos, GeneroRef.current!.value])
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa un Genero diferente',
+          timer: 3000  
+        })  
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un Genero Musical',
+        timer: 3000  
+      })
+    }
+  }
 
   const handleProfile = async () => {
     setLoading(true);
@@ -247,7 +278,7 @@ const MusiciansProfile = () => {
               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
                 <div className="w-full flex flex-col gap-2">
                   <label className='text-slate-100 font-semibold ' htmlFor='phone'>Instrumentos</label>
-                  <div className="w-full flex flex-col">
+                  <div className="w-full flex flex-col gap-2">
                     {
                       instrumentos.map((ins, i)=> {
                         return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{ins.nombre} <GrFormClose onClick={(e)=>deleteInstrument(e, i)}/> </span>
@@ -267,14 +298,52 @@ const MusiciansProfile = () => {
                   <button onClick={(e)=>addInstrument(e)}>Añadir</button>
                 </div>  
               </div>
+
+               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
+                <div className="w-full flex flex-col gap-2">
+                  <label className='text-slate-100 font-semibold ' htmlFor='phone'>Generos Musicales</label>
+                  <div className="w-full flex flex-col gap-2">
+                    {
+                      generos.map((gen, i)=> {
+                        return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{gen} <GrFormClose onClick={(e)=>deleteGen(e, i)}/> </span>
+                      })
+                    }
+                  </div>
+                  <input ref={GeneroRef} placeholder="Genero" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' type='text'/>
+                  <select ref={nivelGenRef} placeholder="Nivel" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1'>
+                    <optgroup>
+                      <option value="" >Nivel de Experiencia</option>
+                      <option value="Menos de 1 año">Menos de 1 año</option>
+                      <option value="Mas de 1 año">Mas de 1 año</option>
+                      <option value="Mas de 2 años">Mas de 2 años</option>
+                      <option value="Mas de 5 años">Mas de 5 años</option>
+                    </optgroup>
+                  </select>
+                  <button onClick={(e)=>addGen(e)}>Añadir</button>
+                </div>  
+              </div>
+
+
               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-blue-800 p-4 rounded-lg">
                 <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='phone'>Instrumentos</label>
-                    <input placeholder={user?.telefono as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='phone' type='number' name='intrumentos'/>
+                    <label className='text-slate-100 font-semibold ' htmlFor='phone'>Experiencia</label>
+                    <select placeholder={user?.experiencia as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='experiencia'name='experiencia'>
+                      <optgroup>
+                        <option value=""></option>
+                        <option value="Sin Experiencia">Sin Experiencia</option>
+                        <option value="Menos de 1 año">Menos de 1 año</option>
+                        <option value="Mas de 1 año">Mas de 1 año</option>
+                        <option value="Mas de 2 años">Mas de 2 años</option>
+                        <option value="Mas de 3 años">Mas de 3 años</option>
+                        <option value="Mas de 5 años">Mas de 5 años</option>
+                        <option value="Mas de 7 años">Mas de 7 años</option>
+                        <option value="Mas de 10 años">Mas de 10 años</option>
+                      </optgroup>
+                    </select>
                 </div>
                 <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='city'>Experiencia</label>
-                    <textarea placeholder={user?.ciudad} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='city' name='Experiencia'/>
+                    <label className='text-slate-100 font-semibold ' htmlFor='descripcion'>Descripcion</label>
+                    <textarea placeholder={user?.descripcion} ref={descripcion} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='descripcion' name='experiencia'/>
                 </div>
               </div>
               

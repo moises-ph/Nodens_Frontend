@@ -7,6 +7,7 @@ import {lazily} from 'react-lazily';
 import { renewToken } from "../services";
 import { clientHttp } from "../services/client";
 import { OrganizerT } from "../types";
+import { AxiosError } from "axios";
 
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
@@ -24,8 +25,8 @@ export const AppOrganizerRouter = () => {
           setOrganizador(res.data);
         }
       })
-      .catch(async err=>{
-        if(err.response.status === 401){
+      .catch(async (err : AxiosError)=>{        
+        if(err.response?.status === 401 || err.code === "ERR_NETWORK"){
           await renewToken();
           getOrganizer();
         }
