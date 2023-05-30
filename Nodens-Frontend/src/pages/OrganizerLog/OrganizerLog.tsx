@@ -87,7 +87,7 @@ const OrganizerLog = () => {
     <Lastname goBack={goBack} handler={handler}/>,
     <Genero goBack={goBack} handler={handler} />,
     <NombreEmpresa goBack={goBack} handler={handler} />,
-    <DescripcionEmpresa goBack={goBack} handler={handler} />,
+    <DescripcionEmpresa goBack={goBack} handler={handler} gotCompany={organizer.nombre_empresa.length > 0} />,
     <RedesSociales goBack={goBack} handler={handler} />,
     <Telefono goBack={goBack} handler={handler} />
   ];

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { clientHttp } from '../../services/client';
+import { AxiosError, AxiosResponse } from 'axios';
 
 function VerifyUser() {
 
     const [isValid, setValid] = useState(false);
     const [isLoad, setLoad] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [message, setMessage] = useState("Verificado")
+    const [message, setMessage] = useState("")
     const guid : string | null = searchParams.get("guid");
     const email : string | null = searchParams.get("emailHash");
 
@@ -14,9 +16,15 @@ function VerifyUser() {
 
     const fetchVerifyUser = (guidp : string, emailp : string) => {
         setLoad(true);
-        console.log(guidp);
-        console.log(emailp);
-        setTimeout(()=> setLoad(false), 1000)
+        clientHttp().put(`/auth/api/verify?em=${email}&guid=${guid}`)
+            .then((res : AxiosResponse) => {
+                setMessage(res.data.message);
+                setLoad(false);
+            })
+            .catch((err : AxiosError<{message : string, response? : string}>) => {
+                setMessage(err.response!.data!.message);
+                setLoad(false);
+            })
     }
 
     useEffect(()=>{
