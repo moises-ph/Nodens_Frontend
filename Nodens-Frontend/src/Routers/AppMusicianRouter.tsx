@@ -12,20 +12,24 @@ export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
   
   useEffect(()=> {
-    renewToken()
-    setTimeout(() => {}, 1000);
-    clientHttp().get('/musicians/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
-    .then(res=>{
-      console.log(res);
-      if(!res.data) {
-        setMusician(false);
-      } else {
-        setMusician(true);
-        localStorage.setItem('musicianName', `${res.data.Name} ${res.data.Lastname}`)
-        localStorage.setItem('musicianId', res.data.IdAuth)
-      }
-    })
-      .catch(err=>{console.log(err); setMusician(false)})
+    const request = async () => {
+      await renewToken()
+      setTimeout(() => {}, 1000);
+      clientHttp().get('/musicians/musician', {headers: {Authorization: 'Bearer ' + localStorage.getItem('authTokenForTheUser')}})
+      .then(res=>{
+        console.log(res);
+        if(!res.data) {
+          setMusician(false);
+        } else {
+          setMusician(true);
+          localStorage.setItem('musicianName', `${res.data.Name} ${res.data.Lastname}`)
+          localStorage.setItem('musicianId', res.data.IdAuth)
+        }
+      })
+        .catch(err=>{console.log(err); setMusician(false)})
+    }
+
+    request();
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
   if(musician === undefined ) return <Loading />

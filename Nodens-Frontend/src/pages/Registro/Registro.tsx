@@ -1,9 +1,11 @@
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const Registro = () => {
+  const [loading, setLoading] = useState<boolean>();
   const MySwal = withReactContent(Swal)
   const navigation = useNavigate()
 
@@ -37,9 +39,10 @@ const Registro = () => {
         console.log('I was closed by the timer')
       }
     })
-  
+    
     axios.post("https://nodensapi.azure-api.net/auth/api/user/Register", object)
       .then(res=>{
+        setLoading(false)
         console.log(res);
         MySwal.fire({
         position: 'top',
@@ -49,6 +52,7 @@ const Registro = () => {
         timer: 1500
       }); redirectLogin()})
       .catch(err=>{console.log(err)
+        setLoading(false)
         if(err.response.status === 400){
         Swal.fire({
           icon: 'error',
@@ -73,6 +77,7 @@ const Registro = () => {
 
   return  (
     <main className='h-auto flex flex-col items-center text-slate-100 gap-4'>    
+      {loading && <div className={`absolute right-4 top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
       <h1 className="text-6xl text-slate-200 pt-20">Registro</h1>
       <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-4/6 rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 pl-6 py-4 pt-16 gap-4">
         <label htmlFor="Email" className="w-full flex flex-col gap-2">
@@ -95,10 +100,11 @@ const Registro = () => {
           <h2>Password</h2>
           <input type="password" name="password" minLength={8} id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Password" required/>
         </label>
-        <input type="submit" value="Registrarse" className="place-self-center py-2 px-4 bg-transparent text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" />
+        <input type="submit" onClick={()=>{setLoading(true)}} value="Registrarse" className="place-self-center py-2 px-4 bg-transparent text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0" />
       </form>
     </main>
   );
 };
 
 export default Registro;
+
