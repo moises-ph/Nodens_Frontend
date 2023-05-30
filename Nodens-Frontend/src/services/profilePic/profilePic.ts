@@ -13,7 +13,7 @@ export const profilePic = (url:string,image: any) => {
     console.log(image);
     const form = new FormData();
     form.append("file", image[0]);
-    client.post("https://nodensapim.azure-api.net"+url, form)
+    client.post("https://nodensapi.azure-api.net"+url, form)
       .then(response => {
         Swal.fire({
           position: 'top-end',
