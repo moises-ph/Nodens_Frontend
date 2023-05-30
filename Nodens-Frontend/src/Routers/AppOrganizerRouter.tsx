@@ -25,9 +25,8 @@ export const AppOrganizerRouter = () => {
           setOrganizador(res.data);
         }
       })
-      .catch(async (err : AxiosError)=>{
-        if(err.code === "ERR_NETWORK") return setTimeout(()=> getOrganizer(), 2000);
-        if(err.response?.status === 401){
+      .catch(async (err : AxiosError)=>{        
+        if(err.response?.status === 401 || err.code === "ERR_NETWORK"){
           await renewToken();
           getOrganizer();
         }
