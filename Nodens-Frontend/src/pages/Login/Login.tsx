@@ -6,6 +6,7 @@ import { AiOutlineUser } from "react-icons/ai"
 import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { clientHttp } from "../../services/client";
+import { AxiosError } from "axios";
 
 
 const Login = () => {
@@ -45,7 +46,7 @@ const Login = () => {
       }
     })
     
-    clientHttp().post('https://nodensapim.azure-api.net/auth/api/auth/login', data)
+    clientHttp().post('https://nodensapi.azure-api.net/auth/api/auth/login', data)
       .then(res =>{
         console.log(res);
         Swal.fire({
@@ -61,6 +62,7 @@ const Login = () => {
         .then(e=> console.log(localStorage.getItem('authTokenForTheUser')))
       .catch(err => {console.log(err)
         console.log(err);
+        if(err.code === "ERR_NETWORK") return Swal.fire({icon : 'error', title :'Hubo un error, intente de nuevo más tarde', timer : 2000});
         if(err.response.status===401){
           Swal.fire({
             icon: 'error',

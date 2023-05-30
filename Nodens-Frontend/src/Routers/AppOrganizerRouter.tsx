@@ -7,6 +7,7 @@ import {lazily} from 'react-lazily';
 import { renewToken } from "../services";
 import { clientHttp } from "../services/client";
 import { OrganizerT } from "../types";
+import { AxiosError } from "axios";
 
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
 
@@ -24,8 +25,9 @@ export const AppOrganizerRouter = () => {
           setOrganizador(res.data);
         }
       })
-      .catch(async err=>{
-        if(err.response.status === 401){
+      .catch(async (err : AxiosError)=>{
+        if(err.code === "ERR_NETWORK") return setTimeout(()=> getOrganizer(), 2000);
+        if(err.response?.status === 401){
           await renewToken();
           getOrganizer();
         }
@@ -56,7 +58,7 @@ export const AppOrganizerRouter = () => {
         <main className={organizador ? 'pt-16 md:pt-11' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador}/> : <OrganizerLog /> } />
+              <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador as OrganizerT}/> : <OrganizerLog /> } />
               <Route path="/posts" element={<Posts />} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />

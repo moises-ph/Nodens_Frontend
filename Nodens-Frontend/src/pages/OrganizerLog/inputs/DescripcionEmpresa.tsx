@@ -1,7 +1,7 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Swal from 'sweetalert2'
 
-const DescripcionEmpresa = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack: ()=>void }) => {
+const DescripcionEmpresa = ({ handler, goBack, gotCompany }: { handler: (key: string, value: any) => void, goBack: ()=>void, gotCompany : boolean }) => {
     const descripcion_empresa = useRef<HTMLTextAreaElement>(null)
     const checking = () => {
       if(descripcion_empresa.current!.value.length < 0) {
@@ -15,6 +15,7 @@ const DescripcionEmpresa = ({ handler, goBack }: { handler: (key: string, value:
         handler('descripcion_empresa', descripcion_empresa.current!.value)
       }
     }
+    useEffect(()=> {if(gotCompany)handler('descripcion_empresa', "")}  ,[])
     return (
     <>
       <div className='h-3/4 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-600 shadow-lg'>

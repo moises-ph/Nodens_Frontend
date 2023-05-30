@@ -26,7 +26,7 @@ const Name = ({ handler, goBack }: { handler: (key: string, value: any) => void,
       </label>
       <div className="flex w-3/5 gap-4">
         <button onClick={() => goBack()} className='px-4 bg-green-500 rounded-md text-green-900 h-8'>Atras</button>
-        <button onClick={() => checking()} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Gurdar</button>
+        <button onClick={() => checking()} className='px-4 bg-blue-500 rounded-md text-blue-900 h-8'>Guardar</button>
       </div>
     </div>
   </>
