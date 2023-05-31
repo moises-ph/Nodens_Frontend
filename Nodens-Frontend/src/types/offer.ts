@@ -14,7 +14,7 @@ export type OffersT = {
 		SiteNumber: string,
 		Town: string
 	},
-	Applicant: [{
+	Applicants: [{
 		ApplicantId: string,
 		PostulationDate: Date
 	}],
