@@ -5,5 +5,6 @@ export type OfferTableT = {
     Payment : number,
     ApplicantsNumber : number,
     Vacants : number,
-    isAvailable : boolean
+    isAvailable : boolean,
+    offerId : string
 }
