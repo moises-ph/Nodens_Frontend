@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Loading } from "../../components";
 import { renewToken } from "../../services";
-import { Link } from "react-router-dom";
 import { clientHttp } from "../../services/client";
 import { OfferTableT, OffersT } from "../../types";
 import { DataTable } from "./TableComponent";

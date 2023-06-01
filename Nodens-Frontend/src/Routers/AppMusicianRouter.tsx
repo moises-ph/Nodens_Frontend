@@ -55,7 +55,7 @@ export const AppMusicianRouter = () => {
               <Route path="/offers" element={<Offers />}></Route>
               <Route path="/offers/:id" element={<SingleOfferApplicant />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
-              <Route path="/applicant-offers" element={<ApplicantsOffers />}></Route>
+              <Route path="/applicants-offers" element={<ApplicantsOffers />}></Route>
               <Route path="*" element={<Error />}></Route>
             </Routes>
           </Suspense>
