@@ -104,7 +104,7 @@ const MusicianLog = () => {
 
   return (
     <>
-      <main className="h-screen flex flex-col w-full items-center py-4">
+      <main className="h-screen flex flex-col w-full items-center py-4 bg-gradient-to-br from-orange-400 to-fuchsia-700">
       <button onClick={()=>{localStorage.removeItem("authTokenForTheUser"); location.reload()}}>salir</button>
         <Logo dimensions='h-[10vh] absolute md:left-[1rem] place-self-start w-[12vw]'/>
         <h1 className="mb-8 text-3xl font-semibold text-slate-700">Registro de Musico</h1>

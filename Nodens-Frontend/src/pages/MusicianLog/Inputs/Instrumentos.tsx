@@ -72,13 +72,13 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
     }
   }
   return (
-    <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-600 shadow-lg'>
+    <div className='h-full bg-slate-100 bg-opacity-20 rounded-xl border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-100 shadow-lg'>
       <div className='text-2xl h-5/6 flex flex-col'>
         <p className="mb-2">Instrumentos:</p>
         <div className='grid grid-cols-2 grid-rows-3 h-4/5 w-full gap-2 mb-8'>
           {
             instrumentos.map((instr, i)=>{
-              return <div key={i} className='flex items-center justify-between px-3 text-base  bg-slate-100 h-4/5 col-span-1 rounded-md text-slate-700 font-normal border-solid border-slate-600 border-[1px]'>
+              return <div key={i} className='flex items-center justify-between px-3 text-base bg-slate-100 bg-opacity-20 h-4/5 col-span-1 rounded-md text-slate-100 font-normal border-solid border-slate-600 border-[1px]'>
                 <span className='text-ellipsis overflow-hidden whitespace-nowrap'>{instr.nombre}</span>
                 <button><GrFormClose className='h-6 w-6' onClick={()=>deleteInstrument(i)}/></button>
               </div>
@@ -87,11 +87,11 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
         </div>
         <div className="flex flex-col gap-3">
           <label htmlFor="" className="w-11/12">
-            <input type="text" name="instrumentos" placeholder="Instrumento" ref={instrumento} className='w-full bg-transparent border-solid border-b-2 border-slate-300 text-slate-700 font-medium text-lg pl-2 outline-none focus:border-slate-500'/>
+            <input type="text" name="instrumentos" placeholder="Instrumento" ref={instrumento} className='w-full bg-transparent border-solid border-b-2 border-slate-300 text-slate-100 font-medium text-lg pl-2 outline-none focus:border-slate-500'/>
           </label>
           <label htmlFor="" className=' flex flex-col text-lg md:flex-row md:gap-4'>Experiencia: 
             <select name="" id="" ref={nivel} className="ml-2 bg-transparent border-b-2 border-solid border-slate-400 md:w-2/4">
-              <optgroup>
+              <optgroup className="bg-slate-900">
               <option value="" ></option>
               <option value="Menos de 1 año">Menos de 1 año</option>
               <option value="Mas de 1 año">Mas de 1 año</option>
@@ -104,8 +104,8 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
         </div>
       </div>
       <div className="flex w-3/5 gap-4">
-        <button className='px-4 bg-blue-500 rounded-md text-blue-900 h-8' onClick={() => goBack()}>Atras</button>
-        <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => checking()}>Guardar</button>
+        <button className='px-4 bg-slate-100 rounded-md text-slate-900 h-8' onClick={() => goBack()}>Atras</button>
+        <button className='px-4 bg-slate-100 rounded-md text-slate-900 h-8' onClick={() => checking()}>Guardar</button>
       </div>
     </div>
   );
