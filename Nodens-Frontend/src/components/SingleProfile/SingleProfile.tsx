@@ -9,7 +9,7 @@ const SingleProfile = ({profile, showModal, Key, isHomePage, redirect} : {profil
     useEffect(() => { setInstrumentsConcat(profile.instrumentos.map(instrument => instrument.nombre).join(", ")); })
 
     return (
-      <div onClick={()=> showModal(profile)} key={Key} className={`w-full min-h-full flex flex-col p-4 border-2 border-solid border-slate-300 gap-1 rounded-lg transition-colors hover:bg-slate-100 hover:cursor-pointer ${isHomePage ? "backdrop-blur-md shadow-md" : null}`}>
+      <div onClick={()=> showModal(profile)} key={Key} className={`w-full h-fit flex flex-col p-4 border-2 border-solid border-slate-300 gap-1 rounded-lg transition-colors hover:bg-slate-100 hover:cursor-pointer ${isHomePage ? "backdrop-blur-md shadow-md" : null}`}>
         <div className='w-full flex items-center gap-2'>
           {profile.url_foto_perfil 
             ? <img src={profile.url_foto_perfil as string} className="w-16 h-16 object-cover rounded-full"/> 
