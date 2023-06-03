@@ -31,7 +31,7 @@ const SingleProfile = ({profile, showModal, Key, isHomePage, redirect} : {profil
         <div className="flex flex-col">
           <span className='font-semibold text-slate-100'>Instrumentos:</span>
           <div className=''>
-            <p>{instrumentsConcat}</p>
+            <p className='text-slate-100'>{instrumentsConcat}</p>
           </div>
         </div>
          </div>

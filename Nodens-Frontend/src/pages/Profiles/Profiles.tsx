@@ -46,7 +46,7 @@ const Profile = () => {
   if(!pfps) return <Loading />
   return (
     <>
-      <main className="h-full overflow-y-hidden bg-[#003F5A]">
+      <main className="h-screen overflow-y-hidden bg-[#003F5A]">
         <div className="pt-8 md:p-8 pb-3 h-fit w-full flex flex-col  md:flex-row ls gap-4 border-b-[1px] z-10 bg-[#003F5A] border-solid border-slate-500">
 					<div className="flex flex-row items-center gap-4 m-0 h-min left-0">
 						<IndexLink />
