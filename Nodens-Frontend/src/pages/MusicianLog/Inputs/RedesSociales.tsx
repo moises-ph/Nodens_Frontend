@@ -130,8 +130,8 @@ const RedesSociales = ({ handler, goBack }: { handler: (key: string, value: any)
         <button onClick={()=>redes.length < 5 ? checkUrl(redes_sociales.current!.value) : checkLength()}>Agregar</button>
       </div>
       <div className="flex w-3/5 gap-4">
-        <button onClick={() => goBack()} className='px-4 bg-slate-100 rounded-md text-slate-900 h-8'>Atras</button>
-        <button onClick={() => handler('redes_sociales', redes)} className='px-4 bg-slate-100 rounded-md text-slate-900 h-8'>Guardar</button>
+        <button onClick={() => goBack()} className='px-4 bg-orange-500 rounded-md text-slate-100 h-8'>Atras</button>
+        <button onClick={() => handler('redes_sociales', redes)} className='px-4 bg-blue-500 rounded-md text-slate-100 h-8'>Guardar</button>
       </div>
     </div>
   )

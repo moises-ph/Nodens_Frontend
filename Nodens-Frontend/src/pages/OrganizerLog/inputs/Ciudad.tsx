@@ -4,7 +4,9 @@ import Swal from 'sweetalert2'
 const Ciudad = ({ handler }: { handler: (key: string, value: any) => void }) => {
     const ciudad = useRef<HTMLSelectElement>(null)
 
+
     const checking = () => {
+
       if(!ciudad.current!.value) {
         Swal.fire({
           icon: 'error',
@@ -16,15 +18,16 @@ const Ciudad = ({ handler }: { handler: (key: string, value: any) => void }) => 
         handler("ciudad", ciudad.current!.value)
       }
     }
+  
 
     return (
     <>
-      <div className='h-full border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-600 shadow-lg'>
-        <div className='text-2xl h-5/6 flex flex-col justify-center gap-[15%]'>
+      <div className='h-full border-solid w-10/12 flex flex-col items-center gap-10 px-2 pt-4 text-slate-100 bg-slate-100 bg-opacity-10 rounded-xl shadow-2xl'>
+        <div className='text-2xl h-5/6 flex flex-col justify-center items-center gap-[15%]'>
           <p className="mb-2">Ciudad:</p>
-          <label htmlFor="Ciudad" className='flex-col text-lg md:flex'>Ciudad:
-            <select name="" id="" ref={ciudad} className="ml-2 bg-transparent border-b-2 border-solid border-slate-400">
-              <optgroup>
+          <label htmlFor="Ciudad" className='flex-col text-lg md:flex'>
+            <select name="" id="" ref={ciudad} className="ml-2 w-56 bg-transparent border-b-2 border-solid border-slate-400">
+              <optgroup className='bg-slate-900'>
                 <option value=""></option>
                 <option value="Arauca">Arauca</option>
                 <option value="Armenia">Armenia</option>
@@ -61,8 +64,8 @@ const Ciudad = ({ handler }: { handler: (key: string, value: any) => void }) => 
               </optgroup>
             </select>
           </label>
-          <div className="flex w-3/5 gap-4">
-            <button className='px-4 bg-green-500 rounded-md text-green-900 h-8' onClick={() => checking()}>Guardar</button>
+          <div className="flex w-full gap-4 justify-center">
+            <button className='px-4 bg-orange-500 rounded-md text-slate-100 h-8' onClick={() => checking()}>Guardar</button>
           </div>
         </div>
       </div>

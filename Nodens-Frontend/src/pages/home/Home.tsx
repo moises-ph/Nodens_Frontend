@@ -242,7 +242,7 @@ function Home() {
               <input name="instrument" className="bg-slate-200 rounded-md w-10/12 md:w-1/3 h-9 p-3 border-solid border-2 border-slate-500" placeholder="Qué interpretas?" />
               <input name="ubication" className="bg-slate-200 rounded-md w-10/12 md:w-1/3 h-9 p-3 border-solid border-2 border-slate-500" placeholder="Dónde?" />
             </div>
-            <button type="submit" className="bg-[#E15D12]  py-2 w-10/12 md:w-[68%] rounded-lg text-slate-200 font-semibold hover:bg-[#a10bd8] transition">Buscar Trabajos</button>
+            <button type="submit" className="bg-[#E15D12]  py-2 w-10/12 md:w-[68%] rounded-lg text-slate-200 font-semibold hover:bg-cyan-900 hover:text-orange-500 transition">Buscar Trabajos</button>
           </form>
         </section>
         <div className="flex flex-col self-center top-[16.666667%] md:w-5/6 w-full gap-2 p-2 z-10">

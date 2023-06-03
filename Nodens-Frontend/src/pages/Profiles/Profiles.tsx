@@ -46,8 +46,8 @@ const Profile = () => {
   if(!pfps) return <Loading />
   return (
     <>
-      <main className="h-full overflow-y-hidden">
-        <div className="pt-8 md:p-8 pb-3 h-fit w-full flex flex-col  md:flex-row ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
+      <main className="h-full overflow-y-hidden bg-[#003F5A]">
+        <div className="pt-8 md:p-8 pb-3 h-fit w-full flex flex-col  md:flex-row ls gap-4 border-b-[1px] z-10 bg-[#003F5A] border-solid border-slate-500">
 					<div className="flex flex-row items-center gap-4 m-0 h-min left-0">
 						<IndexLink />
             {/* <button className="h-fit w-fit"><GoSettings className="w-8 h-8" /></button> */}
@@ -58,7 +58,7 @@ const Profile = () => {
 							</button>
 						</label>
 					</div>
-					<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{pfps.length}</span> Perfiles</p>
+					<p className="text-slate-100 pl-6"><span className="text-slate-100 font-bold">{pfps.length}</span> Perfiles</p>
 				</div>
         <section className="flex flex-col py-5 w-full md:h-full overflow-y-scroll p-2">
           <div className="md:w-2/5 w-full md:px-3 gap-2 flex flex-col">

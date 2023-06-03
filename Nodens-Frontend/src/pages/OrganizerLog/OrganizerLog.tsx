@@ -32,7 +32,7 @@ const OrganizerLog = () => {
 		"telefono": '',
     "nombre_empresa" : "",
     "descripcion_empresa": "",
-    "pais": "",
+    "pais": "Colombia",
     "ciudad": "",
     "url_foto_perfil": "",
 		"genero": "",
@@ -79,9 +79,6 @@ const OrganizerLog = () => {
  
 	const Inputs: JSX.Element[] = [
     <Ciudad handler={handler} />,
-
-
-
     <FechaNacimiento goBack={goBack} handler={handler} />,
     <Name goBack={goBack} handler={handler}/>,
     <Lastname goBack={goBack} handler={handler}/>,
@@ -93,10 +90,10 @@ const OrganizerLog = () => {
   ];
 
   return (
-    <>
-      <main className="h-screen flex flex-col w-full items-center py-4">
+    <> 
+      <main className="h-screen flex flex-col w-full items-center py-4 bg-[#003F5A]">
         <button onClick={()=>{localStorage.removeItem("authTokenForTheUser"); location.reload()}}>salir</button>
-        <h1 className="mb-8 text-3xl font-semibold text-slate-700">Registro de Organizador</h1>
+        <h1 className="mb-8 text-3xl font-semibold text-slate-100">Registro de Organizador</h1>
         <form onSubmit={e=>e.preventDefault()} className='flex flex-col gap-4 h-full w-full items-center md:w-3/4'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
