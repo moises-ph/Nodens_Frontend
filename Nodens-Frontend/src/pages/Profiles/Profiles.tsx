@@ -60,7 +60,7 @@ const Profile = () => {
 					</div>
 					<p className="text-slate-100 pl-6"><span className="text-slate-100 font-bold">{pfps.length}</span> Perfiles</p>
 				</div>
-        <section className="flex flex-col py-5 w-full md:h-full overflow-y-scroll p-2">
+        <section className="flex flex-col py-5 w-full md:h-[83vh] overflow-y-scroll p-2">
           <div className="md:w-2/5 w-full md:px-3 gap-2 flex flex-col">
             {
               pfps.map((prof, i)=>{
