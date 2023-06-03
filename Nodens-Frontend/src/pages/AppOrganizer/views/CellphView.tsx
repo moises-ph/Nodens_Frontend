@@ -3,8 +3,7 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import DefaultUserImage from '../../../assets/DefaultUser.webp'
 import { useState } from 'react'
-import { FaUserCircle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import Profile from './components/Profile'
 
 export type chartT = {
   profile: OrganizerT,
@@ -74,33 +73,7 @@ const CellphView = ({profile, profiles, offers}: chartT) => {
       <div className="flex flex-col gap-4">
         {
           profiles.map((profile, i) => {
-            return <Link to="" key={i} className={`w-full h-fit flex flex-col p-4 border-2 border-solid border-slate-300 gap- rounded-lg transition-colors bg-slate-300 hover:bg-opacity-30 hover:bg-zinc-500 hover:cursor-pointer`}>
-            <div className='w-full flex items-center gap-2 text-slate-100 '>
-              {profile.url_foto_perfil 
-                ? <img src={profile.url_foto_perfil as string} className="w-16 h-16 object-cover rounded-full"/> 
-                : <FaUserCircle className="text-[3rem] w-16 h-16"/>
-              }
-              <span className='font-semibold text-lg '>{profile.Name} {profile.Lastname}</span>
-            </div>
-             <div className="pl-4">
-             <div>
-              {profile.educacion.map((name: any, index: any) => {
-                return (
-                  <span className="" key={index}>
-                    <p className="text-2xl ">{name.nombre}</p>
-                  </span>
-                );
-              })}
-            </div>
-            <p className="text-lg text-slate-100">{profile.experiencia}</p>
-            <div className="flex flex-col">
-              <span className='font-semibold text-slate-100'>Instrumentos:</span>
-              <div className=''>
-                <p>{profile.instrumentos.map(instrument => instrument.nombre).join(", ")}</p>
-              </div>
-            </div>
-             </div>
-          </Link>
+            return  <Profile profile={profile} key={i}/>
           })
         }
       </div>
