@@ -43,7 +43,7 @@ const AppOrganizer = ({organizador}:{organizador: OrganizerT}) => {
       <section>
         {
           window.innerWidth > 760 
-          ? <PcView />
+          ? <PcView profile={organizador} profiles={profiles} offers={offers}/>
           : <CellphView profile={organizador} profiles={profiles} offers={offers}/>
         }
       </section>
