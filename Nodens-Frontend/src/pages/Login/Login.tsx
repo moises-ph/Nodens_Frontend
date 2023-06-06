@@ -46,7 +46,7 @@ const Login = () => {
       }
     })
     
-    clientHttp().post('https://nodensapi.azure-api.net/auth/api/auth/login', data)
+    clientHttp().post('https://nodensgapi.azure-api.net/auth/api/auth/login', data)
       .then(res =>{
         console.log(res);
         Swal.fire({

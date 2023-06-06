@@ -40,7 +40,7 @@ const Registro = () => {
       }
     })
     
-    axios.post("https://nodensapi.azure-api.net/auth/api/user/Register", object)
+    axios.post("https://nodensgapi.azure-api.net/auth/api/user/Register", object)
       .then(res=>{
         setLoading(false)
         console.log(res);
