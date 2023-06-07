@@ -1,2 +1,2 @@
-export {default as lineChart} from './LineChart'
+export {default as LineChart} from './LineChart'
 export {default as Profile} from './Profile'

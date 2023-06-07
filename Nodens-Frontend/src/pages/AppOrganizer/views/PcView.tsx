@@ -1,8 +1,9 @@
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import DefaultUserImage from '../../../assets/DefaultUser.webp'
-import {Profile} from './components'
+import {Profile, LineChart} from './components'
 import { chartT } from './CellphView'
+import { Loading } from '../../../components'
 
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -52,35 +53,39 @@ const PcView = ({profile, profiles, offers}: chartT) => {
         </div>
         <div className="flex flex-col gap-2">
         {
-            profiles.map((profile, i) => {
+            profiles ? profiles.map((profile, i) => {
               return  <Profile profile={profile} key={i}/>
             })
+            : <Loading />
           }
         </div>
       </div>
 
-      <div className='w-full h-[95vh] flex flex-col  p-8'>
+      <div className='w-full h-[95vh] flex flex-col justify-center  p-8'>
         <div className='flex gap-4'>
-          <div className="w-full h-[40vh] bg-red-500">
-            {/* hacer info*/}
+          <div className="w-full h-[40vh]">
+            <LineChart offers={offers}/>
           </div>
           <div className="h-1/3 w-full ">
-            {
-            offers.length === 0 
-            ? <h2 className="text-2xl text-center">No tienes ninguna oferta publicada</h2>
-            : <div className='flex flex-col items-center h-[40vh]'>
+            
+            <div className='flex flex-col items-center h-[40vh]'>
               <Pie data={pieConfig} />
               <ul className="w-full flex flex-col items-center gap-2 justify-center text-sm text-slate-500">
-                <li>- Numero total de ofertas: <span className="text-slate-800 font-semibold">{offers.length}</span></li>
-                <li>- Numero de ofertas con aplicantes: <span className="text-slate-800 font-semibold">{offers.filter(off=> off.Applicants.length > 0).length}</span></li>
-                <li>- Promedio de aplicantes por oferta: <span className="text-slate-800 font-semibold">{
-                  offers.reduce((accumulator, currentValue) => accumulator + currentValue.Applicants.length, 0) / offers.length
-                }</span></li>
+                {
+                  offers.length === 0 ?
+                  <li className="text-xl">No tienes niguna oferta publicada</li>
+                  : <>
+                    <li>- Numero total de ofertas: <span className="text-slate-800 font-semibold">{offers.length}</span></li>
+                    <li>- Numero de ofertas con aplicantes: <span className="text-slate-800 font-semibold">{offers.filter(off=> off.Applicants.length > 0).length}</span></li>
+                    <li>- Promedio de aplicantes por oferta: <span className="text-slate-800 font-semibold">{
+                      offers.reduce((accumulator, currentValue) => accumulator + currentValue.Applicants.length, 0) / offers.length
+                    }</span></li>
+                  </>
+                }
               </ul>
             </div>
-            }
+
           </div>
-          
         </div>
       </div>
     </section>

@@ -27,7 +27,8 @@ const LineChart = ({offers}: {offers: OffersT[]}) => {
         offers.length,
         offers.filter(off=> off.Applicants.length > 0).length,
         offers.reduce((accumulator, currentValue) => accumulator + currentValue.Applicants.length, 0) / offers.length
-      ]
+      ],
+      backgroundColor: 'rgba(53, 162, 235, 0.5)'
 
     }]
   }
