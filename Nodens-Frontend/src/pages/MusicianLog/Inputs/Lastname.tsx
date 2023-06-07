@@ -19,7 +19,7 @@ const Lastname =({ handler, goBack }: { handler: (key: string, value: any) => vo
 
   return (
   <>
-    <div className='h-2/4 bg-slate-100 bg-opacity-20 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-lg rounded-xl'>
+    <div className='h-2/4 bg-zinc-900 bg-opacity-100 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-lg rounded-xl'>
       <label htmlFor='genero' className='flex flex-col text-2xl h-2/4 gap-[20%]'>Apellido:
         <input type="text" name="telefono" ref={Lastname} className='bg-transparent border-solid border-b-2 border-slate-300 text-slate-100 font-medium outline-none focus:border-slate-500'/>
       </label>

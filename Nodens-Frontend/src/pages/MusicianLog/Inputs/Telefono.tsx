@@ -19,7 +19,7 @@ const Telefono = ({ handler, goBack }: { handler: (key: string, value: any) => v
   
     return (
     <>
-      <div className='h-2/4 bg-slate-100 bg-opacity-20 rounded-xl w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-lg'>
+      <div className='h-2/4 bg-zinc-900 bg-opacity-100 rounded-xl w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-lg'>
         <label htmlFor='genero' className='flex flex-col text-2xl h-2/4 gap-[20%]'>Telefono:
           <input type="number" name="telefono" ref={telefono} className='bg-transparent border-solid border-b-2 border-slate-300 text-slate-100 font-medium outline-none focus:border-slate-500'/>
         </label>
