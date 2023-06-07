@@ -18,6 +18,8 @@ const NavMusicianRes = () => {
           to="/offers">Ofertas</Link>
         <Link className="h-[10%] flex flex-col items-center  rounded-lg text-slate-100 text-base after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 after:bg-white py-4 pl-2" 
           to="/mainprofile">Perfil</Link>
+        <Link className="h-[10%] flex flex-col items-center  rounded-lg text-slate-100 text-base after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 after:bg-white py-4 pl-2" 
+          to="/applicants-offers">Ofertas aplicadas</Link>
         <button onClick={()=>logOut()} className="h-[10%] flex flex-col items-center rounded-lg text-slate-100 text-base after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 after:bg-white py-4 pl-2" >Cerrar Sesion</button>
       </div>
     </nav>

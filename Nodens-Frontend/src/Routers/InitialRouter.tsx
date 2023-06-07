@@ -24,7 +24,7 @@ export const InitialRouter = () => {
         <Nav inView={showNav} setShowNav={setShowNav} />
       </>
       }
-        <main className='flex flex-col pt-4 gap-4 bg-gradient-to-br from-[#E79A77] to-[#B701F7]'>
+        <main className='flex flex-col pt-4 gap-4 bg-[#003F5A]'>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Home />}></Route>

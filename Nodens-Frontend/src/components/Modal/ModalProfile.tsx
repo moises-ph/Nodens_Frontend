@@ -8,7 +8,7 @@ import Profile from './Profile';
 const ModalProfile = ({open, profile, closeModal, canPostulate}:{open:boolean, profile: ProfileT | undefined, closeModal : any, canPostulate : boolean}) => {
 	const variants = {
 		open: {
-			translateY: window.innerWidth > 768 ? '22.1%' : '33%'
+			translateY: window.innerWidth > 768 ? '-90%' : '-70%'
 		},
 		closed : {
 			translateY: window.innerWidth > 768 ? '33%' : '-100%'
@@ -23,7 +23,7 @@ const ModalProfile = ({open, profile, closeModal, canPostulate}:{open:boolean, p
     <motion.div
 		animate={open ? 'open' : 'closed'}
 		variants={variants}
-		className='md:h-[82%] h-2/3 overflow-y-auto md:left-[40%] p-4 pb-2 absolute md:bottom-auto bottom-0 md:fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
+		className='md:h-[89%] h-2/3 overflow-y-auto md:left-[40%] p-4 pb-2 absolute md:fixed md:w-3/5 w-full bg-slate-100 rounded-lg  shadow-slate-300 shadow-inner rounded-t-xl'
 		exit={{translateY: '100vh'}}
 	>
 		<Profile closeModal={closeModal} profile={profile as ProfileT} />

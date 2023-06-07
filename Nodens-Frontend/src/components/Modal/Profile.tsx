@@ -34,7 +34,7 @@ const Profile = ({
         <div>
           <h1 className="text-4xl">{profile.Name} {profile.Lastname}</h1>
           <p className="text-slate-500">Ubicacion: {profile.pais}, {profile.ciudad}</p>
-          <p className="text-slate-500">{profile.telefono}</p>
+          <p className="text-slate-500">Telefono: {profile.telefono}</p>
         </div>
       </div>
       <div>

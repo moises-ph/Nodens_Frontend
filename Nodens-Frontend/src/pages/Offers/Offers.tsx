@@ -43,7 +43,7 @@ const Offers = () => {
 	if(!offers) return <Loading />
 	return (
 		<>
-			<section className="h-full overflow-y-hidden">
+			<section className="h-full overflow-y-hidden ">
 				<div className="pt-8 pb-3 fixed h-min md:h-1/6 w-full flex flex-col md:flex-row ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
 					<div className="flex flex-row gap-4 m-0 h-min left-0">
 						<IndexLink />

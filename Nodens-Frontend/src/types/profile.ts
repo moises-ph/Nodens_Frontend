@@ -4,6 +4,9 @@ export type InstrumentoT = {
   };
   
   export type ProfileT = {
+    _id: {
+      $oid: string
+    },
     IdAuth ?: string;
     fecha_nacimiento: Date;
     Name: string;

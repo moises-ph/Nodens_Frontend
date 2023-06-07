@@ -9,7 +9,7 @@ import { clientHttp } from "../services/client";
 import { OrganizerT } from "../types";
 import { AxiosError } from "axios";
 
-const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
+const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer, SingleMusician } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<OrganizerT | boolean | undefined>(undefined);
@@ -57,13 +57,14 @@ export const AppOrganizerRouter = () => {
         <main className={organizador ? 'pt-16 md:pt-11' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador as OrganizerT}/> : <OrganizerLog /> } />
+              <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador as OrganizerT}/> : <OrganizerLog/> } />
               <Route path="/posts" element={<Posts />} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />
               <Route path="/create-offer" element={<CreateOffer />} />
               <Route path="/offers" element={<OrganizerOffers />}></Route>
               <Route path="/offers/:id" element={<SingleOffer />}></Route>
+              <Route path="/musician/:id" element={<SingleMusician />}></Route>
               <Route path="*" element={<Error />} />
             </Routes>
           </Suspense>

@@ -25,7 +25,7 @@ const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undef
 
   const postulateOffer = async (e:any) => {
     const date = new Date()
-    const postulationDate = `${date.getFullYear()}-${date.getMonth() < 9 ? '0'+(date.getMonth()+1): date.getMonth()+1}-${date.getDate()}`;
+    const postulationDate = `${date.getFullYear()}-${date.getMonth() < 9 ? '0'+(date.getMonth()+1): date.getMonth()+1}-${date.getDate() < 10 ? '0'+date.getDate() : date.getDate()}`;
     clientHttp().put(`/offers/offers/${oferta!._id}`, {
       ApplicantId: localStorage.getItem('musicianId'),
       PostulationDate: postulationDate,
