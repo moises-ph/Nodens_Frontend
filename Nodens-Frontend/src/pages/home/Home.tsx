@@ -21,7 +21,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '1',
 			PostulationDate: new Date()
 		}],
@@ -57,7 +57,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '2',
 			PostulationDate: new Date()
 		}],
@@ -83,7 +83,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '3',
 			PostulationDate: new Date()
 		}],
@@ -109,7 +109,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '4',
 			PostulationDate: new Date()
 		}],
@@ -135,7 +135,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '5',
 			PostulationDate: new Date()
 		}],
@@ -161,7 +161,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '6',
 			PostulationDate: new Date()
 		}],
@@ -187,7 +187,7 @@ const offersTemp: OffersT[] = [
 			SiteNumber: '#15-48',
 			Town: 'Colon'
 		},
-		Applicant: [{
+		Applicants: [{
 			ApplicantId: '7',
 			PostulationDate: new Date()
 		}],
