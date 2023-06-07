@@ -1,4 +1,3 @@
-import React from 'react'
 import { ProfileT } from '../../../../types';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';

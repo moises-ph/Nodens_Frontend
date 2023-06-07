@@ -46,7 +46,8 @@ const SingleMusician = () => {
   }, [])
   if(!musician) return <Loading />
   return (
-    <section className="slide-top min-h-screen flex w-full md:w-1/2 flex-col items-center gap-4 transition"> 
+    <article className="w-full flex justify-center">
+      <section className="slide-top min-h-screen flex w-full md:w-1/2 flex-col items-center gap-4 transition"> 
           <div className=" flex flex-col gap-1 items-center px-4">
             <div className="min-w-[70%] h-[300px] shadow-2xl absolute bg-[#E15D12] bg-opacity-100 md:w-1/3 z-[1] rounded-b-full" />
             <div className="flex flex-col gap-1 items-center my-4 p-4 z-10">
@@ -58,10 +59,10 @@ const SingleMusician = () => {
             </div>
           </div>
           <div className="bg-white rounded-2xl drop-shadow-xl grid grid-cols-2 grid-rows-2 w-4/5 gap-3 grid-flow-col-dense place-content-center md:w-2/5 p-3">
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Genero:</span> <span className="font-extralight text-gray-700">{musician.genero}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Telefono:</span> <span className="font-extralight text-gray-700">{musician.telefono}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(musician.fecha_nacimiento).getFullYear()}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Ciudad:</span> <span className="font-extralight text-gray-700">{musician.ciudad}</span></div>
+            <div className="w-full h-11 md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Genero:</span> <span className="font-extralight text-gray-700">{musician.genero}</span></div>
+            <div className="w-full h-11 md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Telefono:</span> <span className="font-extralight text-gray-700">{musician.telefono}</span></div>
+            <div className="w-full h-11 md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(musician.fecha_nacimiento).getFullYear()}</span></div>
+            <div className="w-full h-11 md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Ciudad:</span> <span className="font-extralight text-gray-700">{musician.ciudad}</span></div>
           </div>
           <div className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-2/3 gap-2">
             <h2 className="font-semibold">Redes Sociales:</h2>
@@ -77,6 +78,7 @@ const SingleMusician = () => {
             </div>
           </div>
         </section>
+      </article>
  
   )
 }
