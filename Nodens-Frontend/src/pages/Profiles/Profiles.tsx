@@ -48,10 +48,10 @@ const Profile = () => {
     <>
       <main className="h-screen overflow-y-hidden bg-[#003F5A]">
         <div className="pt-8 md:p-8 pb-3 h-fit w-full flex flex-col  md:flex-row ls gap-4 border-b-[1px] z-10 bg-[#003F5A] border-solid border-slate-500">
-					<div className="flex flex-row items-center gap-4 m-0 h-min left-0">
+					<div className="flex flex-row items-center gap-4 m-0 h-min left-0 z-30">
 						<IndexLink />
             {/* <button className="h-fit w-fit"><GoSettings className="w-8 h-8" /></button> */}
-						<label htmlFor="" className="md:w-[85vw] w-[80%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
+						<label htmlFor="" className="md:w-[85vw] z-30 w-[80%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 							<input ref={searchInput} type="text" onChange={()=>{searchOffer(searchInput)}} placeholder="Buscar" className="bg-transparent md:w-full outline-none text-slate-900" />
 							<button>
 								<BsSearch onClick={()=>{searchOffer(searchInput)}} className="text-slate-400" />
