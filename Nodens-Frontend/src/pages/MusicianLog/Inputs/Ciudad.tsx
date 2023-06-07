@@ -19,7 +19,7 @@ const Ciudad = ({ handler, goBack }: { handler: (key: string, value: any) => voi
 
     return (
     <>
-      <div className='h-full bg-slate-100 bg-opacity-20 rounded-xl border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-100 shadow-lg'>
+      <div className='h-full bg-zinc-900 bg-opacity-100 rounded-xl border-solid w-10/12 flex flex-col gap-10 px-2 pt-4 text-slate-100 shadow-lg'>
         <div className='text-2xl h-5/6 flex flex-col justify-center gap-[15%]'>
           <p className="mb-2">Ciudad:</p>
           <label htmlFor="Ciudad" className='flex-col text-lg md:flex'>Ciudad:

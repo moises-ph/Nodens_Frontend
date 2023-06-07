@@ -72,7 +72,7 @@ const Instrumentos = ({ handler, goBack }: { handler: (key: string, value: any) 
     }
   }
   return (
-    <div className='h-full bg-slate-100 bg-opacity-20 rounded-xl border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-100 shadow-lg'>
+    <div className='h-full bg-zinc-900 bg-opacity-100 rounded-xl border-solid w-10/12 flex flex-col gap-10 px-2 py-4 text-slate-100 shadow-lg'>
       <div className='text-2xl h-5/6 flex flex-col'>
         <p className="mb-2">Instrumentos:</p>
         <div className='grid grid-cols-2 grid-rows-3 h-4/5 w-full gap-2 mb-8'>

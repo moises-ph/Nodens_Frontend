@@ -63,7 +63,7 @@ const GenerosMusicales = ({ handler, goBack }: { handler: (key: string, value: a
     }
   }
   return (
-    <div className='h-full bg-slate-100 bg-opacity-20 rounded-xl w-10/12 flex flex-col justify-center gap-8 px-2 pb-2 text-slate-100 shadow-lg'>
+    <div className='h-full bg-zinc-900 bg-opacity-100 rounded-xl w-10/12 flex flex-col justify-center gap-8 px-2 pb-2 text-slate-100 shadow-lg'>
       <div className='flex flex-col text-2xl h-4/5 '>
         <h3 className="mb-5">Generos Musicales:</h3>
         <div className="h-2/4 grid grid-cols-2 grid-rows-3 gap-2 mb-6">

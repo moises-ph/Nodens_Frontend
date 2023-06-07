@@ -17,7 +17,7 @@ const FechaNacimiento = ({ handler, goBack }: { handler: (key: string, value: an
 	}
 
 	return (
-		<div className='bg-slate-100 bg-opacity-20 h-2/4 rounded-lg w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-xl'>
+		<div className='bg-zinc-900 bg-opacity-100 h-2/4 rounded-lg w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-xl'>
 			<label htmlFor='fecha_nacimiento' className='text-2xl h-2/4 flex flex-col gap-[20%]'>Fecha de nacimiento:
 				<input type="date" name="fecha_nacimiento" ref={fecha_nacimiento} className='bg-transparent border-solid border-0 border-b-2 border-slate-400 text-slate-100 font-medium'/>
 			</label>
