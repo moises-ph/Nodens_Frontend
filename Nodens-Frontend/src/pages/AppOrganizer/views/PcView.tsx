@@ -4,10 +4,12 @@ import DefaultUserImage from '../../../assets/DefaultUser.webp'
 import {Profile, LineChart} from './components'
 import { chartT } from './CellphView'
 import { Loading } from '../../../components'
+import { useEffect, useState } from 'react'
 
 Chart.register(ArcElement, Tooltip, Legend);
 
 const PcView = ({profile, profiles, offers}: chartT) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const availablesOffers = [
     offers.filter(off => off.isAvailable).length,
     offers.filter(off => !off.isAvailable).length,
@@ -39,6 +41,11 @@ const PcView = ({profile, profiles, offers}: chartT) => {
     ],
   }
   
+  useEffect(()=>{
+    setTimeout(()=> {
+      setIsLoading(false);
+    }, 2500)
+  })
 
   return (
     <section className="w-full h-fit flex gap-6">
@@ -53,11 +60,11 @@ const PcView = ({profile, profiles, offers}: chartT) => {
         </div>
         <div className="flex flex-col gap-2">
         {
-            profiles ? profiles.map((profile, i) => {
-              return  <Profile profile={profile} key={i}/>
-            })
-            : <Loading />
-          }
+          isLoading ? <div className={` flex items-center justify-center`}><div className='w-36 h-36 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>
+          : profiles.map((profile, i) => {
+            return  <Profile profile={profile} key={i}/>
+          })
+        }
         </div>
       </div>
 

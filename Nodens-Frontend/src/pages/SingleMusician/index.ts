@@ -1,0 +1,1 @@
+export {default as SingleMusician} from './SingleMusician'

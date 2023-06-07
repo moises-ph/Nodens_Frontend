@@ -9,7 +9,7 @@ import { clientHttp } from "../services/client";
 import { OrganizerT } from "../types";
 import { AxiosError } from "axios";
 
-const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer } = lazily(()=>import('../pages'))
+const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer, SingleMusician } = lazily(()=>import('../pages'))
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<OrganizerT | boolean | undefined>(undefined);
@@ -64,6 +64,7 @@ export const AppOrganizerRouter = () => {
               <Route path="/create-offer" element={<CreateOffer />} />
               <Route path="/offers" element={<OrganizerOffers />}></Route>
               <Route path="/offers/:id" element={<SingleOffer />}></Route>
+              <Route path="/musician/:id" element={<SingleMusician />}></Route>
               <Route path="*" element={<Error />} />
             </Routes>
           </Suspense>
