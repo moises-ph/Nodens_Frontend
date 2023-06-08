@@ -67,14 +67,14 @@ const Offers = () => {
 		<>
 			<section className="h-full overflow-y-hidden ">
 				<div className="pt-8 pb-3 h-min md:h-1/6 w-full md:fixed flex flex-col justify-center  ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
-					<div className="flex flex-row gap-4 m-0 h-min pl-4">
-						<label htmlFor="" className="md:w-[85vw] w-[80%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
-							<input ref={searchInput} type="text" placeholder="Buscar por Tag" className="bg-transparent md:w-full outline-none text-slate-900" />
+					<div className="flex flex-col md:flex-row gap-4 m-0 h-min pl-4">
+						<label htmlFor="" className="md:w-[85vw] w-[90%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
+							<input ref={searchInput} type="text" placeholder="Buscar por Tag" className="bg-transparent w-full outline-none text-slate-900" />
 							<button>
 								<BsSearch onClick={()=>{getOffersByTag()}} className="text-slate-400" />
 							</button>
 						</label>
-						<p className="text-slate-600 pl-6"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
+						<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 					</div>
 					<button className="place-self-start ml-4"onClick={()=> openFilters()}>Filtros</button>
 				</div>
