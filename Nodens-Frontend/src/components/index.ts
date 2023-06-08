@@ -9,3 +9,4 @@ export * from "./SingleOffer";
 export * from "./SingleProfile";
 export * from "./IndexLink";
 export * from "./InfoOffer"
+export * from "./Offers"
