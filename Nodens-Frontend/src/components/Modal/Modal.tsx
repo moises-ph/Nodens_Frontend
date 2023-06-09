@@ -11,7 +11,7 @@ import { renewToken } from '../../services'
 const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undefined, closeModal : any}) => {
 	const variants = {
 		open: {
-			translateY: window.innerWidth > 768 ? '25.1%' : '17%'
+			translateY: window.innerWidth > 768 ? '28.1%' : '17%'
 		},
 		closed : {
 			translateY: window.innerWidth > 768 ? '33%' : '-100%'

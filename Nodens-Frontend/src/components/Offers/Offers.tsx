@@ -1,11 +1,11 @@
-
 import { AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { BsSearch } from "react-icons/bs"
-import { Filters, IndexLink, Loading, Modal, SingleOffer } from "../../components"
+import { Filters, Loading, Modal, SingleOffer } from "../../components"
 import { OffersT } from "../../types"
 import { renewToken } from "../../services"
 import { clientHttp } from "../../services/client"
+import { BsFilterRight, BsArrowRepeat } from "react-icons/bs"
 
 const Offers = () => {
 	const [modal, setOpen] = useState(false);
@@ -59,7 +59,7 @@ const Offers = () => {
 			setOffers(offers);
 		}
 		else{
-			setOffers(offers.filter(value => value.Title.includes(e.current.value)));
+			setOffers(offers!.filter(value => value.Title.includes(e.current.value)));
 		}
 	}
 
@@ -67,7 +67,7 @@ const Offers = () => {
 	return (
 		<>
 			<section className="h-full overflow-y-hidden ">
-				<div className="pt-8 pb-3 h-min md:h-1/6 w-full md:fixed flex flex-col justify-center  ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
+				<div className="pt-8 pb-3 h-min md:h-1/5 w-full md:fixed flex flex-col justify-center  ls gap-4 border-b-[1px] z-10 bg-slate-50 border-solid border-slate-500">
 					<div className="flex flex-col md:flex-row gap-4 m-0 h-min pl-4">
 						<label htmlFor="" className="md:w-[85vw] w-[90%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 							<input ref={searchInput} type="text" placeholder="Buscar por Tag" className="bg-transparent w-full outline-none text-slate-900" />
@@ -77,12 +77,12 @@ const Offers = () => {
 						</label>
 						<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 					</div>
-          <div>
-					<button className="place-self-start ml-4"onClick={()=> openFilters()}>Filtros</button>
-          <button onClick={()=> getInitialOffers()}>Recargar ofertas</button>
+          <div className="flex justify-between px-4">
+  					<button className="shadow-xl bg-slate-200 rounded-lg flex items-center gap-4 px-4 py-1 transition-all duration-300 ease-in-out hover:scale-110 active:scale-90" onClick={()=> openFilters()}>Filtros <BsFilterRight /></button>
+            <button className="shadow-xl bg-slate-200 rounded-lg flex items-center gap-4 px-4 py-1 transition-all duration-300 ease-in-out hover:scale-110 active:scale-90" onClick={()=> getInitialOffers()}>Recargar ofertas <BsArrowRepeat /></button>
           </div>
 				</div>
-				<div className="flex flex-col md:top-[22.666667%] pt-3 md:absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
+				<div className="flex flex-col md:top-[25.666667%] pt-3 md:absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
 					{
 						offers.map((offer, i)=> {
 							return <SingleOffer showModal={showModal} redirect={null} offer={offer} key={i} Key={i.toString()} isHomePage={false} /> 

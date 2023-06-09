@@ -6,7 +6,7 @@ type FiltersT = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
   getOffers: ()=> void,
   offers: OffersT[],
-  setOffers: React.Dispatch<React.SetStateAction<OffersT[]>>
+  setOffers: React.Dispatch<React.SetStateAction<OffersT[] | null>>
 }
 
 const Filters = ({isOpen, setIsOpen, getOffers, offers, setOffers}: FiltersT) => {
