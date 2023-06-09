@@ -4,27 +4,43 @@ import { OffersT } from "../../types"
 type FiltersT = {
   isOpen: boolean,
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  getOffers: ()=> void,
+  offers: OffersT[],
   setOffers: React.Dispatch<React.SetStateAction<OffersT[]>>
 }
 
-const Filters = ({isOpen, setIsOpen, setOffers}: FiltersT) => {
+const Filters = ({isOpen, setIsOpen, getOffers, offers, setOffers}: FiltersT) => {
   const pagoMinimo = useRef<HTMLInputElement>(null);
   const pagoMaximo = useRef<HTMLInputElement>(null);
   const requerimiento = useRef<HTMLSelectElement>(null);
   const fechaCreacion = useRef<HTMLInputElement>(null);
   const fechaEvento = useRef<HTMLInputElement>(null);
   const $ = (ref: React.RefObject<HTMLSelectElement | HTMLInputElement>) => ref.current!.value;
-  const filters = {
-    pagoMinimo: pagoMinimo.current!.value,
-    pagoMaximo: pagoMaximo.current!.value,
-    requerimiento: requerimiento.current!.value,
-    fechaCreacion: fechaCreacion.current!.value,
-    fechaEvento: fechaEvento.current!.value
-  }
 
-  const filterFilters = () => {
+  const filterFilters = async () => {
     if($(pagoMaximo)) {
-      
+      setOffers(offers.filter(off => off.Payment < Number($(pagoMaximo))))      
+    }
+    if($(pagoMinimo)) {
+      setOffers(offers.filter(off => off.Payment > Number($(pagoMinimo))))      
+    }
+    if($(requerimiento)){
+      setOffers(offers.filter(off => { 
+          let inc = false
+          off.Requeriments.forEach( (offF) => {
+            offF.Description === $(requerimiento) ? inc = true : null
+            offF.Description === $(requerimiento).toUpperCase() ? inc = true : null
+            offF.Description === $(requerimiento).toLowerCase() ? inc = true : null
+          })
+          return inc;
+        })
+      )
+    }
+    if($(fechaCreacion)) {
+      setOffers(offers.filter(off => off.Creation_Date == ($(fechaCreacion) as unknown as Date)))
+    }
+    if($(fechaEvento)) {
+      setOffers(offers.filter(off => off.Event_Date == ($(fechaEvento) as unknown as Date)))
     }
   }
 
@@ -34,6 +50,11 @@ const Filters = ({isOpen, setIsOpen, setOffers}: FiltersT) => {
   }
 
   const applyFilters = () => {
+    if(!$(pagoMinimo) && !$(pagoMaximo) && !$(requerimiento) && !$(fechaCreacion) && !$(fechaEvento)){
+      getOffers();
+    } else {
+      filterFilters();
+    }
     closeFilters();
   }
 
@@ -44,11 +65,11 @@ const Filters = ({isOpen, setIsOpen, setOffers}: FiltersT) => {
         <h2 className="text-xl text-center md:mb-12">Filtrar ofertas:</h2>
         <div className="flex flex-col gap-4 mb-6 md:grid md:grid-cols-2 md:h-3/5 md:mb-12">
           <label className="flex flex-col gap-2 md:w-3/4">Por Pago:
-            <input type='number' placeholder="Pago minimo" className="rounded-lg px-2 border-[1px] border-slate-500"/>
-            <input type='number' placeholder="Pago Maximo" className="rounded-lg px-2 border-[1px] border-slate-500"/>
+            <input type='number' placeholder="Pago minimo" ref={pagoMinimo} className="rounded-lg px-2 border-[1px] border-slate-500"/>
+            <input type='number' placeholder="Pago Maximo" ref={pagoMaximo} className="rounded-lg px-2 border-[1px] border-slate-500"/>
           </label>
           <label className="flex flex-col gap-2 md:w-3/4">Por Requerimiento:
-            <select className="rounded-lg px-2 border-[1px] border-slate-500">
+            <select className="rounded-lg px-2 border-[1px] border-slate-500" ref={requerimiento}>
               <optgroup>
                 <option value="">Instrumento</option>
                 <option value="Guitarra">Guitarra</option>
@@ -65,10 +86,10 @@ const Filters = ({isOpen, setIsOpen, setOffers}: FiltersT) => {
             </select>
           </label>
           <label className="flex flex-col gap-2 md:w-3/4">Por Fecha de creacion: 
-            <input type='date' placeholder="fecha de creacion" className="rounded-lg px-2 border-[1px] border-slate-500"/>
+            <input type='datetime-local' placeholder="fecha de creacion" ref={fechaCreacion} className="rounded-lg px-2 border-[1px] border-slate-500"/>
           </label>
           <label className="flex flex-col gap-2 md:w-3/4">Por Fecha del Evento:
-            <input type='date' placeholder="fecha de evento"  className="rounded-lg px-2 border-[1px] border-slate-500"/>
+            <input type='datetime-local' placeholder="fecha de evento" ref={fechaEvento} className="rounded-lg px-2 border-[1px] border-slate-500"/>
           </label>
         </div>
         <div className="w-[45%] flex justify-evenly gap-4 ">

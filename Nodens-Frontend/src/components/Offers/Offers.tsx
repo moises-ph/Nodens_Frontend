@@ -10,7 +10,7 @@ import { clientHttp } from "../../services/client"
 const Offers = () => {
 	const [modal, setOpen] = useState(false);
 	const [oferta, setOferta] = useState<OffersT | undefined>()
-	const [offers,setOffers] = useState<OffersT[]>([]);
+	const [offers,setOffers] = useState<OffersT[] | null>(null);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const searchInput = useRef<HTMLInputElement>(null);
 
@@ -28,8 +28,9 @@ const Offers = () => {
 		})
 	}
 
-	const getInitialOffers = () => {
-		renewToken();
+	const getInitialOffers = async () => {
+    setOffers(null);
+    await renewToken();
 		clientHttp().get('/offers/offers')
 		  .then(res=>{console.log(res); setOffers(res.data)})
 			.catch(err=>console.log(err))
@@ -76,7 +77,10 @@ const Offers = () => {
 						</label>
 						<p className="text-slate-600"><span className="text-slate-800 font-bold">{offers.length}</span> Ofertas para Musicos</p>
 					</div>
+          <div>
 					<button className="place-self-start ml-4"onClick={()=> openFilters()}>Filtros</button>
+          <button onClick={()=> getInitialOffers()}>Recargar ofertas</button>
+          </div>
 				</div>
 				<div className="flex flex-col md:top-[22.666667%] pt-3 md:absolute w-full md:w-2/5 overflow-y-scroll gap-2 p-2">
 					{
@@ -89,7 +93,7 @@ const Offers = () => {
 					{modal && <Modal open={modal} closeModal={closeModal} oferta={oferta}/>}
 				</AnimatePresence>
 			</section>
-			<Filters isOpen={isOpen} setOffers={setOffers} setIsOpen={setIsOpen}/>
+			<Filters isOpen={isOpen} setOffers={setOffers} getOffers={getInitialOffers} offers={offers} setIsOpen={setIsOpen}/>
 		</>
 	)
 }
