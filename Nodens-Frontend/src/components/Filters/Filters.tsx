@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { OffersT } from "../../types"
 
 type FiltersT = {
@@ -7,8 +8,29 @@ type FiltersT = {
 }
 
 const Filters = ({isOpen, setIsOpen, setOffers}: FiltersT) => {
+  const pagoMinimo = useRef<HTMLInputElement>(null);
+  const pagoMaximo = useRef<HTMLInputElement>(null);
+  const requerimiento = useRef<HTMLSelectElement>(null);
+  const fechaCreacion = useRef<HTMLInputElement>(null);
+  const fechaEvento = useRef<HTMLInputElement>(null);
+  const $ = (ref: React.RefObject<HTMLSelectElement | HTMLInputElement>) => ref.current!.value;
+  const filters = {
+    pagoMinimo: pagoMinimo.current!.value,
+    pagoMaximo: pagoMaximo.current!.value,
+    requerimiento: requerimiento.current!.value,
+    fechaCreacion: fechaCreacion.current!.value,
+    fechaEvento: fechaEvento.current!.value
+  }
+
+  const filterFilters = () => {
+    if($(pagoMaximo)) {
+      
+    }
+  }
+
   const closeFilters = () => {
     setIsOpen(false);
+
   }
 
   const applyFilters = () => {
