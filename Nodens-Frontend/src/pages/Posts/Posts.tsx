@@ -7,7 +7,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import { useEffect, useState } from "react";
 import axios from "axios"
-
+import { clientHttp } from "../../services/client";
+import { Loading } from "../../components";
 
 
 
@@ -17,20 +18,20 @@ const Posts = () => {
  const handleShow = () => setShow(true);
  const handleClose = () => setShow(false);
 
- const url = "https://nodensapim.azure-api.net/posts/posts";
+ const url = "posts/posts";
  const peticion = fetch(url);
 
  const [post, setPost] = useState()
 
   useEffect(()=>{
-    axios.get(url).then((response)=> {
-      setPost(response.data)
-    })
+    clientHttp().get(url)
+     .then(res => console.log(res))
+     .catch(err => console.log(err))
       
   }, [])
   
   if(!post)
-  return null
+  return <Loading />
 
   return (
     <>
