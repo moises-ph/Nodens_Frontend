@@ -47,14 +47,15 @@ function OrgOffersToggleMenu({id, isAvailable} : { id: string, isAvailable : boo
 
       const handleDecision = (del : boolean ,id:string ) => {
         Swal.fire({
-          title : `Estás seguro que quieres ${del ? "eliminar" : "Deshabilitar"} la oferta?`,
-          text : 'Esta acción no se puede revertir',
+          title : `Estás seguro que quieres ${del ? "eliminar" :
+           isAvailable ? "Deshabilitar" : "Habilitar"} la oferta?`,
+          text : del ? 'Esta acción no se puede revertir': '...',
           icon : 'warning',
           showCancelButton : true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          
-          confirmButtonText: 'Yes, delete it!'
+          cancelButtonText: 'Cancelar',
+          confirmButtonText: 'Si'
         }).then((result) => {
           if(result.isConfirmed){
             del ? sendDeleteOffer(id) : sendChangeOffer(id);
