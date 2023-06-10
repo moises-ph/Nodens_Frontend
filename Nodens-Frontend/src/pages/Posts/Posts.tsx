@@ -28,7 +28,7 @@ const Posts = () => {
     })
       
   }, [])
-
+  
   if(!post)
   return null
 
