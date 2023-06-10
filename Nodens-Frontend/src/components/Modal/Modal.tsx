@@ -38,7 +38,7 @@ const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undef
 					text : res.data.message.includes('Postulado Correctamente') ? 'Te has postulado Correctamente' : 'XD?'
 				})
 	  	})
-      .catch(async (err : AxiosError) => {
+      .catch(async (err : AxiosError<{message : string}>) => {
 				console.error(err)
 				if(err.response?.status === 401){
 					await renewToken();
@@ -48,7 +48,7 @@ const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undef
 					Swal.fire({
 						icon: 'error',
 						title: 'Oops...',
-						text: err.response.data.message,
+						text: err.response.data?.message,
 						timer: 2000
 					})
 				}
