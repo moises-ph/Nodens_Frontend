@@ -20,7 +20,7 @@ export function DataTable<TData, TValue>({
   }) 
 
   return (
-    <div className="rounded-md border w-4/5">
+    <div className="rounded-md border w-[97%]">
       <Table className={`${isLoading ? "flex flex-col" : ""} w-full`}>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
