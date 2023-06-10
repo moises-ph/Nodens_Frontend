@@ -6,7 +6,7 @@ import { lazily } from "react-lazily";
 import { clientHttp } from "../services/client";
 import { renewToken } from "../services";
 
-const {App, Error, Offers, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOfferApplicant, SingleOrganizer} = lazily(()=> import('../pages'))
+const {App, Error, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOfferApplicant, SingleOrganizer} = lazily(()=> import('../pages'))
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
@@ -52,7 +52,6 @@ export const AppMusicianRouter = () => {
             <Routes>
               <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
               <Route path="/posts" element={<Posts />}></Route>
-              <Route path="/offers" element={<Offers />}></Route>
               <Route path="/offers/:id" element={<SingleOfferApplicant />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
               <Route path="/applicants-offers" element={<ApplicantsOffers />}></Route>

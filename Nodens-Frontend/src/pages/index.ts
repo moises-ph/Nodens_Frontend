@@ -4,7 +4,6 @@ export * from "./Login";
 export * from "./Error";
 export * from "./App";
 export * from "./Posts";
-export * from "./Offers";
 export * from "./Profiles";
 export * from "./MusicianLog";
 export * from "./MusiciansProfile";

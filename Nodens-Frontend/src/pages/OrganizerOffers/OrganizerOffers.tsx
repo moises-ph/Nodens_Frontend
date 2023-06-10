@@ -49,11 +49,11 @@ const OrganizerOffers = () => {
   if(!offers) return <Loading />
   return (
     <>
-      <main  className="w-full flex justify-center pt-[2%] gap-3">
-        <DataTable columns={offersColumns} data={offersData} isLoading={loading} />
+      <main  className="w-full flex flex-col justify-center pt-[4%] px-4 gap-3">
         <div className="flex flex-col h-fit w-fit gap-2">
           <button onClick={(e) => {setLoad(true); getOffers()}} className="bg-blue-500 rounded p-2 text-slate-200 hover:bg-blue-700 transition-all hover:text-white">Recargar</button>
         </div>
+        <DataTable columns={offersColumns} data={offersData} isLoading={loading} />
       </main>
     </>
   )

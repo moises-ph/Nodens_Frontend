@@ -11,7 +11,7 @@ import { renewToken } from '../../services'
 const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undefined, closeModal : any}) => {
 	const variants = {
 		open: {
-			translateY: window.innerWidth > 768 ? '25.1%' : '17%'
+			translateY: window.innerWidth > 768 ? '28.1%' : '17%'
 		},
 		closed : {
 			translateY: window.innerWidth > 768 ? '33%' : '-100%'
@@ -32,17 +32,26 @@ const Modal = ({open, oferta, closeModal}:{open:boolean, oferta: OffersT | undef
       PostulationFullName: `${localStorage.getItem('musicianName')}`
     })
       .then((res : AxiosResponse<{message: string, emailOrganizer : Object}>)=> {
-		setLoadint(false)
-		Swal.fire({
-			icon: 'success',
-			text : res.data.message.includes('Postulado Correctamente') ? 'Te has postulado Correctamente' : 'XD?'
-		})
-	  })
+				setLoadint(false)
+				Swal.fire({
+					icon: 'success',
+					text : res.data.message.includes('Postulado Correctamente') ? 'Te has postulado Correctamente' : 'XD?'
+				})
+	  	})
       .catch(async (err : AxiosError) => {
-		if(err.response?.status === 401){
-			await renewToken();
-			postulateOffer(e);
-		}
+				console.error(err)
+				if(err.response?.status === 401){
+					await renewToken();
+					postulateOffer(e);
+				} else if (err.response?.status === 500 ) {
+					setLoadint(false);
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: err.response.data.message,
+						timer: 2000
+					})
+				}
 	  })
   }
 	

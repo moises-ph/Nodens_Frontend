@@ -4,6 +4,10 @@ import { OffersT } from "../../types";
 const Offer = ({ oferta, closeModal}: { oferta: OffersT | undefined; closeModal: any;}) => {
   const { Creation_Date } = oferta!;
   const creation_date = new Date(Creation_Date);
+  const creation_date_string = 
+    `${creation_date.getDate()+1 < 10 ?  '0'+Number(creation_date.getDate()+1) : creation_date.getDate()+1} -
+    ${creation_date.getMonth()+1 < 10 ? '0'+Number(creation_date.getMonth()+1): creation_date.getMonth()+1} -
+    ${creation_date.getFullYear()}`
   return (
     <>
       <button onClick={closeModal}>
@@ -23,7 +27,7 @@ const Offer = ({ oferta, closeModal}: { oferta: OffersT | undefined; closeModal:
       </div>
       <div className="text-slate-800 text-start pl-2 pt-3">
         <p className="text-black text-md">Publicado el</p>{" "}
-        {creation_date.toDateString()}
+        {creation_date_string}
       </div>
       <div className="text-slate-800 text-start pl-2 pt-3">
         <p className="text-black text-md">Ubicación de la oferta</p>

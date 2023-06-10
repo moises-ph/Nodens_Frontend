@@ -45,12 +45,13 @@ const CreateOffer = () => {
       "tags" : tags
     })
     .then((res : AxiosResponse<{id : string, message : string}>) => {
+      console.log(res.data.message);
       setLoading(false);
       Swal.fire({
         position : 'center',
         icon : "success",
-        title : res.data.message,
-        html : <a href={`https://nodensapi.azure-api.net/offers/offers/${res.data.id}`}></a>
+        title : "Haz creado la oferta exitosamente",
+        
       })
     })
     .catch(async (err : AxiosError<{error : string, message : string}>) =>{
