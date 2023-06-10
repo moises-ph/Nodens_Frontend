@@ -37,10 +37,10 @@ const Filters = ({isOpen, setIsOpen, getOffers, offers, setOffers}: FiltersT) =>
       )
     }
     if($(fechaCreacion)) {
-      setOffers(offers.filter(off => off.Creation_Date == ($(fechaCreacion) as unknown as Date)))
+      setOffers(offers.filter(off => off.Creation_Date.toString().includes($(fechaCreacion))))
     }
     if($(fechaEvento)) {
-      setOffers(offers.filter(off => off.Event_Date == ($(fechaEvento) as unknown as Date)))
+      setOffers(offers.filter(off => off.Event_Date.toString().includes($(fechaEvento)))) 
     }
   }
 
@@ -61,14 +61,14 @@ const Filters = ({isOpen, setIsOpen, getOffers, offers, setOffers}: FiltersT) =>
   if(!isOpen) return <></>
   return (
     <div className="fixed z-[10000] top-0 left-0 backdrop-blur-sm bg-[rgba(36,44,71,0.68)] flex justify-center items-center h-full w-full">
-      <div className="h-4/5 w-3/4 md:w-2/5 md:h-[65%] bg-slate-100 rounded-lg shadow-lg p-4">
-        <h2 className="text-xl text-center md:mb-12">Filtrar ofertas:</h2>
-        <div className="flex flex-col gap-4 mb-6 md:grid md:grid-cols-2 md:h-3/5 md:mb-12">
-          <label className="flex flex-col gap-2 md:w-3/4">Por Pago:
+      <div className="h-3/5 overflow-y-scroll w-3/4 md:w-2/5 bg-slate-100 rounded-lg shadow-lg p-4">
+        <h2 className="text-xl text-center ">Filtrar ofertas:</h2>
+        <div className="flex flex-col gap-4 mb-6 ">
+          <label className="flex flex-col gap-2 ">Por Pago:
             <input type='number' placeholder="Pago minimo" ref={pagoMinimo} className="rounded-lg px-2 border-[1px] border-slate-500"/>
             <input type='number' placeholder="Pago Maximo" ref={pagoMaximo} className="rounded-lg px-2 border-[1px] border-slate-500"/>
           </label>
-          <label className="flex flex-col gap-2 md:w-3/4">Por Requerimiento:
+          <label className="flex flex-col gap-2 ">Por Requerimiento:
             <select className="rounded-lg px-2 border-[1px] border-slate-500" ref={requerimiento}>
               <optgroup>
                 <option value="">Instrumento</option>
@@ -85,11 +85,11 @@ const Filters = ({isOpen, setIsOpen, getOffers, offers, setOffers}: FiltersT) =>
               </optgroup>
             </select>
           </label>
-          <label className="flex flex-col gap-2 md:w-3/4">Por Fecha de creacion: 
-            <input type='datetime-local' placeholder="fecha de creacion" ref={fechaCreacion} className="rounded-lg px-2 border-[1px] border-slate-500"/>
+          <label className="flex flex-col gap-2 ">Por Fecha de creacion: 
+            <input type='date' placeholder="fecha de creacion" ref={fechaCreacion} className="rounded-lg px-2 border-[1px] border-slate-500"/>
           </label>
-          <label className="flex flex-col gap-2 md:w-3/4">Por Fecha del Evento:
-            <input type='datetime-local' placeholder="fecha de evento" ref={fechaEvento} className="rounded-lg px-2 border-[1px] border-slate-500"/>
+          <label className="flex flex-col gap-2 ">Por Fecha del Evento:
+            <input type='date' placeholder="fecha de evento" ref={fechaEvento} className="rounded-lg px-2 border-[1px] border-slate-500"/>
           </label>
         </div>
         <div className="w-[45%] flex justify-evenly gap-4 ">
