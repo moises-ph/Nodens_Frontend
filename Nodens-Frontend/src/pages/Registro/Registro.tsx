@@ -26,7 +26,7 @@ const Registro = () => {
     Swal.fire({
       title: 'Registrando.',
       html: 'Te estamos registrando, danos un momento :).',
-      timer: 2000,
+      timer: 100000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()

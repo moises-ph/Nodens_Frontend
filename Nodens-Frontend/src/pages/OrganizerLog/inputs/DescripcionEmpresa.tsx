@@ -18,7 +18,7 @@ const DescripcionEmpresa = ({ handler, goBack, gotCompany }: { handler: (key: st
     useEffect(()=> {if(!gotCompany) handler('descripcion_empresa', "")},[])
     return (
     <>
-      <div className='h-3/4 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 bg-slate-100 bg-opacity-10 shadow-xl rounded-xl'>
+      <div className='h-3/4 w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 bg-zinc-900 bg-opacity-100 shadow-xl rounded-xl'>
         <label className='flex flex-col text-2xl h-3/4 gap-[20%]' htmlFor='descripcion_empresa'>Descripcion de la Empresa
           <textarea className='h-3/4 bg-transparent resize-none border-solid border-b-2 border-slate-300 text-slate-100 font-medium outline-none focus:border-slate-500' placeholder='Descripción' name="descripcion_empresa" ref={descripcion_empresa} />
         </label>

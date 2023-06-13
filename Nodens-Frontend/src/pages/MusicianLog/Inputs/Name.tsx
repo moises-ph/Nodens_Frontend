@@ -25,8 +25,8 @@ const Name = ({ handler, goBack }: { handler: (key: string, value: any) => void,
         <input type="text" name="telefono" ref={name} className='bg-transparent border-solid border-b-2 border-slate-300 text-slate-100 font-medium outline-none focus:border-slate-500'/>
       </label>
       <div className="flex w-3/5 gap-4">
-        <button onClick={() => goBack()} className='px-4 bg-slate-100 rounded-md text-slate-900 h-8'>Atras</button>
-        <button onClick={() => checking()} className='px-4 bg-slate-100 rounded-md text-slate-900 h-8'>Guardar</button>
+        <button onClick={() => goBack()} className='px-4 bg-orange-500 rounded-md text-slate-100 h-8'>Atras</button>
+        <button onClick={() => checking()} className='px-4 bg-blue-500 rounded-md text-slate-100 h-8'>Guardar</button>
       </div>
     </div>
   </>

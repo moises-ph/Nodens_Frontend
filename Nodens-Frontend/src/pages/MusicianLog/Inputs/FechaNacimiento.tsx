@@ -22,8 +22,8 @@ const FechaNacimiento = ({ handler, goBack }: { handler: (key: string, value: an
 				<input type="date" name="fecha_nacimiento" ref={fecha_nacimiento} className='bg-transparent border-solid border-0 border-b-2 border-slate-400 text-slate-100 font-medium'/>
 			</label>
 			<div className='flex flex-row gap-4'>
-				<button className='px-4 bg-slate-100 rounded-md text-slate-900 h-8' onClick={() => goBack()}>Atras</button>
-				<button className='px-4 bg-slate-100 rounded-md text-slate-900 h-8' onClick={() => checking()}>Guardar</button>
+				<button className='px-4 bg-orange-500 rounded-md text-slate-100 h-8' onClick={() => goBack()}>Atras</button>
+				<button className='px-4 bg-blue-500 rounded-md text-slate-100 h-8' onClick={() => checking()}>Guardar</button>
 			</div>
 		</div>
 	)

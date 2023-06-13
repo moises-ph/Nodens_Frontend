@@ -30,7 +30,7 @@ const Posts = () => {
       
   }, [])
   
-  if(!post)
+  if(post)
   return <Loading />
 
   return (
@@ -74,7 +74,7 @@ const Posts = () => {
           <div className="pt-2 flex justify-center">
             
           </div>
-            <div className="flex flex-col text-slate-900 text-start gap-1 min-w-full min-h-full">
+            <div className="flex flex-col text-slate-900 text-start gap-1 min-w-full min-h-screen">
             </div>
           </div>
         </section>
