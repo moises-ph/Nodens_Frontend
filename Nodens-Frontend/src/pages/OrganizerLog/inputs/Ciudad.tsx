@@ -22,7 +22,7 @@ const Ciudad = ({ handler }: { handler: (key: string, value: any) => void }) => 
 
     return (
     <>
-      <div className='h-full border-solid w-10/12 flex flex-col items-center gap-10 px-2 pt-4 text-slate-100 bg-zinc-900 bg-opacity-100 rounded-xl shadow-2xl'>
+      <div className='h-[35rem] border-solid w-[25rem] flex flex-col items-center gap-10 px-2 pt-4 text-slate-100 bg-zinc-900 bg-opacity-100 rounded-xl shadow-2xl'>
         <div className='text-2xl h-5/6 flex flex-col justify-center items-center gap-[15%]'>
           <p className="mb-2">Ciudad:</p>
           <label htmlFor="Ciudad" className='flex-col text-lg md:flex'>
