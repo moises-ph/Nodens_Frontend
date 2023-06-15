@@ -49,7 +49,7 @@ const PcView = ({profile, profiles, offers}: chartT) => {
 
   return (
     <section className="w-full h-fit flex gap-6">
-      <div className='flex flex-col gap-4 w-2/5 h-[95vh] overflow-y-scroll px-4'>
+      <div className='flex flex-col gap-4 w-2/5 h-[93vh] overflow-y-scroll px-4'>
         <div className="h-[25vh] flex items-center gap-2">
           <img src={profile.url_foto_perfil || DefaultUserImage} alt="profile pic" className="h-4/5 w-auto"/>
           <div className="">
@@ -58,7 +58,7 @@ const PcView = ({profile, profiles, offers}: chartT) => {
             <p>{profile.telefono}</p>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 mb-2">
         {
           isLoading ? <div className={` flex items-center justify-center`}><div className='w-36 h-36 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>
           : profiles.map((profile, i) => {
@@ -68,7 +68,7 @@ const PcView = ({profile, profiles, offers}: chartT) => {
         </div>
       </div>
 
-      <div className='w-full h-[95vh] flex flex-col justify-center  p-8'>
+      <div className='w-full h-[93vh] flex flex-col justify-center  p-8'>
         <div className='flex gap-4'>
           <div className="w-full h-[40vh]">
             <LineChart offers={offers}/>

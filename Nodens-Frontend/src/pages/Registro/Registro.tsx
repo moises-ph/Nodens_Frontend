@@ -29,7 +29,7 @@ const Registro = () => {
       timer: 100000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading()
+         Swal.showLoading()
       },
       willClose: () => {
         clearInterval(timerInterval)
@@ -88,7 +88,7 @@ const Registro = () => {
       <form onSubmit={handleSubmit} className="w-5/6 sm:w-[400px] h-4/6 rounded-lg shadow-xl shadow-slate-900 flex flex-col justify-center items-start bg-zinc-900 z-30 pl-6 py-4 pt-16 gap-4">
         <label htmlFor="Email" className="w-full flex flex-col gap-2">
          <h2>Email</h2> 
-          <input type="email" name="email" id="" className="placeholder:text-slate-600 w-full text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />
+          <input type="email" name="email" id="" className="placeholder:text-slate-600 w-11/12 text-slate-100 bg-transparent border-solid border-b-2 border-b-slate-400 transition-colors duration-300 ease-linear focus:border-b-slate-100 focus:border-solid focus:border-b-2 outline-none leading-7" placeholder="Email" required />
         </label>
         <label htmlFor="userName" className="w-full flex flex-col gap-2">
           <h2>Nombre de usuario</h2>
