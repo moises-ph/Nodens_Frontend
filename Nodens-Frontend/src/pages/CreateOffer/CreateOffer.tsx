@@ -141,7 +141,7 @@ const CreateOffer = () => {
             <h5 className="text-xl font-semibold text-slate-100">Titulo de Oferta <span className="text-red-700">*</span></h5>
             <input type="text" id="Title" name="Title" placeholder="Titulo"  ref={title} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
-          <label htmlFor="Description" className="w-5/6 h-[30vh] bg-zinc-900 rounded-xl p-3 flex flex-col gap-4">
+          <label htmlFor="Description" className="w-5/6 h-[20vh] bg-zinc-900 rounded-xl p-3 flex flex-col gap-4">
             <h5 className="text-xl font-semibold text-slate-100">Descripcion de Oferta <span className="text-red-700">*</span></h5>
             <textarea name="Description" id="" ref={description} className="h-4/5 resize-none border-solid border-[1px] border-slate-900 rounded-md" required></textarea>
           </label>
@@ -182,7 +182,7 @@ const CreateOffer = () => {
               </div>
               })
             }
-            <input type="text" name="requeriment" placeholder="Requerimiento" ref={requeriment}/>
+            <input type="text" name="requeriment" placeholder="Requerimiento" ref={requeriment} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md"/>
             <span onClick={()=>addRequeriment()} className="text-slate-100">Agregar Requerimiento</span>
           </label>
           <label className="w-5/6 h-1/6 bg-zinc-900 rounded-xl p-3 flex flex-col gap-6">
@@ -195,7 +195,7 @@ const CreateOffer = () => {
               </div>
               })
             }
-            <input type="text" name="tags" placeholder="tags" ref={tag}/>
+            <input type="text" name="tags" placeholder="tags" ref={tag} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md"/>
             <span onClick={()=>addTag()} className="text-slate-100">Agregar Tag</span>
           </label>
           <input type="submit" onClick={(e)=> handle(e)} className="w-2/6 h-10 bg-orange-500 text-slate-200 font-medium text-xl rounded-xl" value="Publicar"/>
