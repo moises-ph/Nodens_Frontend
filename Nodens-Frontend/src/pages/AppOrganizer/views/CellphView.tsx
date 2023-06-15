@@ -4,6 +4,7 @@ import { Pie } from 'react-chartjs-2'
 import DefaultUserImage from '../../../assets/DefaultUser.webp'
 import { useState } from 'react'
 import Profile from './components/Profile'
+import { Link } from 'react-router-dom'
 
 export type chartT = {
   profile: OrganizerT,
@@ -49,14 +50,14 @@ const CellphView = ({profile, profiles, offers}: chartT) => {
 
   return (
     <section className="w-full h-fit">
-      <div className="h-[25vh] flex items-center gap-2">
+      <Link to='/mainprofile' className="h-[25vh] flex items-center gap-2">
         <img src={profile.url_foto_perfil || DefaultUserImage} alt="profile pic" className="h-4/5 w-auto"/>
         <div className="">
           <h3 className="text-xl">{profile.Name} {profile.Lastname}</h3>
           <p className="text-sm text-slate-500">Organizador</p>
           <p>{profile.telefono}</p>
         </div>
-      </div>
+      </Link>
       <div className='flex flex-col mb-4'>
         {
           offers.length === 0 
@@ -70,7 +71,7 @@ const CellphView = ({profile, profiles, offers}: chartT) => {
           </div>
         }
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 px-1 mb-2">
         {
           profiles.map((profile, i) => {
             return  <Profile profile={profile} key={i}/>
