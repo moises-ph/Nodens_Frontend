@@ -50,7 +50,6 @@ const Profile = () => {
         <div className="pt-8 md:p-8 pb-3 h-fit w-full flex flex-col  md:flex-row ls gap-4 border-b-[1px] z-10 bg-[#003F5A] border-solid border-slate-500">
 					<div className="flex flex-row items-center gap-4 m-0 h-min left-0 z-30">
 						<IndexLink />
-            {/* <button className="h-fit w-fit"><GoSettings className="w-8 h-8" /></button> */}
 						<label htmlFor="" className="md:w-[85vw] z-30 w-[80%] flex items-center justify-between gap-2 h-12 bg-slate-100 text-slate-50 placeholder:text-slate-300 rounded-3xl px-4 shadow-xl">
 							<input ref={searchInput} type="text" onChange={()=>{searchOffer(searchInput)}} placeholder="Buscar" className="bg-transparent md:w-full outline-none text-slate-900" />
 							<button>
@@ -60,8 +59,8 @@ const Profile = () => {
 					</div>
 					<p className="text-slate-100 pl-6"><span className="text-slate-100 font-bold">{pfps.length}</span> Perfiles</p>
 				</div>
-        <section className="flex flex-col py-5 w-full md:h-[83vh] overflow-y-scroll p-2">
-          <div className="md:w-2/5 w-full md:px-3 gap-2 flex flex-col">
+        <section className="flex flex-col py-5 w-full  p-2">
+          <div className="md:w-2/5 w-full md:px-3 gap-2 flex flex-col md:h-[83vh] h-[80vh] overflow-y-scroll">
             {
               pfps.map((prof, i)=>{
                 return <SingleProfile showModal={showModal} redirect={null} profile={prof} key={i} Key={i} isHomePage={false}/>

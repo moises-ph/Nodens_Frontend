@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Profile = ({profile, key}: {profile: ProfileT, key: number}) => {
-  return (
+  return ( 
     <Link to={`/musician/${profile._id.$oid}`} key={key} className={`w-full h-fit flex flex-col p-4 border border-solid border-slate-500 rounded-lg transition bg-slate-100 hover:bg-opacity-30 hover:cursor-pointer hover:shadow-xl`}>
       <div className='w-full flex items-center gap-2 text-slate-800 '>
         {profile.url_foto_perfil 
