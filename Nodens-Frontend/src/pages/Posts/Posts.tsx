@@ -6,31 +6,29 @@ import { BsSun, BsFillMoonFill } from "react-icons/bs"
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import { useEffect, useState } from "react";
-import axios from "axios"
+import axios, { Axios } from "axios"
 import { clientHttp } from "../../services/client";
 import { Loading } from "../../components";
 
 
 
 const Posts = () => {
-  const [show, setShow] = useState(false);
 
- const handleShow = () => setShow(true);
- const handleClose = () => setShow(false);
+ const url = ('https://nodensgapi.azure-api.net/posts/posts/');
 
- const url = "posts/posts";
- const peticion = fetch(url);
-
- const [post, setPost] = useState()
+ const [post, setPost] = useState<PostT[]>()
 
   useEffect(()=>{
-    clientHttp().get(url)
-     .then(res => console.log(res))
+    axios.get(url)
+     .then(res => {
+      console.log(res)
+      setPost(res.data)
+    })
      .catch(err => console.log(err))
       
   }, [])
   
-  if(post){
+  if(!post){
   return <Loading />
   }
   return (
@@ -47,9 +45,6 @@ const Posts = () => {
               <BiUserCircle className="text-4xl" />
               <p>Nombre de perfil</p>
             </span>
-            <Button className="flex items-center text-slate-50">
-              <BsFillMoonFill className="w-10"/>
-            </Button>
           </div>
           <div className="pt-8 pl-6 shadow-xl rounded-lg h-32">
             <label
@@ -65,7 +60,14 @@ const Posts = () => {
                 <BsSearch className="text-slate-900" />
               </button>
             </label>
+            <div className="flex justify-between">
             <p className="pt-4">Posts </p>
+            <span className="pr-2 pt-4">
+            <Button className="bg-slate-100  rounded-xl text-center" >
+             <a href="/createpost">Crea tu propio post</a> 
+            </Button>
+            </span>
+            </div>
           </div>
         </section>
         <section className=" h-screen w-full">
@@ -76,6 +78,14 @@ const Posts = () => {
             </div>
           </div>
         </section>
+
+
+          {/*post.map((k, index)=>{
+            return(
+            <>
+            
+            </>
+            )})*/}
 
 
         <footer className="h-12 w-full bg-orange-500 flex justify-center items-center shadow-2xl shadow-zinc-500 absolute ">

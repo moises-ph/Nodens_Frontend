@@ -1,3 +1,5 @@
+
+
 import { ColumnDef } from "@tanstack/react-table";
 import { OfferTableT } from "../../../types";
 
