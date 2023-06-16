@@ -19,3 +19,4 @@ export * from "./SingleOfferApplicant"
 export * from "./VerifyUser";
 export * from "./SingleMusician"
 export * from "./SingleOrganizer"
+export * from "./CreateOffer"

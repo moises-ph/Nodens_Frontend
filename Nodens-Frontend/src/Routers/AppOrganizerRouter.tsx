@@ -8,6 +8,7 @@ import { renewToken } from "../services";
 import { clientHttp } from "../services/client";
 import { OrganizerT } from "../types";
 import { AxiosError } from "axios";
+import CreatePost from "../pages/CreatePost/CreatePost";
 
 const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts, Profiles, OrganizerOffers, SingleOffer, SingleMusician } = lazily(()=>import('../pages'))
 
@@ -58,6 +59,7 @@ export const AppOrganizerRouter = () => {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador as OrganizerT}/> : <OrganizerLog/> } />
+              <Route path="/createpost" element={ <CreatePost />}/>
               <Route path="/posts" element={<Posts />} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />

@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import { lazily } from "react-lazily";
 import { clientHttp } from "../services/client";
 import { renewToken } from "../services";
+import CreatePost from "../pages/CreatePost/CreatePost";
 
 const {App, Error, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOfferApplicant, SingleOrganizer} = lazily(()=> import('../pages'))
 
@@ -52,6 +53,7 @@ export const AppMusicianRouter = () => {
             <Routes>
               <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
               <Route path="/posts" element={<Posts />}></Route>
+              <Route path="/createpost" element={ <CreatePost />}/>
               <Route path="/offers/:id" element={<SingleOfferApplicant />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
               <Route path="/applicants-offers" element={<ApplicantsOffers />}></Route>
