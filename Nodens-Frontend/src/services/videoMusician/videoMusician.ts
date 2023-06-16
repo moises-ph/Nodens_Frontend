@@ -1,7 +1,7 @@
-import axios from "axios"
+import axios from "axios";
 import Swal from "sweetalert2";
 
-export const profilePic = (url:string,image: any) => {
+export const videoMusician = (url: string, video: FileList) => {
   return new Promise((res, rej) => {
     const client = axios.create({
       headers: {
@@ -10,9 +10,9 @@ export const profilePic = (url:string,image: any) => {
         "Accept" : 'multipart/form-data'
       }
     });
-    console.log(image);
+    console.log(video);
     const form = new FormData();
-    form.append("file", image[0]);
+    form.append("file", video[0]);
     client.post("https://nodensgapi.azure-api.net"+url, form)
       .then(response => {
         Swal.fire({

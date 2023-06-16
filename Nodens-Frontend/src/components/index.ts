@@ -11,3 +11,4 @@ export * from "./IndexLink";
 export * from "./InfoOffer"
 export * from "./Offers"
 export * from "./Filters"
+export * from "./musicVideos"

@@ -23,13 +23,6 @@ export const TableColums: ColumnDef<OfferTableT>[] = [
     }
   },
   {
-    accessorKey: "ApplicantsNumber",
-    header: "Numero de aplicantes",
-    cell : ({row}) => {
-      return <div className="w-full text-center"><span>{row.getValue('ApplicantsNumber')}</span></div>
-    }
-  },
-  {
     accessorKey: "Payment",
     header: "Pago",
     cell : ({row}) => {
