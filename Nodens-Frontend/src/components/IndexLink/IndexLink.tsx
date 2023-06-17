@@ -5,7 +5,7 @@ import { Logo } from '../Logo';
 function IndexLink() {
   return (
     <Link to="/" className="cursor-pointer flex items-center justify-center">
-      <Logo dimensions='h-7 w-7'/>
+      <Logo dimensions='h-8 w-8'/>
     </Link>
   );
 }

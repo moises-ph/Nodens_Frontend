@@ -11,6 +11,7 @@ const {App, Error, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, Singl
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
+  const [perfil, setPerfil] = useState<string>();
   
   useEffect(()=> {
     const request = async () => {
@@ -24,7 +25,8 @@ export const AppMusicianRouter = () => {
         } else {
           setMusician(true);
           localStorage.setItem('musicianName', `${res.data.Name} ${res.data.Lastname}`)
-          localStorage.setItem('musicianId', res.data.IdAuth)
+          localStorage.setItem('musicianId', res.data.IdAuth);
+          setPerfil(res.data.url_foto_perfil);
         }
       })
         .catch(err=>{console.log(err); setMusician(false)})
@@ -39,7 +41,7 @@ export const AppMusicianRouter = () => {
       <Router>
         <div className={musician ? '' : 'hidden'}>
         <NavMusician inView={showNav} setShowNav={setShowNav} />
-        <NavMusicianRes />
+        <NavMusicianRes perfil={perfil as string} />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions="h-7 w-7"/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
@@ -51,8 +53,8 @@ export const AppMusicianRouter = () => {
         <main className={musician ? 'pt-11' : ""}>
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={musician ? <App /> : <MusicianLog />}></Route>
-              <Route path="/posts" element={<Posts />}></Route>
+              <Route path="/" element={musician ? <Posts /> : <MusicianLog />}></Route>
+              <Route path="/offers" element={<App />}></Route>
               <Route path="/createpost" element={ <CreatePost />}/>
               <Route path="/offers/:id" element={<SingleOfferApplicant />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
