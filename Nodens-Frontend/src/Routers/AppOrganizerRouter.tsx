@@ -14,6 +14,7 @@ const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts,
 
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<OrganizerT | boolean | undefined>(undefined);
+  const [profImg, setProfImg] = useState<string>()
 
   const getOrganizer = async() => {
     setTimeout('', 1000)
@@ -24,6 +25,7 @@ export const AppOrganizerRouter = () => {
           setOrganizador(false);
         } else {
           setOrganizador(res.data);
+          setProfImg(res.data.url_foto_perfil)
         }
       })
       .catch(async (err : AxiosError)=>{        
@@ -42,6 +44,7 @@ export const AppOrganizerRouter = () => {
     getOrganizer();
   }, [])
   const [showNav, setShowNav] = useState<boolean>(false)
+
   if(organizador === undefined ) return <Loading />
   
   return (
@@ -49,7 +52,7 @@ export const AppOrganizerRouter = () => {
       <Router>
       <div className={organizador ? '' : 'hidden'}>
         <NavOrganizer inView={showNav} setShowNav={setShowNav}/>
-        <NavOrganizerRes />
+        <NavOrganizerRes profImg={profImg as string} />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions="h-7 w-7"/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
