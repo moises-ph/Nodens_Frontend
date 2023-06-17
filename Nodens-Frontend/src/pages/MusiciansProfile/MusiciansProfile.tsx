@@ -257,7 +257,7 @@ const MusiciansProfile = () => {
             })}
             </div>
           </div>
-          <div className=" w-full bg-white rounded-2xl drop-shadow-xl h-fit flex flex-col gap-4">
+          <div className=" w-fit md:px-8 bg-white rounded-2xl drop-shadow-xl h-fit flex flex-col gap-4">
             <div className="flex justify-between px-4 pt-2">
               <h2 className="text-xl font-semibold ">Videos:</h2>
               <button className="flex gap-2 items-center text-slate-400 text-sm " onClick={()=> setVideoOpening(true)}>Agregar video<FcAddImage /></button>
