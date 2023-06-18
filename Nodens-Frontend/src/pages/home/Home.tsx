@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { MusiciansPhoto } from "../../images/musicos-PhotoRoom"
+import quienes_placeholder from "../../images/quienes_placeholder.png"
 import { Testimonios } from "../../components"
 
 const tags: string[] = [
@@ -70,9 +71,21 @@ function Home() {
                     </div>
                     <div className="flex flex-col items-center gap-4">
                         <h3 className="text-xl text-red-800 font-medium">Organizadores</h3>
-                        <Link to='/registro' className="rounded-full border w-4/5 md:w-2/5 h-10 border-blue-700 flex justify-center p-4 items-center text-blue-700 transition-colors duration-100 hover:bg-blue-300 ">Encuentra tu acompañamiento musical ideal</Link>
+                        <Link to='/registro' className="rounded-full border w-4/5 md:w-2/5 h-10 border-blue-700 flex justify-center p-4 items-center text-blue-700 text-center transition-colors duration-100 hover:bg-blue-300 ">Encuentra tu acompañamiento musical ideal</Link>
 
                     </div>
+                </div>
+
+                <div className="flex h-fit w-full bg-red-100">
+                    <div className="flex flex-col py-4 px-2 gap-4 md:w-2/4 md:justify-center md:items-center md:px-16">
+                        <h2 className="text-4xl font-medium text-center">Quienes Somos?</h2>
+                        <p className="text-xl font-light text-justify">
+                            Nodens es una plataforma que ayuda a musicos emergentes a encontrar empleo,
+                            al mismo tiempo que ayuda a personas que requieran servicios musicales a 
+                            encontrar sus musicos ideales. 
+                        </p>
+                    </div>
+                    <img src={quienes_placeholder} className="hidden md:block h-full w-2/4 object-cover"/>
                 </div>
         
       </main> 
