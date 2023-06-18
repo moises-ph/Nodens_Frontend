@@ -24,7 +24,7 @@ export const InitialRouter = () => {
         <Nav inView={showNav} setShowNav={setShowNav} />
       </>
       }
-        <main className='flex flex-col pt-4 gap-4 '>
+        <main className='flex flex-col pt-4 '>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Home />}></Route>

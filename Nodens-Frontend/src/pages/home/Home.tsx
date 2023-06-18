@@ -53,13 +53,27 @@ function Home() {
 				</div>
 
 				<div className="bg-blue-100 py-4 px-2 flex flex-col gap-4 md:gap-20 md:flex-row md:justify-center md:h-[40vh] md:items-center">
-					<h3 className="text-4xl text-blue-800 font-semibold md:w-[30%] md:text-7xl md:place-self-center">Publica ofertas y encuentra tu musico ideal</h3>
+					<h3 className="text-4xl text-blue-800 font-semibold md:w-[40%] md:text-7xl md:place-self-center">Publica ofertas y encuentra tu musico ideal</h3>
 					<Link to='/login' className="rounded-full border-2 w-full h-10 border-blue-800 flex justify-center items-center text-blue-800 font-semibold transition-colors duration-300 hover:bg-blue-300 md:w-[25%] md:h-[20%]">Publicar Oferta</Link>
 				</div>
 
 				<div className="h-[79vh] w-full bg-rose-100 ">
 						<Testimonios autoSlide={false} autoSlideInterval={3000}/>
 				</div>
+
+                <div className="flex flex-col gap-4 py-4 bg-zinc-100 h-fit w-full">
+                    <h2 className="text-center text-4xl font-medium md:text-5xl">A quien esta dirigido Nodens?</h2>
+                    <p className="text-center font-light text-xl">Tanto si eres un musico como alguien que disfruta de ver musica en vivo </p>
+                    <div className="flex flex-col items-center gap-4">
+                        <h3 className="text-xl text-red-800 font-medium">Musicos</h3>
+                        <Link to='/registro' className="rounded-full border w-4/5 md:w-2/5 h-10 border-blue-700 flex justify-center items-center text-blue-700 transition-colors duration-100 hover:bg-blue-300 ">Encuentra tus primeras oportunidades</Link>
+                    </div>
+                    <div className="flex flex-col items-center gap-4">
+                        <h3 className="text-xl text-red-800 font-medium">Organizadores</h3>
+                        <Link to='/registro' className="rounded-full border w-4/5 md:w-2/5 h-10 border-blue-700 flex justify-center p-4 items-center text-blue-700 transition-colors duration-100 hover:bg-blue-300 ">Encuentra tu acompañamiento musical ideal</Link>
+
+                    </div>
+                </div>
         
       </main> 
     </>
