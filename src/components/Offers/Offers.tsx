@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { BsChevronCompactDown, BsFillBookmarkFill, BsSearch } from "react-icons/bs"
-import { Filters, InfoOffer, Loading, Modal, SingleOffer } from "../../components"
+import { Filters, InfoOffer, Loading, Logo, Modal, SingleOffer } from "../../components"
 import { OfferFilter, OffersT } from "../../types"
 import { renewToken } from "../../services"
 import { clientHttp } from "../../services/client"
@@ -70,9 +70,13 @@ const Offers = () => {
         <div
           className={`h-fit flex flex-col ${
             id ? "w-[28.44rem] rounded-tr-none rounded-br-none" : "w-[34.69rem]"
-          } overflow-y-scroll rounded-xl bg-white`}
+          } overflow-y-scroll rounded-xl bg-white justify-self-center`}
         >
-          <div className={`w-full h-fit py-3 pl-3 ${id ? 'bg-blue-500 text-white' : ''}`}>
+          <div
+            className={`w-full h-fit py-3 pl-3 ${
+              id ? "bg-blue-500 text-white" : ""
+            }`}
+          >
             <h2 className="text-xl font-semibold">Recomendaciones</h2>
             <p className="font-thin">
               En función de tu perfil y tu historial de búsqueda
@@ -107,7 +111,13 @@ const Offers = () => {
             />
           </div>
         ) : (
-          <></>
+          <footer className="w-[17rem] flex flex-col items-center font-thin text-zinc-500">
+            <Logo dimensions="h-6 w-6" />
+            <span>Nodens</span>
+            <span>Terminos de Uso</span>
+            <span>Politica de Privacidad</span>
+            <span>© 2023 Nodens</span>
+          </footer>
         )}
       </section>
     </>

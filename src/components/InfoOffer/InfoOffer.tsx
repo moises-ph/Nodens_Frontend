@@ -20,7 +20,7 @@ const InfoOffer = ({offer}:{offer: OffersT}) => {
         </div>
         <div
           className={`${offer.isAvailable ? "bg-green-500" : "bg-red-500"}
-          flex flex-col justify-center hover:scale-105 transition-all after:bg-white after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 w-fit h-fit px-1 py-[2px] rounded flex items-center`}
+          flex-col justify-center hover:scale-105 transition-all after:bg-white after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 w-fit h-fit px-1 py-[2px] rounded flex items-center`}
         >
           {offer.isAvailable ? (
             <>
