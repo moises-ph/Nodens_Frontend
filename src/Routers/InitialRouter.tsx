@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Loading, Logo, Nav, NavRes } from '../components'
 import { HiMenu } from 'react-icons/hi'
 import { Suspense, useState } from 'react'
@@ -10,7 +10,13 @@ const { Home, Login, Registro, Error, PasswordRecovery } = lazily(()=>import('..
 
 export const InitialRouter = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
-  const visibility = () => location.pathname.replace("/", "") === 'recovery' || location.pathname.replace("/", "") === 'verify' ? false : true 
+  const visibility = () => {
+    return location.pathname.replace("/", "") === 'recovery' 
+    || location.pathname.replace("/", "") === 'verify' 
+    || location.pathname.replace("/", "") === 'login' 
+    || location.pathname.replace("/", "") === 'registro' 
+    ? false : true 
+  }
   return (
     <>
     	<Router>
@@ -24,7 +30,7 @@ export const InitialRouter = () => {
         <Nav inView={showNav} setShowNav={setShowNav} />
       </>
       }
-        <main className='flex flex-col pt-4 '>
+        <main className={`flex flex-col ${visibility() ? 'pt-4' : ''}`}>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Home />}></Route>
