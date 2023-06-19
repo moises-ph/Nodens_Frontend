@@ -7,6 +7,7 @@ import { Cell, Pc } from "./views";
 
 const Registro = () => {
   const [loading, setLoading] = useState<boolean>();
+  const [Rol, setRol] = useState<"Musician" | "Organizer">();
   const MySwal = withReactContent(Swal)
   const navigation = useNavigate()
 
@@ -21,6 +22,7 @@ const Registro = () => {
     e.preventDefault();
     const form: FormData = new FormData(e.target);
     const object = Object.fromEntries(form)
+    const data = {...object, rol: Rol};
     console.log(object);
     
     let timerInterval: number
@@ -41,7 +43,7 @@ const Registro = () => {
       }
     })
     
-    axios.post("https://nodensgapi.azure-api.net/auth/api/user/Register", object)
+    axios.post("https://nodensgapi.azure-api.net/auth/api/user/Register", data)
       .then(res=>{
         setLoading(false)
         console.log(res);
@@ -78,7 +80,7 @@ const Registro = () => {
 
   return  (
     <main className='h-screen flex flex-col items-center text-slate-100 gap-4'>    
-      {window.innerWidth > 768 ? <Pc /> : <Cell handleSubmit={handleSubmit} setLoading={setLoading}/>}           
+      {window.innerWidth > 768 ? <Pc /> : <Cell handleSubmit={handleSubmit} setLoading={setLoading} setRol={setRol}/>} 
       {loading && <div className={`absolute right-4 top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
     </main>
   );
