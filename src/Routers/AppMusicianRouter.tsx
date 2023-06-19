@@ -56,7 +56,7 @@ export const AppMusicianRouter = () => {
               <Route path="/" element={musician ? <Posts /> : <MusicianLog />}></Route>
               <Route path="/offers" element={<App />}></Route>
               <Route path="/createpost" element={ <CreatePost />}/>
-              <Route path="/offers/:id" element={<SingleOfferApplicant />}></Route>
+              <Route path="/offers/:id" element={<App />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
               <Route path="/applicants-offers" element={<ApplicantsOffers />}></Route>
               <Route path="/organizers/:id" element={<SingleOrganizer />}></Route>
