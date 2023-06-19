@@ -80,7 +80,7 @@ const Registro = () => {
 
   return  (
     <main className='h-screen flex flex-col items-center text-slate-100 gap-4'>    
-      {window.innerWidth > 768 ? <Pc /> : <Cell handleSubmit={handleSubmit} setLoading={setLoading} setRol={setRol}/>} 
+      {window.innerWidth > 768 ? <Pc handleSubmit={handleSubmit} setLoading={setLoading} setRol={setRol}/> : <Cell handleSubmit={handleSubmit} setLoading={setLoading} setRol={setRol}/>} 
       {loading && <div className={`absolute right-4 top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
     </main>
   );
