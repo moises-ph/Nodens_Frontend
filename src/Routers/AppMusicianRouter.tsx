@@ -12,6 +12,7 @@ const {App, Error, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, Singl
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
   const [perfil, setPerfil] = useState<string>();
+  const [userName, setUserName] = useState<string>();
   
   useEffect(()=> {
     const request = async () => {
@@ -27,6 +28,7 @@ export const AppMusicianRouter = () => {
           localStorage.setItem('musicianName', `${res.data.Name} ${res.data.Lastname}`)
           localStorage.setItem('musicianId', res.data.IdAuth);
           setPerfil(res.data.url_foto_perfil);
+          setUserName(`${res.data.Name} ${res.data.Lastname}` as string)
         }
       })
         .catch(err=>{console.log(err); setMusician(false)})
@@ -54,9 +56,9 @@ export const AppMusicianRouter = () => {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={musician ? <Posts /> : <MusicianLog />}></Route>
-              <Route path="/offers" element={<App />}></Route>
+              <Route path="/offers" element={<App userName={userName as string}/>}></Route>
               <Route path="/createpost" element={ <CreatePost />}/>
-              <Route path="/offers/:id" element={<App />}></Route>
+              <Route path="/offers/:id" element={<App userName={userName as string} />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
               <Route path="/applicants-offers" element={<ApplicantsOffers />}></Route>
               <Route path="/organizers/:id" element={<SingleOrganizer />}></Route>

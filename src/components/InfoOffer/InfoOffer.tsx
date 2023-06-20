@@ -5,8 +5,9 @@ import { DataTable } from "../../pages/OrganizerOffers/TableComponent";
 import { UbicationTableColumns } from "../UbicationTable/UbicationTable";
 import { BsCheckAll } from "react-icons/bs";
 import { VscError } from "react-icons/vsc";
+import { useEffect } from "react";
 
-const InfoOffer = ({offer}:{offer: OffersT}) => {
+const InfoOffer = ({offer, handlePostulation}:{offer: OffersT, handlePostulation : (id : string) => void}) => {  
   return (
     <div className="bg-white w-full min-h-fit pl-3 pb-3 rounded-xl rounded-tl-none rounded-bl-none">
       <div className="flex justify-between h-auto p-4 rounded-b-2xl rounded-tr-2xl">
@@ -20,7 +21,10 @@ const InfoOffer = ({offer}:{offer: OffersT}) => {
         </div>
         <div
           className={`${offer.isAvailable ? "bg-green-500" : "bg-red-500"}
-          flex-col justify-center hover:scale-105 transition-all after:bg-white after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 w-fit h-fit px-1 py-[2px] rounded flex items-center`}
+          flex-col justify-center hover:scale-105 transition-all after:bg-white 
+          after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 
+          after:origin-left after:transition after:transform after:duration-150 
+          after:ease-linear hover:after:scale-x-100 w-fit h-fit px-1 py-[2px] rounded flex items-center`}
         >
           {offer.isAvailable ? (
             <>
