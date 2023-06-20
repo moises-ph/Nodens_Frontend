@@ -2,14 +2,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Loading, Logo, Nav, NavRes } from '../components'
 import { HiMenu } from 'react-icons/hi'
 import { Suspense, useState } from 'react'
-import Footer from '../components/Footer/Footer'
 import {lazily} from 'react-lazily';
 import { VerifyUser } from '../pages'
 
 const { Home, Login, Registro, Error, PasswordRecovery } = lazily(()=>import('../pages'));
 
 export const InitialRouter = () => {
-  const [showNav, setShowNav] = useState<boolean>(false);
   const visibility = () => {
     return location.pathname.replace("/", "") === 'recovery' 
     || location.pathname.replace("/", "") === 'verify' 
@@ -20,17 +18,7 @@ export const InitialRouter = () => {
   return (
     <>
     	<Router>
-      {visibility() &&
-      <>
-        <NavRes />
-        <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
-          <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions='h-7 w-7'/> Nodens</h1></Link>
-          <button onClick={()=>setShowNav(true)}><HiMenu /></button>
-        </header>
-        <Nav inView={showNav} setShowNav={setShowNav} />
-      </>
-      }
-        <main className={`flex flex-col ${visibility() ? 'pt-4' : ''}`}>
+        <main className='flex flex-col' >
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Home />}></Route>
@@ -41,9 +29,11 @@ export const InitialRouter = () => {
               <Route path="*" element={<Error />}></Route>
             </Routes>
           </Suspense>
-        {visibility() && <Footer />}
         </main>
       </Router>
     </>
   );
 };
+
+
+

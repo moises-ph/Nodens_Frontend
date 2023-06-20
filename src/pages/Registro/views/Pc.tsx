@@ -8,7 +8,7 @@ const Pc = ({ handleSubmit, setLoading, setRol }: registerProps) => {
   const [translateRight, setTranslateRight] = useState<boolean>(false);
   return (
     <section className="w-full h-screen flex overflow-hidden">
-
+      <Link to='/' className="absolute top-0 h-20 w-20 p-8 text-2xl text-slate-800 left-0 z-[10000]"><AiOutlineArrowLeft /></Link>
       <div className="w-1/2 h-full bg-red-500">
         <div className="bg-slate-100 w-full h-full flex justify-center items-center">
 

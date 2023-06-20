@@ -26,15 +26,9 @@ dependencies:
   axios:
     specifier: ^1.3.3
     version: 1.3.3
-  axios-cookiejar-support:
-    specifier: ^4.0.6
-    version: 4.0.6(axios@1.3.3)(tough-cookie@4.1.2)
   chart.js:
     specifier: ^4.3.0
     version: 4.3.0
-  class-variance-authority:
-    specifier: ^0.6.0
-    version: 0.6.0(typescript@4.9.3)
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
@@ -47,9 +41,6 @@ dependencies:
   jose:
     specifier: ^4.14.4
     version: 4.14.4
-  js-cookie:
-    specifier: ^3.0.5
-    version: 3.0.5
   lucide-react:
     specifier: ^0.230.0
     version: 0.230.0(react@18.2.0)
@@ -1059,15 +1050,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  /agent-base@7.1.0:
-    resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
-    engines: {node: '>= 14'}
-    dependencies:
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /ajv@8.11.0:
     resolution: {integrity: sha512-wGgprdCvMalC0BztXvitD2hC04YffAvtsUn93JbGXYLAtCUO4xd17mCCZQxUOItiBwZvJScWo8NIvQMQ71rdpg==}
     dependencies:
@@ -1145,22 +1127,6 @@ packages:
       postcss: 8.4.21
       postcss-value-parser: 4.2.0
     dev: true
-
-  /axios-cookiejar-support@4.0.6(axios@1.3.3)(tough-cookie@4.1.2):
-    resolution: {integrity: sha512-lWDhgM6bc2xYAsHkXEhceLpTu9ytAeIz1VSuL5FoUgGx2lqcMNbNxTD9Hm4x5c8JF5Me0HfNrb06fhEGMC30mQ==}
-    engines: {node: '>=14.18.0 <15.0.0 || >=16.0.0'}
-    peerDependencies:
-      axios: '>=0.20.0'
-      tough-cookie: '>=4.0.0'
-    dependencies:
-      axios: 1.3.3
-      http-cookie-agent: 5.0.4(tough-cookie@4.1.2)
-      tough-cookie: 4.1.2
-    transitivePeerDependencies:
-      - deasync
-      - supports-color
-      - undici
-    dev: false
 
   /axios@1.3.3:
     resolution: {integrity: sha512-eYq77dYIFS77AQlhzEL937yUBSepBfPIe8FcgEDN35vMNZKMrs81pgnyrQpwfy4NF4b4XWX1Zgx7yX+25w8QJA==}
@@ -1286,18 +1252,6 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
-  /class-variance-authority@0.6.0(typescript@4.9.3):
-    resolution: {integrity: sha512-qdRDgfjx3GRb9fpwpSvn+YaidnT7IUJNe4wt5/SWwM+PmUwJUhQRk/8zAyNro0PmVfmen2635UboTjIBXXxy5A==}
-    peerDependencies:
-      typescript: '>= 4.5.5 < 6'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      clsx: 1.2.1
-      typescript: 4.9.3
-    dev: false
-
   /classnames@2.3.2:
     resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
@@ -1421,6 +1375,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
@@ -1668,25 +1623,6 @@ packages:
       react-is: 16.13.1
     dev: false
 
-  /http-cookie-agent@5.0.4(tough-cookie@4.1.2):
-    resolution: {integrity: sha512-OtvikW69RvfyP6Lsequ0fN5R49S+8QcS9zwd58k6VSr6r57T8G29BkPdyrBcSwLq6ExLs9V+rBlfxu7gDstJag==}
-    engines: {node: '>=14.18.0 <15.0.0 || >=16.0.0'}
-    peerDependencies:
-      deasync: ^0.1.26
-      tough-cookie: ^4.0.0
-      undici: ^5.11.0
-    peerDependenciesMeta:
-      deasync:
-        optional: true
-      undici:
-        optional: true
-    dependencies:
-      agent-base: 7.1.0
-      tough-cookie: 4.1.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
@@ -1765,11 +1701,6 @@ packages:
 
   /jose@4.14.4:
     resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
-    dev: false
-
-  /js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
     dev: false
 
   /js-tokens@4.0.0:
@@ -1882,6 +1813,7 @@ packages:
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: true
 
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
@@ -2559,6 +2491,7 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /uncontrollable@7.2.1(react@18.2.0):
     resolution: {integrity: sha512-svtcfoTADIB0nT9nltgjujTi7BzVmwjZClOmskKu/E8FW9BXzg9os8OLr4f8Dlnk0rYWJIWr4wv9eKUXiQvQwQ==}
