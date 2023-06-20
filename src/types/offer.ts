@@ -22,5 +22,6 @@ export type OffersT = {
 	Requeriments: {Description: string}[],
 	Vacants: number,
 	isAvailable : boolean,
-	tags: string[]
+	tags: string[],
+	saves : string[]
 }
