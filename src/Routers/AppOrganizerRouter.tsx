@@ -63,7 +63,7 @@ export const AppOrganizerRouter = () => {
             <Routes>
               <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador as OrganizerT}/> : <OrganizerLog/> } />
               <Route path="/createpost" element={ <CreatePost />}/>
-              <Route path="/posts" element={<Posts />} />
+              <Route path="/posts" element={<Posts  profImg={profImg as string}/>} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />
               <Route path="/create-offer" element={<CreateOffer />} />
