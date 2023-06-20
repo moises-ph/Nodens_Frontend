@@ -45,6 +45,10 @@ const Offers = ({userName} : {userName : string}) => {
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          title: err.data.message,
+          icon: "error",
+        });
         setLoading(false);
       }); 
   }
@@ -131,16 +135,17 @@ const Offers = ({userName} : {userName : string}) => {
             </div>
           )}
         </div>
-        {id ? (
+        {id ? 
           <div className="w-[40.75rem]">
             <InfoOffer
               handlePostulation={postulateOffer}
               offer={
                 offersToDisplay!.find((offer) => offer._id == id) as OffersT
               }
+              isLoading={loading}
             />
           </div>
-        ) : (
+         : 
           <footer className="w-[17rem] flex flex-col items-center font-thin text-zinc-500">
             <Logo dimensions="h-6 w-6" />
             <span>Nodens</span>
@@ -148,7 +153,7 @@ const Offers = ({userName} : {userName : string}) => {
             <span>Politica de Privacidad</span>
             <span>© 2023 Nodens</span>
           </footer>
-        )}
+        }
       </section>
     </>
   );

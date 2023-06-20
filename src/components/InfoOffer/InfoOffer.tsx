@@ -8,7 +8,9 @@ import { VscError } from "react-icons/vsc";
 import { useEffect } from "react";
 import {HiOutlineArrowTopRightOnSquare} from "react-icons/hi2";
 
-const InfoOffer = ({offer, handlePostulation}:{offer: OffersT, handlePostulation : (id : string) => void}) => {  
+const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handlePostulation : (id : string) => void, isLoading : boolean}) => {  
+  useEffect(() => console.log(offer))
+
   return (
     <div className="bg-white w-full min-h-fit pl-3 pb-3 rounded-xl rounded-tl-none rounded-bl-none">
       <div className="flex justify-between h-auto p-4 rounded-b-2xl rounded-tr-2xl">
@@ -68,10 +70,10 @@ const InfoOffer = ({offer, handlePostulation}:{offer: OffersT, handlePostulation
           {
             offer.isAvailable ? 
             <>
-              <button onClick={() => handlePostulation(offer._id!)} className="bg-orange-400 transition hover:shadow-lg hover:scale-105 gap-1 flex font-semibold items-center rounded-3xl text-white p-[10px]">
+              <button disabled={isLoading} onClick={() => handlePostulation(offer._id!)} className="bg-orange-400 transition hover:shadow-lg hover:scale-105 gap-1 flex font-semibold items-center rounded-3xl text-white p-[10px]">
                 Postularme <HiOutlineArrowTopRightOnSquare />{" "}
               </button>
-              <button className="bg-white border transition hover:shadow-lg hover:scale-105 border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]">
+              <button disabled={isLoading} className="bg-white border transition hover:shadow-lg hover:scale-105 border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]">
                 Guardar
               </button>
             </>
