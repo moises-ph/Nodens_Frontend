@@ -22,7 +22,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="rounded-md border w-[97%]">
       <Table className={`${isLoading ? "flex flex-col" : ""} w-full`}>
-        <TableHeader>
+        <TableHeader className="sticky">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {

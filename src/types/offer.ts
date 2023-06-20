@@ -15,7 +15,7 @@ export type OffersT = {
 		Town: string
 	},
 	Applicants: [{
-		ApplicantId: string,
+		ApplicantId: Number,
 		PostulationDate: Date
 	}],
 	Img: string,
