@@ -67,19 +67,25 @@ const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handle
           </div>
         </div>
         <div className="gap-1 w-fit h-fit flex items-center">
-          {
-            offer.isAvailable ? 
+          {offer.isAvailable ? (
             <>
-              <button disabled={isLoading} onClick={() => handlePostulation(offer._id!)} className="bg-orange-400 transition hover:shadow-lg hover:scale-105 gap-1 flex font-semibold items-center rounded-3xl text-white p-[10px]">
+              <button
+                disabled={isLoading}
+                onClick={() => handlePostulation(offer._id!)}
+                className="bg-orange-400 disabled:bg-white disabled:text-orange-400 transition hover:shadow-lg hover:scale-105 gap-1 flex font-semibold items-center rounded-3xl text-white p-[10px]"
+              >
                 Postularme <HiOutlineArrowTopRightOnSquare />{" "}
               </button>
-              <button disabled={isLoading} className="bg-white border transition hover:shadow-lg hover:scale-105 border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]">
+              <button
+                disabled={isLoading}
+                className="bg-white border transition hover:shadow-lg hover:scale-105 disabled:bg-orange-300  disabled:text-white border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]"
+              >
                 Guardar
               </button>
             </>
-            :
+          ) : (
             <></>
-          }
+          )}
         </div>
         <h3 className="text-xl font-semibold">Acerca de la Oferta</h3>
         <p className="font-thin">{offer.Description}</p>

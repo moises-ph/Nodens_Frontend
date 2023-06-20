@@ -46,7 +46,7 @@ const Offers = ({userName} : {userName : string}) => {
       .catch((err) => {
         console.log(err);
         Swal.fire({
-          title: err.data.message,
+          title: err.response.data.message,
           icon: "error",
         });
         setLoading(false);
