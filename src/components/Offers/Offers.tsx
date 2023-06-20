@@ -29,20 +29,24 @@ const Offers = ({userName} : {userName : string}) => {
 	}
 
   const postulateOffer = (offerId : string) => {
+    console.log(offerId);
     setLoading(true);
     clientHttp()
       .put(`/offers/offers/${offerId}`, {
-        PostulationDate: new Date().toISOString(),
+        PostulationDate: new Date().toISOString().slice(0, 10),
         PostulationFullName: userName,
       })
       .then((res) => {
         setLoading(false);
         Swal.fire({
-          title : res.data.message,
-          icon: "success"
+          title: res.data.message,
+          icon: "success",
         });
       })
-      .catch((err) => console.log(err)); 
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      }); 
   }
 
 	useEffect(()=> {
@@ -99,7 +103,7 @@ const Offers = ({userName} : {userName : string}) => {
         >
           <div
             className={`w-full sticky top-0 h-fit py-3 pl-3 ${
-              id ? "bg-blue-500 text-white backdrop-blur-3xl" : "bg-white"
+              id ? "bg-orange-500 text-white backdrop-blur-3xl" : "bg-white"
             }`}
           >
             <h2 className="text-xl font-semibold">Recomendaciones</h2>

@@ -3,9 +3,10 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import { OffersT } from '../../types'
 import { DataTable } from "../../pages/OrganizerOffers/TableComponent";
 import { UbicationTableColumns } from "../UbicationTable/UbicationTable";
-import { BsCheckAll } from "react-icons/bs";
+import { BsCheckAll, BsFillBookmarkFill } from "react-icons/bs";
 import { VscError } from "react-icons/vsc";
 import { useEffect } from "react";
+import {HiOutlineArrowTopRightOnSquare} from "react-icons/hi2";
 
 const InfoOffer = ({offer, handlePostulation}:{offer: OffersT, handlePostulation : (id : string) => void}) => {  
   return (
@@ -56,12 +57,20 @@ const InfoOffer = ({offer, handlePostulation}:{offer: OffersT, handlePostulation
         </div>
         <div className="flex items-end w-fit gap-1 ">
           <span className="font-medium">Pago: </span>
-          <div className="flex flex-col justify-center w-fit hover:scale-105 transition-all font-semibold text-lg px-2 py-1 bg-green-500 text-white rounded">
+          <div className="flex flex-col justify-center w-fit font-semibold text-lg px-2 py-1 bg-green-500 text-white rounded">
             <span className="flex items-center">
               {offer.Payment}
               <MdOutlineAttachMoney />
             </span>
           </div>
+        </div>
+        <div className="gap-1 w-fit h-fit flex items-center">
+          <button onClick={() => handlePostulation(offer._id!)} className="bg-orange-400 transition hover:shadow-lg hover:scale-105 gap-1 flex font-semibold items-center rounded-3xl text-white p-[10px]">
+            Postularme <HiOutlineArrowTopRightOnSquare />{" "}
+          </button>
+          <button className="bg-white border transition hover:shadow-lg hover:scale-105 border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]">
+            Guardar
+          </button>
         </div>
         <h3 className="text-xl font-semibold">Acerca de la Oferta</h3>
         <p className="font-thin">{offer.Description}</p>
