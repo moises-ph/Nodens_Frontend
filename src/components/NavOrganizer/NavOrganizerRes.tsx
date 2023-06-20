@@ -33,7 +33,7 @@ const NavOrganizerRes = ({profImg} : {profImg : string}) => {
 
             <img src={profImg} alt="" className="h-8 w-8 rounded-full object-cover" />
               :
-              <FaUser className="text-xl"/>
+              <FaUser className="h-8 w-8"/>
           }
           <span> Perfil </span>
           </Link>

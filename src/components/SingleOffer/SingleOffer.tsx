@@ -10,7 +10,7 @@ function SingleOffer(props : any) {
     ${creation_date.getFullYear()}`
 
   return (
-    <div onClick={()=> props.isHomePage ? props.redirect() : props.showModal(props.offer)} key={parseInt(props.Key)} className={`group w-full min-h-fit flex flex-col pr-0 pt-4 border-b border-b-solid border-slate-300 gap-1 transition-colors rounded-b-none hover:cursor-pointer ${props.isHomePage ? "backdrop-blur-md shadow-md" : null}`}>
+    <div className={`${props.id && props.id === props.offer._id ? 'bg-orange-200' : ''} group w-full min-h-fit flex flex-col px-3 pt-4 pb-2 border-b border-b-solid border-slate-300 gap-1 transition-colors rounded-b-none hover:cursor-pointer ${props.isHomePage ? "backdrop-blur-md shadow-md" : null}`}>
       <div className="flex gap-2">
         <BsPersonSquare className="h-8 w-8 text-sky-500" />
         <h3 className="text-xl font-semibold group-hover:underline text-blue-700">{props.offer.Title}</h3>

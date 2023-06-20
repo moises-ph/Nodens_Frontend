@@ -1,9 +1,9 @@
 import { Offers } from '../../components';
 
-const App = () => {
+const App = ({userName} : {userName : string}) => {
   return (
     <>
-      <Offers />
+      <Offers userName={userName} />
     </>
   )
 }

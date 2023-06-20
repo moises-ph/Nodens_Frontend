@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import { MusiciansPhoto } from "../../images/musicos-PhotoRoom"
 import quienes_placeholder from "../../images/quienes_placeholder.png"
-import { Testimonios } from "../../components"
+import { Logo, NavRes, Testimonios } from "../../components"
+import { Nav } from "react-bootstrap"
+import { HiMenu } from "react-icons/hi"
+import { useState } from "react"
 
 const tags: string[] = [
 	"Música",
@@ -26,9 +29,15 @@ const tags: string[] = [
 	"Ritmo cardíaco"
 ]
 function Home() {
-
+  const [showNav, setShowNav] = useState<boolean>(false);
   return (
     <>  
+    <NavRes />
+        <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
+          <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions='h-7 w-7'/> Nodens</h1></Link>
+          <button onClick={()=>setShowNav(true)}><HiMenu /></button>
+        </header>
+        <Nav inView={showNav} setShowNav={setShowNav} />
       <main className="flex flex-col w-full  min-h-[100vh] pt-8" >        
         <section className="flex flex-col items-center w-full gap-4 pb-4 px-4 mt-10 z-10">          
           <div className="flex flex-col md:flex-row justify-start md:px-[5%] md:items-center gap-8 md:justify-center md:place-self-start md:w-[95%] w-full">

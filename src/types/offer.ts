@@ -15,12 +15,13 @@ export type OffersT = {
 		Town: string
 	},
 	Applicants: [{
-		ApplicantId: string,
+		ApplicantId: Number,
 		PostulationDate: Date
 	}],
 	Img: string,
 	Requeriments: {Description: string}[],
 	Vacants: number,
 	isAvailable : boolean,
-	tags: string[]
+	tags: string[],
+	saves : string[]
 }
