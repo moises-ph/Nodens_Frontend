@@ -62,7 +62,9 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
             className="flex gap-2 text-lg items-center p-2"
           >
             <MdAssignmentTurnedIn
-              className={areOffersPostulated ? "" : "text-zinc-500"}
+              className={`${
+                areOffersPostulated ? "text-green-600" : "text-zinc-500"
+              } transition-all`}
             />
             <span>Mis Ofertas Postuladas</span>
           </button>
@@ -71,7 +73,7 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
             className="flex gap-2 text-lg items-center p-2 bg-white rounded-xl"
           >
             <BsFillBookmarkFill
-              className={areOffersPostulated ? "text-zinc-500" : ""}
+              className={`${areOffersPostulated ? "text-zinc-500" : ""} transition-all`}
             />
             <span>Mis Ofertas Guardadas</span>
           </button>
@@ -82,7 +84,9 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
           </h1>
           <DataTable
             data={areOffersPostulated ? postulatedOffers : savedOffers}
-            columns={areOffersPostulated ? TableColums : TableColumnsSaved as any}
+            columns={
+              areOffersPostulated ? TableColums : (TableColumnsSaved as any)
+            }
             isLoading={false}
           />
         </div>
