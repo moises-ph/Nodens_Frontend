@@ -79,7 +79,7 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
           </button>
         </div>
         <div className="w-3/5 h-fit py-4 px-1 bg-white rounded-xl flex flex-col items-center overflow-y-auto">
-          <h1 className="sticky text-xl font-semibold">
+          <h1 className="sticky text-xl font-semibold mb-4">
             {areOffersPostulated ? "Ofertas Postuladas" : "Ofertas Guardadas"}
           </h1>
           <DataTable
