@@ -73,7 +73,7 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
             className="flex gap-2 text-lg items-center p-2 bg-white rounded-xl"
           >
             <BsFillBookmarkFill
-              className={`${areOffersPostulated ? "text-zinc-500" : ""} transition-all`}
+              className={`${areOffersPostulated ? "text-zinc-500" : "text-orange-400"} transition-all`}
             />
             <span>Mis Ofertas Guardadas</span>
           </button>
