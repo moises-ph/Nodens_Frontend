@@ -8,7 +8,7 @@ import { VscError } from "react-icons/vsc";
 import { useEffect } from "react";
 import {HiOutlineArrowTopRightOnSquare} from "react-icons/hi2";
 
-const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handlePostulation : (id : string) => void, isLoading : boolean}) => {  
+const InfoOffer = ({offer, handlePostulation, isLoading, isMusician}:{offer: OffersT, handlePostulation : (id : string) => void, isLoading : boolean, isMusician : boolean}) => {  
   useEffect(() => console.log(offer))
 
   return (
@@ -67,7 +67,7 @@ const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handle
           </div>
         </div>
         <div className="gap-1 w-fit h-fit flex items-center">
-          {offer.isAvailable ? (
+          {offer.isAvailable && isMusician ? (
             <>
               <button
                 disabled={isLoading}
