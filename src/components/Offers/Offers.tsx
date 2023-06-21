@@ -138,6 +138,7 @@ const Offers = ({userName} : {userName : string}) => {
         {id ? 
           <div className="w-[40.75rem]">
             <InfoOffer
+              isMusician={true}
               handlePostulation={postulateOffer}
               offer={
                 offersToDisplay!.find((offer) => offer._id == id) as OffersT

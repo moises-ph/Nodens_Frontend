@@ -7,7 +7,7 @@ import { clientHttp } from "../services/client";
 import { renewToken } from "../services";
 import CreatePost from "../pages/CreatePost/CreatePost";
 
-const {App, Error, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOfferApplicant, SingleOrganizer} = lazily(()=> import('../pages'))
+const {App, Error, Posts, MusiciansProfile, MusicianLog, ApplicantsOffers, SingleOrganizer} = lazily(()=> import('../pages'))
 
 export const AppMusicianRouter = () => {
   const [musician, setMusician] = useState<boolean | undefined>(undefined)
