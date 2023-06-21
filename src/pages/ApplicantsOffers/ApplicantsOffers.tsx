@@ -20,8 +20,19 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
   const getPostulatedOffers = async () => {
     await renewToken();
     clientHttp().get("/offers/offers/musician")
-      .then(res =>  {
-        sepostulatedOffers(res.data);
+      .then((res : AxiosResponse<OffersT[], any>) =>  {
+        sepostulatedOffers(res.data.map(offer => {
+          return ({
+            ApplicantsNumber : offer.Applicants.length,
+            Creation_Date : offer.Creation_Date,
+            Event_Date : offer.Event_Date,
+            isAvailable : offer.isAvailable,
+            offerId : offer._id,
+            Payment : offer.Payment,
+            Title : offer.Title,
+            Vacants : offer.Vacants
+          } as OfferTableT)
+        }));
       })
       .catch(err => console.log(err))
   }
@@ -52,6 +63,10 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
     getPostulatedOffers();
     getSavedOffers();
   }, [])
+
+  useEffect(() => {
+    console.log(postulatedOffers);
+  },[postulatedOffers])
   if (!postulatedOffers || !savedOffers ) return <Loading />
   return (
     <>

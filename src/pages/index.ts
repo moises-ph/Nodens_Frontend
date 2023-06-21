@@ -15,7 +15,6 @@ export * from "./PasswordRecovery"
 export * from "./OrganizerOffers"
 export * from "./ApplicantsOffers"
 export * from "./SingleOffer"
-export * from "./SingleOfferApplicant"
 export * from "./VerifyUser";
 export * from "./SingleMusician"
 export * from "./SingleOrganizer"
