@@ -29,7 +29,7 @@ const SingleOffer = () => {
   return (
     <>
       <section className="flex flex-col md:items-center w-full gap-4 overflow-y-scroll">
-        <InfoOffer offer={offer} />
+        <InfoOffer isMusician={false} handlePostulation={(id:string) => {return;}} isLoading={false} offer={offer} />
         
       </section>
     </>

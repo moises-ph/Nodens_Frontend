@@ -8,7 +8,7 @@ import { VscError } from "react-icons/vsc";
 import { useEffect } from "react";
 import {HiOutlineArrowTopRightOnSquare} from "react-icons/hi2";
 
-const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handlePostulation : (id : string) => void, isLoading : boolean}) => {  
+const InfoOffer = ({offer, handlePostulation, handleSaveOffer,isLoading, isMusician}:{offer: OffersT, handlePostulation : (id : string) => void,handleSaveOffer : (id : string) => void ,isLoading : boolean, isMusician : boolean}) => {  
   useEffect(() => console.log(offer))
 
   return (
@@ -67,7 +67,7 @@ const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handle
           </div>
         </div>
         <div className="gap-1 w-fit h-fit flex items-center">
-          {offer.isAvailable ? (
+          {offer.isAvailable && isMusician ? (
             <>
               <button
                 disabled={isLoading}
@@ -76,16 +76,17 @@ const InfoOffer = ({offer, handlePostulation, isLoading}:{offer: OffersT, handle
               >
                 Postularme <HiOutlineArrowTopRightOnSquare />{" "}
               </button>
-              <button
-                disabled={isLoading}
-                className="bg-white border transition hover:shadow-lg hover:scale-105 disabled:bg-orange-300  disabled:text-white border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]"
-              >
-                Guardar
-              </button>
             </>
           ) : (
             <></>
           )}
+          <button
+            disabled={isLoading}
+            onClick={() => handleSaveOffer(offer._id!)}
+            className="bg-white border transition hover:shadow-lg hover:scale-105 disabled:bg-orange-300  disabled:text-white border-orange-400 font-semibold text-orange-400 flex items-center rounded-3xl p-[10px]"
+          >
+            Guardar
+          </button>
         </div>
         <h3 className="text-xl font-semibold">Acerca de la Oferta</h3>
         <p className="font-thin">{offer.Description}</p>

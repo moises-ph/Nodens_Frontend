@@ -28,6 +28,31 @@ const Offers = ({userName} : {userName : string}) => {
 			.catch(err=>console.log(err)) 
 	}
 
+  const saveAnOffer = (offerId : string) => {
+    console.log(offerId);
+    setLoading(true);
+    clientHttp()
+      .patch(`/offers/offers/save/${offerId}`, {
+        PostulationDate: new Date().toISOString().slice(0, 10),
+        PostulationFullName: userName,
+      })
+      .then((res) => {
+        setLoading(false);
+        Swal.fire({
+          title: res.data.message,
+          icon: "success",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          title: err.response.data.message,
+          icon: "error",
+        });
+        setLoading(false);
+      }); 
+  }
+
   const postulateOffer = (offerId : string) => {
     console.log(offerId);
     setLoading(true);
@@ -138,12 +163,23 @@ const Offers = ({userName} : {userName : string}) => {
         {id ? 
           <div className="w-[40.75rem]">
             <InfoOffer
+              isMusician={true}
+              handleSaveOffer={saveAnOffer}
               handlePostulation={postulateOffer}
               offer={
                 offersToDisplay!.find((offer) => offer._id == id) as OffersT
               }
               isLoading={loading}
             />
+            <footer className="w-full flex flex-col items-center font-thin text-zinc-500 mt-10">
+              <div className="flex items-center">
+                <Logo dimensions="h-6 w-6" />
+                <span>Nodens</span>
+              </div>
+              <span>Terminos de Uso</span>
+              <span>Politica de Privacidad</span>
+              <span>© 2023 Nodens</span>
+            </footer>
           </div>
          : 
           <footer className="w-[17rem] flex flex-col items-center font-thin text-zinc-500">
