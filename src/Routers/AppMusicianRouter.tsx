@@ -57,7 +57,7 @@ export const AppMusicianRouter = () => {
         <main className={musician ? 'pt-11' : ""}>
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={musician ? <Posts profImg={perfil as string} /> : <MusicianLog />}></Route>
+              <Route path="/" element={musician ? <Posts nameProf={userName as string} profImg={perfil as string} /> : <MusicianLog />}></Route>
               <Route path="/offers" element={<App userName={userName as string}/>}></Route>
               <Route path="/createpost" element={ <CreatePost />}/>
               <Route path="/offers/:id" element={<App userName={userName as string} />}></Route>
