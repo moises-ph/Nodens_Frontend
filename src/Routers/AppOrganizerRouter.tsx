@@ -15,6 +15,7 @@ const { AppOrganizer, CreateOffer, Error, OrganizerLog, OrganizerProfile, Posts,
 export const AppOrganizerRouter = () => {
   const [organizador, setOrganizador] = useState<OrganizerT | boolean | undefined>(undefined);
   const [profImg, setProfImg] = useState<string>()
+  const [nameProf, setNameProf] = useState<string>()
 
   const getOrganizer = async() => {
     setTimeout('', 1000)
@@ -25,7 +26,9 @@ export const AppOrganizerRouter = () => {
           setOrganizador(false);
         } else {
           setOrganizador(res.data);
-          setProfImg(res.data.url_foto_perfil)
+          setProfImg(res.data.url_foto_perfil);
+          setNameProf(res.data.Name);
+  
         }
       })
       .catch(async (err : AxiosError)=>{        
@@ -63,7 +66,7 @@ export const AppOrganizerRouter = () => {
             <Routes>
               <Route path="/" element={ organizador ? <AppOrganizer organizador={organizador as OrganizerT}/> : <OrganizerLog/> } />
               <Route path="/createpost" element={ <CreatePost />}/>
-              <Route path="/posts" element={<Posts  profImg={profImg as string}/>} />
+              <Route path="/posts" element={<Posts  profImg={profImg as string} nameProf={nameProf as string}/>} />
               <Route path="/profiles" element={<Profiles />} />
               <Route path="/mainprofile" element={<OrganizerProfile />} />
               <Route path="/create-offer" element={<CreateOffer />} />
