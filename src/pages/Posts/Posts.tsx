@@ -10,58 +10,58 @@ import { FaUser } from "react-icons/fa"
 
 
 
-const Posts = ({ profImg }: { profImg: string }) => {
+const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => {
 
   const PosTs = ([
     {
       id: "1",
-      name1: "Pepe",
+      name1: "Till Lindemann",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://www.dictionary.com/e/wp-content/uploads/2018/03/Herobrine.jpg"
+      texto: "Till Lindemann, born on January 4, 1963, is a German musician, singer, and songwriter. He is best known as the lead vocalist and frontman of the industrial metal band Rammstein.",
+      img: "https://64.media.tumblr.com/d58888c4500919054beca278d1cc91a5/5355a5c07980f540-7e/s1280x1920/1d26ad8ea4908b7e1d5ed03f842de499e22a25a8.jpg"
     },
     {
-      id: "1",
-      name1: "Pepe",
+      id: "2",
+      name1: "Angus Young",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbLEfftotnU9DINiemdJG3yjs8NAVC-ivfTA&usqp=CAU"
+      texto: "Angus Young, born on March 31, 1955, is a Scottish-born Australian musician and songwriter. He is best known as the co-founder, lead guitarist, and songwriter of the legendary rock band AC/DC.",
+      img: "https://149353296.v2.pressablecdn.com/wp-content/uploads/2017/01/AngusDC-e1484469134375-622x381.jpg"
     },
     {
-      id: "1",
-      name1: "Pepe",
+      id: "3",
+      name1: "Dimebag Darrell",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbLEfftotnU9DINiemdJG3yjs8NAVC-ivfTA&usqp=CAU"
+      texto: "Kobe Bryant was a professional basketball player who played for the Los Angeles Lakers in the National Basketball Association (NBA). He was born on August 23, 1978, in Philadelphia, Pennsylvania, and tragically passed away on January 26, 2020, in a helicopter crash in Calabasas, California.",
+      img: "https://files2.soniccdn.com/images/articles/amp/4716.jpg"
     },
     {
-      id: "1",
-      name1: "Pepe",
+      id: "4",
+      name1: "Lemmy Kilmister",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbLEfftotnU9DINiemdJG3yjs8NAVC-ivfTA&usqp=CAU"
+      texto: "Lemmy Kilmister, born Ian Fraser Kilmister on December 24, 1945, was a legendary British musician and songwriter. He is best known as the founder, lead vocalist, bassist, and primary songwriter of the iconic rock band Motörhead.",
+      img: "https://images11.eitb.eus/multimedia/images/2015/12/29/1844296/lemmywantsyou_foto610x342.jpg"
     },
     {
 
-      id: "1",
-      name1: "Pepe",
+      id: "5",
+      name1: "Dave Mustaine",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbLEfftotnU9DINiemdJG3yjs8NAVC-ivfTA&usqp=CAU"
+      texto: "Dave Mustaine, born David Scott Mustaine on September 13, 1961, is an American musician, singer, and songwriter. He is best known as the founder, lead guitarist, and primary songwriter of the influential heavy metal band Megadeth.",
+      img: "https://149353296.v2.pressablecdn.com/wp-content/uploads/2019/09/Megadeth-Dave-Mustaine.jpg"
     },
     {
-      id: "1",
-      name1: "Pepe",
+      id: "6",
+      name1: "Manowar",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbLEfftotnU9DINiemdJG3yjs8NAVC-ivfTA&usqp=CAU"
+      texto: "Manowar is an American heavy metal band known for their epic sound, powerful lyrics, and strong emphasis on themes of mythology, warfare, and fantasy. The band was formed in 1980 by bassist Joey DeMaio and guitarist Ross (The Boss) Friedman, and they have since become one of the most iconic and influential bands in the genre.",
+      img: "https://lastfm.freetls.fastly.net/i/u/ar0/70045c55c18ac02e19574cdca3bf522f.jpg"
     },
     {
-      id: "1",
-      name1: "Pepe",
+      id: "7",
+      name1: "Guns N' Roses",
       number: "123123123123",
-      texto: "lorem ipsum dolor sit amet",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbLEfftotnU9DINiemdJG3yjs8NAVC-ivfTA&usqp=CAU"
+      texto: "Guns N' Roses is an American rock band that was formed in Los Angeles, California, in 1985. The band achieved tremendous success in the late 1980s and early 1990s, becoming one of the most popular and influential rock bands of their time.",
+      img: "https://indiehoy.com/wp-content/uploads/2020/09/guns-n-roses.jpg"
     }
   ]);
 
@@ -93,8 +93,19 @@ const Posts = ({ profImg }: { profImg: string }) => {
             //Mensaje de bienvenida
           }
 
-            <div className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl ">
-              <p>Bienvenido pa</p>
+            <div className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl pl-2 pr-2 pt-2 justify-start flex flex-col">
+            {
+                            profImg.length > 0 ?
+                              <img src={profImg} alt="" className="h-fit w-fit rounded-xl" />
+                              :
+                              <FaUser className="h-8 w-8" />
+                          }
+            <p>Hola, Biendenido {
+            nameProf.length > 0 ?
+            <p>{nameProf}</p>
+            :
+            <p>User</p>
+            }</p>
             </div>
 
           <div className="bg-[#FFFFFF] h-[12vh] w-[30vw] pt-2 text-center flex justify-center items-start rounded-2xl gap-2">
@@ -141,14 +152,9 @@ const Posts = ({ profImg }: { profImg: string }) => {
                   <section key={index}>
                     <div className="pb-10 pt-2 flex justify-center items-center translate-y-[-14vh] ">
 
-                      <div className="text-black bg-[#FFFFFF] w-[30vw] min-h-[60vh] flex flex-col justify-center items-center rounded-xl">
+                      <div className="text-black bg-[#FFFFFF] w-[30vw] min-h-[60vh] pl-2 pr-2 pb-4 pt-4 flex flex-col items-center rounded-xl">
                         <div>
-                          {
-                            profImg.length > 0 ?
-                              <img src={profImg} alt="" className="h-8 w-8 rounded-xl" />
-                              :
-                              <FaUser className="h-8 w-8" />
-                          }
+                     
                           <h1>
                             {k.id}
                           </h1>
@@ -157,9 +163,9 @@ const Posts = ({ profImg }: { profImg: string }) => {
                           </p>
                           <p>
                             {k.number}
-                          </p>
-                          <img src={k.img} alt="" className="w-[25vw] h-[35vh]" />
-                          <p>
+                          </p>                      
+                          <img src={k.img} alt="" className="w-fit h-fit" />                       
+                          <p className="text-center">
                             {k.texto}
                           </p>
                         </div>
