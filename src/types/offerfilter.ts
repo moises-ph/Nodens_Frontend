@@ -3,5 +3,6 @@ export type OfferFilter = {
     maxPayment : number | null,
     instrument : string | null,
     creationDate : Date | null,
-    eventDate : Date | null
+    eventDate : Date | null,
+    abled : boolean | null
 }

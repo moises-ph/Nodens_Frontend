@@ -14,6 +14,8 @@ function FilterAccordion({ setOfferFilter }: {setOfferFilter: React.Dispatch<Rea
   const requeriment = useRef<HTMLSelectElement>(null);
   const creationDate = useRef<HTMLInputElement>(null);
   const eventDate = useRef<HTMLInputElement>(null);
+  const abled = useRef<HTMLInputElement>(null);
+  const disabled = useRef<HTMLInputElement>(null);
 
   const filter = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(minPayment.current!.valueAsNumber);
@@ -22,7 +24,8 @@ function FilterAccordion({ setOfferFilter }: {setOfferFilter: React.Dispatch<Rea
       eventDate: eventDate.current!.value != "" ? eventDate.current!.valueAsDate : null,
       instrument : requeriment.current!.value,
       maxPayment : !Number.isNaN(maxPayment.current!.valueAsNumber) ? maxPayment.current!.valueAsNumber : null,
-      minPayment : !Number.isNaN(minPayment.current!.valueAsNumber) ? minPayment.current!.valueAsNumber : null
+      minPayment : !Number.isNaN(minPayment.current!.valueAsNumber) ? minPayment.current!.valueAsNumber : null,
+      abled : !abled.current!.checked && !disabled.current!.checked ?  null : abled.current!.checked
     };
     console.log(filters);
     setOfferFilter(filters);
@@ -104,6 +107,16 @@ function FilterAccordion({ setOfferFilter }: {setOfferFilter: React.Dispatch<Rea
                   className="rounded-lg px-2 border-[1px] border-slate-500"
                 />
               </label>
+              <div className="flex items-center justify-around">
+                <div className="flex flex-col items-center">
+                  <label htmlFor="able">Habilitadas</label>
+                  <input onChange={(e) => disabled.current!.checked = false} ref={abled} type="checkbox" id="able" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <label htmlFor="ablen't">Deshabilitadas</label>
+                  <input onChange={(e) => abled.current!.checked = false} ref={disabled} type="checkbox" id="ablen't" />
+                </div>
+              </div>
             </div>
             <div className="flex justify-evenly gap-4 ">
               <button

@@ -6,6 +6,8 @@ import { AiOutlineArrowLeft, AiOutlineUser } from "react-icons/ai"
 import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { clientHttp } from "../../services/client";
+import { Logo } from "../../components";
+import { FiMail } from "react-icons/fi";
 
 
 const Login = () => {
@@ -31,7 +33,6 @@ const Login = () => {
       title: 'Iniciando sesión.',
       html: 'Iniciando sesión, danos un momento :).',
       background: "#C3EEFF",
-      timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
@@ -99,29 +100,30 @@ const Login = () => {
 
   return (
     <>
-      <main className="min-h-[100vh] py-4 flex justify-center bg-slate-200 items-center flex-col">
+      <main className="min-h-[100vh] flex justify-center bg-slate-200 items-center flex-col">
         <Link to='/' className="absolute top-0 h-20 w-20 p-8 text-2xl text-slate-800 left-0 z-[10000]"><AiOutlineArrowLeft /></Link>
-        <section className="w-10/12 md:w-2/4 px-10 flex flex-col gap-4 py-8 shadow-xl bg-zinc-900 rounded-md z-30">
-          <h1 className="w-full text-4xl text-start mb-2 drop-shadow-lg text-slate-50">Login</h1>
-          <div className="w-full flex flex-col items-center gap-3">
-            <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><FcGoogle className="ml-2"/> Continúe con Google</button>
-            <button className="flex flex-row w-full items-center justify-center gap-4 border-none rounded-xl h-12 bg-[#bfe5f6] font-bold"><BsLinkedin className="ml-2"/> Continúe con Linkedin</button>
-          </div>
-          <p className="w-full before:content-[''] before:block before:w-[28%] before:h-[1px] before:bg-slate-50 md:before:w-[30%] after:content-[''] after:block after:w-[28%] after:h-[1px] after:bg-slate-50 md:after:w-[30%] text-center flex justify-center items-center gap-8 h-min text-slate-50">o</p>
-          <form onSubmit={handleSubmit} className="w-full flex justify-center flex-col mt-0 gap-4 z-30">        
-            <label htmlFor="emailIn" className="w-full items-center flex flex-row gap-2 text-lg text-slate-50"><AiOutlineUser /> <span className="text-sm">Email</span></label>
-            <input type="email" name="email" placeholder="Email" id="emailIn" className="w-full h-10  bg-slate-200 placeholder:text-slate-700 pl-4 "/>
-            <label htmlFor="emailIn" className="w-full items-center flex flex-row gap-2 text-lg text-slate-50"><BsFillKeyFill /> <span className="text-sm">Contraseña</span></label>
-            <input type="password" name="password" placeholder="Contraseña"  className="h-10 bg-slate-200 placeholder:text-slate-700 pl-4 "/>
-            <div className="flex flex-row justify-between items-center my-1">
-              <div className="flex flex-row items-center w-min">
-                <input name="remember" type="checkbox" id="checkIn" className="mr-1 w-4 h-4 hover:cursor-pointer" />
-                <label htmlFor="checkIn" className="text-xs text-slate-50">Recordarme</label>
+        <section className="w-10/12 h-screen md:w-1/4 px-10 flex flex-col items-center justify-evenly gap-4 py-8 shadow-xl bg-white/50 z-30">
+          <Logo dimensions="w-32 h-32" />
+          <form onSubmit={handleSubmit} className="w-11/12 flex justify-center items-center flex-col mt-0 gap-4 z-30">        
+            <div className="w-full bg-white/80 shadow-lg py-3 px-4 rounded-3xl">
+              <label htmlFor="emailIn" className="w-full text-zinc-700 font-medium items-center flex flex-row gap-2 text-lg">Email</label>
+              <div className="flex items-center">
+                <FiMail className="text-zinc-500" />
+                <input className="w-full h-10 border-none border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder:text-zinc-500 placeholder:font-semibold pl-4 " type="email" name="email" placeholder="user@addres.com" id="emailIn"/>
               </div>
-              <Link to="/recovery" className="text-xs underline text-slate-50">Olvidaste tu contraseña?</Link>
             </div>
-            <button type="submit" className="w-full h-10 bg-orange-500 text-slate-50">Iniciar Sesion</button>
-            <p className="my-2 text-center text-slate-50">No tienes cuenta? <Link to='/registro' className="text-green-500 underline">Registrate</Link></p>
+            <div className="w-full bg-white/80 shadow-lg py-3 px-4 rounded-3xl">
+              <label htmlFor="passIn" className="w-full text-zinc-700 font-medium items-center flex flex-row gap-2 text-lg ">Contraseña</label>
+              <div className="flex items-center">
+                <BsFillKeyFill className="text-zinc-500" /> 
+                <input id="passIn" className="h-10 w-full border-transparent focus:border-transparent focus:ring-0 focus:outline-none placeholder:text-zinc-500 placeholder:font-semibold pl-4 " type="password" name="password" placeholder="Contraseña"/>
+              </div>
+            </div>
+            <button type="submit" className="w-full py-4 font-bold text-lg bg-orange-500 rounded-3xl text-slate-50">Iniciar Sesion</button>
+            <div className="flex items-center justify-between w-full">
+              <Link to="/recovery" className="text-sm w-fit hover:underline text-zinc-500">Olvidaste tu contraseña?</Link>
+              <Link to='/registro' className="text-zinc-500 text-sm hover:underline">Registrate</Link>
+            </div>
           </form>
         </section>
       </main>

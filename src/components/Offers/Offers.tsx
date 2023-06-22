@@ -29,7 +29,6 @@ const Offers = ({userName} : {userName : string}) => {
 	}
 
   const saveAnOffer = (offerId : string) => {
-    console.log(offerId);
     setLoading(true);
     clientHttp()
       .patch(`/offers/offers/save/${offerId}`, {
@@ -54,7 +53,6 @@ const Offers = ({userName} : {userName : string}) => {
   }
 
   const postulateOffer = (offerId : string) => {
-    console.log(offerId);
     setLoading(true);
     clientHttp()
       .put(`/offers/offers/${offerId}`, {
@@ -86,11 +84,12 @@ const Offers = ({userName} : {userName : string}) => {
 		if(offers != null){
 			setOffersDisplay(offers!.filter(offer => 
 				offerFilter != null ?
-				(offerFilter!.creationDate != null ? offer.Creation_Date === offerFilter!.creationDate : true) &&
-				(offerFilter!.eventDate != null ? offer.Event_Date === offerFilter!.eventDate : true) &&
-				(offerFilter!.instrument != "" ? offer.Requeriments.includes({Description: offerFilter!.instrument!}) : true) &&
+				(offerFilter!.creationDate != null ? new Date(offer.Creation_Date).toISOString().slice(0,9) === offerFilter!.creationDate.toISOString().slice(0,9) : true) &&
+				(offerFilter!.eventDate != null ? new Date(offer.Event_Date).toISOString().slice(0,9) === offerFilter!.eventDate.toISOString().slice(0,9) : true) &&
+				(offerFilter!.instrument != "" ? offer.Requeriments.map(elem => elem.Description).includes(offerFilter!.instrument!.toLowerCase()) : true) &&
 				(offerFilter!.maxPayment != null ? offer.Payment <= offerFilter!.maxPayment : true) &&
-				(offerFilter!.minPayment != null ? offer.Payment >= offerFilter!.minPayment : true)
+				(offerFilter!.minPayment != null ? offer.Payment >= offerFilter!.minPayment : true) &&
+        (offerFilter.abled != null ? offer.isAvailable === offerFilter.abled : true)
 				: true
 			));
 		}
@@ -99,7 +98,7 @@ const Offers = ({userName} : {userName : string}) => {
 	if(!offers) return <Loading />
 	return (
     <>
-      <section className="max-h-screen pt-10 pb-4 flex justify-center bg-zinc-100">
+      <section className="min-h-[91vh] pt-10 pb-4 flex justify-center bg-zinc-100 overflow-y-hidden">
         {loading && (
           <div
             className={`absolute right-4 top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}
@@ -128,7 +127,7 @@ const Offers = ({userName} : {userName : string}) => {
         <div
           className={`flex flex-col ${
             id ? "w-[28.44rem] rounded-tr-none rounded-br-none" : "w-[34.69rem]"
-          } overflow-y-scroll rounded-xl bg-white justify-self-center`}
+          } overflow-y-scroll h-fit max-h-[88vh] rounded-xl bg-white justify-self-center`}
         >
           <div
             className={`w-full sticky top-0 h-fit py-3 pl-3 ${
@@ -147,9 +146,8 @@ const Offers = ({userName} : {userName : string}) => {
                   <SingleOffer
                     offer={offer}
                     key={i}
-                    Key={i.toString()}
                     isHomePage={false}
-                    id={id}
+                    id={id as string}
                   />
                 </Link>
               );
