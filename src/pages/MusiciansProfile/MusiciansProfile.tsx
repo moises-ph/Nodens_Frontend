@@ -216,10 +216,10 @@ const MusiciansProfile = () => {
       <MusicVideos setVideoOpening={setVideoOpening} videoOpening={videoOpening}/>
       <main className="flex flex-col md:items-start md:flex-row md:justify-evenly w-full h-full bg-slate-200 pb-3 md:pt-5">
         {loading && <div className={`absolute right-4 ${editProfileMode ? '' : 'md:right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
-        <section className={`slide-top min-h-screen flex w-full md:w-1/2 flex-col pt-4 gap-4 transition ${editProfileMode ? 'md:fixed left-1' : ''}`}> 
+        <section className={`slide-top min-h-screen flex w-full md:w-2/5 flex-col pt-4 gap-4 transition ${editProfileMode ? 'md:fixed left-1' : ''}`}> 
           <div className=" flex flex-col gap-1 items-start pt-4">
             <div className="flex flex-col gap-1 items-start my-4  z-10 bg-slate-100 w-full border border-slate-400 rounded-lg">
-              <img src={banner} alt="" className="absolute z-0 h-44"/>
+              <img src={banner} alt="" className="absolute z-0 h-44 md:w-[99.5%]"/>
               <input onChange={handleProfile} type="file" className="hidden" ref={imageInput}/>
               <div className="flex justify-between w-full px-2 items-center z-10 pt-2">
                 <img src={user.url_foto_perfil || DefaultUserImg} onClick={()=> imageInput.current!.click() } loading="lazy" alt="user Profile" className="rounded-full h-40 w-40 object-cover mb-1 border-2 border-slate-800 cursor-pointer" />
@@ -232,13 +232,37 @@ const MusiciansProfile = () => {
               </div>
             </div>
           </div>
-          <div className="bg-slate-50 rounded-lg drop-shadow-xl border border-slate-400 grid grid-cols-2 grid-rows-2 w-full gap-3 grid-flow-col-dense md:w-2/5 p-3">
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Genero:</span> <span className="font-extralight text-gray-700">{user.genero}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Telefono:</span> <span className="font-extralight text-gray-700">{user.telefono}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(user.fecha_nacimiento).getFullYear()}</span></div>
-            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Ciudad:</span> <span className="font-extralight text-gray-700">{user.ciudad}</span></div>
+
+          <div className="bg-slate-200 h-fit w-full border border-slate-500 rounded-lg px-2 py-4">
+            <h3 className="font-light text-xl">Descripcion</h3>
+            <p className="font-light w-full ">{user.descripcion}</p>
           </div>
-          <div className="bg-white rounded-2xl drop-shadow-xl p-3 flex flex-col w-4/5 md:w-2/3 gap-2">
+
+          <div className="bg-slate-200 h-fit w-full border border-slate-500 rounded-lg px-2 py-4">
+            <h3 className="pl-2">Generos Musicales:</h3>
+            <div className=" grid gap-2 grid-cols-2 px-2 ">
+              {user.generosMusicales.map((gen, i) => {
+                return <span key={i} className="rounded-full border w-full h-10 border-zinc-700 flex justify-center items-center text-zinc-700 ">{gen}</span>
+              })}
+            </div>
+          </div>
+
+          <div className="bg-slate-200 h-fit w-full border border-slate-500 rounded-lg px-2 py-4">
+            <h3 className="pl-2">Instrumentos Musicales</h3>
+            <div className=" grid gap-2 grid-cols-2 px-2 ">
+              {user.instrumentos.map((ins, i) => {
+                return <span key={i} className="rounded-full border w-full h-10 border-zinc-700 flex justify-center items-center text-zinc-700 ">{ins.nombre}</span>
+              })}
+            </div>
+          </div>
+
+          <div className="bg-slate-200 rounded-lg drop-shadow-xl border border-slate-400 grid grid-cols-2 grid-rows-2 w-full gap-3 grid-flow-col-dense md:w-2/5 p-3">
+            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont mb-2"><span className="font-semibold text-gray-900">Genero:</span> <span className="font-extralight text-gray-700">{user.genero}</span></div>
+            <div className="w-full md:flex md:flex-col md:items-center organizerNameFont"><span className="font-semibold text-gray-900">Edad:</span> <span className="font-extralight text-gray-700">{new Date().getFullYear() - new Date(user.fecha_nacimiento).getFullYear()}</span></div>
+          </div>
+
+          { user.redes_sociales.length > 0 &&
+          <div className="bg-slate-200 rounded-2xl p-3 flex flex-col w-full gap-2 border border-slate-400 ">
             <h2 className="font-semibold">Redes Sociales:</h2>
             <div className="flex justify-evenly flex-wrap place-items-center gap-3">
             {user.redes_sociales.map((socialmedia, index) => {
@@ -251,7 +275,8 @@ const MusiciansProfile = () => {
             })}
             </div>
           </div>
-          <div className=" w-fit md:px-8 bg-white rounded-2xl drop-shadow-xl h-fit flex flex-col gap-4">
+          }
+          <div className="bg-slate-200 rounded-lg drop-shadow-xl border border-slate-400 flex flex-col w-full gap-4 p-3">
             <div className="flex justify-between px-4 pt-2">
               <h2 className="text-xl font-semibold ">Videos:</h2>
               <button className="flex gap-2 items-center text-slate-400 text-sm " onClick={()=> setVideoOpening(true)}>Agregar video<FcAddImage /></button>
@@ -260,7 +285,7 @@ const MusiciansProfile = () => {
             <div className="flex flex-col  gap-4 pb-4 items-center">
               {
                 user.url_video_presentacion.map((vid, i)=> {
-                  return <video src={vid} controls={true} autoPlay={false} width={300} height={300}></video>
+                  return <video src={vid} controls={true} key={i} autoPlay={false} width={300} height={300} className="w-full"></video>
                 })
               }
             </div>

@@ -4,6 +4,7 @@ import quienes_placeholder from "../../images/quienes_placeholder.png"
 import { Logo, NavRes, Testimonios, Nav } from "../../components"
 import { HiMenu } from "react-icons/hi"
 import { useState } from "react"
+import Footer from "../../components/Footer/Footer"
 
 const tags: string[] = [
 	"Música",
@@ -97,6 +98,7 @@ function Home() {
                 </div>
         
       </main> 
+      <Footer />
     </>
   )
 }
