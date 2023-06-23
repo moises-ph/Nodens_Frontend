@@ -1,4 +1,11 @@
 import { useRef, useState } from "react";
+import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp, BsYoutube } from "react-icons/bs";
+import { FaTiktok } from "react-icons/fa";
+import { GrFormClose } from "react-icons/gr";
+import { ImCancelCircle } from "react-icons/im";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { RiDeleteBinLine } from "react-icons/ri";
+import Swal from "sweetalert2";
 import { InstrumentoT, MusicianT } from "../../types"
 
 interface EditUser {
@@ -7,14 +14,105 @@ interface EditUser {
 }
 
 const EditMusician = ({user, handleSubmit}: EditUser) => {
-const descripcion = useRef<HTMLTextAreaElement>(null);
+  const descripcion = useRef<HTMLTextAreaElement>(null);
   const GeneroRef = useRef<HTMLInputElement>(null);
   const nivelGenRef = useRef<HTMLSelectElement>(null);
+  const SocialMediaName = useRef<HTMLSelectElement>(null);
+  const SocialMediaUrl = useRef<HTMLInputElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
   const instrumentRef = useRef<HTMLInputElement>(null);
   const nivelRef = useRef<HTMLSelectElement>(null);
   const [instrumentos, setInstrumentos] =useState<InstrumentoT[]>([]);
+  const [socialMedias, setSocials] = useState<{nombre:string, url: string}[]>([]);
+  const [addingSocial, setAddingSocial] = useState<boolean>(false);
   const [generos, setGeneros] =useState<string[]>([]);
+  const [editProfileMode, setEditMode] = useState<boolean>(false);
+
+  const SocialMedias : any = {
+    instagram : <BsInstagram className="h-10 w-10 text-slate-50 bg-gradient-to-tr via-pink-600 from-indigo-600 to-amber-500 rounded-xl drop-shadow"/>,
+    facebook : <BsFacebook className="h-10 w-10 text-blue-600 drop-shadow"/>,
+    tiktok : <FaTiktok className="h-10 w-10 drop-shadow"/>,
+    twitter : <BsTwitter className="h-10 w-10 text-blue-500 drop-shadow"/>,
+    linkedin : <BsLinkedin className="h-10 w-10 text-blue-700 drop-shadow"/>,
+    snapchat : <BsSnapchat className="h-10 w-10 text-yellow-400 drop-shadow"/>,
+    youtube : <BsYoutube className="h-10 w-10 text-red-700 drop-shadow"/>,
+    whatsapp : <BsWhatsapp className="h-10 w-10 text-green-600 drop-shadow" />
+  }
+
+  const deleteSocial = (e : any) => {
+    e.preventDefault();+
+    setSocials(lastSocials => lastSocials.filter((social,i) => i != e.target.parentNode.value))
+  }
+
+  const addSocialMedia = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setSocials([... socialMedias, {nombre : SocialMediaName.current!.value, url : SocialMediaUrl.current!.value}]);
+    setAddingSocial(false);
+  }
+
+const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:number) => {
+    e.preventDefault();
+    setInstrumentos(instrumentos.filter((e, index) => index != i))
+  }
+
+  const addInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if(instrumentRef.current!.value && nivelRef.current!.value){
+      if(!instrumentos.find(e => e.nombre === instrumentRef.current!.value)){
+        setInstrumentos([...instrumentos, 
+          {nombre: instrumentRef.current!.value, nivel: nivelRef.current!.value}]
+        )
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa un instrumento diferente',
+          timer: 3000  
+        })  
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un instrumento y un nivel de experiencia',
+        timer: 3000  
+      })
+    }
+  }
+
+  const deleteGen = (e: any,i:number) => {
+    e.preventDefault();
+    setGeneros(generos.filter((e, index) => index != i))
+  }
+
+  const addGen = (e: any) => {
+    e.preventDefault();
+    if(GeneroRef.current!.value){
+      if(!generos.find(e => e === GeneroRef.current!.value)){
+        setGeneros([...generos, GeneroRef.current!.value])
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor ingresa un Genero diferente',
+          timer: 3000  
+        })  
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor ingresa un Genero Musical',
+        timer: 3000  
+      })
+    }
+  }
+
+  const cancelProfileEdition = (e : any) => {
+    e.preventDefault();
+    setSocials(user!.redes_sociales);
+    setEditMode(false);
+  }
 
   return (
     <>

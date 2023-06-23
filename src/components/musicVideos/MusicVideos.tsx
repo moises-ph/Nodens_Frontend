@@ -20,7 +20,7 @@ const MusicVideos = ({setVideoOpening, videoOpening}: musicVideosT) => {
   if(!videoOpening) return <></>
   return (
     <div className='fixed z-[10000] top-0 left-0 backdrop-blur-sm bg-[rgba(36,44,71,0.68)] flex justify-center items-center h-full w-full'>
-      <div className="h-2/6 overflow-y-scroll w-2/4 lg:w-1/5 bg-slate-100 rounded-lg shadow-lg p-4">
+      <div className="h-3/6 overflow-y-scroll w-2/4 lg:w-2/5 bg-slate-100 rounded-lg shadow-lg p-4">
         <div className='flex justify-between items-center h-fit py-2'>
           <h2 className="text-xl font-semibold text-slate-800">Subir video:</h2>
           <button onClick={()=> closeMusicVideo()}><AiFillCloseCircle className='text-red-500 text-2xl'/></button>
