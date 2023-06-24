@@ -9,29 +9,18 @@ import DefaultUserImg from "../../assets/DefaultUser.webp";
 import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp, BsYoutube } from "react-icons/bs";
 import { FaTiktok } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
-import { IoIosAddCircleOutline } from "react-icons/io";
-import { ImCancelCircle } from "react-icons/im";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { GrFormClose } from "react-icons/gr";
 import { FcAddImage } from "react-icons/fc";
 
 const MusiciansProfile = () => {
   const [videoOpening, setVideoOpening] = useState<boolean>(false);
   const descripcion = useRef<HTMLTextAreaElement>(null);
-  const GeneroRef = useRef<HTMLInputElement>(null);
-  const nivelGenRef = useRef<HTMLSelectElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
-  const instrumentRef = useRef<HTMLInputElement>(null);
-  const nivelRef = useRef<HTMLSelectElement>(null);
   const [instrumentos, setInstrumentos] =useState<InstrumentoT[]>([]);
   const [generos, setGeneros] =useState<string[]>([]);
   const [email, setEmail] = useState<string>();
   const [user, setUser] = useState<MusicianT>();
-  const SocialMediaName = useRef<HTMLSelectElement>(null);
-  const SocialMediaUrl = useRef<HTMLInputElement>(null);
   const [editProfileMode, setEditMode] = useState<boolean>(false);
   const [socialMedias, setSocials] = useState<{nombre:string, url: string}[]>([]);
-  const [addingSocial, setAddingSocial] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const SocialMedias : any = {
@@ -43,17 +32,6 @@ const MusiciansProfile = () => {
     snapchat : <BsSnapchat className="h-10 w-10 text-yellow-400 drop-shadow"/>,
     youtube : <BsYoutube className="h-10 w-10 text-red-700 drop-shadow"/>,
     whatsapp : <BsWhatsapp className="h-10 w-10 text-green-600 drop-shadow" />
-  }
-
-  const deleteSocial = (e : any) => {
-    e.preventDefault();+
-    setSocials(lastSocials => lastSocials.filter((social,i) => i != e.target.parentNode.value))
-  }
-
-  const addSocialMedia = (e : React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    setSocials([... socialMedias, {nombre : SocialMediaName.current!.value, url : SocialMediaUrl.current!.value}]);
-    setAddingSocial(false);
   }
 
   const getUser = async () => {
@@ -135,75 +113,11 @@ const MusiciansProfile = () => {
     
   }
 
-  const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:number) => {
-    e.preventDefault();
-    setInstrumentos(instrumentos.filter((e, index) => index != i))
-  }
-
-  const addInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if(instrumentRef.current!.value && nivelRef.current!.value){
-      if(!instrumentos.find(e => e.nombre === instrumentRef.current!.value)){
-        setInstrumentos([...instrumentos, 
-          {nombre: instrumentRef.current!.value, nivel: nivelRef.current!.value}]
-        )
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Por favor ingresa un instrumento diferente',
-          timer: 3000  
-        })  
-      }
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Por favor ingresa un instrumento y un nivel de experiencia',
-        timer: 3000  
-      })
-    }
-  }
-
-  const deleteGen = (e: any,i:number) => {
-    e.preventDefault();
-    setGeneros(generos.filter((e, index) => index != i))
-  }
-
-  const addGen = (e: any) => {
-    e.preventDefault();
-    if(GeneroRef.current!.value){
-      if(!generos.find(e => e === GeneroRef.current!.value)){
-        setGeneros([...generos, GeneroRef.current!.value])
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Por favor ingresa un Genero diferente',
-          timer: 3000  
-        })  
-      }
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Por favor ingresa un Genero Musical',
-        timer: 3000  
-      })
-    }
-  }
-
   const handleProfile = async () => {
     setLoading(true);
     await profilePic("/musicians/musician/profile",(imageInput.current!.files));
     getUser();
     setLoading(false);
-  }
-
-  const cancelProfileEdition = (e : any) => {
-    e.preventDefault();
-    setSocials(user!.redes_sociales);
-    setEditMode(false);
   }
 
   useEffect(()=> {
