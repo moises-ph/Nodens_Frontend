@@ -4,6 +4,7 @@ import {Instrumentos, FechaNacimiento, Genero, GenerosMusicales, Pais, Ciudad, E
 import { renewToken } from '../../services';
 import { clientHttp } from '../../services/client';
 import { Logo } from '../../components';
+import InfoPersonal from './Inputs/InfoPersonal';
 
 const variants = {
   enter: (direction: number) => {
@@ -105,11 +106,12 @@ const MusicianLog = () => {
   }, [musician])
 
   const Inputs = [
+    <InfoPersonal />,
     <FechaNacimiento actualMusician={musician} handler={handler}/>,
-    <Name goBack={goBack} handler={handler} setNombre={setNameLastname}/>,
+    <Name actualMusician={musician} goBack={goBack} handler={handler} setNombre={setNameLastname}/>,
     <Descripcion goBack={goBack} handler={handler} />,
     <Genero goBack={goBack} handler={handler}/>,
-    <Pais goBack={goBack} handler={handler}/>, 
+    <Pais goBack={goBack} handler={handler}/>,
     <Ciudad goBack={goBack} handler={handler}/>,
     <Instrumentos goBack={goBack} handler={handler}/>,
     <GenerosMusicales goBack={goBack} handler={handler}/>,  
