@@ -60,7 +60,7 @@ const NavMusicianRes = ({perfil} : {perfil : string}) => {
             } text-base after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100  py-[5px]`}
             to="/mainprofile"
           >
-            {perfil.length > 0 ? (
+            {perfil && perfil.length > 0 ? (
               <img src={perfil} className="h-6 w-6 rounded-full object-cover" />
             ) : (
               <FaUserCircle className="h-6 w-6" />

@@ -58,13 +58,15 @@ export const AppMusicianRouter = () => {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={musician ? <Posts nameProf={userName as string} profImg={perfil as string} /> : <MusicianLog />}></Route>
-              <Route path="/offers" element={<App userName={userName as string}/>}></Route>
+              {musician ? <>
+                <Route path="/offers" element={<App userName={userName as string}/>}></Route>
               <Route path="/createpost" element={ <CreatePost />}/>
               <Route path="/offers/:id" element={<App userName={userName as string} />}></Route>
               <Route path="/mainprofile" element={<MusiciansProfile />}></Route>
               <Route path="/applicants-offers" element={<ApplicantsOffers musicianId={musicianId as Number} />}></Route>
               <Route path="/organizers/:id" element={<SingleOrganizer />}></Route>
               <Route path="*" element={<Error />}></Route>
+              </>:<></>}
             </Routes>
           </Suspense>
         </main>

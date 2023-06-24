@@ -1,8 +1,10 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react';
 import Swal from 'sweetalert2'
+import { MusicianT } from '../../../types';
 
-const FechaNacimiento = ({ handler, goBack }: { handler: (key: string, value: any) => void, goBack : () => void}) => {
+const FechaNacimiento = ({ handler, actualMusician }: { handler: (key: string, value: any) => void, actualMusician : any}) => {
 	const fecha_nacimiento = useRef<HTMLInputElement>(null)
+	const [isValue, setIsValue] = useState<boolean>(false);
 	const checking = () => {
 		if(!fecha_nacimiento.current!.value) {
 			Swal.fire({
@@ -16,14 +18,20 @@ const FechaNacimiento = ({ handler, goBack }: { handler: (key: string, value: an
 		}
 	}
 
+	useEffect(() => {
+		if(actualMusician.fecha_nacimiento != "") {
+			fecha_nacimiento.current!.value = actualMusician.fecha_nacimiento;
+			setIsValue(true);
+		}
+	},[])
+
 	return (
-		<div className='bg-zinc-900 bg-opacity-100 h-2/4 rounded-lg w-10/12 flex flex-col justify-center gap-8 px-2 text-slate-100 shadow-xl'>
+		<div className='bg-white transition-all bg-opacity-100 h-full rounded-lg w-10/12 flex flex-col justify-center gap-8 py-10 px-24 text-black/90 shadow-xl'>
 			<label htmlFor='fecha_nacimiento' className='text-2xl h-2/4 flex flex-col gap-[20%]'>Fecha de nacimiento:
-				<input type="date" name="fecha_nacimiento" ref={fecha_nacimiento} className='bg-transparent border-solid border-0 border-b-2 border-slate-400 text-slate-100 font-medium'/>
+				<input type="date" onChange={() => setIsValue(true)} name="fecha_nacimiento" ref={fecha_nacimiento} className='bg-transparent md:w-1/3 border-solid border-0 border-b-2 border-slate-400 text-black/70 font-thin'/>
 			</label>
 			<div className='flex flex-row gap-4'>
-				<button className='px-4 bg-orange-500 rounded-md text-slate-100 h-8' onClick={() => goBack()}>Atras</button>
-				<button className='px-4 bg-blue-500 rounded-md text-slate-100 h-8' onClick={() => checking()}>Guardar</button>
+				<button className='px-4 bg-blue-700 disabled:bg-blue-400 rounded-md text-slate-100 h-8' disabled={!isValue} onClick={() => checking()}>Guardar</button>
 			</div>
 		</div>
 	)
