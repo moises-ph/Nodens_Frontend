@@ -5,7 +5,6 @@ import { IndexLink, Loading, ModalProfile, SingleProfile } from "../../component
 import { BsSearch } from "react-icons/bs";
 import { clientHttp } from "../../services/client";
 import { renewToken } from "../../services";
-import { GoSettings } from "react-icons/go";
 
 const Profile = () => {
   const [modal, setOpen] = useState(false);
