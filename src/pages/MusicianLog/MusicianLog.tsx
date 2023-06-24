@@ -5,6 +5,8 @@ import { renewToken } from '../../services';
 import { clientHttp } from '../../services/client';
 import { Logo } from '../../components';
 import InfoPersonal from './Inputs/InfoPersonal';
+import InfoMusical from './Inputs/InfoMusical';
+import { MusicianT } from '../../types';
 
 const variants = {
   enter: (direction: number) => {
@@ -28,8 +30,8 @@ const variants = {
 };
 
 const MusicianLog = () => {
-  const [musician, setMusician] = useState({
-    "fecha_nacimiento" : "",
+  const [musician, setMusician] = useState<MusicianT>({
+    "fecha_nacimiento" : new Date(),
     "Name": "",
     "Lastname": "",
     "instrumentos": [],
@@ -62,22 +64,6 @@ const MusicianLog = () => {
       .catch(err=> console.log(err));
   }
 
-  const setSignleProperty = (key : string, value : any) => {
-    setMusician({
-      ...musician,
-      [key]: value
-    })
-  }
-
-  const setNameLastname = (name : string, lastname : string) => {
-    setMusician({
-      ...musician,
-      'Name' : name,
-      'Lastname' : lastname
-    })
-    sumPage()
-  }
-
   const sumPage = () =>{
     if(page<Inputs.length-1){
       setPage([page + 1, 1]);
@@ -97,6 +83,20 @@ const MusicianLog = () => {
     sumPage()
   }
 
+  const handlerInfo = (name : string, lastname : string, description : string, genero : string, pais : string, ciudad : string, foto_perfil : string) => { 
+    setMusician({
+      ...musician,
+      Name : name,
+      Lastname : lastname,
+      descripcion : description,
+      genero : genero,
+      pais : pais,
+      ciudad : ciudad,
+      url_foto_perfil : foto_perfil
+    });
+    sumPage();
+  }
+
   const goBack = () => {
     setPage([page-1, -1])
   }
@@ -106,13 +106,8 @@ const MusicianLog = () => {
   }, [musician])
 
   const Inputs = [
-    <InfoPersonal />,
-    <FechaNacimiento actualMusician={musician} handler={handler}/>,
-    <Name actualMusician={musician} goBack={goBack} handler={handler} setNombre={setNameLastname}/>,
-    <Descripcion goBack={goBack} handler={handler} />,
-    <Genero goBack={goBack} handler={handler}/>,
-    <Pais goBack={goBack} handler={handler}/>,
-    <Ciudad goBack={goBack} handler={handler}/>,
+    <InfoPersonal alreadyMusician={musician} handlerInfo={handlerInfo} />,
+    <InfoMusical goBack={goBack} />,
     <Instrumentos goBack={goBack} handler={handler}/>,
     <GenerosMusicales goBack={goBack} handler={handler}/>,  
     <Experiencia goBack={goBack} handler={handler}/>,
@@ -128,7 +123,7 @@ const MusicianLog = () => {
           <h1 className="text-3xl font-semibold ">Registro de Musico</h1>
         </div>
       </div>
-        <form onSubmit={e=>e.preventDefault()} className='flex flex-col justify-center gap-4 h-full w-full items-center md:w-3/4'>
+        <div onSubmit={e=>e.preventDefault()} className='flex flex-col justify-center gap-4 h-full w-full items-center md:w-3/4'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               className='h-[90%] w-full flex justify-center items-center'
@@ -142,7 +137,7 @@ const MusicianLog = () => {
               {Inputs[page]}
             </motion.div>
           </AnimatePresence>
-        </form>
+        </div>
         <Logo dimensions='h-[10vh] self-center place-self-start w-[12vw]'/>
       </main>
     </>
