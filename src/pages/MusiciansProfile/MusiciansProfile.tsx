@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { MusicianT, InstrumentoT } from "../../types";
-import { Loading, MusicVideos } from "../../components";
+import { Loading, MusicVideos, EditMusician } from "../../components";
 import { clientHttp } from "../../services/client";
 import { profilePic, renewToken } from "../../services";
 import banner from "../../images/banner.png"
@@ -214,9 +214,10 @@ const MusiciansProfile = () => {
   return (
     <>
       <MusicVideos setVideoOpening={setVideoOpening} videoOpening={videoOpening}/>
+      <EditMusician editProfileMode={editProfileMode} handleSubmit={handleSubmit} setEditMode={setEditMode} user={user}/>
       <main className="flex flex-col md:items-center md:justify-evenly w-full h-full bg-slate-200 pb-3 md:pt-5">
-        {loading && <div className={`absolute right-4 ${editProfileMode ? '' : 'md:right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
-        <section className={`slide-top min-h-screen flex w-full md:w-2/5 flex-col pt-4 gap-4 transition ${editProfileMode ? 'md:fixed left-1' : ''}`}> 
+        {loading && <div className={`absolute right-4 top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
+        <section className={`slide-top min-h-screen flex w-full md:w-2/5 flex-col pt-4 gap-4 transition `}> 
           <div className=" flex flex-col gap-1 items-start pt-4">
             <div className="flex flex-col gap-1 items-start my-4  z-10 bg-slate-100 w-full border border-slate-400 rounded-lg">
               <img src={banner} alt="" className="absolute z-0 h-44 md:w-[99.5%]"/>

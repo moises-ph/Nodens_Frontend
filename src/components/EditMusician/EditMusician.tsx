@@ -3,30 +3,31 @@ import { BsFacebook, BsInstagram, BsLinkedin, BsSnapchat, BsTwitter, BsWhatsapp,
 import { FaTiktok } from "react-icons/fa";
 import { GrFormClose } from "react-icons/gr";
 import { ImCancelCircle } from "react-icons/im";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { IoIosAddCircleOutline, IoMdAdd } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { InstrumentoT, MusicianT } from "../../types"
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 interface EditUser {
   user: MusicianT,
-  handleSubmit: ()=> void
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>,
+  editProfileMode: boolean,
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const EditMusician = ({user, handleSubmit}: EditUser) => {
+const EditMusician = ({user, handleSubmit, editProfileMode, setEditMode}: EditUser) => {
   const descripcion = useRef<HTMLTextAreaElement>(null);
   const GeneroRef = useRef<HTMLInputElement>(null);
   const nivelGenRef = useRef<HTMLSelectElement>(null);
   const SocialMediaName = useRef<HTMLSelectElement>(null);
   const SocialMediaUrl = useRef<HTMLInputElement>(null);
-  const imageInput = useRef<HTMLInputElement>(null);
   const instrumentRef = useRef<HTMLInputElement>(null);
   const nivelRef = useRef<HTMLSelectElement>(null);
   const [instrumentos, setInstrumentos] =useState<InstrumentoT[]>([]);
   const [socialMedias, setSocials] = useState<{nombre:string, url: string}[]>([]);
   const [addingSocial, setAddingSocial] = useState<boolean>(false);
   const [generos, setGeneros] =useState<string[]>([]);
-  const [editProfileMode, setEditMode] = useState<boolean>(false);
 
   const SocialMedias : any = {
     instagram : <BsInstagram className="h-10 w-10 text-slate-50 bg-gradient-to-tr via-pink-600 from-indigo-600 to-amber-500 rounded-xl drop-shadow"/>,
@@ -113,44 +114,42 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
     setSocials(user!.redes_sociales);
     setEditMode(false);
   }
-
+ 
+  if(!editProfileMode) return <></>
   return (
     <>
-          <section className="md:w-3/5 w-full min-h-screen md:pt-8 pt-4 flex justify-center overflow-scroll place-self-end ml-[40%]">
-            <form onSubmit={handleSubmit} className='slide-top h-fit bg-transparent p-2 w-5/6 md:w-3/4 gap-3 rounded flex flex-col text-start items-center'>
-              <h2 className='text-3xl my-2 text-slate-50 font-semibold text-center'>Edita tu información Personal</h2>
-              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg">
-                <div className='flex flex-col w-full'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='name'>Nombre</label>
-                    <input placeholder={user?.Name} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='name' type='text' name='Name'/>
+          <section className="fixed z-[10000] top-0 left-0 backdrop-blur-sm bg-[rgba(36,44,71,0.68)] flex justify-center  h-full overflow-y-scroll w-full pt-12">
+          <button className="absolute top-0 right-0 h-20 w-20 p-8 text-2xl text-slate-100 left-0 z-[10000]" onClick={cancelProfileEdition}><AiOutlineArrowLeft /></button>
+            <form onSubmit={handleSubmit} className='slide-top h-fit bg-slate-50  w-full md:w-2/5 gap-6 rounded-lg flex flex-col text-start items-center py-4'>
+              <h2 className='text-xl my-2 text-slate-800  text-start pl-4 w-full border-b pb-2 border-slate-300'>Edita tu información Personal</h2>
+                <div className='flex flex-col w-[90%]'>
+                    <label className='text-slate-700 font-light ' htmlFor='name'>Nombre *</label>
+                    <input placeholder={user?.Name} className='rounded text-sm p-1 border border-slate-600' id='name' type='text' name='Name'/>
                 </div>
-                <div className='flex flex-col w-full'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='lastname'>Apellido</label>
-                    <input placeholder={user?.Lastname} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='lastname' type='text' name='Lastname'/>
+                <div className='flex flex-col w-[90%]'>
+                    <label className='text-slate-700 font-light' htmlFor='lastname'>Apellido *</label>
+                    <input placeholder={user?.Lastname} className='rounded text-sm p-1 border border-slate-600' id='lastname' type='text' name='Lastname'/>
                 </div>
-              </div>
-              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg">
-                <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='phone'>Telefono</label>
-                    <input placeholder={user?.telefono as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='phone' type='number' name='telefono'/>
+                <div className='flex flex-col w-[90%]'>
+                    <label className='text-slate-700 font-light' htmlFor='phone'>Telefono *</label>
+                    <input placeholder={user?.telefono as string} className='rounded text-sm p-1 border border-slate-600' id='phone' type='number' name='telefono'/>
                 </div>
-                <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='city'>Ciudad</label>
-                    <input placeholder={user?.ciudad} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='city' type='text' name='ciudad'/>
+                <div className='flex flex-col w-[90%]'>
+                    <label className='text-slate-700 font-light' htmlFor='city'>Ciudad *</label>
+                    <input placeholder={user?.ciudad} className='rounded text-sm p-1 border border-slate-600' id='city' type='text' name='ciudad'/>
                 </div>
-              </div>
-              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg">
-                <div className="w-full flex flex-col gap-2">
-                  <label className='text-slate-100 font-semibold ' htmlFor='phone'>Instrumentos</label>
-                  <div className="w-full flex flex-col gap-2">
+              <div className="flex flex-col w-full border-y items-center border-slate-300 py-4">
+                <div className="flex flex-col w-[90%] gap-4">
+                  <label className='text-slate-700 font-light' htmlFor='phone'>Instrumentos *</label>
+                  <div className="w-full grid grid-cols-2 gap-2">
                     {
                       instrumentos.map((ins, i)=> {
-                        return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{ins.nombre} <GrFormClose onClick={(e : any)=>deleteInstrument(e, i)}/> </span>
+                        return <span className="rounded-full border w-full py-2 border-zinc-700 flex justify-evenly items-center text-zinc-700 " key={i}>{ins.nombre} <GrFormClose className="text-xl cursor-pointer" onClick={(e : any)=>deleteInstrument(e, i)}/> </span>
                       })
                     }
                   </div>
-                  <input ref={instrumentRef} placeholder="Instrumento" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' type='text'/>
-                  <select ref={nivelRef} placeholder="Nivel" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1'>
+                  <input ref={instrumentRef} placeholder="Instrumento" className='rounded text-sm p-1 border border-slate-600' type='text'/>
+                  <select ref={nivelRef} placeholder="Nivel" className='rounded text-sm p-1 border border-slate-600'>
                     <optgroup>
                       <option value="" >Nivel de Experiencia</option>
                       <option value="Menos de 1 año">Menos de 1 año</option>
@@ -159,22 +158,22 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
                       <option value="Mas de 5 años">Mas de 5 años</option>
                     </optgroup>
                   </select>
-                  <button className="text-[#E15D12] font-bold" onClick={(e)=>addInstrument(e)}>Añadir</button>
+                  <button className="text-blue-500 font-bold justify-center flex items-center " onClick={(e)=>addInstrument(e)}><IoMdAdd />Añadir</button>
                 </div>  
               </div>
 
-               <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg">
-                <div className="w-full flex flex-col gap-2">
-                  <label className='text-slate-100 font-semibold ' htmlFor='phone'>Generos Musicales</label>
-                  <div className="w-full flex flex-col gap-2">
+              <div className="flex flex-col w-full border-b items-center border-slate-300 pb-4">
+                <div className="flex flex-col w-[90%] gap-4">
+                  <label className='text-slate-700 font-light' htmlFor='phone'>Generos Musicales *</label>
+                  <div className="w-full grid grid-cols-2 gap-2">
                     {
                       generos.map((gen, i)=> {
-                        return <span className="w-full flex justify-between items-center bg-blue-400 rounded-s rounded-md" key={i}>{gen} <GrFormClose onClick={(e)=>deleteGen(e, i)}/> </span>
+                        return <span className="rounded-full border w-full py-2 border-zinc-700 flex justify-evenly items-center text-zinc-700 " key={i}>{gen} <GrFormClose onClick={(e)=>deleteGen(e, i)}/> </span>
                       })
                     }
                   </div>
-                  <input ref={GeneroRef} placeholder="Genero" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' type='text'/>
-                  <select ref={nivelGenRef} placeholder="Nivel" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1'>
+                  <input ref={GeneroRef} placeholder="Genero" className='rounded text-sm p-1 border border-slate-600' type='text'/>
+                  <select ref={nivelGenRef} placeholder="Nivel" className='rounded text-sm p-1 border border-slate-600'>
                     <optgroup>
                       <option value="" >Nivel de Experiencia</option>
                       <option value="Menos de 1 año">Menos de 1 año</option>
@@ -183,15 +182,15 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
                       <option value="Mas de 5 años">Mas de 5 años</option>
                     </optgroup>
                   </select>
-                  <button className="text-[#E15D12] font-bold" onClick={(e)=>addGen(e)}>Añadir</button>
+                  <button className="text-blue-500 font-bold justify-center flex items-center" onClick={(e)=>addGen(e)}><IoMdAdd />Añadir</button>
                 </div>  
               </div>
 
 
-              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg">
-                <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='phone'>Experiencia</label>
-                    <select placeholder={user?.experiencia as string} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='experiencia'name='experiencia'>
+              <div className="flex flex-col w-full border-b items-center border-slate-300 pb-4">
+                <div className='flex flex-col w-[90%] gap-4'>
+                    <label className='text-slate-700 font-light' htmlFor='phone'>Experiencia *</label>
+                    <select placeholder={user?.experiencia as string} className='rounded text-sm p-1 border border-slate-600' id='experiencia'name='experiencia'>
                       <optgroup>
                         <option value=""></option>
                         <option value="Sin Experiencia">Sin Experiencia</option>
@@ -205,30 +204,30 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
                       </optgroup>
                     </select>
                 </div>
-                <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='descripcion'>Descripcion</label>
-                    <textarea placeholder={user?.descripcion} ref={descripcion} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='descripcion' name='experiencia'/>
+                <div className='flex flex-col w-[90%] gap-4'>
+                    <label className='text-slate-700 font-light' htmlFor='descripcion'>Descripcion *</label>
+                    <textarea placeholder={user?.descripcion} ref={descripcion} className='rounded text-sm p-1 border border-slate-600' id='descripcion' name='experiencia'/>
                 </div>
               </div>
               
-              <div className="w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg">
-                <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='birthdate'>Fecha de nacimiento</label>
-                    <input defaultValue={user!.fecha_nacimiento.toString()} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='birthdate' type='date' name='fecha_nacimiento'/>
+              <div className="flex flex-col w-full border-b items-center border-slate-300 pb-4 gap-4">
+                <div className='flex flex-col w-[90%] gap-4'>
+                    <label className='text-slate-700 font-light' htmlFor='birthdate'>Fecha de nacimiento *</label>
+                    <input defaultValue={user!.fecha_nacimiento.toString()} className='rounded text-sm p-1 border border-slate-600' id='birthdate' type='date' name='fecha_nacimiento'/>
                 </div>
-                <div className='w-full flex flex-col'>
-                    <label className='text-slate-100 font-semibold ' htmlFor='gender'>Genero</label>
-                    <select name="genero" className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id='gender'>
+                <div className='flex flex-col w-[90%] gap-4'>
+                    <label className='text-slate-700 font-light' htmlFor='gender'>Genero *</label>
+                    <select name="genero" className='rounded text-sm p-1 border border-slate-600' id='gender'>
                         <option selected={user?.genero.toLowerCase() === "mujer"} value="Mujer">Mujer</option>
                         <option selected={user?.genero.toLowerCase() === "hombre"} value="Hombre">Hombre</option>
                         <option selected={user?.genero.toLowerCase() === "otro"} value="Otro">Otro</option>
                     </select>
                 </div>
               </div>
-              <div className='w-5/6 shadow hover:drop-shadow-2xl transition md:w-2/3 flex flex-col items-center bg-zinc-900 p-4 rounded-lg'>
-                  <div className="flex items-center justify-center w-fit gap-1">
-                    <span className='text-slate-100 font-semibold'>Redes Sociales</span>
-                    <button className="h-3 w-3 rounded-full hover:scale-110 transition" onClick={(e) => {e.preventDefault(); setAddingSocial(!addingSocial)}}>{addingSocial ?  <ImCancelCircle className="text-red-600" /> : <IoIosAddCircleOutline className="text-white" />}</button>
+              <div className='flex flex-col w-full border-b items-center border-slate-300 pb-4 gap-4'>
+                  <div className="flex flex-col items-center w-[90%] gap-4">
+                    <span className='text-slate-700 font-light'>Redes Sociales</span>
+                    <button className="h-1/2 w-1/2 flex justify-center rounded-full hover:scale-110 transition" onClick={(e) => {e.preventDefault(); setAddingSocial(!addingSocial)}}>{addingSocial ?  <ImCancelCircle className="text-red-600 text-3xl" /> : <IoIosAddCircleOutline className="text-4xl text-blue-500" />}</button>
                   </div>
                   <div className="flex justify-evenly content-start p-2 flex-wrap gap-3 max-w-full">
                   {
@@ -241,10 +240,10 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
                   </div>
                   {
                     addingSocial &&
-                    <div className="flex flex-col items-center p-4 w-full gap-2">
-                    <div className="w-full flex flex-col">
-                      <label className="text-slate-100 font-semibold" htmlFor="socialname">Nombre de la Red Social</label>
-                      <select defaultValue={""} ref={SocialMediaName} className='rounded shadow hover:drop-shadow-lg transition text-sm p-1' id="socialname">
+                    <div className="flex flex-col items-center w-full px-2 gap-2">
+                    <div className="flex flex-col w-[93%] gap-4">
+                      <label className="text-slate-700 font-light" htmlFor="socialname">Nombre de la Red Social *</label>
+                      <select defaultValue={""} ref={SocialMediaName} className='rounded text-sm p-1 border border-slate-600' id="socialname">
                         <option selected>Selecciona una</option>
                         <option value="instagram">Instagram</option>
                         <option value="facebook">Facebook</option>
@@ -256,19 +255,21 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
                         <option value="whatsapp">Whatsapp</option>
                       </select>
                     </div>
-                    <div className="w-full">
-                      <label className="text-slate-100 font-semibold" htmlFor="socialurl">Url de la Red Social</label>
-                      <input ref={SocialMediaUrl} className='w-full rounded shadow hover:drop-shadow-lg transition text-sm p-1' id="socialurl" placeholder="Ingresa el link de la red Social" type="url"  />
+                    <div className="flex flex-col w-[93%] gap-4">
+                      <label className="text-slate-700 font-light" htmlFor="socialurl">Url de la Red Social *</label>
+                      <input ref={SocialMediaUrl} className='rounded text-sm p-1 border border-slate-600' id="socialurl" placeholder="Ingresa el link de la red Social" type="url"  />
                     </div>
-                    <button className="p-2 bg-blue-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition " onClick={addSocialMedia}>Añadir</button>
+                    <button className="text-blue-500 font-bold justify-center flex items-center" onClick={addSocialMedia}><IoMdAdd />Añadir</button>
                   </div>
                   }
               </div>
-              <input type="submit" className="p-4 bg-[#E15D12] text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition " value='Actualizar Perfil'/>
-              <button onClick={cancelProfileEdition} type="button" className="p-4 flex items-center justify-center gap-3 bg-red-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition ">Cancelar <ImCancelCircle className="w-5 h-5" /></button>
+              <div className="flex px-4 justify-end gap-4 w-full">
+                <button onClick={cancelProfileEdition} type="button" className="p-2 flex items-center justify-center gap-3 bg-red-600 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition ">Cancelar </button>
+                <input type="submit" className="p-2 bg-blue-500 text-slate-100 font-semibold rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition " value='Actualizar'/>
+              </div>
           </form>
          
-          </section>
+      </section>
 
     </>
   )
