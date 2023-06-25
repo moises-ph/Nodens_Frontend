@@ -6,7 +6,8 @@ import { clientHttp } from '../../services/client';
 import { Logo } from '../../components';
 import InfoPersonal from './Inputs/InfoPersonal';
 import InfoMusical from './Inputs/InfoMusical';
-import { MusicianT } from '../../types';
+import { InstrumentoT, MusicianT } from '../../types';
+import LoadingScreen from './Inputs/LoadingScreen';
 
 const variants = {
   enter: (direction: number) => {
@@ -31,7 +32,7 @@ const variants = {
 
 const MusicianLog = () => {
   const [musician, setMusician] = useState<MusicianT>({
-    "fecha_nacimiento" : new Date(),
+    "fecha_nacimiento" : "",
     "Name": "",
     "Lastname": "",
     "instrumentos": [],
@@ -51,7 +52,7 @@ const MusicianLog = () => {
     "redes_sociales": [
         
     ],
-    "telefono": ''
+    "telefono": []
   })
 
   const registerMusician = () => {
@@ -83,16 +84,28 @@ const MusicianLog = () => {
     sumPage()
   }
 
-  const handlerInfo = (name : string, lastname : string, description : string, genero : string, pais : string, ciudad : string, foto_perfil : string) => { 
+  const handlerInfo = (name : string, lastname : string, description : string, genero : string, pais : string, ciudad : string, foto_perfil : string, telefono : string, fecha_nacimiento : string) => { 
     setMusician({
       ...musician,
-      Name : name,
-      Lastname : lastname,
-      descripcion : description,
-      genero : genero,
-      pais : pais,
-      ciudad : ciudad,
-      url_foto_perfil : foto_perfil
+      Name: name,
+      Lastname: lastname,
+      descripcion: description,
+      genero: genero,
+      pais: pais,
+      ciudad: ciudad,
+      url_foto_perfil: foto_perfil,
+      telefono: [...musician.telefono, telefono],
+      fecha_nacimiento: new Date(fecha_nacimiento).toISOString().slice(0,10)
+    });
+    sumPage();
+  }
+
+  const handlerMusic = (instruments : InstrumentoT[], generos : string[], redes : { nombre: String; url: String }[]) => {
+    setMusician({
+      ...musician,
+      instrumentos : instruments,
+      generosMusicales : generos,
+      redes_sociales : redes as { nombre : string, url : string }[]
     });
     sumPage();
   }
@@ -107,23 +120,20 @@ const MusicianLog = () => {
 
   const Inputs = [
     <InfoPersonal alreadyMusician={musician} handlerInfo={handlerInfo} />,
-    <InfoMusical goBack={goBack} />,
-    <Instrumentos goBack={goBack} handler={handler}/>,
-    <GenerosMusicales goBack={goBack} handler={handler}/>,  
-    <Experiencia goBack={goBack} handler={handler}/>,
-    <RedesSociales goBack={goBack} handler={handler}/>, 
-    <Telefono goBack={goBack} handler={handler}/>]
+    <InfoMusical handleSubmit={handlerMusic} goBack={goBack} />,
+    <LoadingScreen registerMusician={registerMusician} />,
+  ];
 
   return (
     <>
-      <main className="h-screen flex flex-col w-full items-center py-5 bg-gradient-to-br bg-zinc-100">
-      <div className='flex w-full items-center justify-center'>
-        <div className='flex flex-col items-center'>
-          <button onClick={()=>{localStorage.removeItem("authTokenForTheUser"); location.reload()}}>Salir</button>
-          <h1 className="text-3xl font-semibold ">Registro de Musico</h1>
+      <main className="h-screen flex flex-col overflow-y-hidden w-full items-center py-5 md:py-3 bg-gradient-to-br bg-zinc-100">
+        <div className='flex w-full items-center justify-center'>
+          <div className='flex flex-col items-center'>
+            <button onClick={()=>{localStorage.removeItem("authTokenForTheUser"); location.reload()}}>Salir</button>
+            <h1 className="text-3xl font-semibold ">Registro de Musico</h1>
+          </div>
         </div>
-      </div>
-        <div onSubmit={e=>e.preventDefault()} className='flex flex-col justify-center gap-4 h-full w-full items-center md:w-3/4'>
+        <div className='flex flex-col justify-center md:gap-2 gap-4 h-full w-full md:w-11/12 items-center'>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               className='h-[90%] w-full flex justify-center items-center'
