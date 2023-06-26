@@ -18,8 +18,7 @@ export const AppOrganizerRouter = () => {
   const [nameProf, setNameProf] = useState<string>()
 
   const getOrganizer = async() => {
-    setTimeout('', 1000)
-    clientHttp().get("/organizers/Organizer")
+    await clientHttp().get("/organizers/Organizer")
       .then(res=>{
         console.log(res);
         if(res.data==null) {
@@ -53,14 +52,14 @@ export const AppOrganizerRouter = () => {
   return (
     <>
       <Router>
-      <div className={organizador ? '' : 'hidden'}>
+      {organizador && <div className={organizador ? '' : 'hidden'}>
         <NavOrganizer inView={showNav} setShowNav={setShowNav}/>
         <NavOrganizerRes profImg={profImg as string} />
         <header className="fixed w-full flex justify-between items-center text-slate-100 py-4 px-4 bg-slate-900 shadow-lg z-50 md:hidden">
           <Link to='/' className='cursor-pointer'><h1 className="text-2xl flex items-center"><Logo dimensions="h-7 w-7"/> Nodens</h1></Link>
           <button onClick={()=>setShowNav(true)}><HiMenu /></button>
         </header>
-      </div>
+      </div>}
         <main className={organizador ? 'pt-16 md:pt-11' : ''}>
           <Suspense fallback={<Loading />}>
             <Routes>
@@ -81,3 +80,4 @@ export const AppOrganizerRouter = () => {
     </>
   );
 };
+

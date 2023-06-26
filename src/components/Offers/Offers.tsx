@@ -10,6 +10,7 @@ import { Link, useParams } from "react-router-dom"
 import {VscSettings} from "react-icons/vsc";
 import FilterAccordion from "./FilterAccordion/FilterAccordion"
 import Swal from "sweetalert2"
+import { IoReloadCircleOutline } from "react-icons/io5"
 
 const Offers = ({userName} : {userName : string}) => {
 
@@ -17,14 +18,14 @@ const Offers = ({userName} : {userName : string}) => {
 
 	const [offers,setOffers] = useState<OffersT[] | null>(null);
 	const [offerFilter,setOfferFilter] = useState<OfferFilter | null>(null);
-	const [offersToDisplay, setOffersDisplay] = useState<OffersT[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+	const [offersToDisplay, setOffersDisplay] = useState<OffersT[] | null>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
 	const getInitialOffers = async () => {
     setOffers(null);
     await renewToken();
 		clientHttp().get('/offers/offers')
-		  .then(res=>{setOffers(res.data); setOffersDisplay(res.data)})
+		  .then(res=>{setOffers(res.data); setOffersDisplay(res.data); setLoading(false)})
 			.catch(err=>console.log(err)) 
 	}
 
@@ -94,8 +95,6 @@ const Offers = ({userName} : {userName : string}) => {
 			));
 		}
 	},[offerFilter])
-
-	if(!offers) return <Loading />
 	return (
     <>
       <section className="min-h-[91vh] pt-10 pb-4 flex justify-center bg-zinc-100 overflow-y-hidden">
@@ -130,14 +129,20 @@ const Offers = ({userName} : {userName : string}) => {
           } overflow-y-scroll h-fit max-h-[88vh] rounded-xl bg-white justify-self-center`}
         >
           <div
-            className={`w-full sticky top-0 h-fit py-3 pl-3 ${
+            className={`w-full sticky top-0 h-fit py-3 px-3 flex items-center justify-between ${
               id ? "bg-orange-500 text-white backdrop-blur-3xl" : "bg-white"
             }`}
           >
-            <h2 className="text-xl font-semibold">Recomendaciones</h2>
-            <p className="font-thin">
-              En función de tu perfil y tu historial de búsqueda
-            </p>
+            <div>
+              <h2 className="text-xl font-semibold">Recomendaciones</h2>
+              <p className="font-thin">
+                En función de tu perfil y tu historial de búsqueda
+              </p>
+            </div>
+            <div className="flex items-center">
+              <button onClick={(e) => {setLoading(true); getInitialOffers(); setOffersDisplay([])}} className="text-orange-500"><IoReloadCircleOutline className="w-7 h-7" /></button>
+              <span>{loading ? 'Cargando...' : `${offersToDisplay!.length} Ofertas`}</span>
+            </div>
           </div>
           {offersToDisplay!.length > 0 ? (
             offersToDisplay!.map((offer, i) => {
@@ -152,7 +157,7 @@ const Offers = ({userName} : {userName : string}) => {
                 </Link>
               );
             })
-          ) : (
+          ) : !loading && (
             <div>
               <span>No hay ninguna oferta disponible por el momento :(</span>
             </div>

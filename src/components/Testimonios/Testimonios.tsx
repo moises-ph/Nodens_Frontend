@@ -39,7 +39,8 @@ const slides: SlideT[] = [
   },
 ]
 
-const Testimonios = ({ autoSlide = false, autoSlideInterval = 3000 }: { autoSlide: boolean, autoSlideInterval: number}) => {
+const 
+Testimonios = ({ autoSlide = false, autoSlideInterval = 3000 }: { autoSlide: boolean, autoSlideInterval: number}) => {
   const [curr, setCurr] = useState(0)
 
   const prev = () => setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
