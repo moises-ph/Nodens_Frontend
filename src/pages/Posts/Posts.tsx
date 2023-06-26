@@ -93,20 +93,20 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
             //Mensaje de bienvenida
           }
 
-            <div className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl pl-2 pr-2 pt-2 justify-start flex flex-col">
+          <div className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl pl-2 pr-2 pt-2 justify-start flex flex-col">
             {
-                            profImg.length > 0 ?
-                              <img src={profImg} alt="" className="h-fit w-fit rounded-xl" />
-                              :
-                              <FaUser className="h-8 w-8" />
-                          }
+              profImg.length > 0 ?
+                <img src={profImg} alt="" className="h-fit w-fit rounded-xl" />
+                :
+                <FaUser className="h-8 w-8" />
+            }
             <p>Hola, Biendenido {
-            nameProf.length > 0 ?
-            <p>{nameProf}</p>
-            :
-            <p>User</p>
+              nameProf.length > 0 ?
+                <p>{nameProf}</p>
+                :
+                <p>User</p>
             }</p>
-            </div>
+          </div>
 
           <div className="bg-[#FFFFFF] h-[12vh] w-[30vw] pt-2 text-center flex justify-center items-start rounded-2xl gap-2">
             {
@@ -126,9 +126,9 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
           {
             //Páginas que puedes seguir y el footer
           }
-            <div className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl">
-              El footer y Páginas interesantes pa
-            </div>
+          <div className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl">
+            El footer y Páginas interesantes pa
+          </div>
         </div>
 
         {
@@ -154,7 +154,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
 
                       <div className="text-black bg-[#FFFFFF] w-[30vw] min-h-[60vh] pl-2 pr-2 pb-4 pt-4 flex flex-col items-center rounded-xl">
                         <div>
-                     
+
                           <h1>
                             {k.id}
                           </h1>
@@ -163,8 +163,8 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
                           </p>
                           <p>
                             {k.number}
-                          </p>                      
-                          <img src={k.img} alt="" className="w-fit h-fit" />                       
+                          </p>
+                          <img src={k.img} alt="" className="w-fit h-fit" />
                           <p className="text-center">
                             {k.texto}
                           </p>
