@@ -102,7 +102,7 @@ const Login = () => {
     <>
       <main className="min-h-[100vh] flex justify-center bg-slate-200 items-center flex-col">
         <Link to='/' className="absolute top-0 h-20 w-20 p-8 text-2xl text-slate-800 left-0 z-[10000]"><AiOutlineArrowLeft /></Link>
-        <section className="w-10/12 h-screen md:w-fit px-10 flex flex-col items-center justify-evenly gap-4 py-8 shadow-xl bg-white/50 z-30">
+        <section className="w-10/12 h-screen md:w-1/4 px-10 flex flex-col items-center justify-evenly gap-4 py-8 shadow-xl bg-white/50 z-30">
           <Logo dimensions="w-32 h-32" />
           <form onSubmit={handleSubmit} className="w-11/12 flex justify-center items-center flex-col mt-0 gap-4 z-30">        
             <div className="w-full bg-white/80 shadow-lg py-3 px-4 rounded-3xl">
