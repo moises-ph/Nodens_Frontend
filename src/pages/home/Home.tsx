@@ -50,7 +50,7 @@ function Home() {
         </section>
 
 				<div className="flex flex-col gap-4 w-full z-10 py-2 bg-zinc-100 md:flex-row md:justify-center">
-					<h3 className="text-slate-900 text-4xl font-semibold pl-2 md:text-7xl md:w-[25%] md:h-full md:place-self-center md:font-semibold">Empieza el sueño ideal para ti:</h3>		
+					<h3 className="text-slate-900 text-4xl font-semibold pl-2 md:text-7xl md:w-[25%] md:h-full md:place-self-center md:font-semibold md:translate-x-[-5rem]">Empieza el sueño ideal para ti:</h3>		
 					<div className=" grid gap-2 grid-cols-2 px-2 md:w-[40%] md:grid-cols-3 md:py-4">
 						{
 							tags.map((tag, i) => {
