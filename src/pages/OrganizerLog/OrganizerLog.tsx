@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Ciudad, DescripcionEmpresa, EnterpriseInfo, NombreEmpresa } from './inputs'
+import { EnterpriseInfo } from './inputs'
 import { OrganizerT } from '../../types';
 import { useEffect, useState } from 'react'
-import { RedesSociales, Telefono } from '../MusicianLog/Inputs';
 import { clientHttp } from '../../services/client';
-import InfoPersonal from '../MusicianLog/Inputs/InfoPersonal';
+import InfoPersonalOrganizer from './inputs/InfoPersonalOrganizer';
+import Swal from 'sweetalert2';
+import { renewToken } from '../../services';
 
 const variants = {
   enter: (direction: number) => {
@@ -30,7 +31,7 @@ const variants = {
 
 const OrganizerLog = () => {
   const [organizer, setOrganizer] = useState<OrganizerT>({
-		"telefono": '',
+		"telefono": "",
     "nombre_empresa" : "",
     "descripcion_empresa": "",
     "pais": "Colombia",
@@ -45,11 +46,32 @@ const OrganizerLog = () => {
     "fecha_nacimiento" : ""
   })
 
-	const registerOrganizer = () => {
+	const registerOrganizer = async () => {
+    await renewToken();
     clientHttp().post('/organizers/Organizer', organizer)
     .then(res=>{
       console.log(res);
+    })
+    .then(res =>{ 
+      Swal.fire({
+        icon: 'success',
+        text: 'Fuiste Registrado exitosamente',
+        timer: 2000
+      });
       location.reload();
+      }
+    )
+    .catch(async(err) => {
+      if(err.response.status==401){
+        await renewToken();
+        registerOrganizer();
+      } else{
+        Swal.fire({
+          icon: 'error',
+          text: 'ups, intentalo de nuevo',
+          timer: 2000
+        })
+      }
     })
   }
 
@@ -63,9 +85,9 @@ const OrganizerLog = () => {
 
   const [[page, direction], setPage] = useState([0, 0]);
  
-  const handlerEnterprise = (nombre: string, descripcion: string) => {
+  const handlerEnterprise = async (nombre: string, descripcion: string) => {
     setOrganizer({...organizer, nombre_empresa: nombre, descripcion_empresa: descripcion})
-    sumPage();
+    await registerOrganizer();
   }
   const handler = (key:string, value: any) => {
     setOrganizer({...organizer, [key]: value })
@@ -79,14 +101,26 @@ const OrganizerLog = () => {
     setPage([page-1, -1])
   }
  
+  const handlerInfo = (name : string, lastname : string, genero : string, pais : string, ciudad : string, foto_perfil : string, telefono : string, fecha_nacimiento : string) => { 
+    setOrganizer({
+      ...organizer,
+      Name: name,
+      Lastname: lastname,
+      genero: genero,
+      pais: pais,
+      ciudad: ciudad,
+      url_foto_perfil: foto_perfil,
+      telefono: telefono,
+      fecha_nacimiento: new Date(fecha_nacimiento).toISOString().slice(0,10)
+    });
+    sumPage();
+  }
+
+
+
 	const Inputs: JSX.Element[] = [
-    <EnterpriseInfo handler={handlerEnterprise}/>,
-    <InfoPersonal />,
-    <Ciudad handler={handler} />,
-    <NombreEmpresa goBack={goBack} handler={handler} />,
-    <DescripcionEmpresa goBack={goBack} handler={handler} gotCompany={organizer.nombre_empresa.length > 0} />,
-    <RedesSociales goBack={goBack} handler={handler} />,
-    <Telefono goBack={goBack} handler={handler} />
+    <InfoPersonalOrganizer handlerInfo={handlerInfo} alreadyOrganizer={organizer}/>,
+    <EnterpriseInfo handler={handlerEnterprise} goBack={goBack} register={registerOrganizer}/>,
   ];
 
   return (
