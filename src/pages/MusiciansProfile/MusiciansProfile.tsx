@@ -157,7 +157,7 @@ const MusiciansProfile = () => {
             <h3 className="pl-2">Generos Musicales:</h3>
             <div className=" grid gap-2 grid-cols-2 px-2 ">
               {user.generosMusicales.map((gen, i) => {
-                return <span key={i} className="rounded-full border w-full h-10 border-zinc-700 flex justify-center items-center text-zinc-700 ">{gen}</span>
+                return <span key={i} className="rounded-full border w-fit h-fit border-zinc-700 flex justify-center items-center text-zinc-700 ">{gen}</span>
               })}
             </div>
           </div>
