@@ -132,7 +132,7 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
                 </div>
                 <div className='flex flex-col w-[90%]'>
                     <label className='text-slate-700 font-light' htmlFor='phone'>Telefono *</label>
-                    <input placeholder={user?.telefono as string} className='rounded text-sm p-1 border border-slate-600' id='phone' type='number' name='telefono'/>
+                    <input placeholder={user?.telefono[0] as string} className='rounded text-sm p-1 border border-slate-600' id='phone' type='number' name='telefono'/>
                 </div>
                 <div className='flex flex-col w-[90%]'>
                     <label className='text-slate-700 font-light' htmlFor='city'>Ciudad *</label>

@@ -19,7 +19,7 @@ const InfoPersonalorganizer = ({handlerInfo, alreadyOrganizer } : { handlerInfo 
     'Colombia',
   ];
 
-  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e : any) => {
     e.preventDefault();
     handlerInfo(name.current!.value, Lastname.current!.value, genero.current!.value, pais.current!.value, ciudad.current!.value, foto, telefono.current!.value, fecha_nacimiento.current!.value);
   }
@@ -30,7 +30,7 @@ const InfoPersonalorganizer = ({handlerInfo, alreadyOrganizer } : { handlerInfo 
     genero.current!.value  = alreadyOrganizer.genero.length > 0 ? alreadyOrganizer.genero : "" ;
     pais.current!.value  = alreadyOrganizer.pais.length > 0 ? alreadyOrganizer.pais : "" ;
     ciudad.current!.value  = alreadyOrganizer.ciudad.length > 0 ? alreadyOrganizer.ciudad : "" ;
-    telefono.current!.value = alreadyOrganizer.telefono.length > 0 ? alreadyOrganizer.telefono : "";
+    telefono.current!.value = (alreadyOrganizer.telefono as string).length > 0 ? alreadyOrganizer.telefono as string : "";
     setFoto(alreadyOrganizer.url_foto_perfil.length > 0 ? alreadyOrganizer.url_foto_perfil : foto);
     if(alreadyOrganizer.fecha_nacimiento.length > 0) fecha_nacimiento.current!.value = new Date(alreadyOrganizer.fecha_nacimiento).toISOString().slice(0,10);
   },[])
