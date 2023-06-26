@@ -13,19 +13,19 @@ function RequestPassReset() {
         setSubmitted(false);
         const form : FormData = new FormData(e.target as HTMLFormElement);
         const data : any = Object.fromEntries(form);
-        axios.post("https://nodensgapi.azure-api.net/auth/api/auth/verify/req", data)
+        axios.post(`https://nodensgapi.azure-api.net/auth/api/auth/recovery/pre/${data.email}`, data)
             .then((res : AxiosResponse<{url : string, Message : string}>) => {
                 setTimeout(() => {
                     location.replace('/');
                 }, 3000)
                 Swal.fire({
-                    title : res.data.Message,
+                    title : 'Listo!',
                     icon : 'success',
                     text : 'Será redirigido al inicio en 3 segundos'
                 });
             }).
             catch((err : AxiosError<{Message : string}>)=> {
-                if(err.status === 404) Swal.fire({
+                if(err.status != 401) Swal.fire({
                   title: err.response!.data.Message,
                   icon: "success"
                 });
