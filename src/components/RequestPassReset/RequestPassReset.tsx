@@ -13,8 +13,8 @@ function RequestPassReset() {
         setSubmitted(false);
         const form : FormData = new FormData(e.target as HTMLFormElement);
         const data : any = Object.fromEntries(form);
-        axios.post(`https://nodensgapi.azure-api.net/auth/api/auth/recovery/pre/${data.email}`, data)
-            .then((res : AxiosResponse<{url : string, Message : string}>) => {
+        axios.post(`https://nodensgapi.azure-api.net/auth/api/auth/recovery/pre?Email=${data.email}`, data)
+            .then((res : AxiosResponse) => {
                 setTimeout(() => {
                     location.replace('/');
                 }, 3000)
