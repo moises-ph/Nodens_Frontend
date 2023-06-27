@@ -21,7 +21,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md border w-[97%]">
-      <Table className={`${isLoading ? "flex flex-col" : ""} w-full`}>
+      <Table className={`${isLoading ? "" : ""} w-full`}>
         <TableHeader className="sticky">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -40,9 +40,9 @@ export function DataTable<TData, TValue>({
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody className={isLoading ? 'p-4 h-20 flex items-center justify-center w-full' : ''}>
+        <TableBody className={isLoading ? '' : ''}>
           {isLoading ? 
-            <div className='self-center w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div>
+            <></>
           :
            table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
