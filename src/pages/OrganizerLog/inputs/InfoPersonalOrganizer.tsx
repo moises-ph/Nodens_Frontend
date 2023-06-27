@@ -65,8 +65,11 @@ const InfoPersonalorganizer = ({handlerInfo, alreadyOrganizer } : { handlerInfo 
         </div>
         <div className='flex gap-10'>
           <div className='flex gap-1 flex-col'>
-            <label htmlFor='fecha_nacimiento' className='text-lg'>Fecha de tu nacimiento</label>
-            <input required type="date" onChange={() => setIsValue(fecha_nacimiento.current!.value ? true : false)} name="fecha_nacimiento" ref={fecha_nacimiento} className='h-7 bg-transparent border-solid border-0 border-b-2 border-slate-400 text-black/70 font-thin'/>
+            <div className='flex flex-col'>
+              <label htmlFor='fecha_nacimiento' className='text-lg'>Fecha de tu nacimiento</label>
+              <span className='font-thin italic text-sm'>Debe ser mayor de edad</span>
+            </div>
+            <input max={  new Date(new Date().setFullYear(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate() -1)).toISOString().slice(0,10)} required type="date" onChange={() => setIsValue(fecha_nacimiento.current!.value ? true : false)} name="fecha_nacimiento" ref={fecha_nacimiento} className='h-7 bg-transparent border-solid border-0 border-b-2 border-slate-400 text-black/70 font-thin'/>
           </div>
           <div className='flex flex-col gap-1'>
             <label htmlFor='genero' className='text-lg'>Genero</label>
