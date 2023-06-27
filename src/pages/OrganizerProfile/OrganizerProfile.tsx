@@ -167,14 +167,17 @@ const OrganizerProfile = () => {
       {loading && <div className={`absolute right-4 ${editProfileMode ? '' : 'md:right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
         <section className="slide-top min-h-screen flex w-full md:w-1/2 flex-col items-center gap-4 transition"> 
           <div className=" flex flex-col gap-1 items-center px-4 pt-10">
-            <div className="min-w-[70.3%] h-[300px] shadow-lg absolute bg-slate-100 bg-opacity-100 md:w-1/3 z-[1] border border-slate-400 rounded-xl" />         
+            <div className="min-w-[70.3%] h-[300px] shadow-lg flex absolute bg-slate-100 bg-opacity-100 md:w-1/3 z-[1] border border-slate-400 rounded-xl" />         
             <div className="flex flex-col gap-1 items-center my-4 p-4 z-10 ">
-            <img src={banner} alt="" className="absolute z-0 h-[80vh] w-[35vw] "/>
+            <img src={banner} alt="" className=" flex absolute z-0 h-[20%] w-[35vw] translate-y-[-1.9rem] rounded-xl"/>
               <input onChange={handleProfile} type="file" className="hidden" ref={imageInput}/>
-              <img src={organizer.url_foto_perfil || DefaultUserImg} loading="lazy" alt="Organizer Profile" className="rounded-full h-40 w-40 object-cover mb-1 border-2 border-slate-800 z-30"  />
-              <div className="flex flex-col items-center text-slate-100">
+              <div className="flex justify-evenly items-center z-50 w-full">
+              <img src={organizer.url_foto_perfil || DefaultUserImg} loading="lazy" alt="Organizer Profile" className="rounded-full h-40 w-40 object-cover mb-1 border-2 border-slate-800 z-30  self-start"  />
+              <button onClick={()=> setEditMode(!editProfileMode)} className={`rounded-full p-2  h-1/6 hover:scale-110 transition`}><FiEdit className="w-7 h-7"/></button>
+              </div>
+              <div className="flex flex-col items-center text-gray-900">
                 <h1 className="text-center text-3xl organizerNameFont"><span className="font-semibold">{organizer.Name}</span> <span className="organizerNameFont font-thin">{organizer.Lastname}</span></h1>
-                <h3 className="font-light">{email}</h3>
+                <h3 className="text-gray-900 font-light">{email}</h3>
               </div>
               <div className="flex w-full items-center justify-around">
                 <button onClick={()=> setEditMode(!editProfileMode)} className={`${editProfileMode ? 'bg-blue-500' : 'bg-slate-300'} rounded p-1 shadow hover:scale-110 hover:shadow-lg transition`}><FiEdit className="w-7 h-7"/></button>
