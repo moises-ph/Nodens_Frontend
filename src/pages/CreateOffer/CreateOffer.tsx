@@ -41,7 +41,8 @@ const CreateOffer = () => {
       "Requeriments": requeriments,
       "Vacants": vacants.current?.value,
       "isAvailable" : true,
-      "tags" : tags
+      "tags" : tags,
+      "saves" : []
     })
     .then((res : AxiosResponse<{id : string, message : string}>) => {
       console.log(res.data.message);
