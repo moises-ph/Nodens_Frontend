@@ -100,7 +100,7 @@ const Login = () => {
 
   return (
     <>
-      <main className="min-h-[100vh] flex justify-center bg-slate-200 items-center flex-col">
+      <main className="min-h-[100vh] flex justify-center bg-blue-100/75 items-center flex-col">
         <Link to='/' className="absolute top-0 h-20 w-20 p-8 text-2xl text-slate-800 left-0 z-[10000]"><AiOutlineArrowLeft /></Link>
         <section className="w-10/12 h-screen md:w-1/4 px-10 flex flex-col items-center justify-evenly gap-4 py-8 shadow-xl bg-white/50 z-30">
           <Logo dimensions="w-32 h-32" />
