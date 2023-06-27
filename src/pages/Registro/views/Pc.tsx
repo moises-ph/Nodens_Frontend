@@ -36,7 +36,7 @@ const Pc = ({ handleSubmit, setLoading, setRol }: registerProps) => {
     } else return true;
   };
 
-  const handleSubmit1 = (e : any) => {
+  const preHandler = (e : any) => {
     e.preventDefault();
     const form: FormData = new FormData(e.target);
     const object = Object.fromEntries(form);
@@ -52,7 +52,7 @@ const Pc = ({ handleSubmit, setLoading, setRol }: registerProps) => {
 
         <div className="bg-slate-100 w-full h-full flex justify-center items-center">
 
-          <form onSubmit={handleSubmit1} className="w-5/6 sm:w-[400px] h-4/6 flex flex-col justify-center items-start gap-8">
+          <form onSubmit={preHandler} className="w-5/6 sm:w-[400px] h-4/6 flex flex-col justify-center items-start gap-8">
             <h1 className="text-slate-100 text-center font-semibold text-3xl w-full">Registrate</h1>
             <label htmlFor="Email" className="w-full flex flex-col gap-2">
               <h2 className="text-xl font-normal text-blue-500">Email</h2> 
@@ -84,7 +84,7 @@ const Pc = ({ handleSubmit, setLoading, setRol }: registerProps) => {
       <div className="w-1/2 h-full bg-blue-500">
         <div className="bg-blue-500 w-full h-full flex justify-center items-center">
 
-          <form onSubmit={handleSubmit1} className="w-5/6 sm:w-[400px] h-4/6 flex flex-col justify-center items-start gap-8">
+          <form onSubmit={preHandler} className="w-5/6 sm:w-[400px] h-4/6 flex flex-col justify-center items-start gap-8">
             <h1 className="text-slate-100 text-center font-semibold text-3xl w-full">Registrate</h1>
             <label htmlFor="Email" className="w-full flex flex-col gap-2">
               <h2 className="text-xl font-normal text-slate-200">Email</h2> 
