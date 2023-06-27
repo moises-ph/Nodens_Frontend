@@ -22,6 +22,7 @@ const Registro = () => {
     e.preventDefault();
     const form: FormData = new FormData(e.target);
     const object = Object.fromEntries(form)
+    delete object['password-con'];
     const data = {...object, rol: Rol};
     console.log(object);
     
