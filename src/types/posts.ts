@@ -1,12 +1,10 @@
 export type PostT = {
 	IDAuth : string,
 	title: string,
-	content: {
-		text: string,
-		links?: string[],
-		images?: string[]
-	},
-	date: Date,
+	text: string,
+	links?: string[],
+	images?: string[],
+	date: string,
 	likes: number,
 	comments?: [{
 		IDAuth: string,

@@ -26,7 +26,7 @@ export const AppOrganizerRouter = () => {
         } else {
           setOrganizador(res.data);
           setProfImg(res.data.url_foto_perfil);
-          setNameProf(res.data.Name);
+          setNameProf(res.data.Name+' '+res.data.Lastname);
   
         }
       })
