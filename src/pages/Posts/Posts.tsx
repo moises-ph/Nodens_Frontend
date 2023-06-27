@@ -88,8 +88,8 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
   }
   return (
     <>
-      <main className="bg-[#F3F2EF] py-10 flex justify-center items-start absolute w-full h-fit gap-8 overflow-y-hidden">
-        <div className="flex flex-col bg-white justify-center border-solid border-black/20 border-[1px] rounded-2xl ">
+      <main className="bg-[#F3F2EF] pt-10 flex justify-center items-start absolute w-full h-fit gap-8 overflow-y-hidden">
+        <div className="flex flex-col bg-white justify-center border-solid border-black/10 border-[1px] rounded-2xl ">
           {profImg.length > 0 ? (
             <img
               src={profImg}
@@ -104,26 +104,26 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
           </p>
         </div>
 
-        <section className="w-1/3 h-fit max-h-[84vh] flex flex-col items-center overflow-y-auto">
-          <div className="bg-white h-fit w-full px-3 py-2 text-center flex flex-col rounded-2xl gap-2">
+        <section className="w-1/3 h-fit max-h-[89vh] flex flex-col items-center overflow-y-auto gap-2">
+          <div className="bg-white h-fit w-full px-3 py-2 text-center flex flex-col rounded-2xl gap-2 border-solid border-[1px] border-black/10">
             <div className="flex items-center justify-between gap-1">
               {profImg.length > 0 ? (
                 <img
                   src={profImg}
-                  className="rounded-full border-solid border-black/40 border-[1px] h-[4rem] object-contain"
+                  className="rounded-full h-[4rem] object-contain"
                 />
               ) : (
                 <FaUser></FaUser>
               )}
-              <input className="w-full border-solid border-[1px] border-black/40 rounded-2xl h-[2rem]" />
+              <input className="w-full border-solid border-[1px] border-black/10 rounded-2xl h-[2rem]" />
             </div>
           </div>
-          <div className="w-full before:w-full before:h-[1px] before:bg-black">
+          <div className="w-full flex flex-col before:w-[97%] before:self-center before:h-[1.5px] before:bg-black/30">
             {PosTs.map((k, index) => (
               <>
                 <div key={index}>
                   <div className="pt-2 flex justify-center items-center">
-                    <div className="border-solid border-black/20 border-[1px] text-black bg-[#FFFFFF] w-full min-h-[60vh] pl-2 pr-2 pb-4 pt-4 flex flex-col items-center rounded-xl ">
+                    <div className="border-solid border-black/10 border-[1px] text-black bg-white w-full min-h-[60vh] pl-2 pr-2 pb-4 pt-4 flex flex-col items-center rounded-xl ">
                       <div>
                         <p className="pl-1 underline">{k.name1}</p>
                         <p>{renderedText}</p>
@@ -142,7 +142,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
             ))}
           </div>
         </section>
-        <footer className="bg-[#FFFFFF] w-[12vw] h-[30vh] rounded-2xl">
+        <footer className="bg-white w-[12vw] h-[30vh] rounded-2xl border-solid border-black/10 border-[1px]">
           El footer y Páginas interesantes pa
         </footer>
       </main>
