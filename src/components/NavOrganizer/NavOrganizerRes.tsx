@@ -16,10 +16,10 @@ const NavOrganizerRes = ({profImg} : {profImg : string}) => {
 		location.reload()
 	}
   return (
-    <nav className="hidden md:flex fixed bg-slate-900 items-center justify-around h-[7vh] lg:gap-4 gap-[1%] w-full z-50">
-      <div className="flex items-center justify-evenly w-full">
-      <Link to="/" className="flex items-center translate-x-[25rem] md:translate-x-5"><IndexLink /><h3 className="text-slate-50 font-semibold">NODENS</h3></Link>
-      <div className="w-full flex justify-evenly items-center lg:justify-end gap-[2%] pr-20 translate-x-[-20rem] md:translate-x-0 md:pr-0">
+    <nav className="hidden md:flex md:justify-center fixed bg-slate-900 items-center justify-around h-[7vh] lg:gap-4 gap-[1%] w-full z-50">
+      <div className="flex items-center justify-evenly w-full md:justify-between md:-full">
+      <Link to="/" className="flex items-center  pl-[40rem] md:translate-x-[-15rem]"><IndexLink /><h3 className="text-slate-50 font-semibold">NODENS</h3></Link>
+      <div className="w-full flex justify-evenly items-center lg:justify-end gap-[2%] pr-[17rem] md:items-center">
         <Link className={`h-[10%] flex flex-col items-center  rounded-lg text-slate-100 text-xs after:content-['_'] after:h-[1px] after:w-full after:scale-x-0 after:origin-left after:transition after:transform after:duration-150 after:ease-linear hover:after:scale-x-100 after:bg-white py-4 pl-2 ${
           location.pathname === "/posts"
           ? "text-orange-600 after:bg-orange-600"
