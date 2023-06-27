@@ -28,22 +28,34 @@ const OrganizerOffers = () => {
       })
   }
 
+  const changLoad = (state : boolean) : void => {
+    setLoad(state);
+    if(state === false) getOffers();
+  }
+
   useEffect(()=> {
     getOffers();
   },[])
 
   useEffect(()=> {
     console.log(offers);
-    setOffersData(offers.map((offer : OffersT) : OfferTableT => ({
-      Title : offer.Title,
-      ApplicantsNumber : offer.Applicants.length,
-      Creation_Date : offer.Creation_Date,
-      Event_Date : offer.Event_Date,
-      isAvailable : offer.isAvailable,
-      Payment : offer.Payment,
-      Vacants : offer.Vacants,
-      offerId : offer._id!
-    })))
+    setOffersData(
+      offers.map(
+        (offer: OffersT): OfferTableT => ({
+          Title: offer.Title,
+          ApplicantsNumber: offer.Applicants.length,
+          Creation_Date: offer.Creation_Date,
+          Event_Date: offer.Event_Date,
+          isAvailable: offer.isAvailable,
+          Payment: offer.Payment,
+          Vacants: offer.Vacants,
+          offerId: {
+            id: offer._id!,
+            setLoading: changLoad
+          },
+        })
+      )
+    );
   }, [offers])
 
   if(!offers) return <Loading />
@@ -53,7 +65,7 @@ const OrganizerOffers = () => {
         <div className="flex flex-col h-fit w-fit gap-2">
           <button onClick={(e) => {setLoad(true); getOffers()}} className="bg-blue-500 rounded p-2 text-slate-200 hover:bg-blue-700 transition-all hover:text-white">Recargar</button>
         </div>
-        <DataTable columns={offersColumns} data={offersData} isLoading={loading} />
+        <DataTable columns={offersColumns} data={offersData} isLoading={loading}/>
       </main>
     </>
   )

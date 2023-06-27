@@ -8,8 +8,8 @@ export const offersColumns : ColumnDef<OfferTableT>[] = [
       accessorKey : "offerId",
       header : "Acciones",
       cell : ({row}) => {
-        const id : string = row.getValue('offerId');
-        return <OrgOffersToggleMenu id={id} isAvailable={row.getValue('isAvailable')} />
+        const id: { id: string; setLoading : (state : boolean) => void } = row.getValue("offerId");
+        return <OrgOffersToggleMenu setLoad={id.setLoading} id={id.id} isAvailable={row.getValue('isAvailable')} />
       }
     },
     {

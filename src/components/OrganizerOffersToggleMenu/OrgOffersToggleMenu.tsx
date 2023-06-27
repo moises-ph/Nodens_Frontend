@@ -7,17 +7,20 @@ import Swal from 'sweetalert2'
 import { renewToken } from '../../services'
 import { clientHttp } from '../../services/client'
 
-function OrgOffersToggleMenu({id, isAvailable} : { id: string, isAvailable : boolean}) {
+function OrgOffersToggleMenu({id, isAvailable, setLoad} : { id: string, isAvailable : boolean, setLoad :(state : boolean) => void }) {
 
     const [isVisible, setVisible] = useState<boolean>(false);
     
     const sendDeleteOffer = (id : string) => {
-        clientHttp().delete(`/offers/offers/${id}`).then((res : AxiosResponse<{message : string}>)  => Swal.fire({
-          title : res.data.message,
-          icon : "success",
-          showCancelButton : true,
-          timer : 1000
-        }))
+        clientHttp().delete(`/offers/offers/${id}`).then((res : AxiosResponse<{message : string}>)  => {
+          Swal.fire({
+            title: res.data.message,
+            icon: "success",
+            showCancelButton: true,
+            timer: 1000,
+          });
+          setLoad(false);
+        })
         .catch(async (err : AxiosError) => {
           if(err.response && err.response?.status === 401){
             await renewToken();
@@ -28,12 +31,15 @@ function OrgOffersToggleMenu({id, isAvailable} : { id: string, isAvailable : boo
       
       const sendChangeOffer = (id : string) => {
         clientHttp().patch(`/offers/offers/${id}`)
-          .then((res : AxiosResponse<{message : string}>) => Swal.fire({
-            title : res.data.message,
-            icon : 'success',
-            showCancelButton : true,
-            timer : 1000
-          }) )
+          .then((res : AxiosResponse<{message : string}>) => {
+            Swal.fire({
+              title: res.data.message,
+              icon: "success",
+              showCancelButton: true,
+              timer: 1000,
+            });
+            setLoad(false);
+          })
           .catch(async (err : AxiosError) => {
             if(err.response){
               if(err.response?.status === 401){
@@ -58,6 +64,7 @@ function OrgOffersToggleMenu({id, isAvailable} : { id: string, isAvailable : boo
           confirmButtonText: 'Si'
         }).then((result) => {
           if(result.isConfirmed){
+            setLoad(true);
             del ? sendDeleteOffer(id) : sendChangeOffer(id);
           }
         })
@@ -76,7 +83,7 @@ function OrgOffersToggleMenu({id, isAvailable} : { id: string, isAvailable : boo
                     <button onClick={(e) => handleDecision(false, id)} className="transition-all delay-100 text-yellow-300 hover:bg-yellow-300 hover:text-white rounded w-fit px-1 gap-1 flex items-center">{isAvailable ? "Deshabilitar" : "Habilitar"} oferta <MdOutbond /></button>
                   </li>
                   <li>
-                    <button onClick={(e) => handleDecision(true ,id)} className="w-fit h-fit flex items-center gap-1 transition-colors hover:text-white text-red-400 hover:bg-red-600 rounded px-1 bg-transparent" value={id}>Eliminar Oferta<RiDeleteBin6Line /></button>
+                    <button onClick={(e) => handleDecision(true, id)} className="w-fit h-fit flex items-center gap-1 transition-colors hover:text-white text-red-400 hover:bg-red-600 rounded px-1 bg-transparent" value={id}>Eliminar Oferta<RiDeleteBin6Line /></button>
                   </li>
                 </ul>
             </div>
