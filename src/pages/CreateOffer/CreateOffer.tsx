@@ -147,7 +147,7 @@ const CreateOffer = () => {
           </label>
           <label htmlFor="Event_Date" className="w-5/6 h-1/6 bg-zinc-900 rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-slate-100">Fecha del evento <span className="text-red-700">*</span></h5>
-            <input type="datetime-local" name="Event_Date" ref={event_date} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
+            <input min={new Date().toISOString().slice(0,16)} type="datetime-local" name="Event_Date" ref={event_date} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
           <label htmlFor="Payment" className="w-5/6 h-1/6 bg-zinc-900 rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-slate-100">Pago de la oferta <span className="text-red-700">*</span></h5>
