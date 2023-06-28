@@ -74,7 +74,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
                   <p className="text-xl font-semibold">{k.title}</p>
                   <span className="font-light text-sm">{k.date.slice(0, 10)}</span>
                   <p>{k.text}</p>
-                  <img src={k.images[0]} alt="" className="w-full h-full " />
+                  <img src={k.images![0]} alt="" className="w-full h-full " />
                 </div>
               </div>
             ))}
