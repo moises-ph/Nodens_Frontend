@@ -15,3 +15,4 @@ export * from "./musicVideos"
 export * from "./Testimonios" 
 export * from "./EditMusician"
 export * from "./RequestPassReset";
+export * from "./CreatePost"

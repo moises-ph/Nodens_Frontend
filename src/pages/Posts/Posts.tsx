@@ -1,14 +1,14 @@
 import { PostT } from "../../types";
 import { useEffect, useState } from "react";
 import axios from "axios"
-import { Loading } from "../../components";
+import { Loading, CreatePost } from "../../components";
 import { BiImageAdd, BiLink } from "react-icons/bi"
 import { FaUser } from "react-icons/fa"
 import banner from '../../images/banner.png'
 
 const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => {
   const url = ('https://nodensgapi.azure-api.net/posts/posts/');
-
+  const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState<PostT[]>()
 
   const getPosts = () => {
@@ -28,6 +28,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
   }
   return (
     <>
+      <CreatePost profImg={profImg} open={open}/>
       <main className="bg-[#F3F2EF] pt-6 flex flex-col md:flex-row justify-center items-start absolute w-full h-fit min-h-screen gap-6 overflow-y-hidden">
         <div className="flex flex-col w-full md:w-[16%] min-h-[20vh] h-fit bg-white border-solid border-black/10 border-[1px] rounded-2xl gap-4">
           <img src={banner} alt="banner" className="absolute z-0 md:w-[16%] md:h-[14%] md:rounded-t-lg md:object-cover"/>
@@ -47,7 +48,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
 
         <section className="md:w-2/4 w-full h-fit md:max-h-[89vh] flex flex-col items-center md:overflow-y-auto gap-2">
 
-          <div className="bg-white h-fit w-full px-3 py-2 text-center flex flex-col rounded-2xl gap-2 border-solid border-[1px] border-black/10">
+          <div onClick={()=>setOpen(true)} className="bg-white h-fit w-full px-3 py-2 text-center flex flex-col rounded-2xl gap-2 border-solid border-[1px] border-black/10">
             <div className="flex items-center justify-between gap-1">
               {profImg.length > 0 ? (
                 <img
