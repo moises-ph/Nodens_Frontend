@@ -70,7 +70,8 @@ const Pc = ({ handleSubmit, setLoading, setRol }: registerProps) => {
               <h2 className="text-xl font-normal text-blue-500">Confirma la Contraseña</h2>
               <input type="password" name="password-con" minLength={8} id="" className="placeholder:text-blue-500 w-full text-blue-500 bg-transparent border-solid border-2 border-blue-500 px-2 rounded-md transition-colors duration-300 ease-linear outline-none leading-7" placeholder="Confirme la contraseña" required/>
             </label>
-            <input type="submit" onClick={()=>{setLoading(true)}} value="Registrarse" className="place-self-center py-2 px-4 text-slate-100 bg-blue-500 font-semibold rounded hover:bg-blue-700 hover:text-slate-100 transition ease-in duration-200 transform active:translate-y-0" />
+            <p className="text-blue-500 italic text-sm text-center">Al registrarse aceptas nuestros <a className="underline">Términos y Condiciones</a></p>
+            <input type="submit" onClick={()=>{setLoading(true)}} value="Aceptar y Registrarse" className="place-self-center py-2 px-4 text-slate-100 bg-blue-500 font-semibold rounded hover:bg-blue-700 hover:text-slate-100 transition ease-in duration-200 transform active:translate-y-0" />
           </form>
 
         </div>
@@ -102,6 +103,7 @@ const Pc = ({ handleSubmit, setLoading, setRol }: registerProps) => {
               <h2 className="text-xl font-normal text-slate-200">Confirma la Contraseña</h2>
               <input type="password" name="password-con" minLength={8} id="" className="placeholder:text-slate-300 w-full text-slate-100 bg-transparent border-solid border-2 border-slate-200 px-2 rounded-md transition-colors duration-300 ease-linear outline-none leading-7" placeholder="Confirme la contraseña" required/>
             </label>
+            <p className="text-slate-200 italic text-sm text-center">Al registrarse aceptas nuestros <a className="underline">Términos y Condiciones</a></p>
             <input type="submit" onClick={()=>{setLoading(true)}} value="Registrarse" className="place-self-center py-2 px-4 bg-slate-100 text-blue-500 font-semibold rounded hover:bg-blue-700 hover:text-slate-100 transition ease-in duration-200 transform active:translate-y-0" />
           </form>
 
