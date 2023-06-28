@@ -22,16 +22,18 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
     clientHttp().get("/offers/offers/musician")
       .then((res : AxiosResponse<OffersT[], any>) =>  {
         sepostulatedOffers(res.data.map(offer => {
-          return ({
-            ApplicantsNumber : offer.Applicants.length,
-            Creation_Date : offer.Creation_Date,
-            Event_Date : offer.Event_Date,
-            isAvailable : offer.isAvailable,
-            offerId : offer._id,
-            Payment : offer.Payment,
-            Title : offer.Title,
-            Vacants : offer.Vacants
-          } as OfferTableT)
+          return {
+            ApplicantsNumber: offer.Applicants.length,
+            Creation_Date: offer.Creation_Date,
+            Event_Date: offer.Event_Date,
+            isAvailable: offer.isAvailable,
+            offerId: {
+              id: offer._id,
+            },
+            Payment: offer.Payment,
+            Title: offer.Title,
+            Vacants: offer.Vacants,
+          } as OfferTableT;
         }));
       })
       .catch(err => console.log(err))
@@ -98,7 +100,7 @@ const ApplicantsOffers = ({musicianId} : {musicianId : Number}) => {
             {areOffersPostulated ? "Ofertas Postuladas" : "Ofertas Guardadas"}
           </h1>
           <DataTable
-            data={areOffersPostulated ? postulatedOffers : savedOffers}
+            data={areOffersPostulated ? postulatedOffers : savedOffers as any}
             columns={
               areOffersPostulated ? TableColums : (TableColumnsSaved as any)
             }

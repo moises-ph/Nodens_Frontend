@@ -8,6 +8,6 @@ export type OfferTableT = {
   isAvailable: boolean;
   offerId: {
     id: string;
-    setLoading: (state: boolean) => void;
+    setLoading?: (state: boolean) => void;
   };
 };

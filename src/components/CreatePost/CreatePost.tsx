@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 import { PostT } from "../../types";
 import CloudinaryWidget from "../CloudinarySnipet/CloudinaryWidget";
 
-const CreatePost = ({profImg, open}) => {
+const CreatePost = ({profImg, open} : {profImg : string, open : boolean}) => {
   const [post, setPost] = useState<PostT>({
     text: "",
     likes: 0,
@@ -12,12 +12,13 @@ const CreatePost = ({profImg, open}) => {
     images: [],
     comments: [],
     date: new Date().toISOString(),
+    IDAuth : ""
   });
   const title = useRef<HTMLInputElement>(null);
   const text = useRef<HTMLTextAreaElement>(null);
   const links = useRef<HTMLInputElement>(null);
   const actualDate = new Date().toISOString().slice(0, 10);
-  const [foto, setFoto] = useState();
+  const [foto, setFoto] = useState<string>();
   if(!open) return <></>;
   return (
     <>

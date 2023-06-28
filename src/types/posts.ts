@@ -1,3 +1,17 @@
+export type CommentT = {
+  IDAuth: string;
+  text: string;
+  links?: string[];
+  images?: string[];
+  Responses?: [
+    {
+      IDAuth: string;
+      text: string;
+      links?: string[];
+      images?: string[];
+    }
+  ];
+};
 export type PostT = {
 	IDAuth : string,
 	title: string,
@@ -6,16 +20,5 @@ export type PostT = {
 	images?: string[],
 	date: string,
 	likes: number,
-	comments?: [{
-		IDAuth: string,
-		text: string,
-		links?: string[],
-		images?: string[],
-		Responses?: [{
-			IDAuth: string,
-			text: string,
-			links?: string[],
-			images?: string[],
-		}]
-	}]
+	comments?: CommentT[]
 }
