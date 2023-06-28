@@ -105,7 +105,7 @@ const Offers = ({userName} : {userName : string}) => {
             <div className="w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin"></div>
           </div>
         )}
-        {!id ? (
+        {!id && (
           <>
             <div className="bg-white w-[17rem] max-w-[17rem] p-4 rounded-md h-fit mr-5">
               <Link
@@ -120,13 +120,11 @@ const Offers = ({userName} : {userName : string}) => {
               </div>
             </div>
           </>
-        ) : (
-          <></>
         )}
         <div
           className={`flex flex-col ${
             id ? "w-[28.44rem] rounded-tr-none rounded-br-none" : "w-[34.69rem]"
-          } overflow-y-scroll h-fit max-h-[88vh] rounded-xl bg-white justify-self-center`}
+          } overflow-y-scroll h-fit max-h-[86vh] rounded-xl bg-white justify-self-center`}
         >
           <div
             className={`w-full sticky top-0 h-fit py-3 px-3 flex items-center justify-between ${
@@ -174,15 +172,6 @@ const Offers = ({userName} : {userName : string}) => {
               }
               isLoading={loading}
             />
-            <footer className="w-full flex flex-col items-center font-thin text-zinc-500 mt-10">
-              <div className="flex items-center">
-                <Logo dimensions="h-6 w-6" />
-                <span>Nodens</span>
-              </div>
-              <span>Terminos de Uso</span>
-              <span>Politica de Privacidad</span>
-              <span>© 2023 Nodens</span>
-            </footer>
           </div>
          : 
           <footer className="w-[17rem] flex flex-col items-center font-thin text-zinc-500">

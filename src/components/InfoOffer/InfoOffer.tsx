@@ -12,7 +12,7 @@ const InfoOffer = ({offer, handlePostulation, handleSaveOffer,isLoading, isMusic
   useEffect(() => console.log(offer))
 
   return (
-    <div className="bg-white w-full min-h-fit pl-3 pb-3 rounded-xl rounded-tl-none rounded-bl-none">
+    <div className="bg-white w-full overflow-y-auto max-h-[8vh] pl-3 pb-3 rounded-xl rounded-tl-none rounded-bl-none">
       <div className="flex justify-between h-auto p-4 rounded-b-2xl rounded-tr-2xl">
         <div>
           <h1 className="text-4xl font-semibold text-slate-900">
