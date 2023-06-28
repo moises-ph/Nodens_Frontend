@@ -173,7 +173,6 @@ const OrganizerProfile = () => {
               <input onChange={handleProfile} type="file" className="hidden" ref={imageInput}/>
               <div className="flex justify-evenly items-center z-50 w-full">
               <img src={organizer.url_foto_perfil || DefaultUserImg} loading="lazy" alt="Organizer Profile" className="rounded-full h-40 w-40 object-cover mb-1 border-2 border-slate-800 z-30  self-start"  />
-              <button onClick={()=> setEditMode(!editProfileMode)} className={`rounded-full p-2  h-1/6 hover:scale-110 transition`}><FiEdit className="w-7 h-7"/></button>
               </div>
               <div className="flex flex-col items-center text-gray-900">
                 <h1 className="text-center text-3xl organizerNameFont"><span className="font-semibold">{organizer.Name}</span> <span className="organizerNameFont font-thin">{organizer.Lastname}</span></h1>
