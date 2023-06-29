@@ -62,8 +62,8 @@ function Home() {
 					</div>
 				</div>
 
-				<div className="bg-blue-100 py-4 px-2 flex flex-col gap-4 md:gap-20 md:flex-row md:justify-center md:h-[40vh] md:items-center">
-					<h3 className="text-4xl text-blue-800 font-semibold md:w-[40%] md:text-7xl md:place-self-center">Publica ofertas y encuentra tu musico ideal</h3>
+				<div className="bg-orange-100 py-4 px-2 flex flex-col gap-4 md:gap-20 md:flex-row md:justify-center md:h-[40vh] md:items-center">
+					<h3 className="text-4xl text-slate-900 font-semibold md:w-[40%] md:text-7xl md:place-self-center">Publica ofertas y encuentra tu musico ideal</h3>
 					<Link to='/login' className="rounded-full border-2 w-full h-10 border-blue-800 flex justify-center items-center text-blue-800 font-semibold transition-colors duration-300 hover:bg-blue-300 md:w-[25%] md:h-[20%]">Publicar Oferta</Link>
 				</div>
 
