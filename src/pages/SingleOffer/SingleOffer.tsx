@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { InfoOffer, Loading } from "../../components";
 import { useParams } from "react-router-dom";
 import { renewToken } from "../../services";
-import { OffersT } from "../../types";
+import { OffersT, OrganizerT } from "../../types";
 import { clientHttp } from "../../services/client";
 import { AxiosError } from "axios";
 
@@ -10,6 +10,7 @@ import { AxiosError } from "axios";
 const SingleOffer = () => {
   const params = useParams();
   const [offer, setOffer] = useState<OffersT>();
+  const [organizer, setOrganizer] = useState<OrganizerT>();
 
   const getSingleOffer = () => {
     clientHttp().get(`/offers/offers/${params.id}`)
@@ -22,15 +23,20 @@ const SingleOffer = () => {
       })
   }
 
+  const getOrganizer = () => {
+    clientHttp().get(`organizers/Organizer/one/${offer!.OrganizerId}`);
+  }
+
   useEffect(()=> {
     getSingleOffer();
-  }, [])
-  if(!offer) return <Loading />
+  }, []);
+
+  useEffect(() => offer && getOrganizer(), [offer]);
+  if(!offer && !organizer) return <Loading />
   return (
     <>
       <section className="flex flex-col md:items-center w-full gap-4 overflow-y-scroll">
-        <InfoOffer handleSaveOffer={(id : string) =>{}} isMusician={false} handlePostulation={(id:string) => {return;}} isLoading={false} offer={offer} />
-        
+        <InfoOffer organizer={organizer as OrganizerT} handleSaveOffer={(id : string) =>{}} isMusician={false} handlePostulation={(id:string) => {return;}} isLoading={false} offer={offer as OffersT} />
       </section>
     </>
   )

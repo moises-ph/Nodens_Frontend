@@ -44,7 +44,7 @@ const PcView = ({profile, profiles, offers}: chartT) => {
   useEffect(()=>{
     setTimeout(()=> {
       setIsLoading(false);
-    }, 2500)
+    }, 4500)
   })
 
   return (
@@ -55,7 +55,8 @@ const PcView = ({profile, profiles, offers}: chartT) => {
           <div className="">
             <h3 className="text-xl">{profile.Name} {profile.Lastname}</h3>
             <p className="text-sm text-slate-500">Organizador</p>
-            <p>{profile.telefono}</p>
+            <p className='text-sm font-thin'>{profile.telefono}</p>
+            <span className='text-sm font-thin'>{profile.ciudad}, {profile.pais}</span>
           </div>
         </div>
         <div className="flex flex-col gap-2 mb-2">

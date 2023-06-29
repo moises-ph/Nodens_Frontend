@@ -37,7 +37,7 @@ const AppOrganizer = ({organizador}:{organizador: OrganizerT}) => {
     }
     calling();
   }, [])
-  if(!profiles || !offers) return <Loading />;
+  if(profiles.length > 0 && offers.length > 0) return <Loading />;
   return (
     <>
       <section>
