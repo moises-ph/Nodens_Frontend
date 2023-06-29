@@ -1,18 +1,22 @@
 import { FaClipboardList } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import { OffersT } from '../../types'
+import { OffersT, OrganizerT } from '../../types'
 import { DataTable } from "../../pages/OrganizerOffers/TableComponent";
 import { UbicationTableColumns } from "../UbicationTable/UbicationTable";
 import { BsCheckAll, BsFillBookmarkFill } from "react-icons/bs";
 import { VscError } from "react-icons/vsc";
 import { useEffect } from "react";
 import {HiOutlineArrowTopRightOnSquare} from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
-const InfoOffer = ({offer, handlePostulation, handleSaveOffer,isLoading, isMusician}:{offer: OffersT, handlePostulation : (id : string) => void,handleSaveOffer : (id : string) => void ,isLoading : boolean, isMusician : boolean}) => {  
-  useEffect(() => console.log(offer))
+const InfoOffer = ({offer, handlePostulation, handleSaveOffer,isLoading, isMusician, organizer}:{offer: OffersT, handlePostulation : (id : string) => void,handleSaveOffer : (id : string) => void ,isLoading : boolean, isMusician : boolean, organizer : OrganizerT}) => {  
+  useEffect(() =>{
+    console.log(offer);
+    console.log(organizer);
+  })
 
   return (
-    <div className="bg-white w-full overflow-y-auto max-h-[8vh] pl-3 pb-3 rounded-xl rounded-tl-none rounded-bl-none">
+    <div className="bg-white w-full overflow-y-auto max-h-[86vh] pl-3 pb-3 rounded-xl rounded-tl-none rounded-bl-none">
       <div className="flex justify-between h-auto p-4 rounded-b-2xl rounded-tr-2xl">
         <div>
           <h1 className="text-4xl font-semibold text-slate-900">
@@ -121,6 +125,27 @@ const InfoOffer = ({offer, handlePostulation, handleSaveOffer,isLoading, isMusic
           isLoading={false}
         />
       </div>
+      <Link to={`/organizers/${organizer._id?.$oid}`}>
+        <div className="mt-2 flex max-w-[calc(100%-10px)] h-32 justify-between px-4 py-2 rounded-2xl border-solid border-[1px] border-black/30">
+          <div className="flex items-center gap-2">
+            <img src={organizer.url_foto_perfil} className="object-contain h-28 w-28" />
+            <div className="flex-col flex">
+              <span>{organizer.Name} {organizer.Lastname}</span>
+              <span className="font-thin text-sm">{organizer.genero}</span>
+              <span className="italic font-thin text-sm">{organizer.ciudad}, {organizer.pais}</span>
+            </div>
+          </div>
+          {organizer.nombre_empresa.length > 0 && organizer.descripcion_empresa.length > 0 ? 
+          <div className="w-1/2 h-full flex flex-col items-start font-thin text-sm">
+            <span>{organizer.nombre_empresa}</span>
+            <p>{organizer.descripcion_empresa}</p>
+          </div> 
+          : 
+          <div className="w-1/2 h-full flex flex-col items-center justify-center text-center font-thin text-sm">
+            <span>El organizador no tiene empresa</span>
+          </div>}
+        </div>
+      </Link>
     </div>
   );
 }
