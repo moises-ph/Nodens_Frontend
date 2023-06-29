@@ -49,8 +49,8 @@ const PcView = ({profile, profiles, offers}: chartT) => {
 
   return (
     <section className="w-full h-fit flex gap-6">
-      <div className='flex flex-col gap-4 w-2/5 h-[93vh] overflow-y-scroll px-4'>
-        <div className="h-[25vh] flex items-center gap-2">
+      <div className='flex flex-col gap-4 w-2/5 max-h-[93vh] overflow-y-scroll px-4'>
+        <div className="h-[25vh] flex items-center gap-2 sticky top-0 bg-white">
           <img src={profile.url_foto_perfil || DefaultUserImage} alt="profile pic" className="h-4/5 w-auto"/>
           <div className="">
             <h3 className="text-xl">{profile.Name} {profile.Lastname}</h3>
