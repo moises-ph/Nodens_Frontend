@@ -86,7 +86,6 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
             {posts.reverse().map((k, index) => (
               <div key={index} className="border-solid border-black/10 border-[1px] text-black bg-white w-full h-fit pl-2 pr-2 py-4 flex flex-col items-center rounded-xl ">
                 <div className="flex flex-col items-start w-full">
-                  <p className="text-xl font-semibold">{k.title}</p>
                   <span className="font-light text-sm">{k.date.slice(0, 10)}</span>
                   <p>{k.text}</p>
                   <img src={k.images![0]} alt="" className="w-full h-full " />
