@@ -2,7 +2,7 @@ import { BsCheckAll, BsPersonSquare } from 'react-icons/bs'
 import { OffersT } from '../../types';
 import { VscError } from 'react-icons/vsc';
 
-function SingleOffer({ isHomePage , offer, id} : { isHomePage : boolean, offer: OffersT, id : string }) {
+function SingleOffer({ isHomePage , offer, id, organizerImg} : { isHomePage : boolean, offer: OffersT, id : string, organizerImg:string }) {
   return (
     <div
       className={`${
@@ -13,15 +13,19 @@ function SingleOffer({ isHomePage , offer, id} : { isHomePage : boolean, offer: 
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex gap-2">
-          <BsPersonSquare className="h-8 w-8 text-sky-500" />
+          {organizerImg.length > 0 ? (
+            <img src={organizerImg} className='h-8 w-8 object-contain rounded-full' />
+          ) : (
+            <BsPersonSquare className="h-8 w-8 text-sky-500" />
+          )}
           <h3 className="text-xl font-semibold group-hover:underline text-blue-700">
             {offer.Title}
           </h3>
         </div>
         {offer.isAvailable ? (
           <div className="flex items-center bg-green-600 rounded-lg p-[2px] text-white">
-            <BsCheckAll/>
-            <span >Disponible</span>
+            <BsCheckAll />
+            <span>Disponible</span>
           </div>
         ) : (
           <div className="flex items-center bg-red-500 rounded-lg p-[2px] text-white">

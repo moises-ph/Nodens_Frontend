@@ -6,7 +6,7 @@ export type OffersT = {
 	Creation_Date: Date,
 	Event_Date: Date,
 	Payment: number,
-	OrganizerId: string,
+	OrganizerId: number,
 	Event_Ubication: {
 		City: string,
 		Street: string,

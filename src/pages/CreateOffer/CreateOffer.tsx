@@ -130,25 +130,25 @@ const CreateOffer = () => {
       <main className="w-full h-fit flex flex-col items-center justify-center gap-2 pt-10 bg-slate-200">
         <h1 className="text-2xl font-semibold text-slate-800">Crear Oferta</h1>
         {loading && <div className={`absolute right-4 md:right-[37rem] top-[4.25rem] md:top-[101.7rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
-        <form className="w-full md:w-4/6 lg:w-3/6 flex flex-col items-center bg-transparent gap-4 pb-6 z-30" onSubmit={(e)=> e.preventDefault()}>
-          <label htmlFor="Title" className="w-5/6 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
+        <form className="w-full flex flex-col items-start bg-transparent gap-4 px-10 pb-6 z-30" onSubmit={(e)=> e.preventDefault()}>
+          <label htmlFor="Title" className="w-1/3 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-gray-900">Titulo de Oferta <span className="text-red-700">*</span></h5>
             <input type="text" id="Title" name="Title" placeholder="Titulo"  ref={title} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
-          <label htmlFor="Description" className="w-5/6 h-[20vh] bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-4">
+          <label htmlFor="Description" className="w-1/3 h-[20vh] bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-4">
             <h5 className="text-xl font-semibold text-gray-900">Descripcion de Oferta <span className="text-red-700">*</span></h5>
             <textarea name="Description" id="" ref={description} className="h-4/5 resize-none border-solid border-[1px] border-slate-900 rounded-md" required></textarea>
           </label>
-          <label htmlFor="Event_Date" className="w-5/6 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
+          <label htmlFor="Event_Date" className="w-1/3 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-gray-900">Fecha del evento <span className="text-red-700">*</span></h5>
             <input min={new Date().toISOString().slice(0,16)} type="datetime-local" name="Event_Date" ref={event_date} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
-          <label htmlFor="Payment" className="w-5/6 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
+          <label htmlFor="Payment" className="w-1/3 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-gray-900">Pago de la oferta <span className="text-red-700">*</span></h5>
             <input type="number" name="Payment" placeholder="Pago" ref={payment} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
           
-          <label className="w-5/6 h-full bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-4">
+          <label className="w-1/3 h-full bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-4">
             <h5 className="text-xl font-semibold text-gray-900">Ubicacion del evento <span className="text-red-700">*</span></h5>
             <label htmlFor="Career" className="text-gray-900">Carrera:</label>
             <input type="text" name="Career" placeholder="Carrera" ref={career} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" />
@@ -162,11 +162,11 @@ const CreateOffer = () => {
             <input type="text" name="Town" placeholder="Barrio" ref={town} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
 
-          <label htmlFor="Vacants" className="w-5/6 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
+          <label htmlFor="Vacants" className="w-1/3 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-gray-900">Vacantes: <span className="text-red-700">*</span></h5>
             <input type="number" name="Vacants" placeholder="Vacantes" ref={vacants} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md" required/>
           </label>
-          <label className="w-5/6 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
+          <label className="w-1/3 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-gray-900">Requerimientos <span className="text-red-700">*</span></h5>
             {
               requeriments.map((req, i ) => {
@@ -179,7 +179,7 @@ const CreateOffer = () => {
             <input type="text" name="requeriment" placeholder="Requerimiento" ref={requeriment} className="h-2/5 border-solid border-[1px] border-slate-900 rounded-md"/>
             <span onClick={(e)=>{e.preventDefault(); addRequeriment();}} className="text-gray-900">Agregar Requerimiento</span>
           </label>
-          <label className="w-5/6 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
+          <label className="w-1/3 h-1/6 bg-slate-100 shadow-2xl border-solid border-[1px] border-black rounded-xl p-3 flex flex-col gap-6">
             <h5 className="text-xl font-semibold text-gray-900">Tags <span className="text-red-700">*</span></h5>
             {
               tags.map((req, i ) => {

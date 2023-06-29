@@ -2,7 +2,7 @@ import { AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { BsChevronCompactDown, BsFillBookmarkFill, BsSearch } from "react-icons/bs"
 import { Filters, InfoOffer, Loading, Logo, Modal, SingleOffer } from "../../components"
-import { OfferFilter, OffersT } from "../../types"
+import { OfferFilter, OffersT, OrganizerT } from "../../types"
 import { renewToken } from "../../services"
 import { clientHttp } from "../../services/client"
 import { BsFilterRight, BsArrowRepeat } from "react-icons/bs"
@@ -11,6 +11,7 @@ import {VscSettings} from "react-icons/vsc";
 import FilterAccordion from "./FilterAccordion/FilterAccordion"
 import Swal from "sweetalert2"
 import { IoReloadCircleOutline } from "react-icons/io5"
+import { AxiosResponse } from "axios"
 
 const Offers = ({userName} : {userName : string}) => {
 
@@ -18,16 +19,27 @@ const Offers = ({userName} : {userName : string}) => {
 
 	const [offers,setOffers] = useState<OffersT[] | null>(null);
 	const [offerFilter,setOfferFilter] = useState<OfferFilter | null>(null);
-	const [offersToDisplay, setOffersDisplay] = useState<OffersT[] | null>([]);
+	const [offersToDisplay, setOffersDisplay] = useState<OffersT[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [organizers, setOrganizers] = useState<OrganizerT[]>([]);
 
 	const getInitialOffers = async () => {
     setOffers(null);
     await renewToken();
 		clientHttp().get('/offers/offers')
 		  .then(res=>{setOffers(res.data); setOffersDisplay(res.data); setLoading(false)})
-			.catch(err=>console.log(err)) 
+			.catch(err=>console.log(err));
+
+    getAllOrganizers();
 	}
+
+  const getAllOrganizers = () => {
+    clientHttp().get('/organizers/Organizer/all')
+      .then((res : AxiosResponse<OrganizerT[]>) => {
+        console.log(res);
+        setOrganizers(res.data);
+      }).catch(err => console.log(err));
+  }
 
   const saveAnOffer = (offerId : string) => {
     setLoading(true);
@@ -95,6 +107,10 @@ const Offers = ({userName} : {userName : string}) => {
 			));
 		}
 	},[offerFilter])
+
+  useEffect(()=> {
+    console.log(organizers);
+  },[organizers]);
 	return (
     <>
       <section className="min-h-[95vh] pt-10 pb-4 flex justify-center bg-zinc-100 overflow-y-hidden">
@@ -138,42 +154,72 @@ const Offers = ({userName} : {userName : string}) => {
               </p>
             </div>
             <div className="flex items-center">
-              <button onClick={(e) => {setLoading(true); getInitialOffers(); setOffersDisplay([])}} className="text-orange-500"><IoReloadCircleOutline className="w-7 h-7" /></button>
-              <span>{loading ? 'Cargando...' : `${offersToDisplay!.length} Ofertas`}</span>
+              <button
+                onClick={(e) => {
+                  setLoading(true);
+                  getInitialOffers();
+                  setOffersDisplay([]);
+                }}
+                className="text-orange-500"
+              >
+                <IoReloadCircleOutline className="w-7 h-7" />
+              </button>
+              <span>
+                {loading ? "Cargando..." : `${offersToDisplay!.length} Ofertas`}
+              </span>
             </div>
           </div>
-          {offersToDisplay!.length > 0 ? (
-            offersToDisplay!.map((offer, i) => {
-              return (
-                <Link to={`/offers/${offer._id}`}>
-                  <SingleOffer
-                    offer={offer}
-                    key={i}
-                    isHomePage={false}
-                    id={id as string}
-                  />
-                </Link>
-              );
-            })
-          ) : !loading && (
-            <div>
-              <span>No hay ninguna oferta disponible por el momento :(</span>
-            </div>
-          )}
+          {offersToDisplay!.length > 0 && organizers.length > 0
+            ? offersToDisplay!.map((offer, i) => {
+                return (
+                  <Link to={`/offers/${offer._id}`}>
+                    <SingleOffer
+                      offer={offer}
+                      key={i}
+                      isHomePage={false}
+                      id={id as string}
+                      organizerImg={
+                        organizers.map((org) => {
+                          if (org.IdAuth === offer.OrganizerId) return org;
+                        })[0]?.url_foto_perfil || ""
+                      }
+                    />
+                  </Link>
+                );
+              })
+            : !loading && (
+                <div>
+                  <span>
+                    No hay ninguna oferta disponible por el momento :(
+                  </span>
+                </div>
+              )}
         </div>
-        {id ? 
+        {id ? (
           <div className="w-[40.75rem]">
-            <InfoOffer
-              isMusician={true}
-              handleSaveOffer={saveAnOffer}
-              handlePostulation={postulateOffer}
-              offer={
-                offersToDisplay!.find((offer) => offer._id == id) as OffersT
-              }
-              isLoading={loading}
-            />
+            {offersToDisplay!.length > 0 && organizers.length > 0 && (
+              <InfoOffer
+                isMusician={true}
+                handleSaveOffer={saveAnOffer}
+                handlePostulation={postulateOffer}
+                offer={
+                  offersToDisplay!.find((offer) => offer._id == id) as OffersT
+                }
+                isLoading={loading}
+                organizer={
+                  organizers.map((org) => {
+                    if (
+                      org.IdAuth ===
+                      offersToDisplay!.find((offer) => offer._id == id)
+                        ?.OrganizerId
+                    )
+                      return org;
+                  })[0] as OrganizerT
+                }
+              />
+            )}
           </div>
-         : 
+        ) : (
           <footer className="w-[17rem] flex flex-col items-center font-thin text-zinc-500">
             <Logo dimensions="h-6 w-6" />
             <span>Nodens</span>
@@ -181,7 +227,7 @@ const Offers = ({userName} : {userName : string}) => {
             <span>Politica de Privacidad</span>
             <span>© 2023 Nodens</span>
           </footer>
-        }
+        )}
       </section>
     </>
   );
