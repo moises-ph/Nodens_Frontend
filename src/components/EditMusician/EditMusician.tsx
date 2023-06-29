@@ -118,7 +118,7 @@ const deleteInstrument = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>,i:n
   if(!editProfileMode) return <></>
   return (
     <>
-          <section className="fixed z-[10000] top-0 left-0 backdrop-blur-sm bg-[rgba(36,44,71,0.68)] flex justify-center  h-full overflow-y-scroll w-full pt-12">
+          <section className="fixed z-[100] top-0 left-0 backdrop-blur-sm bg-[rgba(36,44,71,0.68)] flex justify-center  h-full overflow-y-scroll w-full pt-12">
           <button className="absolute top-0 right-0 h-20 w-20 p-8 text-2xl text-slate-100 left-0 z-[10000]" onClick={cancelProfileEdition}><AiOutlineArrowLeft /></button>
             <form onSubmit={handleSubmit} className='slide-top h-fit bg-slate-50  w-full md:w-2/5 gap-6 rounded-lg flex flex-col text-start items-center py-4'>
               <h2 className='text-xl my-2 text-slate-800  text-start pl-4 w-full border-b pb-2 border-slate-300'>Edita tu información Personal</h2>

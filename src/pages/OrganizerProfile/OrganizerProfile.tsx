@@ -163,7 +163,7 @@ const OrganizerProfile = () => {
   if (!organizer) return <Loading />
   return (
     <>
-      <main className="flex flex-col items-start md:flex-row justify-evenly w-full h-full bg-slate-200 pb-3 md:pt-5">
+      <main className="flex flex-col md:items-center md:justify-evenly w-full h-full bg-slate-200 pb-3 md:pt-5">
       {loading && <div className={`absolute right-4 ${editProfileMode ? '' : 'md:right-[28rem]'} top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}><div className='w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div></div>}
         <section className="slide-top min-h-screen flex w-full md:w-1/2 flex-col items-center gap-4 transition"> 
           <div className=" flex flex-col gap-1 items-center px-4 pt-10">

@@ -143,7 +143,7 @@ const MusiciansProfile = () => {
               <div className="flex flex-col  text-slate-800 bg-slate-200 rounded-lg w-full p-2">
                 <h1 className=" text-3xl organizerNameFont "><span className="font-semibold">{user.Name}</span> <span className="organizerNameFont font-semibold">{user.Lastname}</span></h1>
                 <h3 className="font-semibold text-blue-500">{email}</h3>
-                <p className="font-light">{user.ciudad}, {user.pais} ° {user.telefono}</p>
+                <p className="font-light">{user.ciudad}, {user.pais} ° {user.telefono[0]}</p>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ const MusiciansProfile = () => {
             <h3 className="pl-2">Generos Musicales:</h3>
             <div className=" grid gap-2 grid-cols-2 px-2 ">
               {user.generosMusicales.map((gen, i) => {
-                return <span key={i} className="rounded-full border w-fit h-fit border-zinc-700 flex justify-center items-center text-zinc-700 ">{gen}</span>
+                return <span key={i} className="rounded-full border w-[50%] h-fit border-zinc-700 flex justify-center items-center text-zinc-700 ">{gen}</span>
               })}
             </div>
           </div>

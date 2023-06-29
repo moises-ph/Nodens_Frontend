@@ -13,7 +13,7 @@ function SingleOffer({ isHomePage , offer, id, organizerImg} : { isHomePage : bo
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex gap-2">
-          {organizerImg.length > 0 ? (
+          {organizerImg && organizerImg.length > 0 ? (
             <img src={organizerImg} className='h-8 w-8 object-contain rounded-full' />
           ) : (
             <BsPersonSquare className="h-8 w-8 text-sky-500" />

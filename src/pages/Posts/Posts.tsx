@@ -1,6 +1,6 @@
-import { OffersT, PostT } from "../../types";
+import { OffersT, OrganizerT, PostT } from "../../types";
 import { useEffect, useState } from "react";
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 import { Loading, CreatePost, SingleOffer } from "../../components";
 import { BiImageAdd, BiLink } from "react-icons/bi"
 import { FaUser } from "react-icons/fa"
@@ -12,7 +12,14 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
   const [open, setOpen] = useState(false);
   const [posts, setPosts] = useState<PostT[]>()
   const [offers, setOffers] = useState<OffersT[]>([]);
-
+  const [organizers, setOrganizers] = useState<OrganizerT[]>([]);
+  const getAllOrganizers = () => {
+    clientHttp().get('/organizers/Organizer/all')
+      .then((res : AxiosResponse<OrganizerT[]>) => {
+        console.log(res);
+        setOrganizers(res.data);
+      }).catch(err => console.log(err));
+  }
   const getOffers = () => {
     clientHttp().get("/offers/offers").then(res => setOffers(res.data))    
   }
@@ -28,6 +35,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
   useEffect(() => {
     getPosts();
     getOffers();
+    getAllOrganizers();
   }, [])
 
   if (!posts) {
@@ -75,7 +83,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
 
           <div className="w-full flex flex-col h-fit gap-4">
 
-            {posts.map((k, index) => (
+            {posts.reverse().map((k, index) => (
               <div key={index} className="border-solid border-black/10 border-[1px] text-black bg-white w-full h-fit pl-2 pr-2 py-4 flex flex-col items-center rounded-xl ">
                 <div className="flex flex-col items-start w-full">
                   <p className="text-xl font-semibold">{k.title}</p>
@@ -89,10 +97,12 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
           </div>
         </section>
         { offers!.length > 0 &&
-          <footer className="bg-white md:w-[15%] w-full h-fit rounded-2xl border-solid border-black/10 border-[1px]">
+          <footer className="bg-white md:w-[20%] w-full h-fit max-h-72 overflow-y-scroll rounded-2xl border-solid border-black/10 border-[1px]">
             {
               offers?.slice(0, 3)?.map((offer, i) => {
-                return <SingleOffer offer={offer} id="" isHomePage={true} />
+                return <SingleOffer offer={offer} id="" isHomePage={true} organizerImg={organizers.map((org) => {
+                          if (org.IdAuth === offer.OrganizerId) return org;
+                        })[0]?.url_foto_perfil || ""}/>
               })
             }
           </footer>

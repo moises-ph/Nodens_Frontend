@@ -59,7 +59,7 @@ const OrganizerOffers = () => {
   if(!offers) return <Loading />
   return (
     <>
-      <main  className="w-full flex flex-col items-center justify-center pt-[4%] px-4 gap-3">
+      <main  className="w-full flex flex-col items-center justify-center py-8 px-4 gap-3">
         <div className="flex items-center h-fit w-fit gap-2 self-start ml-6">
           <button onClick={(e) => {setLoad(true); getOffers()}} className="bg-blue-500 rounded p-2 text-slate-200 hover:bg-blue-700 transition-all hover:text-white">Recargar</button>
           {loading && <div className='place-self-center w-8 h-8 rounded-[50%] [border-left-style:solid] border-[11.2px] border-double border-[#474bff] animate-spin'></div>}
