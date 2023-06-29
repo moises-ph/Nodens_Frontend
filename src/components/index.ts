@@ -14,5 +14,6 @@ export * from "./Filters"
 export * from "./musicVideos"
 export * from "./Testimonios" 
 export * from "./EditMusician"
+export * from "./EditOganizer";
 export * from "./RequestPassReset";
 export * from "./CreatePost"
