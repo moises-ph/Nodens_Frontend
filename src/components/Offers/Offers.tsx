@@ -97,7 +97,7 @@ const Offers = ({userName} : {userName : string}) => {
 	},[offerFilter])
 	return (
     <>
-      <section className="min-h-[91vh] pt-10 pb-4 flex justify-center bg-zinc-100 overflow-y-hidden">
+      <section className="min-h-[95vh] pt-10 pb-4 flex justify-center bg-zinc-100 overflow-y-hidden">
         {loading && (
           <div
             className={`absolute right-4 top-[4.25rem] md:top-[4.75rem] flex items-center justify-center`}

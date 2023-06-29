@@ -13,12 +13,12 @@ export type CommentT = {
   ];
 };
 export type PostT = {
-	IDAuth : string,
+	IDAuth? : string,
 	title: string,
 	text: string,
 	links?: string[],
 	images?: string[],
 	date: string,
-	likes: number,
+	likes: [],
 	comments?: CommentT[]
 }
