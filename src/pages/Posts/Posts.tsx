@@ -6,6 +6,7 @@ import { BiImageAdd, BiLink } from "react-icons/bi"
 import { FaUser } from "react-icons/fa"
 import banner from '../../images/banner.png'
 import { clientHttp } from "../../services/client";
+import { text } from "@cloudinary/url-gen/qualifiers/source";
 
 const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => {
   const url = ('https://nodensgapi.azure-api.net/posts/posts/');
@@ -32,6 +33,7 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
     })
     .catch(err => console.log(err))
   }
+  
   useEffect(() => {
     getPosts();
     getOffers();
@@ -83,13 +85,12 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
 
           <div className="w-full flex flex-col h-fit gap-4">
 
-            {posts.reverse().map((k, index) => (
+            {posts.map((k, index) => (
               <div key={index} className="border-solid border-black/10 border-[1px] text-black bg-white w-full h-fit pl-2 pr-2 py-4 flex flex-col items-center rounded-xl ">
                 <div className="flex flex-col items-start w-full">
-                  <p className="text-xl font-semibold">{k.title}</p>
                   <span className="font-light text-sm">{k.date.slice(0, 10)}</span>
-                  <p>{k.text}</p>
-                  <img src={k.images![0]} alt="" className="w-full h-full " />
+                  <p className="w-full overflow-hidden">{k.text}</p>
+                  {k.images!.length > 0 ? <img src={k.images![0]} alt="" className="w-full h-full " /> : <> </> }
                 </div>
               </div>
             ))}

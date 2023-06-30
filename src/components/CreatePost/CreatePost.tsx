@@ -7,6 +7,7 @@ import { renewToken } from "../../services";
 import { clientHttp } from "../../services/client";
 import Swal from "sweetalert2";
 import { Loading } from "../Loading";
+import { Timer } from "lucide-react";
 
 const CreatePost = ({profImg, open, setOpen} : {profImg : string, open : boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>>}) => {
   const title = useRef<HTMLInputElement>(null);
@@ -15,19 +16,49 @@ const CreatePost = ({profImg, open, setOpen} : {profImg : string, open : boolean
   const actualDate = new Date().toISOString().slice(0, 10);
   const [loading, setLoading] = useState<boolean>(false);
   const [foto, setFoto] = useState<string>();
+  const [post, setPost] = useState<PostT>({
+    text: "",
+    likes: [],
+    title: '',
+    links: [],
+    images:  [],
+    comments: [],
+    date: new Date().toISOString()
+  });
+
+  const setting = () => {
+    setPost({
+      text: text.current!.value,
+      likes: [],
+      title: '',
+      links: [links.current!.value],
+      images:  foto ? [foto]: [],
+      comments: [],
+      date: new Date().toISOString()
+    })
+  }
  
   const checking = () => {
-    if(!text.current!.value) {
+    if(text.current!.value === "") {
       Swal.fire({
         icon: 'warning',
         text: 'por favor ingresa una descripcion'
       })
-    } else if(!title.current!.value) {
-      Swal.fire({
-        icon: 'warning',
-        text: 'por favor ingresa un titulo'
-      })
     } else {
+      let timerInterval: any
+      Swal.fire({
+        title: 'Publicando tu post.',
+        html: 'Danos un momento',
+        timer: 10000,
+        timerProgressBar: true,
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
       sendPost();
     }
   }
@@ -35,15 +66,9 @@ const CreatePost = ({profImg, open, setOpen} : {profImg : string, open : boolean
   const sendPost = async () => {
     setLoading(true);
     await renewToken();
-    clientHttp().post('/posts/posts/new', {
-      text: text.current?.value,
-      likes: [],
-      title: title.current?.value,
-      links: [links.current?.value],
-      images: foto ? [foto] : [],
-      comments: [],
-      date: new Date().toISOString()
-    })
+    console.log(post);
+    
+    clientHttp().post('/posts/posts/new', post)
     .then(res => {
       setLoading(false);
       Swal.fire({
@@ -53,6 +78,7 @@ const CreatePost = ({profImg, open, setOpen} : {profImg : string, open : boolean
       setOpen(false);
     })
     .catch(err=> {
+      console.log(err)
       setLoading(false);
       Swal.fire({
       icon: 'error',
@@ -78,14 +104,11 @@ const CreatePost = ({profImg, open, setOpen} : {profImg : string, open : boolean
           </div>
           <button className="relative right-1" onClick={()=> setOpen(false)}><GiCancel className="text-2xl text-red-500"/></button>
         </div> 
-        <label className="flex gap-4 ">Titulo
-          <input type="text" ref={title} className="border border-slate-600 rounded-lg px-2 md:w-2/3 w-full"/>
-        </label>
-        <textarea ref={text} className="w-full h-[60%] bg-slate-50 placeholder:text-slate-500 text-slate-800" placeholder="Que te gustaria compartir?"></textarea>
+        <textarea ref={text} onChange={()=> setting()} className="w-full h-[60%] bg-slate-50 placeholder:text-slate-500 text-slate-800" placeholder="Que te gustaria compartir?"></textarea>
         <div className="flex md:flex-row md:gap-0 flex-col justify-around w-full gap-2">
           <CloudinaryWidget sendInfo={setFoto} className="bg-blue-600 text-slate-100 p-2 rounded-lg"/>
           <label className="md:w-3/4 w-full flex gap-2 items-center">Sube un link
-            <input type="text" ref={links} className="border border-slate-600 rounded-lg px-2 md:w-2/3 w-[75%]" placeholder="Link"/>
+            <input type="text" ref={links} onChange={()=> setting()} className="border border-slate-600 rounded-lg px-2 md:w-2/3 w-[75%]" placeholder="Link"/>
           </label>
         </div>
         <div className="flex justify-end">

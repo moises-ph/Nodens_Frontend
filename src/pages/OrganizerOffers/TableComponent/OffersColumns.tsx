@@ -58,6 +58,7 @@ export const offersColumns : ColumnDef<OfferTableT>[] = [
       accessorKey : "isAvailable",
       header : "Disponibilidad",
       cell : ({row}) => {
-        return row.getValue('isAvailable') ? 'Oferta Disponible' : 'Oferta no Disponible'      }
+        return row.getValue('isAvailable') ? 'Oferta Disponible' : 'Oferta no Disponible'     
+       }
     }
   ]

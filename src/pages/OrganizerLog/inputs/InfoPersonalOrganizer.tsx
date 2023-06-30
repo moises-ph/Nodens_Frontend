@@ -78,7 +78,6 @@ const InfoPersonalorganizer = ({handlerInfo, alreadyOrganizer } : { handlerInfo 
                 <option className='selection:bg-orange-500' value="" selected>Selecciona...</option>
                 <option className='selection:bg-orange-500' value="Masculino">Masculino</option>
                 <option className='selection:bg-orange-500' value="Femenino">Femenino</option>
-                <option className='selection:bg-orange-500' value="Helicoptero Apache">Helicoptero Apache</option>
                 <option className='selection:bg-orange-500' value="Otro">Otro</option>
               </optgroup>
             </select>
