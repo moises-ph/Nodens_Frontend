@@ -2,9 +2,8 @@ import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { Link, useNavigate } from "react-router-dom";
 import {changeAppRouter} from "../../store/RouterSlice"
 import Swal from 'sweetalert2'
-import { AiOutlineArrowLeft, AiOutlineUser } from "react-icons/ai"
-import { BsFillKeyFill, BsLinkedin } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
+import { AiOutlineArrowLeft} from "react-icons/ai"
+import { BsFillKeyFill } from "react-icons/bs";
 import { clientHttp } from "../../services/client";
 import { Logo } from "../../components";
 import { FiMail } from "react-icons/fi";

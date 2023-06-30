@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react'
 import enterprise from '../../../images/pngwing.com.webp'
+import { OrganizerT } from '../../../types';
 
-const EnterpriseInfo = ({handler, goBack, register}: {handler:  (key: string, value: any) => void, goBack: ()=>void, register: ()=> void}) => {
+const EnterpriseInfo = ({handler, goBack, setOrganizer, organizer}: {handler:  () => void, goBack: ()=>void, setOrganizer: React.Dispatch<React.SetStateAction<OrganizerT>>, organizer: OrganizerT}) => {
   const [isValue, setIsValue] = useState<boolean>(false);
   const nombre_empresa = useRef<HTMLInputElement>(null);
   const descripcion_empresa = useRef<HTMLTextAreaElement>(null);
 
   const send = () => {
-    handler(nombre_empresa.current!.value, descripcion_empresa.current!.value)
+    handler()
     
   }
 
@@ -18,12 +19,12 @@ const EnterpriseInfo = ({handler, goBack, register}: {handler:  (key: string, va
         <div className="flex flex-col gap-1">
           <label htmlFor='nombre_empresa' className='flex flex-col text-lg gap-3'>Cual es el nombre de tu empresa</label>
           <div className='flex gap-10 h-fit'>
-            <input type="text" name="nombre_empresa" placeholder='Nombre' ref={nombre_empresa} onChange={() => setIsValue(nombre_empresa.current!.value.length > 3 && descripcion_empresa.current!.value.length > 3)} className='w-1/4| bg-transparent border-solid border-b-2 border-slate-300 text-black/70 text-xl placeholder:text-base placeholder:italic font-thin outline-none focus:border-slate-500'/>
+            <input type="text" name="nombre_empresa" placeholder='Nombre' ref={nombre_empresa} onChange={() => {setIsValue(nombre_empresa.current!.value.length > 3 && descripcion_empresa.current!.value.length > 3); setOrganizer({...organizer, ["nombre_empresa"]: nombre_empresa.current!.value})}} className='w-1/4| bg-transparent border-solid border-b-2 border-slate-300 text-black/70 text-xl placeholder:text-base placeholder:italic font-thin outline-none focus:border-slate-500'/>
           </div>
         </div>
         <div className='flex flex-col gap-1'>
           <label htmlFor='genero' className='flex flex-col text-lg'>Danos una breve descripción de tu empresa</label>
-          <textarea name="descripcion_empresa" onChange={() => setIsValue(nombre_empresa.current!.value.length > 3 && descripcion_empresa.current!.value.length > 3)} ref={descripcion_empresa} className='bg-transparent w-2/3 border-solid border-b-2 border-slate-300 text-black/70 font-medium outline-none focus:border-slate-500'/>
+          <textarea name="descripcion_empresa" onChange={() => {setIsValue(nombre_empresa.current!.value.length > 3 && descripcion_empresa.current!.value.length > 3); setOrganizer({...organizer, ["descripcion_empresa"]: descripcion_empresa.current!.value})}} ref={descripcion_empresa} className='bg-transparent w-2/3 border-solid border-b-2 border-slate-300 text-black/70 font-medium outline-none focus:border-slate-500'/>
         </div>
         <div className=''>
         <button  onClick={()=> goBack()} className={`p-2 ${isValue ? 'bg-blue-500' : 'bg-blue-500'} text-slate-100 font-semibold  rounded-xl shadow-xl hover:drop-shadow-xl hover:scale-105 transition`}>volver</button>
