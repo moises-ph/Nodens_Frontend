@@ -33,7 +33,7 @@ const Offers = ({userName} : {userName : string}) => {
   const getAllOrganizers = () => {
     clientHttp().get('/organizers/Organizer/all')
       .then((res : AxiosResponse<OrganizerT[]>) => {
-        console.log(res);
+        console.log(res); 
         setOrganizers(res.data);
       }).catch(err => console.log(err));
   }
@@ -86,6 +86,8 @@ const Offers = ({userName} : {userName : string}) => {
       }); 
   }
 
+    console.log(getInitialOffers);
+    
 	useEffect(()=> {
 		getInitialOffers();
 	}, []);
