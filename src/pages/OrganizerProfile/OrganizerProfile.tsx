@@ -107,7 +107,7 @@ const OrganizerProfile = () => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: res.data.message,
+          title: 'Información del organizador actualizada correctamente.',
           showConfirmButton: false,
           timer: 1000
         });
