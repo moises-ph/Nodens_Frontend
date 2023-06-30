@@ -19,6 +19,7 @@ const Offers = ({userName} : {userName : string}) => {
 	const [offersToDisplay, setOffersDisplay] = useState<OffersT[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [organizers, setOrganizers] = useState<OrganizerT[]>([]);
+  
 
 	const getInitialOffers = async () => {
     setOffers(null);
@@ -85,6 +86,13 @@ const Offers = ({userName} : {userName : string}) => {
         setLoading(false);
       }); 
   }
+
+  const findOrganizer = () => {
+    let organ = organizers.find((org, i) => org.IdAuth === offersToDisplay!.find((offer) => offer._id == id)?.OrganizerId)
+    console.log(organ);
+    return organ
+  }
+  const organizer = findOrganizer();
 
 	useEffect(()=> {
 		getInitialOffers();
@@ -203,16 +211,7 @@ const Offers = ({userName} : {userName : string}) => {
                   offersToDisplay!.find((offer) => offer._id == id) as OffersT
                 }
                 isLoading={loading}
-                organizer={
-                  organizers.map((org) => {
-                    if (
-                      org.IdAuth ===
-                      offersToDisplay!.find((offer) => offer._id == id)
-                        ?.OrganizerId
-                    )
-                      return org;
-                  })[0] as OrganizerT
-                }
+                organizer={organizer as OrganizerT}
               />
             )}
           </div>

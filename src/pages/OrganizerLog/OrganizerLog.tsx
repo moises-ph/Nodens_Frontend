@@ -120,7 +120,7 @@ const OrganizerLog = () => {
 
 	const Inputs: JSX.Element[] = [
     <InfoPersonalOrganizer handlerInfo={handlerInfo} alreadyOrganizer={organizer}/>,
-    <EnterpriseInfo handler={handlerEnterprise} goBack={goBack} register={registerOrganizer}/>,
+    <EnterpriseInfo handler={registerOrganizer} goBack={goBack} setOrganizer={setOrganizer} organizer={organizer}/>,
   ];
 
   return (

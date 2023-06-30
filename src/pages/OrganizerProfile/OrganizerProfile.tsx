@@ -81,8 +81,9 @@ const OrganizerProfile = () => {
 
   const hasCompany = () : boolean => organizer!.nombre_empresa.length > 0 && organizer!.descripcion_empresa.length > 0
 
-  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await renewToken();
     setLoading(true);
     const form : FormData = new FormData(e.target as HTMLFormElement);
     const entries : any = Object.fromEntries(form);
@@ -93,8 +94,8 @@ const OrganizerProfile = () => {
       Lastname : entries.Lastname.length > 0 ? entries.Lastname : organizer!.Lastname,
       fecha_nacimiento : entries.fecha_nacimiento,
       telefono : entries.telefono.toString().length > 0 ? entries.telefono : organizer!.telefono,
-      nombre_empresa : willSendCompany ? entries.nombre_empresa.length > 0 ? entries.nombre_empresa : organizer!.nombre_empresa : "",
-      descripcion_empresa : willSendCompany ? entries.descripcion_empresa.length > 0 ? entries.descripcion_empresa : organizer!.descripcion_empresa : "",
+      nombre_empresa :  entries.nombre_empresa.length > 0 ? entries.nombre_empresa : organizer!.nombre_empresa ,
+      descripcion_empresa :  entries.descripcion_empresa.length > 0 ? entries.descripcion_empresa : organizer!.descripcion_empresa ,
       ciudad : entries.ciudad.length > 0 ? entries.ciudad : organizer!.ciudad,
       pais : organizer!.pais,
       genero : entries.genero.length > 0 ? entries.genero : organizer!.genero,
