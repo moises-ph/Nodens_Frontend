@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa"
 import banner from '../../images/banner.png'
 import { clientHttp } from "../../services/client";
 import { text } from "@cloudinary/url-gen/qualifiers/source";
+import { Link } from "react-router-dom";
 
 const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => {
   const url = ('https://nodensgapi.azure-api.net/posts/posts/');
@@ -101,9 +102,20 @@ const Posts = ({ profImg, nameProf }: { profImg: string, nameProf: string }) => 
           <footer className="bg-white md:w-[20%] w-full h-fit max-h-72 overflow-y-scroll rounded-2xl border-solid border-black/10 border-[1px]">
             {
               offers?.slice(0, 3)?.map((offer, i) => {
-                return <SingleOffer offer={offer} id="" isHomePage={true} organizerImg={organizers.map((org) => {
+                return (
+                  <Link to={`/offers/${offer._id!}`}>
+                    <SingleOffer
+                      offer={offer}
+                      id=""
+                      isHomePage={true}
+                      organizerImg={
+                        organizers.map((org) => {
                           if (org.IdAuth === offer.OrganizerId) return org;
-                        })[0]?.url_foto_perfil || ""}/>
+                        })[0]?.url_foto_perfil || ""
+                      }
+                    />
+                  </Link>
+                );
               })
             }
           </footer>
